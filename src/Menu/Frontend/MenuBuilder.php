@@ -2,6 +2,7 @@
 
 namespace App\Menu\Frontend;
 
+use App\Entity\MenuLevel1;
 use App\Repository\MenuLevel1Repository;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
@@ -25,11 +26,12 @@ class MenuBuilder
         $homepage->setAttribute('class', 'nav-item');
 
         $ml1Items = $ml1r->getAllSortedByPosition()->getQuery()->getResult();
-//        foreach ($ml1Items as $ml1Item) {
-//            $menu->addChild('Home', ['route' => 'front_app_homepage']);
-//            $child->setLinkAttribute('class', 'nav-link')
-//                ->setAttribute('class', 'nav-item');
-//        }
+        /** @var MenuLevel1 $ml1Item */
+        foreach ($ml1Items as $ml1Item) {
+            $item = $menu->addChild($ml1Item->getName(), ['route' => 'front_app_homepage']);
+            $item->setLinkAttribute('class', 'nav-link');
+            $item->setAttribute('class', 'nav-item');
+        }
 
         return $menu;
     }
