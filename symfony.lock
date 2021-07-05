@@ -601,6 +601,9 @@
     "theseer/tokenizer": {
         "version": "1.2.0"
     },
+    "thibautselingue/local-php-security-checker-installer": {
+        "version": "v1.0.3"
+    },
     "twig/extra-bundle": {
         "version": "v3.3.1"
     },

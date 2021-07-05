@@ -1,3 +1,9 @@
+###> app/bundle ###
+/scripts/ansible/vars/
+/src/.preload.php
+!/bin/console
+.php_cs.cache
+###< app/bundle ###
 
 ###> symfony/framework-bundle ###
 /.env.local
@@ -18,3 +24,8 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> liip/imagine-bundle ###
+/public/media/cache/*
+!/public/media/cache/.gitkeep
+###< liip/imagine-bundle ###
