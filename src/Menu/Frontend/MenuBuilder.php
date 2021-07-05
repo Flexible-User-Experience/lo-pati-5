@@ -28,7 +28,13 @@ class MenuBuilder
         $ml1Items = $ml1r->getAllSortedByPosition()->getQuery()->getResult();
         /** @var MenuLevel1 $ml1Item */
         foreach ($ml1Items as $ml1Item) {
-            $item = $menu->addChild($ml1Item->getName(), ['route' => 'front_app_homepage']);
+            $item = $menu->addChild(
+                $ml1Item->getSlug(),
+                [
+                    'label' => $ml1Item->getName(),
+                    'route' => 'front_app_homepage',
+                ]
+            );
             $item->setLinkAttribute('class', 'nav-link');
             $item->setAttribute('class', 'nav-item');
         }
