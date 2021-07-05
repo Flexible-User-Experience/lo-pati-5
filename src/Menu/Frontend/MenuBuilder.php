@@ -32,7 +32,10 @@ class MenuBuilder
                 $ml1Item->getSlug(),
                 [
                     'label' => $ml1Item->getName(),
-                    'route' => 'front_app_homepage',
+                    'route' => 'front_app_menu_level_1',
+                    'routeParameters' => [
+                        'menu' => $ml1Item->getSlug(),
+                    ],
                 ]
             );
             $item->setLinkAttribute('class', 'nav-link');
