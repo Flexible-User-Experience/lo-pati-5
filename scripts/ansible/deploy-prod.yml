@@ -14,14 +14,13 @@
     # ansistrano shared resources
     ansistrano_shared_paths:
       - "var/log"
-      - "var/upload"
     ansistrano_shared_files: []
     ansistrano_ensure_shared_paths_exist: yes
     ansistrano_ensure_basedirs_shared_files_exist: yes
     # ansistrano repository config
     ansistrano_deploy_via: "git"
     ansistrano_git_repo: "{{ vhost_git_clone_repo }}"
-    ansistrano_git_branch: "master"
+    ansistrano_git_branch: "devel"
     # ansistrano hooks
     ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/hooks/before-symlink-tasks.yml"
     ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/hooks/after-symlink-tasks.yml"
