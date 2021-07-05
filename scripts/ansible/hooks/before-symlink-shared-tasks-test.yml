@@ -1,0 +1,5 @@
+- name: copy .env stagging file
+  copy:
+    src: "{{ playbook_dir }}/vars/.env.test"
+    dest: "{{ ansistrano_release_path.stdout }}/.env"
+    mode: "0644"

@@ -1,0 +1,21 @@
+---
+- hosts: s8
+  gather_facts: false
+  vars_files:
+    - "{{ playbook_dir }}/vars/config.yml"
+  tasks:
+    - name: install new apache virtual host in production server
+      template:
+        src: "{{ playbook_dir}}/templates/vhost-prod.conf"
+        dest: "/etc/apache2/sites-available/{{ vhost_priority_prod }}-{{ vhost_name_prod }}.conf"
+    - name: enable new apache virtual host in production server
+      command: a2ensite {{ vhost_priority_prod }}-{{ vhost_name_prod }}
+      args:
+        creates: "/etc/apache2/sites-enabled/{{ vhost_priority_prod }}-{{ vhost_name_prod }}.conf"
+      notify:
+        - reload apache2
+  handlers:
+    - name: reload apache2
+      service:
+        name: apache2
+        state: reloaded
