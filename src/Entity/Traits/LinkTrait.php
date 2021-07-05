@@ -9,7 +9,7 @@ trait LinkTrait
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url(checkDNS=true)
+     * @Assert\Url()
      */
     private ?string $link = null;
 

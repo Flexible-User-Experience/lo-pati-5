@@ -2,13 +2,36 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="www.flux.cat">
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
         {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     </head>
     <body>
-        {% block body %}
-            <h1>Hello World!</h1>
-        {% endblock %}
+        <div class="container">
+            <header class="d-flex justify-content-center py-3">
+                {% block header %}
+                    <ul class="nav nav-pills">
+                        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                    </ul>
+                {% endblock %}
+            </header>
+        </div>
+        <div class="container">
+            <main>
+                {% block main %}
+                    <div class="row">
+                        <div class="col">
+                            <h1>Hello World!</h1>
+                        </div>
+                    </div>
+                {% endblock %}
+            </main>
+        </div>
     </body>
 </html>
