@@ -116,6 +116,9 @@
             "config/routes/liip_imagine.yaml"
         ]
     },
+    "lorenzo/pinky": {
+        "version": "1.0.5"
+    },
     "monolog/monolog": {
         "version": "2.2.0"
     },
@@ -641,7 +644,19 @@
     "thibautselingue/local-php-security-checker-installer": {
         "version": "v1.0.3"
     },
+    "tijsverkoyen/css-to-inline-styles": {
+        "version": "2.2.3"
+    },
+    "twig/cssinliner-extra": {
+        "version": "v3.3.0"
+    },
     "twig/extra-bundle": {
+        "version": "v3.3.1"
+    },
+    "twig/inky-extra": {
+        "version": "v3.3.0"
+    },
+    "twig/markdown-extra": {
         "version": "v3.3.1"
     },
     "twig/twig": {
