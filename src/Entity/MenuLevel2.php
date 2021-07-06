@@ -5,15 +5,22 @@ namespace App\Entity;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Table()
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_subname_index", columns={"name", "menu_level1_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\MenuLevel2Repository")
+ * @UniqueEntity(fields={"name", "menuLevel1"}, errorPath="name")
  */
 class MenuLevel2 extends AbstractBase
 {
     use NameTrait;
     use PositionTrait;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private string $name;
 
     /**
      * @ORM\Column(type="boolean", options={"default"=0})
@@ -22,6 +29,7 @@ class MenuLevel2 extends AbstractBase
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\MenuLevel1", inversedBy="menuLevel2items")
+     * @ORM\JoinColumn(name="menu_level1_id", referencedColumnName="id", nullable=false)
      */
     private MenuLevel1 $menuLevel1;
 
