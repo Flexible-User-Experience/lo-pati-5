@@ -1,12 +1,21 @@
 -- Local exports to CSV
 
-SELECT T.*
+SELECT C.*
 INTO OUTFILE '/tmp/menulevel1.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 ESCAPED BY '\\'
 LINES TERMINATED BY '\n'
-FROM lopati.Categoria T;
+FROM lopati.Categoria C;
+
+SELECT SC.*, C.nom AS categoria
+INTO OUTFILE '/tmp/menulevel2.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\n'
+FROM lopati.SubCategoria SC
+JOIN lopati.Categoria C ON C.id = SC.categoria_id;
 
 -- SELECT TDC.*
 -- INTO OUTFILE '/tmp/enterprise_collection_document_types.csv'
