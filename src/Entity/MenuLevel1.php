@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
+use App\Entity\Traits\SlugTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,6 +20,7 @@ class MenuLevel1 extends AbstractBase
 {
     use NameTrait;
     use PositionTrait;
+    use SlugTrait;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -51,18 +53,6 @@ class MenuLevel1 extends AbstractBase
     public function __construct()
     {
         $this->menuLevel2items = new ArrayCollection();
-    }
-
-    public function getSlug(): string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
     }
 
     public function isArchive(): bool

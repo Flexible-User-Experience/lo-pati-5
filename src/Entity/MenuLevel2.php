@@ -4,7 +4,9 @@ namespace App\Entity;
 
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
+use App\Entity\Traits\SlugTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -16,11 +18,18 @@ class MenuLevel2 extends AbstractBase
 {
     use NameTrait;
     use PositionTrait;
+    use SlugTrait;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
     private string $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Gedmo\Slug(fields={"name"})
+     */
+    private string $slug;
 
     /**
      * @ORM\Column(type="boolean", options={"default"=0})
