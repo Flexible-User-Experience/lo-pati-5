@@ -27,7 +27,7 @@ class MenuLevel2 extends AbstractBase
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Gedmo\Slug(fields={"name"})
+     * @Gedmo\Slug(fields={"name"}, unique=false)
      */
     private string $slug;
 

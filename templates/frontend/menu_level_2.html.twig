@@ -1,12 +1,12 @@
 {% extends "frontend/base.html.twig" %}
 
-{% block title %}Menu {{ menu }}{% endblock %}
+{% block title %}Menu {{ submenu }}{% endblock %}
 
 {% block main %}
     <div class="row">
         <div class="col">
             <h1>Hello World!</h1>
-            <pre>{{ menu.name }}</pre>
+            <pre>{{ menu.name }} · {{ submenu.name }}</pre>
             <ul class="nav">
                 {% for item in menu.menuLevel2items %}
                     <li class="nav-item">

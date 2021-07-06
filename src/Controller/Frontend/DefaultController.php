@@ -40,10 +40,15 @@ class DefaultController extends AbstractController
      */
     public function menuLevel2Action(MenuLevel1 $menu, MenuLevel2 $submenu): Response
     {
+        if ($submenu->getMenuLevel1()->getId() !== $menu->getId()) {
+            throw $this->createNotFoundException();
+        }
+
         return $this->render(
-            'frontend/menu_level_1.html.twig',
+            'frontend/menu_level_2.html.twig',
             [
                 'menu' => $menu,
+                'submenu' => $submenu,
             ]
         );
     }
