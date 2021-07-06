@@ -41,13 +41,13 @@ class MenuBuilder
         );
         $homepage->setLinkAttribute('class', ($this->isHomepageRouteCurrent($currentRoute) ? 'nav-link active' : 'nav-link'));
         $homepage->setAttribute('class', 'nav-item');
-        $ml1Items = $ml1r->getAllSortedByPosition()->getQuery()->getResult();
+        $ml1Items = $ml1r->getAllSortedByPositionAndName()->getQuery()->getResult();
         /** @var MenuLevel1 $ml1Item */
         foreach ($ml1Items as $ml1Item) {
             $item = $menu->addChild(
                 $ml1Item->getSlug(),
                 [
-                    'label' => $ml1Item->getName(),
+                    'label' => $ml1Item->getPosition().' · '.$ml1Item->getName(),
                     'route' => 'front_app_menu_level_1',
                     'routeParameters' => [
                         'menu' => $ml1Item->getSlug(),

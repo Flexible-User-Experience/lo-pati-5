@@ -40,6 +40,7 @@ class MenuLevel1 extends AbstractBase
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\MenuLevel2", mappedBy="menuLevel1")
+     * @ORM\OrderBy({"position"="ASC", "name"="ASC"})
      */
     private ?Collection $menuLevel2items;
 

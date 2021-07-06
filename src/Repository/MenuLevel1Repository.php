@@ -24,4 +24,9 @@ class MenuLevel1Repository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('m')->orderBy('m.position', $sortOrder);
     }
+
+    public function getAllSortedByPositionAndName($sortOrder = 'ASC'): QueryBuilder
+    {
+        return $this->getAllSortedByPosition($sortOrder)->addOrderBy('m.name', $sortOrder);
+    }
 }

@@ -10,7 +10,7 @@
             <ul class="nav">
                 {% for item in menu.menuLevel2items %}
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ path('front_app_menu_level_2', {menu: menu.slug, submenu: item.slug}) }}">{{ item.name }}</a>
+                        <a class="nav-link active" aria-current="page" href="{{ path('front_app_menu_level_2', {menu: menu.slug, submenu: item.slug}) }}">{{ item.position }} · {{ item.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
