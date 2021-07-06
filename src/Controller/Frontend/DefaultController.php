@@ -41,7 +41,22 @@ class DefaultController extends AbstractController
     public function menuLevel2Action(MenuLevel1 $menu, MenuLevel2 $submenu): Response
     {
         if ($submenu->getMenuLevel1()->getId() !== $menu->getId()) {
-            throw $this->createNotFoundException();
+            $found = false;
+            $itemFound = null;
+            /** @var MenuLevel2 $item */
+            foreach ($menu->getMenuLevel2items() as $item) {
+                if ($item->getSlug() === $submenu->getSlug()) {
+                    $found = true;
+                    $itemFound = $item;
+
+                    break;
+                }
+            }
+            if ($found) {
+                $submenu = $itemFound;
+            } else {
+                throw $this->createNotFoundException();
+            }
         }
 
         return $this->render(

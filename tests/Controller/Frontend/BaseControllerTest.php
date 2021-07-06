@@ -6,11 +6,27 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BaseControllerTest extends WebTestCase
 {
-    public function testHomepage(): void
+    /**
+     * @dataProvider provideUrls
+     */
+    public function testHomepage(string $url): void
     {
         $client = WebTestCase::createClient();
-        $client->request('GET', '/');
+        $client->request('GET', $url);
         self::assertResponseIsSuccessful();
+    }
+
+    public function provideUrls(): array
+    {
+        return [
+            ['/'],
+            ['/menu-1'],
+            ['/menu-1/submenu-1-1'],
+            ['/menu-1/submenu-1-2'],
+            ['/menu-2'],
+            ['/menu-2/submenu-2-1'],
+            ['/menu-2/submenu-2-2'],
+        ];
     }
 
     /**
@@ -28,6 +44,8 @@ class BaseControllerTest extends WebTestCase
         return [
             ['/not-found-page'],
             ['/not-found-page/inside'],
+            ['/menu-1/submenu-1-3'],
+            ['/menu-3'],
         ];
     }
 }

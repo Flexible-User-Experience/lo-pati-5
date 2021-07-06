@@ -7,6 +7,7 @@
         <div class="col">
             <h1>Hello World!</h1>
             <pre>{{ menu.name }} · {{ submenu.name }}</pre>
+            <pre>#{{ submenu.id }}</pre>
             <ul class="nav">
                 {% for item in menu.menuLevel2items %}
                     <li class="nav-item">
