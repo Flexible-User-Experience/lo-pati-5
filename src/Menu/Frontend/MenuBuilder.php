@@ -24,11 +24,16 @@ class MenuBuilder
     {
         $currentRoute = '';
         $menuRoute = null;
+        $submenuRoute = null;
         if ($this->requestStack->getCurrentRequest()) {
             $currentRoute = $this->requestStack->getCurrentRequest()->get('_route');
             if ($this->requestStack->getCurrentRequest()->get('menu')) {
                 /** @var MenuLevel1 $menuRoute */
                 $menuRoute = $this->requestStack->getCurrentRequest()->get('menu');
+            }
+            if ($this->requestStack->getCurrentRequest()->get('submenu')) {
+                /** @var MenuLevel2 $submenuRoute */
+                $submenuRoute = $this->requestStack->getCurrentRequest()->get('submenu');
             }
         }
         $menu = $this->factory->createItem('root');
@@ -71,7 +76,7 @@ class MenuBuilder
                         ],
                     ]
                 );
-                $submenu->setLinkAttribute('class', 'nav-link'/*($this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute && $menuRoute->getId() === $ml1Item->getId() ? 'nav-link active' : 'nav-link')*/);
+                $submenu->setLinkAttribute('class', ($this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute && $submenuRoute->getId() === $ml2Item->getId() ? 'nav-link active' : 'nav-link'));
                 $submenu->setAttribute('class', 'nav-item');
             }
         }
