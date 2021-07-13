@@ -8,6 +8,9 @@
             <h1>Hello World!</h1>
             <pre>{{ menu.name }} · {{ submenu.name }}</pre>
             <pre>#{{ submenu.id }}</pre>
+            {% set item = knp_menu_get_current_item('frontend_main') %}
+            <pre>{{ dump(knp_menu_get_breadcrumbs_array(item)) }}</pre>
+            {{ knp_menu_render(item, {'currentClass': 'active', 'depth': 1}) }}
             <ul class="nav">
                 {% for item in menu.menuLevel2items %}
                     <li class="nav-item">

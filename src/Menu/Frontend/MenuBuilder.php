@@ -3,6 +3,7 @@
 namespace App\Menu\Frontend;
 
 use App\Entity\MenuLevel1;
+use App\Entity\MenuLevel2;
 use App\Repository\MenuLevel1Repository;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
@@ -47,15 +48,32 @@ class MenuBuilder
             $item = $menu->addChild(
                 $ml1Item->getSlug(),
                 [
-                    'label' => $ml1Item->getPosition().' · '.$ml1Item->getName(),
+                    'label' => $ml1Item->getName(),
                     'route' => 'front_app_menu_level_1',
                     'routeParameters' => [
                         'menu' => $ml1Item->getSlug(),
                     ],
                 ]
             );
+            $item->setChildrenAttribute('class', 'nav nav-pills');
             $item->setLinkAttribute('class', ($this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute && $menuRoute->getId() === $ml1Item->getId() ? 'nav-link active' : 'nav-link'));
             $item->setAttribute('class', 'nav-item');
+            /** @var MenuLevel2 $ml2Item */
+            foreach ($ml1Item->getMenuLevel2items() as $ml2Item) {
+                $submenu = $item->addChild(
+                    $ml2Item->getSlug(),
+                    [
+                        'label' => $ml2Item->getName(),
+                        'route' => 'front_app_menu_level_2',
+                        'routeParameters' => [
+                            'menu' => $ml1Item->getSlug(),
+                            'submenu' => $ml2Item->getSlug(),
+                        ],
+                    ]
+                );
+                $submenu->setLinkAttribute('class', 'nav-link'/*($this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute && $menuRoute->getId() === $ml1Item->getId() ? 'nav-link active' : 'nav-link')*/);
+                $submenu->setAttribute('class', 'nav-item');
+            }
         }
 
         return $menu;
