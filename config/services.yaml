@@ -20,3 +20,9 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
+    # menus
+    app.frontend_main_menu:
+        class:     Knp\Menu\MenuItem
+        factory:   [ '@App\Menu\Frontend\MenuBuilder', createMainMenu ]
+        tags:
+            - { name: knp_menu.menu, alias: 'frontend_main' }

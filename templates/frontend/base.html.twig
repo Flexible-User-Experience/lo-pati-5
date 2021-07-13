@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale }}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="www.flux.cat">
+        <title>{% block title %}{{ project_title }}{% endblock %}</title>
+        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
+        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <header class="justify-content-center">
+                <div class="row">
+                    <div class="col py-3">
+                        {% block menu_header %}
+                            {{ knp_menu_render('frontend_main', {'currentClass': 'active', 'depth': 1}) }}
+                        {% endblock %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col pb-3">
+                        {% block submenu_header %}{% endblock %}
+                    </div>
+                </div>
+            </header>
+        </div>
+        <div class="container">
+            <main>
+                {% block main %}
+                    <div class="row">
+                        <div class="col">
+                            <h1>Hello World!</h1>
+                        </div>
+                    </div>
+                {% endblock %}
+            </main>
+        </div>
+    </body>
+</html>
