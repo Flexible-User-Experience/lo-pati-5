@@ -97,4 +97,9 @@ class MenuLevel2 extends AbstractBase
 //
 //        return $this;
 //    }
+
+    public function __toString(): string
+    {
+        return $this->getId() ? $this->getName() : self::DEFAULT_EMPTY_STRING;
+    }
 }

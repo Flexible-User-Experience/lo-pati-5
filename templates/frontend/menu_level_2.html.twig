@@ -1,23 +1,28 @@
 {% extends "frontend/base.html.twig" %}
 
-{% block title %}Menu {{ submenu }}{% endblock %}
+{% set item = knp_menu_get_current_item('frontend_main') %}
+
+{% block title %}{{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
+
+{% block submenu_header %}
+    {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}
+{% endblock %}
 
 {% block main %}
     <div class="row">
         <div class="col">
-            <h1>Hello World!</h1>
-            <pre>{{ menu.name }} · {{ submenu.name }}</pre>
-            <pre>#{{ submenu.id }}</pre>
-            {% set item = knp_menu_get_current_item('frontend_main') %}
-            <pre>{{ dump(knp_menu_get_breadcrumbs_array(item)) }}</pre>
-            {{ knp_menu_render(item, {'currentClass': 'active', 'depth': 1}) }}
-            <ul class="nav">
-                {% for item in menu.menuLevel2items %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ path('front_app_menu_level_2', {menu: menu.slug, submenu: item.slug}) }}">{{ item.name }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
+            <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
+            <pre>#{{ submenu.id }} · #{{ menu.id }}</pre>
+{#            <pre>{{ dump(item.parent) }}</pre>#}
+{#            <pre>{{ dump(knp_menu_get_breadcrumbs_array(item)) }}</pre>#}
+{#            {{ knp_menu_render(item, {'currentClass': 'active', 'depth': 1}) }}#}
+{#            <ul class="nav">#}
+{#                {% for item in menu.menuLevel2items %}#}
+{#                    <li class="nav-item">#}
+{#                        <a class="nav-link active" aria-current="page" href="{{ path('front_app_menu_level_2', {menu: menu.slug, submenu: item.slug}) }}">{{ item.name }}</a>#}
+{#                    </li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
         </div>
     </div>
 {% endblock %}
