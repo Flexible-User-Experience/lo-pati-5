@@ -2,9 +2,11 @@
 
 namespace App\Command;
 
+use App\Entity\AbstractBase;
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
 use App\Entity\Page;
+use DateTime;
 use DateTimeImmutable;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -45,33 +47,42 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                     'name' => $serachedMenuLevel1Name,
                 ]);
                 if ($menuLevel1) {
-//                    $output->writeln($this->readColumn(32, $data));
-//                    $output->writeln('ML1ID# '.$menuLevel1->getId());
-//                    $output->writeln($this->readColumn(33, $data));
                     $serachedMenuLevel2Name = $this->readColumn(33, $data);
                     $menuLevel2 = $ml2r->findOneBy([
                         'name' => $serachedMenuLevel2Name,
                         'menuLevel1' => $menuLevel1,
                     ]);
                     if ($menuLevel2) {
-                        $serachedMenuLevel1Name = $this->readColumn(32, $data);
-                        $menuLevel1 = $ml1r->findOneBy([
-                            'name' => $serachedMenuLevel1Name,
-                        ]);
-
-//                        $menuLevel2
-//                            ->setMenuLevel1($menuLevel1)
-//                            ->setName($serachedMenuLevel2Name)
-//                            ->setPosition((int) $this->readColumn(3, $data))
-//                            ->setActive((bool) $this->readColumn(4, $data))
-//                            ->setIsList((bool) $this->readColumn(5, $data))
-//                        ;
-//                        $this->em->persist($menuLevel2);
-                        if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
-                            $this->em->flush();
-                        }
-                        if ($input->getOption('show-data')) {
-                            $output->writeln(implode(self::CSV_DELIMITER, $data));
+                        $serachedPageName = $this->readColumn(3, $data);
+                        $serachedPagePublishDate = $this->readColumn(8, $data);
+                        $publishDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $serachedPagePublishDate);
+                        if ($publishDate) {
+                            $page = $pr->findOneBy([
+                                'name' => $serachedPageName,
+                                'publishDate' => $publishDate,
+                            ]);
+                            if (!$page) {
+                                $page = new Page();
+                                $page
+                                    ->setName($serachedPageName)
+                                    ->setPublishDate($publishDate)
+                                ;
+                                $this->em->persist($page);
+                                ++$newRecords;
+                            }
+                            $page
+                                ->setType($this->readColumn(2, $data))
+                                ->setDescription($this->readColumn(5, $data))
+                            ;
+                            if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
+                                $this->em->flush();
+                            }
+                            if ($input->getOption('show-data')) {
+                                $output->writeln(implode(self::CSV_DELIMITER, $data));
+                            }
+                        } else {
+                            $output->writeln('Invalid publish date "'.$data[8].'" <error>PARSE ERROR</error>');
+                            ++$errors;
                         }
                     } else {
                         $output->writeln('Menu level 2 "'.$this->readColumn(33, $data).'" (with Menu level 1 = '.$this->readColumn(32, $data).') <error>NOT FOUND ERROR</error>');

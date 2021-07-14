@@ -49,7 +49,7 @@ class Page extends AbstractBase
     private bool $isFrontCover = false;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private DateTimeInterface $publishDate;
 
