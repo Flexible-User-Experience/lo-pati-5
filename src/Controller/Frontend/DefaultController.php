@@ -4,6 +4,7 @@ namespace App\Controller\Frontend;
 
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,29 +37,10 @@ class DefaultController extends AbstractController
     /**
      * @Route("/{menu}/{submenu}", name="front_app_menu_level_2")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
-     * @ParamConverter("submenu", class="App\Entity\MenuLevel2", options={"mapping": {"submenu": "slug"}})
+     * @Entity("submenu", class="App\Entity\MenuLevel2", expr="repository.getByMenuAndSubmenuSlugs(menu, submenu)")
      */
     public function menuLevel2Action(MenuLevel1 $menu, MenuLevel2 $submenu): Response
     {
-        if ($submenu->getMenuLevel1()->getId() !== $menu->getId()) {
-            $found = false;
-            $itemFound = null;
-            /** @var MenuLevel2 $item */
-            foreach ($menu->getMenuLevel2items() as $item) {
-                if ($item->getSlug() === $submenu->getSlug()) {
-                    $found = true;
-                    $itemFound = $item;
-
-                    break;
-                }
-            }
-            if ($found) {
-                $submenu = $itemFound;
-            } else {
-                throw $this->createNotFoundException();
-            }
-        }
-
         return $this->render(
             'frontend/menu_level_2.html.twig',
             [
