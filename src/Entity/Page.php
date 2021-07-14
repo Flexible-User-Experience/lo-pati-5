@@ -39,7 +39,7 @@ class Page extends AbstractBase
     private string $type;
 
     /**
-     * @ORM\Column(type="string", length=300, nullable=true)
+     * @ORM\Column(type="text", length=300, nullable=true)
      */
     private ?string $summary = null;
 
@@ -59,7 +59,7 @@ class Page extends AbstractBase
     private bool $showPublishDate = false;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     private ?DateTimeInterface $expirationDate;
 
@@ -92,7 +92,7 @@ class Page extends AbstractBase
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Url()
      */
-    private ?string $urlVideo = null;
+    private ?string $urlVimeo = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -111,12 +111,12 @@ class Page extends AbstractBase
     private ?string $documentName2;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     private ?DateTimeInterface $startDate;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
      */
     private ?DateTimeInterface $endDate;
 
@@ -264,14 +264,14 @@ class Page extends AbstractBase
         return $this;
     }
 
-    public function getUrlVideo(): ?string
+    public function getUrlVimeo(): ?string
     {
-        return $this->urlVideo;
+        return $this->urlVimeo;
     }
 
-    public function setUrlVideo(?string $urlVideo): self
+    public function setUrlVimeo(?string $urlVimeo): self
     {
-        $this->urlVideo = $urlVideo;
+        $this->urlVimeo = $urlVimeo;
 
         return $this;
     }

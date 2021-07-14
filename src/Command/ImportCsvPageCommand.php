@@ -72,8 +72,49 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                             }
                             $page
                                 ->setType($this->readColumn(2, $data))
+                                ->setSummary($this->readColumn(4, $data))
                                 ->setDescription($this->readColumn(5, $data))
+                                ->setActive((bool) $this->readColumn(6, $data))
+                                ->setIsFrontCover((bool) $this->readColumn(7, $data))
+                                ->setShowPublishDate((bool) $this->readColumn(9, $data))
+                                ->setRealizationDateString($this->readColumn(11, $data))
+                                ->setPlace($this->readColumn(12, $data))
+                                ->setLinks($this->readColumn(14, $data))
+                                ->setShowSocialNetworksSharingButtons((bool) $this->readColumn(15, $data))
+                                ->setVideo($this->readColumn(16, $data))
+                                ->setUrlVimeo($this->readColumn(17, $data))
+                                ->setUrlFlickr($this->readColumn(18, $data))
+//                                ->setSmallImage1($this->readColumn(19, $data))
+//                                ->setSmallImage2($this->readColumn(26, $data))
+//                                ->setImage($this->readColumn(20, $data))
+//                                ->setImageFooter($this->readColumn(21, $data))
+//                                ->setDocument1($this->readColumn(22, $data))
+//                                ->setDocument1Title($this->readColumn(23, $data))
+//                                ->setDocument2($this->readColumn(24, $data))
+//                                ->setDocument2Title($this->readColumn(25, $data))
+//                                ->setMenuLevel1($menuLevel1)
+//                                ->setMenuLevel2($menuLevel2)
                             ;
+                            $expirationDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(10, $data));
+                            if ($expirationDate) {
+                                $page->setExpirationDate($expirationDate);
+                            }
+                            $startDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(26, $data));
+                            if ($startDate) {
+                                $page->setStartDate($startDate);
+                            }
+                            $endDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(27, $data));
+                            if ($endDate) {
+                                $page->setEndDate($endDate);
+                            }
+                            $createddAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(28, $data));
+                            if ($createddAtDate) {
+                                $page->setCreatedAt($createddAtDate);
+                            }
+                            $updatedAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(29, $data));
+                            if ($updatedAtDate) {
+                                $page->setUpdatedAt($updatedAtDate);
+                            }
                             if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
                                 $this->em->flush();
                             }
