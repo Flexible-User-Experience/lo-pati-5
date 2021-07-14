@@ -31,3 +31,16 @@ App\Entity\MenuLevel2:
     position: 2
     isList: '<boolean()>'
     menuLevel1: '@menulevel2'
+
+# Page
+App\Entity\Page:
+  page1:
+    name: 'Page 1'
+    description: '<sentence()>'
+    type: "word 1"
+    summary: '<sentence()>'
+    isFrontCover: '<boolean()>'
+    publishDate: '<dateTime()>'
+    showPublishDate: '<boolean()>'
+    expirationDate: '<dateTime()>'
+    menuLevel1: '@menulevel1'

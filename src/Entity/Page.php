@@ -132,6 +132,222 @@ class Page extends AbstractBase
      */
     private MenuLevel2 $menuLevel2;
 
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getSummary(): ?string
+    {
+        return $this->summary;
+    }
+
+    public function setSummary(?string $summary): self
+    {
+        $this->summary = $summary;
+
+        return $this;
+    }
+
+    public function isFrontCover(): bool
+    {
+        return $this->isFrontCover;
+    }
+
+    public function setIsFrontCover(bool $isFrontCover): self
+    {
+        $this->isFrontCover = $isFrontCover;
+
+        return $this;
+    }
+
+    public function getPublishDate(): DateTimeInterface
+    {
+        return $this->publishDate;
+    }
+
+    public function setPublishDate(DateTimeInterface $publishDate): self
+    {
+        $this->publishDate = $publishDate;
+
+        return $this;
+    }
+
+    public function isShowPublishDate(): bool
+    {
+        return $this->showPublishDate;
+    }
+
+    public function setShowPublishDate(bool $showPublishDate): self
+    {
+        $this->showPublishDate = $showPublishDate;
+
+        return $this;
+    }
+
+    public function getExpirationDate(): ?DateTimeInterface
+    {
+        return $this->expirationDate;
+    }
+
+    public function setExpirationDate(?DateTimeInterface $expirationDate): self
+    {
+        $this->expirationDate = $expirationDate;
+
+        return $this;
+    }
+
+    public function getRealizationDateString(): ?string
+    {
+        return $this->realizationDateString;
+    }
+
+    public function setRealizationDateString(?string $realizationDateString): self
+    {
+        $this->realizationDateString = $realizationDateString;
+
+        return $this;
+    }
+
+    public function getPlace(): ?string
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?string $place): self
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    public function getLinks(): ?string
+    {
+        return $this->links;
+    }
+
+    public function setLinks(?string $links): self
+    {
+        $this->links = $links;
+
+        return $this;
+    }
+
+    public function isShowSocialNetworksSharingButtons(): bool
+    {
+        return $this->showSocialNetworksSharingButtons;
+    }
+
+    public function setShowSocialNetworksSharingButtons(bool $showSocialNetworksSharingButtons): self
+    {
+        $this->showSocialNetworksSharingButtons = $showSocialNetworksSharingButtons;
+
+        return $this;
+    }
+
+    public function getVideo(): ?string
+    {
+        return $this->video;
+    }
+
+    public function setVideo(?string $video): self
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
+    public function getUrlVideo(): ?string
+    {
+        return $this->urlVideo;
+    }
+
+    public function setUrlVideo(?string $urlVideo): self
+    {
+        $this->urlVideo = $urlVideo;
+
+        return $this;
+    }
+
+    public function getUrlFlickr(): ?string
+    {
+        return $this->urlFlickr;
+    }
+
+    public function setUrlFlickr(?string $urlFlickr): self
+    {
+        $this->urlFlickr = $urlFlickr;
+
+        return $this;
+    }
+
+    public function getLargeFooterImage(): ?string
+    {
+        return $this->largeFooterImage;
+    }
+
+    public function setLargeFooterImage(?string $largeFooterImage): self
+    {
+        $this->largeFooterImage = $largeFooterImage;
+
+        return $this;
+    }
+
+    public function getStartDate(): ?DateTimeInterface
+    {
+        return $this->startDate;
+    }
+
+    public function setStartDate(?DateTimeInterface $startDate): self
+    {
+        $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(?DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getMenuLevel1(): MenuLevel1
+    {
+        return $this->menuLevel1;
+    }
+
+    public function setMenuLevel1(MenuLevel1 $menuLevel1): self
+    {
+        $this->menuLevel1 = $menuLevel1;
+
+        return $this;
+    }
+
+    public function getMenuLevel2(): MenuLevel2
+    {
+        return $this->menuLevel2;
+    }
+
+    public function setMenuLevel2(MenuLevel2 $menuLevel2): self
+    {
+        $this->menuLevel2 = $menuLevel2;
+
+        return $this;
+    }
+
     public function __toString(): string
     {
         return $this->getId() ? $this->getName() : self::DEFAULT_EMPTY_STRING;
