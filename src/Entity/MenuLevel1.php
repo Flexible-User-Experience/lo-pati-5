@@ -47,7 +47,7 @@ class MenuLevel1 extends AbstractBase
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Page", mappedBy="menuLevel1")
      */
-    private Page $page;
+    private ?Page $page = null;
 
     public function __construct()
     {
@@ -100,12 +100,12 @@ class MenuLevel1 extends AbstractBase
         return $this;
     }
 
-    public function getPage(): Page
+    public function getPage(): ?Page
     {
         return $this->page;
     }
 
-    public function setPage(Page $page): self
+    public function setPage(?Page $page): self
     {
         $this->page = $page;
 

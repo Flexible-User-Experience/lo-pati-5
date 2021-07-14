@@ -125,12 +125,12 @@ class Page extends AbstractBase
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\MenuLevel1", inversedBy="page")
      */
-    private MenuLevel1 $menuLevel1;
+    private ?MenuLevel1 $menuLevel1 = null;
 
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\MenuLevel2", inversedBy="page")
      */
-    private MenuLevel2 $menuLevel2;
+    private ?MenuLevel2 $menuLevel2 = null;
 
     public function getType(): string
     {
@@ -324,24 +324,24 @@ class Page extends AbstractBase
         return $this;
     }
 
-    public function getMenuLevel1(): MenuLevel1
+    public function getMenuLevel1(): ?MenuLevel1
     {
         return $this->menuLevel1;
     }
 
-    public function setMenuLevel1(MenuLevel1 $menuLevel1): self
+    public function setMenuLevel1(?MenuLevel1 $menuLevel1): self
     {
         $this->menuLevel1 = $menuLevel1;
 
         return $this;
     }
 
-    public function getMenuLevel2(): MenuLevel2
+    public function getMenuLevel2(): ?MenuLevel2
     {
         return $this->menuLevel2;
     }
 
-    public function setMenuLevel2(MenuLevel2 $menuLevel2): self
+    public function setMenuLevel2(?MenuLevel2 $menuLevel2): self
     {
         $this->menuLevel2 = $menuLevel2;
 

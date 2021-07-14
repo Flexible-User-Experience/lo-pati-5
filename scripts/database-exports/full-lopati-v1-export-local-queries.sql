@@ -17,6 +17,16 @@ LINES TERMINATED BY '\n'
 FROM lopati.SubCategoria SC
 JOIN lopati.Categoria C ON C.id = SC.categoria_id;
 
+SELECT P.*, C.nom AS categoria, SC.nom AS subcategoria
+INTO OUTFILE '/tmp/page.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\n'
+FROM lopati.Pagina P
+JOIN lopati.Categoria C ON C.id = P.categoria_id
+JOIN lopati.SubCategoria SC ON SC.id = P.subCategoria_id;
+
 -- SELECT TDC.*
 -- INTO OUTFILE '/tmp/enterprise_collection_document_types.csv'
 -- FIELDS TERMINATED BY ','
