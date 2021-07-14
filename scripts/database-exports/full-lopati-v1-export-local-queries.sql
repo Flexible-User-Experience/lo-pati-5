@@ -5,7 +5,7 @@ INTO OUTFILE '/tmp/menulevel1.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 ESCAPED BY '\\'
-LINES TERMINATED BY '\n'
+LINES TERMINATED BY '\r\n'
 FROM lopati.Categoria C;
 
 SELECT SC.*, C.nom AS categoria
@@ -13,7 +13,7 @@ INTO OUTFILE '/tmp/menulevel2.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 ESCAPED BY '\\'
-LINES TERMINATED BY '\n'
+LINES TERMINATED BY '\r\n'
 FROM lopati.SubCategoria SC
 JOIN lopati.Categoria C ON C.id = SC.categoria_id;
 
@@ -22,7 +22,7 @@ INTO OUTFILE '/tmp/page.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 ESCAPED BY '\\'
-LINES TERMINATED BY '\n'
+LINES TERMINATED BY '\r\n'
 FROM lopati.Pagina P
 JOIN lopati.Categoria C ON C.id = P.categoria_id
 JOIN lopati.SubCategoria SC ON SC.id = P.subCategoria_id;

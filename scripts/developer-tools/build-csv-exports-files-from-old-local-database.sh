@@ -7,4 +7,5 @@ mysql --user=userflux -p -A lopati < ./scripts/database-exports/full-lopati-v1-e
 mv /tmp/*.csv ./var/csv/imports/
 php ./bin/console app:import:menu:level1 ./var/csv/imports/menulevel1.csv
 php ./bin/console app:import:menu:level2 ./var/csv/imports/menulevel2.csv
+php ./bin/console app:import:page ./var/csv/imports/page.csv
 echo "Finished at $(date +"%T %d/%m/%Y")"
