@@ -44,12 +44,10 @@ class MenuLevel1 extends AbstractBase
      */
     private ?Collection $menuLevel2items;
 
-//    /**
-//     * @var Page
-//     *
-//     * @ORM\OneToOne(targetEntity="App\Entity\Page", mappedBy="menuLevel1")
-//     */
-//    private $page;
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Page", mappedBy="menuLevel1")
+     */
+    private Page $page;
 
     public function __construct()
     {
@@ -102,25 +100,17 @@ class MenuLevel1 extends AbstractBase
         return $this;
     }
 
-//    /**
-//     * @return Page
-//     */
-//    public function getPage()
-//    {
-//        return $this->page;
-//    }
-//
-//    /**
-//     * @param Page $page
-//     *
-//     * @return MenuLevel1
-//     */
-//    public function setPage($page)
-//    {
-//        $this->page = $page;
-//
-//        return $this;
-//    }
+    public function getPage(): Page
+    {
+        return $this->page;
+    }
+
+    public function setPage(Page $page): self
+    {
+        $this->page = $page;
+
+        return $this;
+    }
 
     public function __toString(): string
     {
