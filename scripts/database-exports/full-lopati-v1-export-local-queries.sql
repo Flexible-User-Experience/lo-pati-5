@@ -16,7 +16,7 @@ OPTIONALLY ENCLOSED BY '"'
 ESCAPED BY '\\'
 LINES TERMINATED BY '\r\n'
 FROM lopati.SubCategoria SC
-JOIN lopati.Categoria C ON C.id = SC.categoria_id
+LEFT JOIN lopati.Categoria C ON C.id = SC.categoria_id
 ORDER BY SC.id;
 
 SELECT P.*, C.nom AS categoria, SC.nom AS subcategoria
@@ -26,6 +26,6 @@ OPTIONALLY ENCLOSED BY '"'
 ESCAPED BY '\\'
 LINES TERMINATED BY '\r\n'
 FROM lopati.Pagina P
-JOIN lopati.Categoria C ON C.id = P.categoria_id
-JOIN lopati.SubCategoria SC ON SC.id = P.subCategoria_id
+LEFT JOIN lopati.Categoria C ON C.id = P.categoria_id
+LEFT JOIN lopati.SubCategoria SC ON SC.id = P.subCategoria_id
 ORDER BY P.id;
