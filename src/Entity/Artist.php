@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\Document1Trait;
+use App\Entity\Traits\Image1Trait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\SummaryTrait;
 use DateTimeImmutable;
@@ -23,6 +24,7 @@ class Artist extends AbstractBase
 {
     use DescriptionTrait;
     use Document1Trait;
+    use Image1Trait;
     use NameTrait;
     use SummaryTrait;
 
@@ -48,6 +50,7 @@ class Artist extends AbstractBase
 
     /**
      * @ORM\Column(type="string", length=1024, nullable=true)
+     * @Assert\Url()
      */
     private ?string $webpage;
 
@@ -56,11 +59,6 @@ class Artist extends AbstractBase
      * @Vich\UploadableField(mapping="artist", fileNameProperty="image1FileName")
      */
     private ?File $image1File = null;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $image1FileName = null;
 
     /**
      * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
@@ -156,33 +154,6 @@ class Artist extends AbstractBase
     public function setWebpage(?string $webpage): self
     {
         $this->webpage = $webpage;
-
-        return $this;
-    }
-
-    public function getImage1File(): ?File
-    {
-        return $this->image1File;
-    }
-
-    public function setImage1File(?File $image1File): self
-    {
-        $this->image1File = $image1File;
-        if (null !== $image1File) {
-            $this->updatedAt = new DateTimeImmutable();
-        }
-
-        return $this;
-    }
-
-    public function getImage1FileName(): ?string
-    {
-        return $this->image1FileName;
-    }
-
-    public function setImage1FileName(?string $image1FileName): self
-    {
-        $this->image1FileName = $image1FileName;
 
         return $this;
     }
