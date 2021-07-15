@@ -4,6 +4,7 @@ namespace App\Controller\Frontend;
 
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
+use App\Repository\SlideshowRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,9 +16,16 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="front_app_homepage")
      */
-    public function indexAction(): Response
+    public function indexAction(SlideshowRepository $sr): Response
     {
-        return $this->render('frontend/homepage.html.twig');
+        $slides = $sr->getAllSortedByPositionAndName()->getQuery()->getResult();
+
+        return $this->render(
+            'frontend/homepage.html.twig',
+            [
+                'slides' => $slides,
+            ]
+        );
     }
 
     /**

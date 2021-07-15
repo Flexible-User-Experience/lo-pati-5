@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Slideshow;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,5 +18,15 @@ class SlideshowRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Slideshow::class);
+    }
+
+    public function getAllSortedByPosition($sortOrder = 'ASC'): QueryBuilder
+    {
+        return $this->createQueryBuilder('s')->orderBy('s.position', $sortOrder);
+    }
+
+    public function getAllSortedByPositionAndName($sortOrder = 'ASC'): QueryBuilder
+    {
+        return $this->getAllSortedByPosition($sortOrder)->addOrderBy('s.name', $sortOrder);
     }
 }
