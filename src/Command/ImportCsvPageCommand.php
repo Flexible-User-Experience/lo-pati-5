@@ -109,9 +109,9 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                         if ($endDate) {
                             $page->setEndDate($endDate);
                         }
-                        $createddAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(29, $data));
-                        if ($createddAtDate) {
-                            $page->setCreatedAt($createddAtDate);
+                        $createdAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(29, $data));
+                        if ($createdAtDate) {
+                            $page->setCreatedAt($createdAtDate);
                         }
                         $updatedAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(30, $data));
                         if ($updatedAtDate) {
