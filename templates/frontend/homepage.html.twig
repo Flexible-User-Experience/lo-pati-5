@@ -11,7 +11,7 @@
     </div>
     {% if slides | length > 0 %}
         <div class="row">
-            <div id="slideshow" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div id="slideshow" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     {% for slide in slides %}
                         <div class="carousel-item{% if loop.first %} active{% endif %}">

@@ -29,4 +29,11 @@ class SlideshowRepository extends ServiceEntityRepository
     {
         return $this->getAllSortedByPosition($sortOrder)->addOrderBy('s.name', $sortOrder);
     }
+
+    public function getEnabledSortedByPositionAndName($sortOrder = 'ASC'): QueryBuilder
+    {
+        return $this->getAllSortedByPositionAndName($sortOrder)
+            ->where('s.active = :active')
+            ->setParameter('active', true);
+    }
 }

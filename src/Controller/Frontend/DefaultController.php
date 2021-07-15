@@ -18,7 +18,7 @@ class DefaultController extends AbstractController
      */
     public function indexAction(SlideshowRepository $sr): Response
     {
-        $slides = $sr->getAllSortedByPositionAndName()->getQuery()->getResult();
+        $slides = $sr->getEnabledSortedByPositionAndName()->getQuery()->getResult();
 
         return $this->render(
             'frontend/homepage.html.twig',
