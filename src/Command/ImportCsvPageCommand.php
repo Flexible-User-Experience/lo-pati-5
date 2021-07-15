@@ -92,7 +92,7 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
 //                                ->setDocument1Title($this->readColumn(23, $data))
 //                                ->setDocument2($this->readColumn(24, $data))
 //                                ->setDocument2Title($this->readColumn(25, $data))
-//                                ->setMenuLevel1($menuLevel1)
+                                ->setMenuLevel1($menuLevel1)
 //                                ->setMenuLevel2($menuLevel2)
                             ;
                             $expirationDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(10, $data));

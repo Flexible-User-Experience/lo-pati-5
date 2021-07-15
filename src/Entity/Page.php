@@ -9,12 +9,15 @@ use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Table()
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="published_date_name_unique_idx", columns={"name", "publish_date"})})
  * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
  * @UniqueEntity(fields={"name", "publishDate"}, errorPath="name")
+ * @Vich\Uploadable()
  */
 class Page extends AbstractBase
 {
@@ -104,6 +107,16 @@ class Page extends AbstractBase
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $largeFooterImage = null;
+
+    /**
+     * @Vich\UploadableField(mapping="image", fileNameProperty="imageFileName")
+     */
+    private ?File $imageFile = null;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $imageFileName = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)

@@ -1,2 +1,27 @@
 liip_imagine:
     driver: 'gd'
+    loaders:
+        default:
+            filesystem:
+                locator: filesystem_insecure
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache: ~
+        60x60:
+            quality: 95
+            filters:
+                thumbnail: { size: [ 60, 60 ], mode: outbound }
+        600x400:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 600, 400 ], mode: inset }
+        800xY:
+            quality: 85
+            filters:
+                thumbnail: { size: [ 800, null ], mode: outbound }
+        1200xY:
+            quality: 80
+            filters:
+                thumbnail: { size: [ 1200, null ], mode: outbound }
