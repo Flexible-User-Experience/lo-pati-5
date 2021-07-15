@@ -6,9 +6,7 @@ use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
 use DateTimeImmutable;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class ImportCsvMenuLevel2Command extends AbstractBaseCommand
@@ -17,9 +15,7 @@ final class ImportCsvMenuLevel2Command extends AbstractBaseCommand
     {
         $this->setName('app:import:menu:level2');
         $this->setDescription('Read a menu level 2 CSV file');
-        $this->addArgument('filename', InputArgument::REQUIRED, 'CSV file to import');
-        $this->addOption('show-data', 's', InputOption::VALUE_NONE, 'Show readed data information');
-        $this->addOption('dry-run', 'd', InputOption::VALUE_NONE, 'Don\'t persist changes into database');
+        parent::configure();
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int

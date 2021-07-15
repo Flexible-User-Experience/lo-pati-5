@@ -6,13 +6,15 @@ use App\Entity\Traits\Image1Trait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Table()
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_slideshow_name_index", columns={"name"})})
  * @ORM\Entity(repositoryClass="App\Repository\SlideshowRepository")
+ * @UniqueEntity(fields={"name"}, errorPath="name")
  * @Vich\Uploadable()
  */
 class Slideshow extends AbstractBase
@@ -22,7 +24,7 @@ class Slideshow extends AbstractBase
     use PositionTrait;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private string $name;
 

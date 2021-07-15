@@ -3,19 +3,19 @@
 namespace App\Command;
 
 use App\Entity\AbstractBase;
-use App\Entity\Artist;
+use App\Entity\Slideshow;
 use DateTime;
 use DateTimeImmutable;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class ImportCsvArtistCommand extends AbstractBaseCommand
+final class ImportCsvSlideshowCommand extends AbstractBaseCommand
 {
     protected function configure(): void
     {
-        $this->setName('app:import:artist');
-        $this->setDescription('Read an artist CSV file');
+        $this->setName('app:import:slideshow');
+        $this->setDescription('Read a slideshow CSV file');
         parent::configure();
     }
 
@@ -25,7 +25,7 @@ final class ImportCsvArtistCommand extends AbstractBaseCommand
         $fr = $this->initialValidation($input, $output);
 
         // Repository inits
-        $ar = $this->em->getRepository(Artist::class);
+        $sr = $this->em->getRepository(Slideshow::class);
 
         // Print CSV rows
         $beginTimestamp = new DateTimeImmutable();
@@ -33,40 +33,33 @@ final class ImportCsvArtistCommand extends AbstractBaseCommand
         $newRecords = 0;
         $errors = 0;
         while (false !== ($data = $this->readRow($fr))) {
-            if (count($data) >= 17) {
+            if (count($data) >= 10) {
                 $serachedName = $this->readColumn(1, $data);
-                $artist = $ar->findOneBy([
+                $slideshow = $sr->findOneBy([
                     'name' => $serachedName,
                 ]);
-                if (!$artist) {
-                    $artist = new Artist();
+                if (!$slideshow) {
+                    $slideshow = new Slideshow();
                     ++$newRecords;
                 }
-                $artist
+                $slideshow
                     ->setName($serachedName)
-                    ->setCity($this->readColumn(2, $data))
-                    ->setYear((int) $this->readColumn(3, $data))
-                    ->setCategory($this->readColumn(4, $data))
-                    ->setSummary($this->readColumn(5, $data))
-                    ->setDescription($this->readColumn(6, $data))
-                    ->setImage1FileName($this->readColumn(8, $data))
-                    ->setImage2FileName($this->readColumn(9, $data))
-                    ->setImage3FileName($this->readColumn(10, $data))
-                    ->setImage4FileName($this->readColumn(11, $data))
-                    ->setImage5FileName($this->readColumn(12, $data))
-                    ->setWebpage($this->readColumn(15, $data))
-                    ->setDocument1FileName($this->readColumn(16, $data))
-                    ->setActive((bool) $this->readColumn(7, $data))
+                    ->setImageAltName($this->readColumn(2, $data))
+                    ->setDescription($this->readColumn(3, $data))
+                    ->setLink($this->readColumn(4, $data))
+                    ->setPosition((int) $this->readColumn(5, $data))
+                    ->setImage1FileName($this->readColumn(7, $data))
+                    ->setActive((bool) $this->readColumn(6, $data))
                 ;
-                $createdAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(13, $data));
+                $createdAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(8, $data));
                 if ($createdAtDate) {
-                    $artist->setCreatedAt($createdAtDate);
+                    $slideshow->setCreatedAt($createdAtDate);
                 }
-                $updatedAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(14, $data));
+                $updatedAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(9, $data));
                 if ($updatedAtDate) {
-                    $artist->setUpdatedAt($updatedAtDate);
+                    $slideshow->setUpdatedAt($updatedAtDate);
                 }
-                $this->em->persist($artist);
+                $this->em->persist($slideshow);
                 if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
                     $this->em->flush();
                 }
