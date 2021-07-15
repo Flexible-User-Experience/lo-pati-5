@@ -71,7 +71,6 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                                 ++$newRecords;
                             }
                             $page
-                                ->setType($this->readColumn(2, $data))
                                 ->setSummary($this->readColumn(4, $data))
                                 ->setDescription($this->readColumn(5, $data))
                                 ->setActive((bool) $this->readColumn(6, $data))
@@ -84,16 +83,16 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                                 ->setVideo($this->readColumn(16, $data))
                                 ->setUrlVimeo($this->readColumn(17, $data))
                                 ->setUrlFlickr($this->readColumn(18, $data))
-//                                ->setSmallImage1($this->readColumn(19, $data))
-//                                ->setSmallImage2($this->readColumn(26, $data))
-//                                ->setImage($this->readColumn(20, $data))
-//                                ->setImageFooter($this->readColumn(21, $data))
-//                                ->setDocument1($this->readColumn(22, $data))
-//                                ->setDocument1Title($this->readColumn(23, $data))
-//                                ->setDocument2($this->readColumn(24, $data))
-//                                ->setDocument2Title($this->readColumn(25, $data))
+                                ->setSmallImage1FileName($this->readColumn(19, $data))
+                                ->setSmallImage2FileName($this->readColumn(26, $data))
+                                ->setImageFileName($this->readColumn(20, $data))
+                                ->setImageCaption($this->readColumn(21, $data))
+                                ->setDocument1FileName($this->readColumn(22, $data))
+                                ->setTitleDocument1($this->readColumn(23, $data))
+                                ->setDocument2FileName($this->readColumn(24, $data))
+                                ->setTitleDocument2($this->readColumn(25, $data))
                                 ->setMenuLevel1($menuLevel1)
-//                                ->setMenuLevel2($menuLevel2)
+                                ->setMenuLevel2($menuLevel2)
                             ;
                             $expirationDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(10, $data));
                             if ($expirationDate) {

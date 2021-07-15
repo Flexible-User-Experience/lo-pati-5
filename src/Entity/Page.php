@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\SlugTrait;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -35,11 +36,6 @@ class Page extends AbstractBase
      * @Gedmo\Slug(fields={"name"})
      */
     private string $slug;
-
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private string $type;
 
     /**
      * @ORM\Column(type="text", length=300, nullable=true)
@@ -184,7 +180,7 @@ class Page extends AbstractBase
     private ?DateTimeInterface $endDate;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\MenuLevel1", inversedBy="page")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MenuLevel1")
      */
     private ?MenuLevel1 $menuLevel1 = null;
 
@@ -193,18 +189,6 @@ class Page extends AbstractBase
      * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
      */
     private ?MenuLevel2 $menuLevel2 = null;
-
-    public function getType(): string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
 
     public function getSummary(): ?string
     {
@@ -358,6 +342,9 @@ class Page extends AbstractBase
     public function setSmallImage1File(?File $smallImage1File): self
     {
         $this->smallImage1File = $smallImage1File;
+        if (null !== $smallImage1File) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
 
         return $this;
     }
@@ -382,6 +369,9 @@ class Page extends AbstractBase
     public function setSmallImage2File(?File $smallImage2File): self
     {
         $this->smallImage2File = $smallImage2File;
+        if (null !== $smallImage2File) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
 
         return $this;
     }
@@ -406,6 +396,9 @@ class Page extends AbstractBase
     public function setImageFile(?File $imageFile): self
     {
         $this->imageFile = $imageFile;
+        if (null !== $imageFile) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
 
         return $this;
     }
@@ -442,6 +435,9 @@ class Page extends AbstractBase
     public function setDocument1File(?File $document1File): self
     {
         $this->document1File = $document1File;
+        if (null !== $document1File) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
 
         return $this;
     }
@@ -478,6 +474,9 @@ class Page extends AbstractBase
     public function setDocument2File(?File $document2File): self
     {
         $this->document2File = $document2File;
+        if (null !== $document2File) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
 
         return $this;
     }

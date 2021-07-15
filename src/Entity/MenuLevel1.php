@@ -45,7 +45,7 @@ class MenuLevel1 extends AbstractBase
     private ?Collection $menuLevel2items;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Page", mappedBy="menuLevel1")
+     * @ORM\OneToOne(targetEntity="App\Entity\Page", cascade={"persist", "remove"})
      */
     private ?Page $page = null;
 
