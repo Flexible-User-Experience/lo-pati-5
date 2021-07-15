@@ -91,6 +91,7 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                                 ->setTitleDocument1($this->readColumn(23, $data))
                                 ->setDocument2FileName($this->readColumn(24, $data))
                                 ->setTitleDocument2($this->readColumn(25, $data))
+                                ->setAlwaysShowOnCalendar((bool) $this->readColumn(31, $data))
                                 ->setMenuLevel1($menuLevel1)
                                 ->setMenuLevel2($menuLevel2)
                             ;
@@ -98,19 +99,19 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                             if ($expirationDate) {
                                 $page->setExpirationDate($expirationDate);
                             }
-                            $startDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(26, $data));
+                            $startDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(27, $data));
                             if ($startDate) {
                                 $page->setStartDate($startDate);
                             }
-                            $endDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(27, $data));
+                            $endDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(28, $data));
                             if ($endDate) {
                                 $page->setEndDate($endDate);
                             }
-                            $createddAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(28, $data));
+                            $createddAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(29, $data));
                             if ($createddAtDate) {
                                 $page->setCreatedAt($createddAtDate);
                             }
-                            $updatedAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(29, $data));
+                            $updatedAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(30, $data));
                             if ($updatedAtDate) {
                                 $page->setUpdatedAt($updatedAtDate);
                             }

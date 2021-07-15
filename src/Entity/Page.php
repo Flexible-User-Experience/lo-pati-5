@@ -58,6 +58,11 @@ class Page extends AbstractBase
     private bool $showPublishDate = false;
 
     /**
+     * @ORM\Column(type="boolean", options={"default"=0})
+     */
+    private bool $alwaysShowOnCalendar = false;
+
+    /**
      * @ORM\Column(type="date", nullable=true)
      */
     private ?DateTimeInterface $expirationDate;
@@ -234,6 +239,18 @@ class Page extends AbstractBase
     public function setShowPublishDate(bool $showPublishDate): self
     {
         $this->showPublishDate = $showPublishDate;
+
+        return $this;
+    }
+
+    public function isAlwaysShowOnCalendar(): bool
+    {
+        return $this->alwaysShowOnCalendar;
+    }
+
+    public function setAlwaysShowOnCalendar(bool $alwaysShowOnCalendar): self
+    {
+        $this->alwaysShowOnCalendar = $alwaysShowOnCalendar;
 
         return $this;
     }
