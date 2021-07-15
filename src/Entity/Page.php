@@ -104,11 +104,29 @@ class Page extends AbstractBase
     private ?string $urlFlickr = null;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
+     * @Vich\UploadableField(mapping="image", fileNameProperty="smallImage1FileName")
      */
-    private ?string $largeFooterImage = null;
+    private ?File $smallImage1File = null;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $smallImage1FileName = null;
+
+    /**
+     * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
+     * @Vich\UploadableField(mapping="image", fileNameProperty="smallImage2FileName")
+     */
+    private ?File $smallImage2File = null;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $smallImage2FileName = null;
+
+    /**
+     * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
      * @Vich\UploadableField(mapping="image", fileNameProperty="imageFileName")
      */
     private ?File $imageFile = null;
@@ -121,7 +139,39 @@ class Page extends AbstractBase
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $documentName2;
+    private ?string $imageCaption = null;
+
+    /**
+     * @Assert\File(maxSize="16M")
+     * @Vich\UploadableField(mapping="document", fileNameProperty="document1FileName")
+     */
+    private ?File $document1File = null;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $document1FileName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $titleDocument1 = null;
+
+    /**
+     * @Assert\File(maxSize="16M")
+     * @Vich\UploadableField(mapping="document", fileNameProperty="document2FileName")
+     */
+    private ?File $document2File = null;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $document2FileName;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $titleDocument2 = null;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -133,15 +183,14 @@ class Page extends AbstractBase
      */
     private ?DateTimeInterface $endDate;
 
-    // TODO set images & documents
-
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\MenuLevel1", inversedBy="page")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MenuLevel1", inversedBy="page")
      */
     private ?MenuLevel1 $menuLevel1 = null;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\MenuLevel2", inversedBy="page")
+     * @ORM\ManyToOne(targetEntity="App\Entity\MenuLevel2", inversedBy="pages")
+     * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
      */
     private ?MenuLevel2 $menuLevel2 = null;
 
@@ -301,14 +350,158 @@ class Page extends AbstractBase
         return $this;
     }
 
-    public function getLargeFooterImage(): ?string
+    public function getSmallImage1File(): ?File
     {
-        return $this->largeFooterImage;
+        return $this->smallImage1File;
     }
 
-    public function setLargeFooterImage(?string $largeFooterImage): self
+    public function setSmallImage1File(?File $smallImage1File): self
     {
-        $this->largeFooterImage = $largeFooterImage;
+        $this->smallImage1File = $smallImage1File;
+
+        return $this;
+    }
+
+    public function getSmallImage1FileName(): ?string
+    {
+        return $this->smallImage1FileName;
+    }
+
+    public function setSmallImage1FileName(?string $smallImage1FileName): self
+    {
+        $this->smallImage1FileName = $smallImage1FileName;
+
+        return $this;
+    }
+
+    public function getSmallImage2File(): ?File
+    {
+        return $this->smallImage2File;
+    }
+
+    public function setSmallImage2File(?File $smallImage2File): self
+    {
+        $this->smallImage2File = $smallImage2File;
+
+        return $this;
+    }
+
+    public function getSmallImage2FileName(): ?string
+    {
+        return $this->smallImage2FileName;
+    }
+
+    public function setSmallImage2FileName(?string $smallImage2FileName): self
+    {
+        $this->smallImage2FileName = $smallImage2FileName;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    public function getImageFileName(): ?string
+    {
+        return $this->imageFileName;
+    }
+
+    public function setImageFileName(?string $imageFileName): self
+    {
+        $this->imageFileName = $imageFileName;
+
+        return $this;
+    }
+
+    public function getImageCaption(): ?string
+    {
+        return $this->imageCaption;
+    }
+
+    public function setImageCaption(?string $imageCaption): self
+    {
+        $this->imageCaption = $imageCaption;
+
+        return $this;
+    }
+
+    public function getDocument1File(): ?File
+    {
+        return $this->document1File;
+    }
+
+    public function setDocument1File(?File $document1File): self
+    {
+        $this->document1File = $document1File;
+
+        return $this;
+    }
+
+    public function getDocument1FileName(): ?string
+    {
+        return $this->document1FileName;
+    }
+
+    public function setDocument1FileName(?string $document1FileName): self
+    {
+        $this->document1FileName = $document1FileName;
+
+        return $this;
+    }
+
+    public function getTitleDocument1(): ?string
+    {
+        return $this->titleDocument1;
+    }
+
+    public function setTitleDocument1(?string $titleDocument1): self
+    {
+        $this->titleDocument1 = $titleDocument1;
+
+        return $this;
+    }
+
+    public function getDocument2File(): ?File
+    {
+        return $this->document2File;
+    }
+
+    public function setDocument2File(?File $document2File): self
+    {
+        $this->document2File = $document2File;
+
+        return $this;
+    }
+
+    public function getDocument2FileName(): ?string
+    {
+        return $this->document2FileName;
+    }
+
+    public function setDocument2FileName(?string $document2FileName): self
+    {
+        $this->document2FileName = $document2FileName;
+
+        return $this;
+    }
+
+    public function getTitleDocument2(): ?string
+    {
+        return $this->titleDocument2;
+    }
+
+    public function setTitleDocument2(?string $titleDocument2): self
+    {
+        $this->titleDocument2 = $titleDocument2;
 
         return $this;
     }
