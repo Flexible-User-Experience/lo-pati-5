@@ -52,81 +52,79 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                         'name' => $serachedMenuLevel2Name,
                         'menuLevel1' => $menuLevel1,
                     ]);
-                    if ($menuLevel2) {
-                        $serachedPageName = $this->readColumn(3, $data);
-                        $serachedPagePublishDate = $this->readColumn(8, $data);
-                        $publishDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $serachedPagePublishDate);
-                        if ($publishDate) {
-                            $page = $pr->findOneBy([
-                                'name' => $serachedPageName,
-                                'publishDate' => $publishDate,
-                            ]);
-                            if (!$page) {
-                                $page = new Page();
-                                $page
-                                    ->setName($serachedPageName)
-                                    ->setPublishDate($publishDate)
-                                ;
-                                $this->em->persist($page);
-                                ++$newRecords;
-                            }
+
+                    $serachedPageName = $this->readColumn(3, $data);
+                    $serachedPagePublishDate = $this->readColumn(8, $data);
+                    $publishDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $serachedPagePublishDate);
+                    if ($publishDate) {
+                        $page = $pr->findOneBy([
+                            'name' => $serachedPageName,
+                            'publishDate' => $publishDate,
+                        ]);
+                        if (!$page) {
+                            $page = new Page();
                             $page
-                                ->setSummary($this->readColumn(4, $data))
-                                ->setDescription($this->readColumn(5, $data))
-                                ->setActive((bool) $this->readColumn(6, $data))
-                                ->setIsFrontCover((bool) $this->readColumn(7, $data))
-                                ->setShowPublishDate((bool) $this->readColumn(9, $data))
-                                ->setRealizationDateString($this->readColumn(11, $data))
-                                ->setPlace($this->readColumn(12, $data))
-                                ->setLinks($this->readColumn(14, $data))
-                                ->setShowSocialNetworksSharingButtons((bool) $this->readColumn(15, $data))
-                                ->setVideo($this->readColumn(16, $data))
-                                ->setUrlVimeo($this->readColumn(17, $data))
-                                ->setUrlFlickr($this->readColumn(18, $data))
-                                ->setSmallImage1FileName($this->readColumn(19, $data))
-                                ->setSmallImage2FileName($this->readColumn(26, $data))
-                                ->setImageFileName($this->readColumn(20, $data))
-                                ->setImageCaption($this->readColumn(21, $data))
-                                ->setDocument1FileName($this->readColumn(22, $data))
-                                ->setTitleDocument1($this->readColumn(23, $data))
-                                ->setDocument2FileName($this->readColumn(24, $data))
-                                ->setTitleDocument2($this->readColumn(25, $data))
-                                ->setAlwaysShowOnCalendar((bool) $this->readColumn(31, $data))
-                                ->setMenuLevel1($menuLevel1)
-                                ->setMenuLevel2($menuLevel2)
+                                ->setName($serachedPageName)
+                                ->setPublishDate($publishDate)
                             ;
-                            $expirationDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(10, $data));
-                            if ($expirationDate) {
-                                $page->setExpirationDate($expirationDate);
-                            }
-                            $startDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(27, $data));
-                            if ($startDate) {
-                                $page->setStartDate($startDate);
-                            }
-                            $endDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(28, $data));
-                            if ($endDate) {
-                                $page->setEndDate($endDate);
-                            }
-                            $createddAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(29, $data));
-                            if ($createddAtDate) {
-                                $page->setCreatedAt($createddAtDate);
-                            }
-                            $updatedAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(30, $data));
-                            if ($updatedAtDate) {
-                                $page->setUpdatedAt($updatedAtDate);
-                            }
-                            if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
-                                $this->em->flush();
-                            }
-                            if ($input->getOption('show-data')) {
-                                $output->writeln(implode(self::CSV_DELIMITER, $data));
-                            }
-                        } else {
-                            $output->writeln('Invalid publish date "'.$data[8].'" <error>PARSE ERROR</error>');
-                            ++$errors;
+                            $this->em->persist($page);
+                            ++$newRecords;
+                        }
+                        $page
+                            ->setSummary($this->readColumn(4, $data))
+                            ->setDescription($this->readColumn(5, $data))
+                            ->setActive((bool) $this->readColumn(6, $data))
+                            ->setIsFrontCover((bool) $this->readColumn(7, $data))
+                            ->setShowPublishDate((bool) $this->readColumn(9, $data))
+                            ->setRealizationDateString($this->readColumn(11, $data))
+                            ->setPlace($this->readColumn(12, $data))
+                            ->setLinks($this->readColumn(14, $data))
+                            ->setShowSocialNetworksSharingButtons((bool) $this->readColumn(15, $data))
+                            ->setVideo($this->readColumn(16, $data))
+                            ->setUrlVimeo($this->readColumn(17, $data))
+                            ->setUrlFlickr($this->readColumn(18, $data))
+                            ->setSmallImage1FileName($this->readColumn(19, $data))
+                            ->setSmallImage2FileName($this->readColumn(26, $data))
+                            ->setImageFileName($this->readColumn(20, $data))
+                            ->setImageCaption($this->readColumn(21, $data))
+                            ->setDocument1FileName($this->readColumn(22, $data))
+                            ->setTitleDocument1($this->readColumn(23, $data))
+                            ->setDocument2FileName($this->readColumn(24, $data))
+                            ->setTitleDocument2($this->readColumn(25, $data))
+                            ->setAlwaysShowOnCalendar((bool) $this->readColumn(31, $data))
+                            ->setMenuLevel1($menuLevel1)
+                        ;
+                        if ($menuLevel2) {
+                            $page->setMenuLevel2($menuLevel2);
+                        }
+                        $expirationDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(10, $data));
+                        if ($expirationDate) {
+                            $page->setExpirationDate($expirationDate);
+                        }
+                        $startDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(27, $data));
+                        if ($startDate) {
+                            $page->setStartDate($startDate);
+                        }
+                        $endDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(28, $data));
+                        if ($endDate) {
+                            $page->setEndDate($endDate);
+                        }
+                        $createddAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(29, $data));
+                        if ($createddAtDate) {
+                            $page->setCreatedAt($createddAtDate);
+                        }
+                        $updatedAtDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(30, $data));
+                        if ($updatedAtDate) {
+                            $page->setUpdatedAt($updatedAtDate);
+                        }
+                        if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
+                            $this->em->flush();
+                        }
+                        if ($input->getOption('show-data')) {
+                            $output->writeln(implode(self::CSV_DELIMITER, $data));
                         }
                     } else {
-                        $output->writeln('Menu level 2 "'.$this->readColumn(33, $data).'" (with Menu level 1 = '.$this->readColumn(32, $data).') <error>NOT FOUND ERROR</error>');
+                        $output->writeln('Invalid publish date "'.$data[8].'" <error>PARSE ERROR</error>');
                         ++$errors;
                     }
                 } else {

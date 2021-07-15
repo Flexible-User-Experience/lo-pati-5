@@ -57,7 +57,7 @@ final class ImportCsvMenuLevel2Command extends AbstractBaseCommand
                         ->setName($serachedMenuLevel2Name)
                         ->setPosition((int) $this->readColumn(3, $data))
                         ->setActive((bool) $this->readColumn(4, $data))
-                        ->setIsList((bool) $this->readColumn(5, $data))
+                        ->setIsList((bool) $this->readColumn(6, $data))
                     ;
                     $this->em->persist($menuLevel2);
                     if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {

@@ -37,7 +37,6 @@ App\Entity\Page:
   page1:
     name: 'Page 1'
     description: '<sentence()>'
-    type: "word 1"
     summary: '<sentence()>'
     isFrontCover: '<boolean()>'
     publishDate: '<dateTime()>'
