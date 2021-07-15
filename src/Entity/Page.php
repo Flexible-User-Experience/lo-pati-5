@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\DescriptionTrait;
+use App\Entity\Traits\Document1Trait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\SmallImage1Trait;
@@ -25,6 +26,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Page extends AbstractBase
 {
     use DescriptionTrait;
+    use Document1Trait;
     use NameTrait;
     use SlugTrait;
     use SmallImage1Trait;
@@ -129,11 +131,6 @@ class Page extends AbstractBase
      * @Vich\UploadableField(mapping="document", fileNameProperty="document1FileName")
      */
     private ?File $document1File = null;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $document1FileName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -368,33 +365,6 @@ class Page extends AbstractBase
     public function setImageCaption(?string $imageCaption): self
     {
         $this->imageCaption = $imageCaption;
-
-        return $this;
-    }
-
-    public function getDocument1File(): ?File
-    {
-        return $this->document1File;
-    }
-
-    public function setDocument1File(?File $document1File): self
-    {
-        $this->document1File = $document1File;
-        if (null !== $document1File) {
-            $this->updatedAt = new DateTimeImmutable();
-        }
-
-        return $this;
-    }
-
-    public function getDocument1FileName(): ?string
-    {
-        return $this->document1FileName;
-    }
-
-    public function setDocument1FileName(?string $document1FileName): self
-    {
-        $this->document1FileName = $document1FileName;
 
         return $this;
     }
