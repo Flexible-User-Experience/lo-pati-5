@@ -1,5 +1,14 @@
 -- Local exports to CSV
 
+SELECT A.*
+INTO OUTFILE '/tmp/archive.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.Arxiu A
+ORDER BY A.id;
+
 SELECT C.*
 INTO OUTFILE '/tmp/menulevel1.csv'
 FIELDS TERMINATED BY ','
