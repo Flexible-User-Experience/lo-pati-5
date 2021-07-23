@@ -37,7 +37,7 @@ class MenuBuilder
             }
         }
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav nav-pills');
+        $menu->setChildrenAttribute('class', 'navbar-nav mx-5');
         $homepage = $menu->addChild(
             'home',
             [
@@ -46,7 +46,7 @@ class MenuBuilder
             ]
         );
         $homepage->setLinkAttribute('class', ($this->isHomepageRouteCurrent($currentRoute) ? 'nav-link active' : 'nav-link'));
-        $homepage->setAttribute('class', 'nav-item');
+        $homepage->setAttribute('class', 'nav-item ml-3 text-uppercase');
         $ml1Items = $ml1r->getAllSortedByPositionAndName()->getQuery()->getResult();
         /** @var MenuLevel1 $ml1Item */
         foreach ($ml1Items as $ml1Item) {
@@ -62,7 +62,7 @@ class MenuBuilder
             );
             $item->setChildrenAttribute('class', 'nav nav-pills');
             $item->setLinkAttribute('class', ($this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute && $menuRoute->getId() === $ml1Item->getId() ? 'nav-link active' : 'nav-link'));
-            $item->setAttribute('class', 'nav-item');
+            $item->setAttribute('class', 'nav-item text-uppercase');
             /** @var MenuLevel2 $ml2Item */
             foreach ($ml1Item->getMenuLevel2items() as $ml2Item) {
                 $submenu = $item->addChild(

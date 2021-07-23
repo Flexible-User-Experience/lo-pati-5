@@ -9,20 +9,53 @@
         {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     </head>
     <body>
-        <div class="container">
-            <header class="justify-content-center">
-                <div class="row">
-                    <div class="col py-3">
+        <div class="container-fluid bg-dark">
+            <header class="d-flex">
+                <a class="py-4 ps-3 pe-4 me-3" href="{{ path('front_app_homepage') }}">
+                    <img src="{{ asset('build/lo_pati_centre_art_logo.svg') }}" alt="" width="246" height="51" class="d-inline-block align-text-top">
+                </a>
+                <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarHeader">
                         {% block menu_header %}
                             {{ knp_menu_render('frontend_main', {'currentClass': 'active', 'depth': 1}) }}
                         {% endblock %}
+{#                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">#}
+{#                            <li class="nav-item">#}
+{#                                <a class="nav-link active" aria-current="page" href="#">Home</a>#}
+{#                            </li>#}
+{#                            <li class="nav-item">#}
+{#                                <a class="nav-link" href="#">Link</a>#}
+{#                            </li>#}
+{#                            <li class="nav-item dropdown">#}
+{#                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">#}
+{#                                    Dropdown#}
+{#                                </a>#}
+{#                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">#}
+{#                                    <li><a class="dropdown-item" href="#">Action</a></li>#}
+{#                                    <li><a class="dropdown-item" href="#">Another action</a></li>#}
+{#                                    <li><hr class="dropdown-divider"></li>#}
+{#                                    <li><a class="dropdown-item" href="#">Something else here</a></li>#}
+{#                                </ul>#}
+{#                            </li>#}
+{#                            <li class="nav-item">#}
+{#                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
+{#                            </li>#}
+{#                        </ul>#}
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col pb-3">
-                        {% block submenu_header %}{% endblock %}
-                    </div>
-                </div>
+                </nav>
+{#                <div class="row">#}
+{#                    <div class="col py-3">#}
+
+{#                    </div>#}
+{#                </div>#}
+{#                <div class="row">#}
+{#                    <div class="col pb-3">#}
+{#                        {% block submenu_header %}{% endblock %}#}
+{#                    </div>#}
+{#                </div>#}
             </header>
         </div>
         <div class="container">
