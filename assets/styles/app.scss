@@ -1,4 +1,18 @@
+// custom variables
+$lp-color-black: #151920;
+$lp-color-light-grey: #78838C;
+$lp-color-red: #FF004E;
+
 // override Bootstrap v5 variables before import
-$dark: #151920ff;
+$dark: $lp-color-black;
+$navbar-nav-link-padding-x: .95rem;
+$navbar-light-color: $lp-color-light-grey;
+$navbar-light-hover-color: $lp-color-black;
+$navbar-light-active-color: $lp-color-black;
+
+// custom header navbar
+li.nav-item.active {
+  border-bottom: solid 4px $lp-color-red;
+}
 
 @import "~bootstrap/scss/bootstrap.scss";
