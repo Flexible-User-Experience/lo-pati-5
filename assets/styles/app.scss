@@ -6,6 +6,7 @@ $lp-color-red: #FF004E;
 
 // override Bootstrap v5 variables before import
 $dark: $lp-color-black;
+$light: $lp-color-light-grey;
 $navbar-nav-link-padding-x: .95rem;
 $navbar-light-color: $lp-color-light-grey;
 $navbar-light-hover-color: $lp-color-black;
@@ -26,3 +27,7 @@ li.nav-item {
 }
 
 @import "~bootstrap/scss/bootstrap.scss";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
