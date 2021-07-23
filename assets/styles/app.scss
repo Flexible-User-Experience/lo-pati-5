@@ -1,4 +1,5 @@
 // custom variables
+$lp-base-precent: 25%;
 $lp-color-black: #151920;
 $lp-color-light-grey: #78838C;
 $lp-color-red: #FF004E;
@@ -11,8 +12,17 @@ $navbar-light-hover-color: $lp-color-black;
 $navbar-light-active-color: $lp-color-black;
 
 // custom header navbar
-li.nav-item.active {
-  border-bottom: solid 4px $lp-color-red;
+ul.navbar-nav.mx-5 {
+  height: 100%;
+}
+li.nav-item {
+  margin-top: 30px;
+  &.active {
+    border-bottom: solid 5px $lp-color-red;
+  }
+  &:hover {
+    border-bottom: solid 5px lighten($lp-color-red, $lp-base-precent);
+  }
 }
 
 @import "~bootstrap/scss/bootstrap.scss";
