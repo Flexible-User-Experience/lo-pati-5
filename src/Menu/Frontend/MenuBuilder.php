@@ -45,8 +45,13 @@ class MenuBuilder
                 'route' => 'front_app_homepage',
             ]
         );
-        $homepage->setLinkAttribute('class', ($this->isHomepageRouteCurrent($currentRoute) ? 'nav-link active' : 'nav-link'));
-        $homepage->setAttribute('class', 'nav-item ml-3 text-uppercase');
+        if ($this->isHomepageRouteCurrent($currentRoute)) {
+            $homepage->setLinkAttribute('class', 'nav-link active');
+            $homepage->setLinkAttribute('aria-current', 'page');
+        } else {
+            $homepage->setLinkAttribute('class', 'nav-link');
+        }
+        $homepage->setAttribute('class', 'nav-item');
         $ml1Items = $ml1r->getAllSortedByPositionAndName()->getQuery()->getResult();
         /** @var MenuLevel1 $ml1Item */
         foreach ($ml1Items as $ml1Item) {
@@ -61,7 +66,12 @@ class MenuBuilder
                 ]
             );
             $item->setChildrenAttribute('class', 'nav nav-pills');
-            $item->setLinkAttribute('class', ($this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute && $menuRoute->getId() === $ml1Item->getId() ? 'nav-link active' : 'nav-link'));
+            if ($menuRoute && $this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute->getId() === $ml1Item->getId()) {
+                $item->setLinkAttribute('class', 'nav-link active');
+                $item->setLinkAttribute('aria-current', 'page');
+            } else {
+                $item->setLinkAttribute('class', 'nav-link');
+            }
             $item->setAttribute('class', 'nav-item text-uppercase');
             /** @var MenuLevel2 $ml2Item */
             foreach ($ml1Item->getMenuLevel2items() as $ml2Item) {
@@ -76,7 +86,12 @@ class MenuBuilder
                         ],
                     ]
                 );
-                $submenu->setLinkAttribute('class', ($this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute && $submenuRoute->getId() === $ml2Item->getId() ? 'nav-link active' : 'nav-link'));
+                if ($menuRoute && $submenuRoute && $this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute->getId() === $ml2Item->getId()) {
+                    $submenu->setLinkAttribute('class', 'nav-link active');
+                    $submenu->setLinkAttribute('aria-current', 'page');
+                } else {
+                    $submenu->setLinkAttribute('class', 'nav-link');
+                }
                 $submenu->setAttribute('class', 'nav-item');
             }
         }
