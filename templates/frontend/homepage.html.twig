@@ -3,14 +3,8 @@
 {% block title %}{{ parent() }}{% endblock %}
 
 {% block main %}
-    <div class="row">
-        <div class="col">
-            <h1>Hello World!</h1>
-            <pre>homepage</pre>
-        </div>
-    </div>
     {% if slides | length > 0 %}
-        <div class="row">
+        <div class="row my-5">
             <div class="col">
                 <div id="slideshow" class="carousel carousel-fade slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
@@ -35,6 +29,30 @@
 {#                        <span class="visually-hidden">Next</span>#}
 {#                    </button>#}
                 </div>
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-12">
+                <h2>DESTACAT A LO PATI</h2>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            {% for page in highlighted_pages %}
+                <div class="col">
+                    <div class="card">
+                        <img src="..." class="card-img-top" alt="{{ page.name }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ page.name }}</h5>
+                            <p class="card-text">{{ page.name }}</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="row my-5">
+            <div class="col-12">
+                {{ knp_pagination_render(highlighted_pages) }}
             </div>
         </div>
     {% endif %}

@@ -5,10 +5,13 @@ namespace App\Controller\Frontend;
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
 use App\Entity\Page;
+use App\Repository\PageRepository;
 use App\Repository\SlideshowRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,14 +20,20 @@ class DefaultController extends AbstractController
     /**
      * @Route("/", name="front_app_homepage")
      */
-    public function indexAction(SlideshowRepository $sr): Response
+    public function indexAction(Request $request, SlideshowRepository $sr, PageRepository $pr, PaginatorInterface $pi): Response
     {
         $slides = $sr->getEnabledSortedByPositionAndName()->getQuery()->getResult();
+        $highlightedPages = $pi->paginate(
+            $pr->getHomepageHighlighted()->getQuery(),
+            $request->query->getInt('page', 1),
+            6
+        );
 
         return $this->render(
             'frontend/homepage.html.twig',
             [
                 'slides' => $slides,
+                'highlighted_pages' => $highlightedPages,
             ]
         );
     }

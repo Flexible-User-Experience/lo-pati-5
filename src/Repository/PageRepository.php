@@ -7,6 +7,7 @@ use App\Entity\Page;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -36,5 +37,18 @@ class PageRepository extends ServiceEntityRepository
             ->setParameter('date', $publishDate->format(AbstractBase::DATABASE_IMPORT_DATE_FORMAT))
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function getHomepageHighlighted(string $sortOrder = 'DESC'): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = :active')
+            ->andWhere('p.isFrontCover = :cover')
+            ->setParameter('active', true)
+            ->setParameter('cover', true)
+            ->orderBy('p.publishDate', $sortOrder);
+//        $query = $this->getEntityManager()
+//            ->createQuery('SELECT p, cat, sub FROM BlogBundle:Pagina p JOIN p.categoria cat LEFT JOIN p.subCategoria sub WHERE p.portada = TRUE AND p.actiu = TRUE AND (p.subCategoria IS NOT NULL OR cat.nom = :categoria) ORDER BY p.data_publicacio DESC');
+//        $query->setParameter('categoria', $category);
     }
 }
