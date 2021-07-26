@@ -24,20 +24,20 @@
         </div>
         <div class="row my-5">
             <div class="col-12">
-                <h2 class="text-uppercase">{{ 'front.homepage.highlighted' | trans }}</h2>
+                <h6 class="text-uppercase mb-0"><img src="{{ asset('build/head_label.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="50" class="d-inline-block me-3"> {{ 'front.homepage.highlighted' | trans }}</h6>
             </div>
         </div>
-        <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for page in highlighted_pages %}
                 <div class="col">
-                    <div class="card">
+                    <div class="card border-0">
                         <a href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}">
                             <img src="{{ vich_uploader_asset(page, 'smallImage1File') | imagine_filter('465x246') }}" class="card-img-top" alt="{{ page.name }}">
                         </a>
                         <div class="p-2 bg-primary text-white">
                             <h5 class="card-title mb-0">{{ page.menuLevel1.name }}</h5>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body py-3 px-0">
                             {% if page.realizationDateString %}
                                 <h6 class="card-subtitle text-muted mb-2"><i class="far fa-clock"></i> {{ page.realizationDateString }}</h6>
                             {% endif %}
