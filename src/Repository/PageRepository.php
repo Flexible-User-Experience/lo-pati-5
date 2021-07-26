@@ -44,6 +44,7 @@ class PageRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')
             ->where('p.active = :active')
             ->andWhere('p.isFrontCover = :cover')
+            ->andWhere('p.menuLevel2 IS NOT NULL')
             ->setParameter('active', true)
             ->setParameter('cover', true)
             ->orderBy('p.publishDate', $sortOrder);

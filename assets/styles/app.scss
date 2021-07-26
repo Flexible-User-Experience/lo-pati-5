@@ -23,6 +23,23 @@ li.nav-item {
   }
 }
 
+// custom paginator
+ul.pagination {
+  li.page-item {
+    &.active {
+      .page-link {
+        color: $lp-color-black !important;
+        background: none !important;
+        font-weight: bolder;
+      }
+    }
+    .page-link {
+      color: $lp-color-light-grey !important;
+      border: none;
+    }
+  }
+}
+
 @import "~bootstrap/scss/bootstrap.scss";
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';

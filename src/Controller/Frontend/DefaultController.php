@@ -26,7 +26,10 @@ class DefaultController extends AbstractController
         $highlightedPages = $pi->paginate(
             $pr->getHomepageHighlighted()->getQuery(),
             $request->query->getInt('page', 1),
-            6
+            6,
+            [
+                'align' => 'center',
+            ]
         );
 
         return $this->render(
