@@ -88,4 +88,14 @@ class DefaultController extends AbstractController
             ]
         );
     }
+
+    /**
+     * @Route("/locale/{locale}", name="front_app_language_switcher")
+     */
+    public function languageSwitcherAction(Request $request, string $locale): Response
+    {
+        dd($locale);
+
+        return $this->redirectToRoute('front_app_homepage');
+    }
 }
