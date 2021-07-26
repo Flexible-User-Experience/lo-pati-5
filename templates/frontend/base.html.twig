@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="www.flux.cat">
-        <title>{% block title %}{{ project_title }}{% endblock %}</title>
+        <title>{% block title %}{{ 'front.layout.title' | trans }}{% endblock %}</title>
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
         {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
     </head>
@@ -12,7 +12,7 @@
         <div class="container-fluid bg-dark">
             <header class="d-flex">
                 <a class="py-4 ps-3 pe-4 me-3" href="{{ path('front_app_homepage') }}">
-                    <img src="{{ asset('build/lo_pati_centre_art_logo.svg') }}" alt="{{ project_title }}" width="246" height="51" class="d-inline-block">
+                    <img src="{{ asset('build/lo_pati_centre_art_logo.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="246" height="51" class="d-inline-block">
                 </a>
                 <nav class="navbar navbar-expand-lg navbar-light bg-white text-uppercase py-0 align-items-stretch">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,30 +28,11 @@
 {#                    <input class="form-control ms-auto me-2" type="search" placeholder="Search" aria-label="Search">#}
                     <button class="btn" type="submit"><i class="fas fa-search fa-2x text-light"></i></button>
                 </form>
-{#                <a class="py-4 ps-3 pe-4 me-3" href="{{ path('front_app_homepage') }}">#}
-{#                    <i class="fas fa-search"></i>#}
-{#                </a>#}
-{#                <div class="row">#}
-{#                    <div class="col py-3">#}
-
-{#                    </div>#}
-{#                </div>#}
-{#                <div class="row">#}
-{#                    <div class="col pb-3">#}
-{#                        {% block submenu_header %}{% endblock %}#}
-{#                    </div>#}
-{#                </div>#}
             </header>
         </div>
         <div class="container">
             <main>
-                {% block main %}
-                    <div class="row">
-                        <div class="col">
-                            <h1>Hello World!</h1>
-                        </div>
-                    </div>
-                {% endblock %}
+                {% block main %}{% endblock %}
             </main>
         </div>
     </body>
