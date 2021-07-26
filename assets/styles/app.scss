@@ -3,6 +3,7 @@ $lp-base-precent: 25%;
 $lp-color-black: #151920;
 $lp-color-light-grey: #78838C;
 $lp-color-red: #FF004E;
+$lp-color-purple: #3B1493;
 
 // override Bootstrap v5 variables before import
 $dark: $lp-color-black;
@@ -61,6 +62,11 @@ ul.pagination {
       border: none;
     }
   }
+}
+
+// custom color classes
+.bd-purple {
+  background-color: $lp-color-purple;
 }
 
 @import "~bootstrap/scss/bootstrap.scss";

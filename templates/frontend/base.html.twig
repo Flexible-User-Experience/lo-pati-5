@@ -36,5 +36,13 @@
                 {% block main %}{% endblock %}
             </main>
         </div>
+        <div class="container-fluid p-0">
+            <footer>
+                <div class="d-flex ms-auto w-75 p-2 bd-purple"></div>
+                <div class="d-flex bg-dark">
+                    <h6 class="text-uppercase text-white m-5"><img src="{{ asset('build/head_label_w.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="50" class="d-inline-block me-3"> {{ 'front.layout.footer.visit' | trans }}</h6>
+                </div>
+            </footer>
+        </div>
     </body>
 </html>
