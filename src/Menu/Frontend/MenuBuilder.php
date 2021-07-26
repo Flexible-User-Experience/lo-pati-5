@@ -37,7 +37,8 @@ class MenuBuilder
             }
         }
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'navbar-nav mx-5 h-100');
+        $menu->setChildrenAttribute('class', 'navbar-nav mx-5 h-100 menu');
+//        $menu->setChildrenAttribute('class', 'navbar-nav ml-auto text-center w-100 justify-content-between ml-lg-0 d-lg-flex align-items-center menu');
         $homepage = $menu->addChild(
             'home',
             [

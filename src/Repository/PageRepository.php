@@ -48,8 +48,5 @@ class PageRepository extends ServiceEntityRepository
             ->setParameter('active', true)
             ->setParameter('cover', true)
             ->orderBy('p.publishDate', $sortOrder);
-//        $query = $this->getEntityManager()
-//            ->createQuery('SELECT p, cat, sub FROM BlogBundle:Pagina p JOIN p.categoria cat LEFT JOIN p.subCategoria sub WHERE p.portada = TRUE AND p.actiu = TRUE AND (p.subCategoria IS NOT NULL OR cat.nom = :categoria) ORDER BY p.data_publicacio DESC');
-//        $query->setParameter('categoria', $category);
     }
 }

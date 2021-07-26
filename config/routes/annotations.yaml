@@ -1,6 +1,9 @@
-controllers:
-    resource: ../../src/Controller/
+front_controllers:
+    resource: ../../src/Controller/Frontend
     type: annotation
+    prefix:
+        ca: ''
+        es: '/es'
 
 kernel:
     resource: ../../src/Kernel.php

@@ -42,6 +42,16 @@ class DefaultController extends AbstractController
     }
 
     /**
+     * @Route({"ca": "/canviar-a-idioma/{locale}", "es": "/cambiar-idioma/{locale}"}, name="front_app_language_switcher")
+     */
+    public function languageSwitcherAction(Request $request, string $locale): Response
+    {
+        $request->getSession()->set('_locale', $locale);
+
+        return $this->redirectToRoute('front_app_homepage', ['_locale' => $locale]);
+    }
+
+    /**
      * @Route("/{menu}", name="front_app_menu_level_1")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
@@ -87,15 +97,5 @@ class DefaultController extends AbstractController
                 'page' => $page,
             ]
         );
-    }
-
-    /**
-     * @Route("/locale/{locale}", name="front_app_language_switcher")
-     */
-    public function languageSwitcherAction(Request $request, string $locale): Response
-    {
-        dd($locale);
-
-        return $this->redirectToRoute('front_app_homepage');
     }
 }

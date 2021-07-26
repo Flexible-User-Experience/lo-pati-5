@@ -2,4 +2,6 @@ front:
   layout:
     title: 'Lo Pati'
   homepage:
-    highlighted: 'Destacat a Lo Pati'
+    highlighted: 'Destacado en Lo Pati'
+    read_more: 'Ampliar'
+    paginator_label: 'Paginador de destacados'

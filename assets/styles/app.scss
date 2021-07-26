@@ -13,13 +13,31 @@ $navbar-light-hover-color: $lp-color-black;
 $navbar-light-active-color: $lp-color-black;
 
 // custom header navbar
-li.nav-item {
-  margin-top: 30px;
-  &.active {
-    border-bottom: solid 5px $lp-color-red;
+ul.navbar-nav {
+  &.menu {
+    li.nav-item {
+      padding: 0;
+      margin: 0;
+      &.active {
+        font-weight: bolder;
+        border-bottom: solid 5px $lp-color-red;
+      }
+      &:hover {
+        border-bottom: solid 5px lighten($lp-color-red, $lp-base-precent);
+      }
+      a.nav-link {
+        padding-top: 36px;
+        height: 100%;
+      }
+    }
   }
-  &:hover {
-    border-bottom: solid 5px lighten($lp-color-red, $lp-base-precent);
+  &.language {
+    li.nav-item {
+      margin-top: 30px;
+      &.active {
+        font-weight: bolder !important;
+      }
+    }
   }
 }
 

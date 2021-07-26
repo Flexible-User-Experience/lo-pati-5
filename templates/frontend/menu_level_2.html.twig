@@ -22,7 +22,7 @@
             <ul class="nav flex-column">
                 {% for page in submenu.pages %}
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ path('front_app_page_detail', {'menu': menu.slug, 'submenu': submenu.slug, 'date': page.publishDate | date('d-m-Y'), 'page': page.slug }) }}">{{ page.name }}</a>
+                        <a class="nav-link active" href="{{ path('front_app_page_detail', {'menu': menu.slug, 'submenu': submenu.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug }) }}">{{ page.name }}</a>
                     </li>
                 {% endfor %}
             </ul>
