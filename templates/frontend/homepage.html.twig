@@ -7,27 +7,18 @@
         <div class="row my-5">
             <div class="col">
                 <div id="slideshow" class="carousel carousel-fade slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        {% for slide in slides %}
+                            <button type="button" data-bs-target="#slideshow" data-bs-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active" aria-current="true"{% endif %} aria-label="slide {{ loop.index }}"></button>
+                        {% endfor %}
+                    </div>
                     <div class="carousel-inner">
                         {% for slide in slides %}
                             <div class="carousel-item{% if loop.first %} active{% endif %}">
                                 <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">
-{#                                <div class="carousel-caption d-none d-md-block">#}
-{#                                    <h5>{{ slide.name }}</h5>#}
-{#                                    {% if slide.description %}#}
-{#                                        <p>{{ slide.description }}</p>#}
-{#                                    {% endif %}#}
-{#                                </div>#}
                             </div>
                         {% endfor %}
                     </div>
-{#                    <button class="carousel-control-prev" type="button" data-bs-target="#slideshow" data-bs-slide="prev">#}
-{#                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>#}
-{#                        <span class="visually-hidden">Previous</span>#}
-{#                    </button>#}
-{#                    <button class="carousel-control-next" type="button" data-bs-target="#slideshow" data-bs-slide="next">#}
-{#                        <span class="carousel-control-next-icon" aria-hidden="true"></span>#}
-{#                        <span class="visually-hidden">Next</span>#}
-{#                    </button>#}
                 </div>
             </div>
         </div>
@@ -47,8 +38,10 @@
                             <h5 class="card-title mb-0">{{ page.menuLevel1.name }}</h5>
                         </div>
                         <div class="card-body">
+                            {% if page.realizationDateString %}
+                                <h6 class="card-subtitle text-muted mb-2"><i class="far fa-clock"></i> {{ page.realizationDateString }}</h6>
+                            {% endif %}
                             <h5 class="card-title mb-4">{{ page.name }}</h5>
-{#                            <p class="card-text">{{ page.name }}</p>#}
                             <a href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}" class="btn btn-outline-dark btn-sm">{{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
                         </div>
                     </div>

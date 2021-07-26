@@ -33,9 +33,14 @@ ul.navbar-nav {
   }
   &.language {
     li.nav-item {
-      margin-top: 30px;
-      &.active {
-        font-weight: bolder !important;
+      padding: 0;
+      margin: 0;
+      a.nav-link {
+        padding-top: 36px;
+        height: 100%;
+        &.active {
+          font-weight: bolder !important;
+        }
       }
     }
   }
