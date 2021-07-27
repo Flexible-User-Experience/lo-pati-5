@@ -3,6 +3,7 @@ front:
     title: 'Lo Pati'
     footer:
       visit: 'Visita el centre'
+      information: 'Informació'
       timetable_t1: 'Horari d''estiu Centre d''Art Lo Pati'
       timetable_d1: 'dimecres, dijous, divendres i dissabtes'
       timetable_d2: 'diumenges'

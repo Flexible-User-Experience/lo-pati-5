@@ -53,11 +53,18 @@
                         <div class="col"></div>
                         <div class="col-6">
                             <div class="card rounded-0 lp-bg-black lp-c-light-grey">
-                                <img src="{{ asset('build/timetable_section.png') | imagine_filter('728x214') }}" class="card-img-top" alt="{{ 'front.layout.footer.timetable_t1' | trans }}">
+                                <div class="position-relative">
+                                    <img src="{{ asset('build/timetable_section.png') | imagine_filter('728x214') }}" class="card-img-top" alt="{{ 'front.layout.footer.timetable_t1' | trans }}">
+                                    <div class="position-absolute top-100 start-0 translate-middle-y">
+                                        <div>
+                                            <span class="h6 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-purple text-white text-uppercase">{{ 'front.layout.footer.information' | trans }}</span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="card-body">
-                                    <h5 class="card-title">{{ 'front.layout.footer.timetable_t1' | trans }}</h5>
+                                    <h5 class="card-title mt-4">{{ 'front.layout.footer.timetable_t1' | trans }}</h5>
                                     <p class="card-text">{{ 'front.layout.footer.timetable_d1' | trans }}</p>
-                                    <a href="#" class="btn btn-outline-light rounded-0 border-2 text-uppercase">{{ 'front.layout.footer.timetable_ab' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
+                                    <a href="#" class="float-end text-white btn btn-outline-light btn-sm rounded-0 border-2 text-uppercase">{{ 'front.layout.footer.timetable_ab' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
                                 </div>
                             </div>
                         </div>
