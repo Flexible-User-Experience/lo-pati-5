@@ -10,3 +10,9 @@ Changelog
 
 ##### Version 5.00.00 (2021-07-05)
  * first skeleton app
+
+
+To Do
+=====
+
+ * decide better highlighted homepage aspect ratio covers

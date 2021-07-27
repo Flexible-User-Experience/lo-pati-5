@@ -1,5 +1,6 @@
 // custom variables
 $lp-base-precent: 25%;
+$lp-color-white: #FFFFFF;
 $lp-color-black: #151920;
 $lp-color-light-grey: #78838C;
 $lp-color-red: #FF004E;
@@ -43,6 +44,36 @@ ul.navbar-nav {
         height: 100%;
         &.active {
           font-weight: bolder !important;
+        }
+      }
+    }
+  }
+}
+
+// custom subheader navbar
+nav.submenu {
+  padding: 0;
+  ul.nav.nav-pills {
+    padding-top: 5px;
+    li.nav-item {
+      border-bottom: solid 5px $lp-color-white;
+      &.active {
+        font-weight: bolder;
+        border-bottom: solid 5px $lp-color-red;
+      }
+      &:hover {
+        border-bottom: solid 5px lighten($lp-color-red, $lp-base-precent);
+      }
+      a.nav-link {
+        padding: 20px;
+        height: 100%;
+        color: $lp-color-light-grey;
+        &.active {
+          color: $lp-color-black;
+          background-color: $lp-color-white;
+        }
+        &:hover {
+          color: $lp-color-black;
         }
       }
     }

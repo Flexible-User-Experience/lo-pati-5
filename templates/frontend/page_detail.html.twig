@@ -5,11 +5,17 @@
 {% block title %}{{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
 
 {% block submenu_header %}
-    {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}
+    {{ dump(item) }}
+{#    <header class="d-flex border-bottom">#}
+{#        <nav class="submenu navbar navbar-light bg-white text-uppercase mx-auto">#}
+{#            {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}#}
+{#        </nav>#}
+{#    </header>#}
+{#    {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}#}
 {% endblock %}
 
 {% block main %}
-    <div class="row">
+    <div class="row my-5">
         <div class="col">
             <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
             <pre>#{{ submenu.id }} · #{{ menu.id }}</pre>

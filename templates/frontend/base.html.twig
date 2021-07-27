@@ -14,13 +14,13 @@
                 <a class="py-4 px-5" href="{{ path('front_app_homepage') }}">
                     <img src="{{ asset('build/lo_pati_centre_art_logo.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="246" height="51" class="d-inline-block">
                 </a>
-                <nav class="navbar navbar-expand-lg navbar-light bg-white text-uppercase py-0 align-items-stretch flex-grow-1">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white text-uppercase py-0 align-items-stretch flex-grow-1 border-bottom">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarHeader">
                         {% block menu_header %}
-                            {{ knp_menu_render('frontend_main', {'currentClass': 'active', 'depth': 1}) }}
+                            {{ knp_menu_render('frontend_main', {'currentClass': 'active', 'ancestorClass': 'active', 'depth': 1}) }}
                         {% endblock %}
                         {{ knp_menu_render('frontend_language', {'currentClass': 'active'}) }}
                     </div>
@@ -31,6 +31,7 @@
                 </form>
             </header>
         </div>
+        {% block submenu_header %}{% endblock %}
         <div class="container">
             <main>
                 {% block main %}{% endblock %}

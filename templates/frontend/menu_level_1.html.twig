@@ -5,11 +5,15 @@
 {% block title %}{{ menu }} · {{ parent() }}{% endblock %}
 
 {% block submenu_header %}
-    {{ knp_menu_render(item, {'currentClass': 'active', 'depth': 1}) }}
+    <header class="d-flex border-bottom">
+        <nav class="submenu navbar navbar-light bg-white text-uppercase mx-auto">
+            {{ knp_menu_render(item, {'currentClass': 'active', 'depth': 1}) }}
+        </nav>
+    </header>
 {% endblock %}
 
 {% block main %}
-    <div class="row">
+    <div class="row my-5">
         <div class="col">
             <h1>{{ menu }}</h1>
             <pre>#{{ menu.id }}</pre>
