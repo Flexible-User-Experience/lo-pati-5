@@ -174,6 +174,21 @@ class Page extends AbstractBase
      */
     private ?MenuLevel2 $menuLevel2 = null;
 
+    public function isHighlitedImageSquared(): bool
+    {
+        return (bool) $this->getSmallImage1FileName();
+    }
+
+    public function getHighlitedImageField(): string
+    {
+        return $this->getSmallImage1FileName() ? 'smallImage1File' : 'imageFile';
+    }
+
+    public function getHighlitedImageFilter(): string
+    {
+        return $this->getSmallImage1FileName() ? '758x758_fixed' : '758x428';
+    }
+
     public function getSummary(): ?string
     {
         return $this->summary;

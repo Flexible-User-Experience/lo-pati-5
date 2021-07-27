@@ -21,6 +21,19 @@ liip_imagine:
             quality: 90
             filters:
                 thumbnail: { size: [ 600, 400 ], mode: inset }
+        758x758_fixed:
+            quality: 90
+            filters:
+                fixed: { width: 758, height: 758 }
+        758x428:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 758, 428 ], mode: outbound }
+        758x428_fixed:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 758, null ], mode: outbound }
+                fixed: { width: 758, height: 428 }
         800x600:
             quality: 90
             filters:
