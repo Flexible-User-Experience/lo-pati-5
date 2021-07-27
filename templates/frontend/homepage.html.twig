@@ -42,7 +42,7 @@
                                 <h6 class="card-subtitle text-muted mb-2"><i class="far fa-clock"></i> {{ page.realizationDateString }}</h6>
                             {% endif %}
                             <h5 class="card-title mb-4">{{ page.name }}</h5>
-                            <a href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}" class="btn btn-outline-dark btn-sm">{{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
+                            <a href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}" class="btn btn-outline-dark btn-sm rounded-0">{{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
                         </div>
                     </div>
                 </div>

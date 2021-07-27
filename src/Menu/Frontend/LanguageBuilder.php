@@ -27,7 +27,7 @@ class LanguageBuilder
             $currentLocale = $this->requestStack->getCurrentRequest()->getLocale();
         }
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'navbar-nav mx-5 h-100 language');
+        $menu->setChildrenAttribute('class', 'navbar-nav ms-auto me-5 h-100 language');
         $catalan = $menu->addChild(
             self::LOCALE_CA,
             [

@@ -1,6 +1,10 @@
 front:
   layout:
     title: 'Lo Pati'
+    footer:
+      visit: 'Visita el centro'
+  menu:
+    start: 'Inicio'
   homepage:
     highlighted: 'Destacado en Lo Pati'
     read_more: 'Ampliar'

@@ -8,16 +8,19 @@ use App\Repository\MenuLevel1Repository;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
     private FactoryInterface $factory;
     private RequestStack $requestStack;
+    private TranslatorInterface $translator;
 
-    public function __construct(FactoryInterface $factory, RequestStack $requestStack)
+    public function __construct(FactoryInterface $factory, RequestStack $requestStack, TranslatorInterface $translator)
     {
         $this->factory = $factory;
         $this->requestStack = $requestStack;
+        $this->translator = $translator;
     }
 
     public function createMainMenu(MenuLevel1Repository $ml1r): ItemInterface
@@ -42,7 +45,7 @@ class MenuBuilder
         $homepage = $menu->addChild(
             'home',
             [
-                'label' => 'Home',
+                'label' => $this->translator->trans('front.menu.start'),
                 'route' => 'front_app_homepage',
             ]
         );

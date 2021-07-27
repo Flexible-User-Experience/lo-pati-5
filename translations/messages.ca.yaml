@@ -3,6 +3,8 @@ front:
     title: 'Lo Pati'
     footer:
       visit: 'Visita el centre'
+  menu:
+    start: 'Inici'
   homepage:
     highlighted: 'Destacat a Lo Pati'
     read_more: 'Ampliar'
