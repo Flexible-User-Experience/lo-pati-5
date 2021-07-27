@@ -3,6 +3,12 @@ front:
     title: 'Lo Pati'
     footer:
       visit: 'Visita el centre'
+      timetable_t1: 'Horari d''estiu Centre d''Art Lo Pati'
+      timetable_d1: 'dimecres, dijous, divendres i dissabtes'
+      timetable_d2: 'diumenges'
+      timetable_h1: '16:00h - 20:00h'
+      timetable_h2: '11:00h - 14:00h'
+      timetable_ab: 'Reservar'
   menu:
     start: 'Inici'
   homepage:

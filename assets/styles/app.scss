@@ -97,6 +97,21 @@ ul.pagination {
   }
 }
 
+// highlighted tumbnails
+.mini-colored-box-detail {
+  margin-left: -10px;
+  width: 30px;
+  height: 12px;
+}
+
+// custom footer
+footer {
+  div.lp-bg-timetable-section {
+    background: $lp-color-black url('../../public/build/timetable_section_background.png') no-repeat center;
+    background-size: cover;
+  }
+}
+
 // custom spacers
 .w-10 {
   width: 10% !important;
@@ -108,16 +123,12 @@ ul.pagination {
   width: 235px !important;
 }
 
-// highlighted tumbnails
-.mini-colored-box-detail {
-  margin-left: -10px;
-  width: 30px;
-  height: 12px;
-}
-
 // custom color classes
+.lp-c-light-grey {
+  color: $lp-color-light-grey;
+}
 .lp-bg-black {
-  background-color: $lp-color-black;
+  background-color: $lp-color-black !important;
 }
 .lp-bg-light-grey {
   background-color: $lp-color-light-grey;
@@ -131,7 +142,7 @@ ul.pagination {
 .lp-bg-purple {
   background-color: $lp-color-purple;
 }
-.yellow {
+.lp-bg-yellow {
   background-color: $lp-color-yellow;
 }
 

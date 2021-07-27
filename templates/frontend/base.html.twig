@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ app.request.locale }}">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="author" content="www.flux.cat">
         <title>{% block title %}{{ 'front.layout.title' | trans }}{% endblock %}</title>
         {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
@@ -40,8 +41,31 @@
         <div class="container-fluid p-0">
             <footer>
                 <div class="d-flex ms-auto w-90 p-2 lp-bg-purple"></div>
-                <div class="d-flex bg-dark">
-                    <h6 class="text-uppercase text-white m-5"><img src="{{ asset('build/head_label_w.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="50" class="d-inline-block me-3"> {{ 'front.layout.footer.visit' | trans }}</h6>
+                <div class="lp-bg-timetable-section p-5">
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col-8">
+                            <h6 class="text-uppercase text-white mb-5"><img src="{{ asset('build/head_label_w.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="50" class="d-inline-block me-3"> {{ 'front.layout.footer.visit' | trans }}</h6>
+                        </div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col"></div>
+                        <div class="col-6">
+                            <div class="card rounded-0 lp-bg-black lp-c-light-grey">
+                                <img src="{{ asset('build/timetable_section.png') | imagine_filter('728x214') }}" class="card-img-top" alt="{{ 'front.layout.footer.timetable_t1' | trans }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ 'front.layout.footer.timetable_t1' | trans }}</h5>
+                                    <p class="card-text">{{ 'front.layout.footer.timetable_d1' | trans }}</p>
+                                    <a href="#" class="btn btn-outline-light rounded-0 border-2 text-uppercase">{{ 'front.layout.footer.timetable_ab' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <h6 class="text-uppercase text-white m-5">OPEN CALL</h6>
+                        </div>
+                        <div class="col"></div>
+                    </div>
                 </div>
             </footer>
         </div>

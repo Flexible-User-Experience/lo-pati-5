@@ -21,6 +21,10 @@ liip_imagine:
             quality: 90
             filters:
                 thumbnail: { size: [ 600, 400 ], mode: inset }
+        728x214:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 728, 214 ], mode: outbound }
         758x758_fixed:
             quality: 90
             filters:

@@ -8,9 +8,10 @@ Encore
     // directory copy
     .setOutputPath('public/build/')
     .setPublicPath('/build')
-    .copyFiles({
-        from: './assets/vectors',
-    })
+    .copyFiles([
+        {from: './assets/images'},
+        {from: './assets/vectors'},
+    ])
     // entries
     .addEntry('app', './assets/app.js')
     // configs
