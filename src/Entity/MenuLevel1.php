@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
 use App\Entity\Traits\SlugTrait;
+use App\Enum\LabelColorEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -22,6 +23,8 @@ class MenuLevel1 extends AbstractBase
     use PositionTrait;
     use SlugTrait;
 
+    public const DEFAULT_COLOR = LabelColorEnum::TEAL;
+
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
@@ -32,6 +35,11 @@ class MenuLevel1 extends AbstractBase
      * @Gedmo\Slug(fields={"name"})
      */
     private string $slug;
+
+    /**
+     * @ORM\Column(type="string", length=255, options={"default": "#59F3C1"})
+     */
+    private string $color = self::DEFAULT_COLOR;
 
     /**
      * @ORM\Column(type="boolean", options={"default"=0})
@@ -52,6 +60,23 @@ class MenuLevel1 extends AbstractBase
     public function __construct()
     {
         $this->menuLevel2items = new ArrayCollection();
+    }
+
+    public function getColor(): string
+    {
+        return $this->color;
+    }
+
+    public function getCssBackgroudClassColor(): string
+    {
+        return LabelColorEnum::getCssClassValueByHexColor($this->getColor());
+    }
+
+    public function setColor(string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
     }
 
     public function isArchive(): bool

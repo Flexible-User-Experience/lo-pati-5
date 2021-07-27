@@ -2,7 +2,7 @@
     <nav aria-label="{{ 'front.homepage.paginator_label' | trans }}">
         {% set classAlign = (align is not defined) ? '' : align == 'center' ? ' justify-content-center' : (align == 'right' ? ' justify-content-end' : '') %}
         {% set classSize = (size is not defined) ? '' : size == 'large' ? ' pagination-lg' : (size == 'small' ? ' pagination-sm' : '') %}
-        <ul class="pagination{{ classAlign }}{{ classSize }} border-0">
+        <ul class="pagination{{ classAlign }}{{ classSize }} border-0 mb-0">
             {% if previous is defined %}
                 <li class="page-item">
                     <a class="page-link" rel="prev" href="{{ path(route, query | merge({(pageParameterName): previous})) }}"><i class="fas fa-chevron-left"></i></a>

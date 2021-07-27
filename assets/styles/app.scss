@@ -3,7 +3,9 @@ $lp-base-precent: 25%;
 $lp-color-black: #151920;
 $lp-color-light-grey: #78838C;
 $lp-color-red: #FF004E;
+$lp-color-teal: #59F3C1;
 $lp-color-purple: #3B1493;
+$lp-color-yellow: #FFDF4A;
 
 // override Bootstrap v5 variables before import
 $dark: $lp-color-black;
@@ -64,9 +66,39 @@ ul.pagination {
   }
 }
 
+// custom spacers
+.w-10 {
+  width: 10% !important;
+}
+.w-90 {
+  width: 90% !important;
+}
+
+// highlighted tumbnails
+.mini-colored-box-detail {
+  margin-left: -10px;
+  width: 30px;
+  height: 12px;
+}
+
 // custom color classes
-.bd-purple {
+.lp-bg-black {
+  background-color: $lp-color-black;
+}
+.lp-bg-light-grey {
+  background-color: $lp-color-light-grey;
+}
+.lp-bg-red {
+  background-color: $lp-color-red;
+}
+.lp-bg-teal {
+  background-color: $lp-color-teal;
+}
+.lp-bg-purple {
   background-color: $lp-color-purple;
+}
+.yellow {
+  background-color: $lp-color-yellow;
 }
 
 @import "~bootstrap/scss/bootstrap.scss";
