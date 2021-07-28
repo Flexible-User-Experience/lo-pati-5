@@ -102,10 +102,12 @@
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "local-php-security-checker-installer && local-php-security-checker"
         ],
         "post-update-cmd": [
-            "@auto-scripts"
+            "@auto-scripts",
+            "local-php-security-checker"
         ]
     },
     "conflict": {

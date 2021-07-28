@@ -32,8 +32,7 @@
     symfony_console_path: "bin/console"
     symfony_run_composer: true
     symfony_composer_path: "{{ ansistrano_deploy_to }}/composer.phar"
-#    symfony_composer_options: "--no-dev --optimize-autoloader --no-interaction --no-plugins --no-scripts"
-#    symfony_composer_options: "--no-interaction --no-scripts"
+    symfony_composer_options: "--no-dev --optimize-autoloader --no-interaction --no-plugins --no-scripts"
     symfony_composer_version: "2.0.12"
     symfony_composer_self_update: false
     symfony_run_assets_install: false
