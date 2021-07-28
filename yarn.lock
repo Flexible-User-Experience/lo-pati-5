@@ -4703,9 +4703,9 @@ webpack-sources@^1.1.0:
     source-map "~0.6.1"
 
 webpack-sources@^3.0.1:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.0.2.tgz#29942415daf201a06278f8e2b92e44e564a9288e"
-  integrity sha512-XQ6aGLmqoxZtmpbgwySGhYLNFav1W6+qgMWPGgn6qScxfGrQgMdigkUqZXQ7oB0ydUrvfs9RRyHaSfV153K8Xg==
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.0.3.tgz#33c478e1f67bf5577d3ec5ced4bded0a06ec88d0"
+  integrity sha512-/Qgfp3i1FT2z/tpNj+d/ZeDTbdOWG5V6DdTjIvMLVhrhtpFxmMTZrGnEQEa0J7HF8Plls5kGa7TZ7IsvgnFdtA==
 
 webpack@^5.35:
   version "5.47.0"
