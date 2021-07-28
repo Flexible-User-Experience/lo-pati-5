@@ -5,24 +5,31 @@
 {% block title %}{{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
 
 {% block submenu_header %}
-    {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}
+    <header class="d-flex border-bottom">
+        <nav class="submenu navbar navbar-light bg-white text-uppercase mx-auto">
+            {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}
+        </nav>
+    </header>
 {% endblock %}
 
 {% block main %}
-    <div class="row">
+    <div class="row my-5">
         <div class="col">
             <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
             <pre>#{{ submenu.id }} · #{{ menu.id }}</pre>
-{#            <pre>{{ dump(item.parent) }}</pre>#}
-{#            <pre>{{ dump(knp_menu_get_breadcrumbs_array(item)) }}</pre>#}
-{#            {{ knp_menu_render(item, {'currentClass': 'active', 'depth': 1}) }}#}
-{#            <ul class="nav">#}
-{#                {% for item in menu.menuLevel2items %}#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link active" aria-current="page" href="{{ path('front_app_menu_level_2', {menu: menu.slug, submenu: item.slug}) }}">{{ item.name }}</a>#}
-{#                    </li>#}
-{#                {% endfor %}#}
-{#            </ul>#}
+            <hr>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4>Pages list</h4>
+            <ul class="nav flex-column">
+                {% for page in submenu.pages %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('front_app_page_detail', {'menu': menu.slug, 'submenu': submenu.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug }) }}">{{ page.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}

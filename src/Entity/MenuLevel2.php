@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
 use App\Entity\Traits\SlugTrait;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -42,12 +44,21 @@ class MenuLevel2 extends AbstractBase
      */
     private MenuLevel1 $menuLevel1;
 
-//    /**
-//     * @var Page
-//     *
-//     * @ORM\OneToOne(targetEntity="App\Entity\Page", mappedBy="menuLevel2")
-//     */
-//    private $page;
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\Page")
+     */
+    private ?Page $page = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="menuLevel2", cascade={"persist", "remove"})
+     * @ORM\OrderBy({"publishDate"="ASC"})
+     */
+    private ?Collection $pages;
+
+    public function __construct()
+    {
+        $this->pages = new ArrayCollection();
+    }
 
     public function isList(): bool
     {
@@ -78,25 +89,47 @@ class MenuLevel2 extends AbstractBase
         return $this;
     }
 
-//    /**
-//     * @return Page
-//     */
-//    public function getPage()
-//    {
-//        return $this->page;
-//    }
-//
-//    /**
-//     * @param Page $page
-//     *
-//     * @return MenuLevel2
-//     */
-//    public function setPage($page)
-//    {
-//        $this->page = $page;
-//
-//        return $this;
-//    }
+    public function getPage(): ?Page
+    {
+        return $this->page;
+    }
+
+    public function setPage(?Page $page): self
+    {
+        $this->page = $page;
+
+        return $this;
+    }
+
+    public function getPages(): ?Collection
+    {
+        return $this->pages;
+    }
+
+    public function setPages(?Collection $pages): self
+    {
+        $this->pages = $pages;
+
+        return $this;
+    }
+
+    public function addPage(Page $page): self
+    {
+        if (!$this->pages->contains($page)) {
+            $this->pages->add($page);
+        }
+
+        return $this;
+    }
+
+    public function removePage(Page $page): self
+    {
+        if ($this->pages->contains($page)) {
+            $this->pages->removeElement($page);
+        }
+
+        return $this;
+    }
 
     public function __toString(): string
     {

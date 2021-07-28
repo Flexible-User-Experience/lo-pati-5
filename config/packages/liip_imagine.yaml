@@ -1,2 +1,52 @@
 liip_imagine:
     driver: 'gd'
+    loaders:
+        default:
+            filesystem:
+                locator: filesystem_insecure
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        cache: ~
+        60x60:
+            quality: 95
+            filters:
+                thumbnail: { size: [ 60, 60 ], mode: outbound }
+        465x246:
+            quality: 95
+            filters:
+                thumbnail: { size: [465, 246], mode: outbound }
+        600x400:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 600, 400 ], mode: inset }
+        728x214:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 728, 214 ], mode: outbound }
+        758x758_fixed:
+            quality: 90
+            filters:
+                fixed: { width: 758, height: 758 }
+        758x428:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 758, 428 ], mode: outbound }
+        758x428_fixed:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 758, null ], mode: outbound }
+                fixed: { width: 758, height: 428 }
+        800x600:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 800, 600 ], mode: outbound }
+        800xY:
+            quality: 85
+            filters:
+                thumbnail: { size: [ 800, null ], mode: outbound }
+        1200xY:
+            quality: 80
+            filters:
+                thumbnail: { size: [ 1200, null ], mode: outbound }

@@ -1,1 +1,159 @@
-@import "~bootstrap/scss/bootstrap.scss";
+// custom variables
+$lp-base-precent: 25%;
+$lp-color-white: #FFFFFF;
+$lp-color-black: #151920;
+$lp-color-light-grey: #78838C;
+$lp-color-ultra-light-grey: #CBCFD1;
+$lp-color-red: #FF004E;
+$lp-color-teal: #59F3C1;
+$lp-color-purple: #3B1493;
+$lp-color-yellow: #FFDF4A;
+
+// override Bootstrap v5 variables before import
+$dark: $lp-color-black;
+$light: $lp-color-light-grey;
+$navbar-nav-link-padding-x: .95rem;
+$navbar-light-color: $lp-color-light-grey;
+$navbar-light-hover-color: $lp-color-black;
+$navbar-light-active-color: $lp-color-black;
+$font-family-sans-serif:  'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+
+// custom header navbar
+ul.navbar-nav {
+  &.menu {
+    li.nav-item {
+      padding: 0;
+      margin: 0;
+      &.active {
+        border-bottom: solid 5px $lp-color-red;
+      }
+      &:hover {
+        border-bottom: solid 5px lighten($lp-color-red, $lp-base-precent);
+      }
+      a.nav-link {
+        font-weight: 600 !important;
+        padding-top: 36px;
+        height: 100%;
+      }
+    }
+  }
+  &.language {
+    li.nav-item {
+      padding: 0;
+      margin: 0;
+      a.nav-link {
+        padding-top: 36px;
+        height: 100%;
+        &.active {
+          font-weight: 600 !important;
+        }
+      }
+    }
+  }
+}
+
+// custom subheader navbar
+nav.submenu {
+  padding: 0;
+  ul.nav.nav-pills {
+    padding-top: 5px;
+    li.nav-item {
+      border-bottom: solid 5px $lp-color-white;
+      &.active {
+        font-weight: bolder;
+        border-bottom: solid 5px $lp-color-red;
+      }
+      &:hover {
+        border-bottom: solid 5px lighten($lp-color-red, $lp-base-precent);
+      }
+      a.nav-link {
+        padding: 20px;
+        height: 100%;
+        color: $lp-color-light-grey;
+        font-weight: 600 !important;
+        &.active {
+          color: $lp-color-black;
+          background-color: $lp-color-white;
+        }
+        &:hover {
+          color: $lp-color-black;
+        }
+      }
+    }
+  }
+}
+
+// custom paginator
+ul.pagination {
+  li.page-item {
+    &.active {
+      .page-link {
+        color: $lp-color-black !important;
+        background: none !important;
+        font-weight: bolder;
+      }
+    }
+    .page-link {
+      color: $lp-color-light-grey !important;
+      border: none;
+    }
+  }
+}
+
+// highlighted tumbnails
+.mini-colored-box-detail {
+  margin-left: -10px;
+  width: 30px;
+  height: 12px;
+}
+
+// custom footer
+footer {
+  div.lp-bg-timetable-section {
+    background: $lp-color-black url('../../public/build/timetable_section_background.png') no-repeat center;
+    background-size: cover;
+  }
+}
+
+// custom spacers
+.w-10 {
+  width: 10% !important;
+}
+.w-90 {
+  width: 90% !important;
+}
+.w-235-px {
+  width: 235px !important;
+}
+
+// custom color classes
+.lp-c-light-grey {
+  color: $lp-color-light-grey !important;
+}
+.lp-c-ultra-light-grey {
+  color: $lp-color-ultra-light-grey !important;
+}
+.lp-bg-black {
+  background-color: $lp-color-black !important;
+}
+.lp-bg-light-grey {
+  background-color: $lp-color-light-grey !important;
+}
+.lp-bg-red {
+  background-color: $lp-color-red !important;
+}
+.lp-bg-teal {
+  background-color: $lp-color-teal !important;
+}
+.lp-bg-purple {
+  background-color: $lp-color-purple !important;
+}
+.lp-bg-yellow {
+  background-color: $lp-color-yellow !important;
+}
+
+@import '~bootstrap/scss/bootstrap.scss';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';

@@ -8,6 +8,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 abstract class AbstractBase
 {
+    public const DATABASE_IMPORT_DATE_FORMAT = 'Y-m-d';
+    public const DATABASE_IMPORT_DATETIME_FORMAT = 'Y-m-d H:i:s';
     public const DATE_FORMAT = 'd/m/Y';
     public const DATETIME_FORMAT = 'd/m/Y H:i';
     public const FORM_TYPE_DATE_FORMAT = 'd/M/y';

@@ -22,7 +22,12 @@ services:
             - '../src/Tests/'
     # menus
     app.frontend_main_menu:
-        class:     Knp\Menu\MenuItem
-        factory:   [ '@App\Menu\Frontend\MenuBuilder', createMainMenu ]
+        class:   Knp\Menu\MenuItem
+        factory: [ '@App\Menu\Frontend\MenuBuilder', createMainMenu ]
         tags:
             - { name: knp_menu.menu, alias: 'frontend_main' }
+    app.frontend_language_menu:
+        class:   Knp\Menu\MenuItem
+        factory: [ '@App\Menu\Frontend\LanguageBuilder', createLanguageMenu ]
+        tags:
+            - { name: knp_menu.menu, alias: 'frontend_language' }

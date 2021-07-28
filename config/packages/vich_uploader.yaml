@@ -1,0 +1,27 @@
+vich_uploader:
+    db_driver: orm
+    mappings:
+        image:
+            namer:              Vich\UploaderBundle\Naming\UniqidNamer
+            uri_prefix:         '/uploads/images'
+            upload_destination: '%kernel.project_dir%/public/uploads/images'
+        document:
+            namer:              Vich\UploaderBundle\Naming\UniqidNamer
+            uri_prefix:         '/uploads/documents'
+            upload_destination: '%kernel.project_dir%/public/uploads/documents'
+        artist:
+            namer:              Vich\UploaderBundle\Naming\UniqidNamer
+            uri_prefix:         '/uploads/artists'
+            upload_destination: '%kernel.project_dir%/public/uploads/artists'
+        artist_cv:
+            namer:              Vich\UploaderBundle\Naming\UniqidNamer
+            uri_prefix:         '/uploads/artists/cv'
+            upload_destination: '%kernel.project_dir%/public/uploads/artists/cv'
+        slideshow:
+            namer:              Vich\UploaderBundle\Naming\UniqidNamer
+            uri_prefix:         '/uploads/slides'
+            upload_destination: '%kernel.project_dir%/public/uploads/slides'
+        isolated_newsletter:
+            namer:              Vich\UploaderBundle\Naming\UniqidNamer
+            uri_prefix:         '/uploads/isolated-newsletters'
+            upload_destination: '%kernel.project_dir%/public/uploads/isolated-newsletters'

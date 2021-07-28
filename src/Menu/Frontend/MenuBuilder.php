@@ -8,16 +8,19 @@ use App\Repository\MenuLevel1Repository;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class MenuBuilder
 {
     private FactoryInterface $factory;
     private RequestStack $requestStack;
+    private TranslatorInterface $translator;
 
-    public function __construct(FactoryInterface $factory, RequestStack $requestStack)
+    public function __construct(FactoryInterface $factory, RequestStack $requestStack, TranslatorInterface $translator)
     {
         $this->factory = $factory;
         $this->requestStack = $requestStack;
+        $this->translator = $translator;
     }
 
     public function createMainMenu(MenuLevel1Repository $ml1r): ItemInterface
@@ -37,15 +40,21 @@ class MenuBuilder
             }
         }
         $menu = $this->factory->createItem('root');
-        $menu->setChildrenAttribute('class', 'nav nav-pills');
+        $menu->setChildrenAttribute('class', 'navbar-nav mx-5 h-100 menu');
         $homepage = $menu->addChild(
             'home',
             [
-                'label' => 'Home',
+                'label' => $this->translator->trans('front.menu.start'),
                 'route' => 'front_app_homepage',
             ]
         );
-        $homepage->setLinkAttribute('class', ($this->isHomepageRouteCurrent($currentRoute) ? 'nav-link active' : 'nav-link'));
+        if ($this->isHomepageRouteCurrent($currentRoute)) {
+            $homepage->setCurrent(true);
+            $homepage->setLinkAttribute('class', 'nav-link active');
+            $homepage->setLinkAttribute('aria-current', 'page');
+        } else {
+            $homepage->setLinkAttribute('class', 'nav-link');
+        }
         $homepage->setAttribute('class', 'nav-item');
         $ml1Items = $ml1r->getAllSortedByPositionAndName()->getQuery()->getResult();
         /** @var MenuLevel1 $ml1Item */
@@ -61,8 +70,16 @@ class MenuBuilder
                 ]
             );
             $item->setChildrenAttribute('class', 'nav nav-pills');
-            $item->setLinkAttribute('class', ($this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute && $menuRoute->getId() === $ml1Item->getId() ? 'nav-link active' : 'nav-link'));
-            $item->setAttribute('class', 'nav-item');
+            if ($menuRoute && ($this->isMenuLevel1RouteCurrent($currentRoute) || $this->isMenuLevel2RouteCurrent($currentRoute)) && $menuRoute->getId() === $ml1Item->getId()) {
+                if ($this->isMenuLevel1RouteCurrent($currentRoute)) {
+                    $item->setCurrent(true);
+                }
+                $item->setLinkAttribute('class', 'nav-link active');
+                $item->setLinkAttribute('aria-current', 'page');
+            } else {
+                $item->setLinkAttribute('class', 'nav-link');
+            }
+            $item->setAttribute('class', 'nav-item text-uppercase');
             /** @var MenuLevel2 $ml2Item */
             foreach ($ml1Item->getMenuLevel2items() as $ml2Item) {
                 $submenu = $item->addChild(
@@ -76,7 +93,13 @@ class MenuBuilder
                         ],
                     ]
                 );
-                $submenu->setLinkAttribute('class', ($this->isMenuLevel1RouteCurrent($currentRoute) && $menuRoute && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute && $submenuRoute->getId() === $ml2Item->getId() ? 'nav-link active' : 'nav-link'));
+                if ($menuRoute && $submenuRoute && $this->isMenuLevel2RouteCurrent($currentRoute) && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute->getId() === $ml2Item->getId()) {
+                    $submenu->setCurrent(true);
+                    $submenu->setLinkAttribute('class', 'nav-link active');
+                    $submenu->setLinkAttribute('aria-current', 'page');
+                } else {
+                    $submenu->setLinkAttribute('class', 'nav-link');
+                }
                 $submenu->setAttribute('class', 'nav-item');
             }
         }
@@ -91,6 +114,11 @@ class MenuBuilder
 
     private function isMenuLevel1RouteCurrent(string $route): bool
     {
-        return 'front_app_menu_level_1' === $route || 'front_app_menu_level_2' === $route;
+        return 'front_app_menu_level_1' === $route;
+    }
+
+    private function isMenuLevel2RouteCurrent(string $route): bool
+    {
+        return 'front_app_menu_level_2' === $route;
     }
 }

@@ -29,6 +29,12 @@
 !/public/media/cache/.gitkeep
 ###< liip/imagine-bundle ###
 
+###> vich/uploader-bundle ###
+/public/uploads/artists/*
+/public/uploads/slides/*
+!/public/uploads/.gitkeep
+###< vich/uploader-bundle ###
+
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
 /public/build/
