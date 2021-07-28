@@ -16,6 +16,7 @@ $navbar-nav-link-padding-x: .95rem;
 $navbar-light-color: $lp-color-light-grey;
 $navbar-light-hover-color: $lp-color-black;
 $navbar-light-active-color: $lp-color-black;
+$font-family-sans-serif:  'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 
 // custom header navbar
 ul.navbar-nav {
@@ -150,7 +151,7 @@ footer {
   background-color: $lp-color-yellow !important;
 }
 
-@import "~bootstrap/scss/bootstrap.scss";
+@import '~bootstrap/scss/bootstrap.scss';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';

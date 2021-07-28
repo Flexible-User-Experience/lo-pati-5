@@ -1,4 +1,5 @@
 // styles
+import './styles/fonts.scss';
 import './styles/app.scss';
 
 // BS import

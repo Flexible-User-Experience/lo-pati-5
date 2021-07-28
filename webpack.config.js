@@ -9,6 +9,7 @@ Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
     .copyFiles([
+        {from: './assets/fonts'},
         {from: './assets/images'},
         {from: './assets/vectors'},
     ])
