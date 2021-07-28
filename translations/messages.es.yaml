@@ -3,9 +3,25 @@ front:
     title: 'Lo Pati'
     footer:
       visit: 'Visita el centro'
+      information: 'Información'
+      timetable_t1: 'Horario de verano Centre d''Art Lo Pati'
+      timetable_d1: 'miércoles, jueves, viernes y sábados'
+      timetable_d2: 'domingos'
+      timetable_h1: '16:00h - 20:00h'
+      timetable_h2: '11:00h - 14:00h'
+      timetable_ab: 'Reservar'
   menu:
     start: 'Inicio'
   homepage:
     highlighted: 'Destacado en Lo Pati'
     read_more: 'Ampliar'
     paginator_label: 'Paginador de destacados'
+enum:
+  page_template_type:
+    default: 'Por defecto'
+    menu: 'Menú primer nivel'
+    submenu: 'Menú segundo nivel'
+    list: 'Lista'
+    page: 'Página'
+    blog: 'Blog'
+    info: 'Información'

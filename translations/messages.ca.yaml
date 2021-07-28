@@ -16,3 +16,12 @@ front:
     highlighted: 'Destacat a Lo Pati'
     read_more: 'Ampliar'
     paginator_label: 'Paginador de destacats'
+enum:
+  page_template_type:
+    default: 'Per defecte'
+    menu: 'Menú primer nivell'
+    submenu: 'Menú segon nivell'
+    list: 'Llistat'
+    page: 'Pàgina'
+    blog: 'Blog'
+    info: 'Informació'
