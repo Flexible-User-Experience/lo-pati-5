@@ -3,6 +3,7 @@ $lp-base-precent: 25%;
 $lp-color-white: #FFFFFF;
 $lp-color-black: #151920;
 $lp-color-light-grey: #78838C;
+$lp-color-ultra-light-grey: #CBCFD1;
 $lp-color-red: #FF004E;
 $lp-color-teal: #59F3C1;
 $lp-color-purple: #3B1493;
@@ -125,25 +126,28 @@ footer {
 
 // custom color classes
 .lp-c-light-grey {
-  color: $lp-color-light-grey;
+  color: $lp-color-light-grey !important;
+}
+.lp-c-ultra-light-grey {
+  color: $lp-color-ultra-light-grey !important;
 }
 .lp-bg-black {
   background-color: $lp-color-black !important;
 }
 .lp-bg-light-grey {
-  background-color: $lp-color-light-grey;
+  background-color: $lp-color-light-grey !important;
 }
 .lp-bg-red {
-  background-color: $lp-color-red;
+  background-color: $lp-color-red !important;
 }
 .lp-bg-teal {
-  background-color: $lp-color-teal;
+  background-color: $lp-color-teal !important;
 }
 .lp-bg-purple {
-  background-color: $lp-color-purple;
+  background-color: $lp-color-purple !important;
 }
 .lp-bg-yellow {
-  background-color: $lp-color-yellow;
+  background-color: $lp-color-yellow !important;
 }
 
 @import "~bootstrap/scss/bootstrap.scss";
