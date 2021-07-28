@@ -12,7 +12,8 @@
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/test_database.db
-/var/csv/*
+/var/csv/imports/*
+!/var/csv/imports/.gitkeep
 /var/cache/*
 /var/log/*
 !/var/log/.gitkeep

@@ -1,0 +1,10 @@
+---
+- hosts: s8
+  gather_facts: false
+  vars_files:
+    - "{{ playbook_dir }}/vars/config.yml"
+  tasks:
+    - name: execute slideshow CSV import command
+      shell: "{{ symfony_php_path }} {{ symfony_console_path }} --env=prod app:import:slideshow var/csv/imports/slideshow.csv"
+      args:
+        chdir: "{{ vhost_path }}/current/"
