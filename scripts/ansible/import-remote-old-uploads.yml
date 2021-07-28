@@ -1,0 +1,43 @@
+---
+- hosts: s8
+  gather_facts: false
+  vars_files:
+    - "{{ playbook_dir }}/vars/config.yml"
+  tasks:
+    - name: creates artists directory
+      file:
+        path: "{{ remote_new_uploads_folder }}/artists"
+        state: directory
+        owner: "{{ remote_system_user }}"
+        group: "{{ remote_system_group }}"
+        mode: 0755
+        recurse: no
+    - name: creates slides directory
+      file:
+        path: "{{ remote_new_uploads_folder }}/slides"
+        state: directory
+        owner: "{{ remote_system_user }}"
+        group: "{{ remote_system_group }}"
+        mode: 0755
+        recurse: no
+    - name: creates images directory
+      file:
+        path: "{{ remote_new_uploads_folder }}/images"
+        state: directory
+        owner: "{{ remote_system_user }}"
+        group: "{{ remote_system_group }}"
+        mode: 0755
+        recurse: no
+    - name: copy artists images
+      shell: "cp -r {{ remote_old_uploads_folder }}/artists/* {{ remote_new_uploads_folder }}/artists/"
+    - name: copy slides images
+      shell: "cp -r {{ remote_old_uploads_folder }}/slides/* {{ remote_new_uploads_folder }}/slides/"
+    - name: copy photo images
+      shell: "cp -r {{ remote_old_uploads_folder }}/images/* {{ remote_new_uploads_folder }}/images/"
+    - name: fix ownership to copied files
+      file:
+        path: "{{ remote_new_uploads_folder }}/"
+        recurse: yes
+        follow: yes
+        owner: "{{ remote_system_user }}"
+        group: "{{ remote_system_group }}"
