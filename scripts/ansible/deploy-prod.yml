@@ -39,4 +39,4 @@
     symfony_run_assets_install: false
     symfony_run_assetic_dump: false
     symfony_run_cache_clear_and_warmup: false
-    symfony_run_doctrine_migrations: true
+    symfony_run_doctrine_migrations: false
