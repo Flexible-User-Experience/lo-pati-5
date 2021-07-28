@@ -25,13 +25,13 @@ ul.navbar-nav {
       padding: 0;
       margin: 0;
       &.active {
-        font-weight: bolder;
         border-bottom: solid 5px $lp-color-red;
       }
       &:hover {
         border-bottom: solid 5px lighten($lp-color-red, $lp-base-precent);
       }
       a.nav-link {
+        font-weight: 600 !important;
         padding-top: 36px;
         height: 100%;
       }
@@ -45,7 +45,7 @@ ul.navbar-nav {
         padding-top: 36px;
         height: 100%;
         &.active {
-          font-weight: bolder !important;
+          font-weight: 600 !important;
         }
       }
     }
@@ -70,6 +70,7 @@ nav.submenu {
         padding: 20px;
         height: 100%;
         color: $lp-color-light-grey;
+        font-weight: 600 !important;
         &.active {
           color: $lp-color-black;
           background-color: $lp-color-white;

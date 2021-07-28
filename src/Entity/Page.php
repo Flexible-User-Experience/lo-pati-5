@@ -8,6 +8,7 @@ use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\SmallImage1Trait;
 use App\Entity\Traits\SmallImage2Trait;
+use App\Enum\PageTemplateTypeEnum;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
@@ -31,6 +32,8 @@ class Page extends AbstractBase
     use SlugTrait;
     use SmallImage1Trait;
     use SmallImage2Trait;
+
+    public const DEFAULT_PAGE_TEMPLATE = PageTemplateTypeEnum::DEFAULT;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -162,6 +165,11 @@ class Page extends AbstractBase
      * @ORM\Column(type="date", nullable=true)
      */
     private ?DateTimeInterface $endDate;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false, options={"default": 0})
+     */
+    private int $templateType = self::DEFAULT_PAGE_TEMPLATE;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\MenuLevel1")
@@ -455,6 +463,18 @@ class Page extends AbstractBase
     public function setEndDate(?DateTimeInterface $endDate): self
     {
         $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    public function getTemplateType(): int
+    {
+        return $this->templateType;
+    }
+
+    public function setTemplateType(int $templateType): self
+    {
+        $this->templateType = $templateType;
 
         return $this;
     }
