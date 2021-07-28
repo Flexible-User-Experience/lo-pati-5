@@ -6,7 +6,7 @@
     {% if slides | length > 0 %}
         <div class="row my-5">
             <div class="col">
-                <div id="slideshow" class="carousel carousel-fade slide" data-bs-ride="carousel">
+                <div id="slideshow" class="carousel carousel-dark carousel-fade slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         {% for slide in slides %}
                             <button type="button" data-bs-target="#slideshow" data-bs-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active" aria-current="true"{% endif %} aria-label="slide {{ loop.index }}"></button>
@@ -15,7 +15,18 @@
                     <div class="carousel-inner">
                         {% for slide in slides %}
                             <div class="carousel-item{% if loop.first %} active{% endif %}">
-                                <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="mini-colored-box-detail d-flex me-auto lp-bg-teal"></div>
+                                        <span class="h6 d-inline-flex py-2 ps-2 pe-5 mb-3 lp-bg-black text-white text-uppercase">Activitat{# TODO make it dynamic #}</span>
+                                        <h5 class="text-muted mb-2"><i class="far fa-clock"></i> Lo Pati - Del X al Y d'agost{# TODO make it dynamic #}</h5>
+                                        <h2 class="mb-4">{{ slide.name | nl2br }}{# TODO make it dynamic #}</h2>
+                                        <a href="{{ path('front_app_homepage') }}{# TODO make it dynamic #}" class="btn btn-outline-dark btn-sm rounded-0 border-2 text-uppercase">{{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
+                                    </div>
+                                    <div class="col-6">
+                                        <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">
+                                    </div>
+                                </div>
                             </div>
                         {% endfor %}
                     </div>
@@ -38,7 +49,7 @@
                             <div class="position-absolute bottom-0 start-0">
                                 <div class="mini-colored-box-detail d-flex me-auto {{ page.menuLevel1.cssBackgroudClassColor }}"></div>
                                 <div>
-                                    <span class="h5 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-black text-white">{{ page.menuLevel1.name }}</span>
+                                    <span class="h6 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-black text-white text-uppercase">{{ page.menuLevel1.name }}</span>
                                 </div>
                             </div>
                         </div>
