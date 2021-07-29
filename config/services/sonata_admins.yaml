@@ -1,5 +1,5 @@
 services:
-    # Menu Level 1
+    # Menus
     admin.menu_level1:
         class: App\Admin\MenuLevel1Admin
         arguments:
@@ -10,4 +10,15 @@ services:
             - '@security.helper'
             - '@twig'
         tags:
-            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Menu', label: 'Level 1' }
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Menu', label: 'sidebarmenu.menu.level1' }
+    admin.menu_level2:
+        class: App\Admin\MenuLevel2Admin
+        arguments:
+            - ~
+            - App\Entity\MenuLevel2
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Menu', label: 'sidebarmenu.menu.level2' }

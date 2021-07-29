@@ -11,7 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-final class MenuLevel1Admin extends AbstractBaseAdmin
+final class MenuLevel2Admin extends AbstractBaseAdmin
 {
     protected function configureDefaultSortValues(array &$sortValues): void
     {
@@ -23,6 +23,7 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
+            ->add('menuLevel1')
             ->add('name')
             ->add('position')
             ->add('active')
@@ -32,6 +33,13 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
+            ->add(
+                'menuLevel1',
+                null,
+                [
+                    'editable' => false,
+                ]
+            )
             ->add(
                 'name',
                 null,
@@ -85,6 +93,13 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
             ->end()
             ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
+                'menuLevel1',
+                null,
+                [
+                    'required' => true,
+                ]
+            )
+            ->add(
                 'position',
                 NumberType::class,
                 [
@@ -106,6 +121,7 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     {
         return [
             'id',
+            'menuLevel1',
             'name',
             'position',
             'active',
