@@ -4,7 +4,7 @@ sonata_admin:
     persist_filters:    true
     show_mosaic_button: false
     options:
-        skin:                       'skin-red-light'
+        skin:                       'skin-black'
         title_mode:                 'single_image'
 #        default_icon:               'fas fa-folder'
 #        list_action_button_content: 'icon'

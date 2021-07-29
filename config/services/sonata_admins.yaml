@@ -10,4 +10,4 @@ services:
             - '@security.helper'
             - '@twig'
         tags:
-            - { name: sonata.admin, manager_type: orm, group: 'Menu', label: 'Level 1' }
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Menu', label: 'Level 1' }

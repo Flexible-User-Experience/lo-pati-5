@@ -1,3 +1,16 @@
+breadcrumb:
+  link_menu_level1_list: 'Menú'
+filter:
+  label_name: 'Nom'
+  label_active: 'Actiu'
+list:
+  label_name: 'Nom'
+  label_active: 'Actiu'
+  label__actions: 'Accions'
+form:
+  label_name: 'Nom'
+  label_active: 'Actiu'
+  group_admin_common_general: 'General'
 back:
   layout:
     developed_by: 'Desenvolupat per'

@@ -3,10 +3,18 @@
 {# removes top search bar #}
 {% block sonata_sidebar_search %}{% endblock %}
 
+{# custom logo #}
+{% block logo %}
+    <a class="logo" href="{{ path('sonata_admin_dashboard') }}" style="background-color:#F92178;">
+        <img src="{{ asset(sonata_config.logo) }}" alt="{{ sonata_config.title }} logo" class="img-responsive" style="padding:0;max-width:100px;">
+        <span>{{ project_title }}</span>
+    </a>
+{% endblock %}
+
 {# custom sidebar footer #}
 {% block side_bar_after_nav %}
-    <div style="margin-top:60px;padding:20px">
-        <p class="text-left small right-sidebar-footer">
+    <div style="color:#FFF;margin-top:60px;padding:20px">
+        <p class="text-white">
             {{ admin_tag_version }}
         </p>
         <p class="text-left small">

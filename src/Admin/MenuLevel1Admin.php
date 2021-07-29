@@ -27,7 +27,13 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add('name')
+            ->add(
+                'name',
+                null,
+                [
+                    'editable' => true,
+                ]
+            )
             ->add(
                 'active',
                 null,
@@ -41,17 +47,10 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
                 ListMapper::NAME_ACTIONS,
                 null,
                 [
-                    'label' => 'admin.action',
                     'header_class' => 'text-right',
                     'row_align' => 'right',
                     'actions' => [
                         'edit' => [],
-//                        'edit' => [
-//                            'template' => 'buttons/list__action_edit_button.html.twig',
-//                        ],
-//                        'delete' => [
-//                            'template' => 'buttons/list__action_super_admin_delete_button.html.twig',
-//                        ],
                     ],
                 ]
             )
@@ -61,6 +60,7 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
+            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(4))
             ->add('name', TextType::class)
             ->add(
                 'active',
@@ -69,6 +69,7 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
+            ->end()
         ;
     }
 
