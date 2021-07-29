@@ -135,6 +135,9 @@
     "jms/metadata": {
         "version": "2.5.0"
     },
+    "jms/serializer": {
+        "version": "3.13.0"
+    },
     "knplabs/knp-components": {
         "version": "v3.1.0"
     },
@@ -205,6 +208,9 @@
     },
     "phpspec/prophecy": {
         "version": "1.13.0"
+    },
+    "phpstan/phpdoc-parser": {
+        "version": "0.5.5"
     },
     "phpunit/php-code-coverage": {
         "version": "9.2.6"
@@ -309,6 +315,50 @@
         "files": [
             "config/packages/sensio_framework_extra.yaml"
         ]
+    },
+    "sonata-project/admin-bundle": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "4.0",
+            "ref": "0e5931df1732e3dccfba42a20853049e5e9db6ae"
+        },
+        "files": [
+            "config/packages/sonata_admin.yaml",
+            "config/routes/sonata_admin.yaml",
+            "src/Admin/.gitignore"
+        ]
+    },
+    "sonata-project/block-bundle": {
+        "version": "4.6.0"
+    },
+    "sonata-project/cache": {
+        "version": "2.1.1"
+    },
+    "sonata-project/doctrine-extensions": {
+        "version": "1.13.1"
+    },
+    "sonata-project/doctrine-orm-admin-bundle": {
+        "version": "4.0.0-alpha-2"
+    },
+    "sonata-project/exporter": {
+        "version": "2.7.0"
+    },
+    "sonata-project/form-extensions": {
+        "version": "1.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.4",
+            "ref": "9c8a1e8ce2b1f215015ed16652c4ed18eb5867fd"
+        },
+        "files": [
+            "config/packages/sonata_form.yaml"
+        ]
+    },
+    "sonata-project/twig-extensions": {
+        "version": "1.7.0"
     },
     "stof/doctrine-extensions-bundle": {
         "version": "1.2",
@@ -582,6 +632,9 @@
     "symfony/runtime": {
         "version": "v5.3.3"
     },
+    "symfony/security-acl": {
+        "version": "v3.2.0"
+    },
     "symfony/security-bundle": {
         "version": "5.3",
         "recipe": {
@@ -748,6 +801,9 @@
         "version": "v3.3.0"
     },
     "twig/markdown-extra": {
+        "version": "v3.3.1"
+    },
+    "twig/string-extra": {
         "version": "v3.3.1"
     },
     "twig/twig": {
