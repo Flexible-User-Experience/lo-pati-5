@@ -17,7 +17,7 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
     {
         $sortValues[DatagridInterface::PAGE] = 1;
         $sortValues[DatagridInterface::SORT_ORDER] = SortOrderTypeEnum::ASC;
-        $sortValues[DatagridInterface::SORT_BY] = 'position';
+        $sortValues[DatagridInterface::SORT_BY] = 'name';
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
@@ -26,6 +26,7 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
             ->add('menuLevel1')
             ->add('name')
             ->add('position')
+            ->add('isList')
             ->add('active')
         ;
     }
@@ -37,6 +38,10 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                 'menuLevel1',
                 null,
                 [
+                    'sortable' => true,
+                    'associated_property' => 'name',
+                    'sort_field_mapping' => ['fieldName' => 'name'],
+                    'sort_parent_association_mappings' => [['fieldName' => 'menuLevel1']],
                     'editable' => false,
                 ]
             )
@@ -53,6 +58,15 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                 [
                     'header_class' => 'text-right',
                     'row_align' => 'right',
+                    'editable' => true,
+                ]
+            )
+            ->add(
+                'isList',
+                null,
+                [
+                    'header_class' => 'text-center',
+                    'row_align' => 'center',
                     'editable' => true,
                 ]
             )
@@ -107,6 +121,13 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                 ]
             )
             ->add(
+                'isList',
+                CheckboxType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
                 'active',
                 CheckboxType::class,
                 [
@@ -124,6 +145,7 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
             'menuLevel1',
             'name',
             'position',
+            'isList',
             'active',
             'createdAtString',
             'updatedAtString',

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21eb48aa30cc3df1a282a35dbfbfbd0e",
+    "content-hash": "fe1bc94aff736f4fdfeb41c2046062db",
     "packages": [
         {
             "name": "beberlei/doctrineextensions",
@@ -3229,16 +3229,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "4.0.0-alpha-2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "23df35c1b6b943e290d7f5fef185f32ed81a59ac"
+                "reference": "c321bc0685ff22e02ca81d7b346a9d4e4d5551aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/23df35c1b6b943e290d7f5fef185f32ed81a59ac",
-                "reference": "23df35c1b6b943e290d7f5fef185f32ed81a59ac",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/c321bc0685ff22e02ca81d7b346a9d4e4d5551aa",
+                "reference": "c321bc0685ff22e02ca81d7b346a9d4e4d5551aa",
                 "shasum": ""
             },
             "require": {
@@ -3274,7 +3274,7 @@
                 "symfony/routing": "^4.4 || ^5.2",
                 "symfony/security-acl": "^3.1",
                 "symfony/security-bundle": "^4.4 || ^5.2",
-                "symfony/security-core": "^4.4 || ^5.2",
+                "symfony/security-core": "^4.4.24 || ^5.2.8",
                 "symfony/security-csrf": "^4.4 || ^5.2",
                 "symfony/string": "^5.2",
                 "symfony/translation": "^4.4 || ^5.2",
@@ -3297,18 +3297,19 @@
                 "phpstan/extension-installer": "^1.0",
                 "phpstan/phpstan": "^0.12.84",
                 "phpstan/phpstan-phpunit": "^0.12.18",
+                "phpstan/phpstan-strict-rules": "^0.12.10",
                 "phpstan/phpstan-symfony": "^0.12.21",
                 "psalm/plugin-phpunit": "^0.15.1",
                 "psalm/plugin-symfony": "^2.0",
                 "psr/event-dispatcher": "^1.0",
                 "sensio/framework-extra-bundle": "^5.6 || ^6.1",
                 "sonata-project/intl-bundle": "^2.4",
-                "symfony/browser-kit": "^4.4 || ^5.2",
-                "symfony/css-selector": "^4.4 || ^5.2",
-                "symfony/filesystem": "^4.4 || ^5.2",
+                "symfony/browser-kit": "^4.4 || ^5.3",
+                "symfony/css-selector": "^4.4 || ^5.3",
+                "symfony/filesystem": "^4.4 || ^5.3",
                 "symfony/maker-bundle": "^1.25",
-                "symfony/phpunit-bridge": "^5.2",
-                "symfony/yaml": "^4.4 || ^5.2",
+                "symfony/phpunit-bridge": "^5.3",
+                "symfony/yaml": "^4.4 || ^5.3",
                 "vimeo/psalm": "^4.7.2"
             },
             "suggest": {
@@ -3352,7 +3353,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataAdminBundle/issues",
-                "source": "https://github.com/sonata-project/SonataAdminBundle/tree/4.0.0-alpha-2"
+                "source": "https://github.com/sonata-project/SonataAdminBundle/tree/master"
             },
             "funding": [
                 {
@@ -3372,7 +3373,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-05-14T02:03:37+00:00"
+            "time": "2021-07-27T15:33:08+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -3688,16 +3689,16 @@
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
-            "version": "4.0.0-alpha-2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "b59f9e58b8d80ec8fc2e95c5ddff507bd82b8134"
+                "reference": "c1e2e72c76b003b76b2f603bebe4fd5dd24c839f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/b59f9e58b8d80ec8fc2e95c5ddff507bd82b8134",
-                "reference": "b59f9e58b8d80ec8fc2e95c5ddff507bd82b8134",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/c1e2e72c76b003b76b2f603bebe4fd5dd24c839f",
+                "reference": "c1e2e72c76b003b76b2f603bebe4fd5dd24c839f",
                 "shasum": ""
             },
             "require": {
@@ -3724,7 +3725,7 @@
             },
             "conflict": {
                 "simplethings/entity-audit-bundle": ">=2.0",
-                "sonata-project/admin-bundle": "<=4.0.0-alpha-1",
+                "sonata-project/admin-bundle": "<=4.0.0-alpha-2",
                 "sonata-project/block-bundle": "<4.2"
             },
             "provide": {
@@ -3735,6 +3736,7 @@
                 "phpstan/extension-installer": "^1.0",
                 "phpstan/phpstan": "^0.12.52",
                 "phpstan/phpstan-phpunit": "^0.12.18",
+                "phpstan/phpstan-strict-rules": "^0.12.10",
                 "phpstan/phpstan-symfony": "^0.12.10",
                 "psalm/plugin-phpunit": "^0.15.1",
                 "psalm/plugin-symfony": "^2.0",
@@ -3790,7 +3792,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/issues",
-                "source": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/tree/4.0.0-alpha-2"
+                "source": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/tree/master"
             },
             "funding": [
                 {
@@ -3810,7 +3812,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-05-09T08:52:21+00:00"
+            "time": "2021-07-26T09:29:30+00:00"
         },
         {
             "name": "sonata-project/exporter",
@@ -12903,8 +12905,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "sonata-project/admin-bundle": 15,
-        "sonata-project/doctrine-orm-admin-bundle": 15
+        "sonata-project/admin-bundle": 20,
+        "sonata-project/doctrine-orm-admin-bundle": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

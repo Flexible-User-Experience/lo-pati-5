@@ -1,26 +1,31 @@
-Menu: 'Menús'
 sidebarmenu:
   menu:
+    title:  'Menús'
     level1: 'Primer nivell'
     level2: 'Segon nivell'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivell'
+  link_menu_level1_create: 'Crear'
   link_menu_level2_list: 'Menú Segon Nivell'
+  link_menu_level2_create: 'Crear'
 filter:
   label_name: 'Nom'
   label_position: 'Posició'
   label_menu_level1: 'Menú primer nivell'
+  label_is_list: 'Mostrar llistat'
   label_active: 'Actiu'
 list:
   label_name: 'Nom'
   label_position: 'Posició'
   label_menu_level1: 'Menú primer nivell'
+  label_is_list: 'Mostrar llistat'
   label_active: 'Actiu'
   label__actions: 'Accions'
 form:
   label_name: 'Nom'
   label_position: 'Posició'
   label_menu_level1: 'Menú primer nivell'
+  label_is_list: 'Mostrar llistat'
   label_active: 'Actiu'
   group_admin_common_general: 'General'
   group_admin_common_controls: 'Controls'
@@ -28,6 +33,7 @@ export:
   label_name: 'Nom'
   label_position: 'Posició'
   label_menu_level1: 'Menú primer nivell'
+  label_is_list: 'Mostrar llistat'
   label_active: 'Actiu'
 back:
   layout:

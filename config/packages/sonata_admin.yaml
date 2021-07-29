@@ -5,13 +5,20 @@ sonata_admin:
     show_mosaic_button: false
     options:
         skin:                       'skin-black'
-        title_mode:                 'single_image'
-#        default_icon:               'fas fa-folder'
-#        list_action_button_content: 'icon'
+        default_icon:               'far fa-folder'
+        logo_content:               'icon'
+        list_action_button_content: 'icon'
         pager_links:                10
         lock_protection:            true
     templates:
         layout:    'backend/layout.html.twig'
     dashboard:
+        groups:
+            Menu:
+                icon:            '<i class="fas fa-bars"></i>'
+                label:           'sidebarmenu.menu.title'
+                label_catalogue: 'messages'
+#                roles:           [ 'ROLE_ADMIN' ]
+                keep_open:       true
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
