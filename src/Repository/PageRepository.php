@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\AbstractBase;
 use App\Entity\Page;
+use App\Enum\SortOrderTypeEnum;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
@@ -39,7 +40,7 @@ class PageRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
-    public function getHomepageHighlighted(string $sortOrder = 'DESC'): QueryBuilder
+    public function getHomepageHighlighted(string $sortOrder = SortOrderTypeEnum::DESC): QueryBuilder
     {
         return $this->createQueryBuilder('p')
             ->where('p.active = :active')
