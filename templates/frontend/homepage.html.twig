@@ -21,11 +21,13 @@
                                         </div>
                                         <div class="col-6">
                                             <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">
+                                            <div class="d-flex ms-auto w-90 p-2 lp-bg-teal{# TODO make it dynamic #}"></div>
                                         </div>
                                     </div>
                                 </div>
                             {% endfor %}
                         </div>
+
                     </div>
                 </div>
             </div>

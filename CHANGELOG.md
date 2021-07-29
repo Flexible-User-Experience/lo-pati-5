@@ -4,6 +4,7 @@ Changelog
 ##### Version 5.03.00 (WIP)
  * add frontend page template render
  * add Ansible deployment process management
+ * fix responsiveness issues
 
 ##### Version 5.02.00 (2021-07-28)
  * add frontend entities
