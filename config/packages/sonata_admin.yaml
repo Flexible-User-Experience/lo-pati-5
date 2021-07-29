@@ -1,15 +1,17 @@
 sonata_admin:
     title:              '%project_title%'
-#    title_logo:         '%admin_logo%'
+    title_logo:         '/build/logo_lopati_fuchsia.jpg'
     persist_filters:    true
     show_mosaic_button: false
     options:
         skin:                       'skin-red-light'
-#        default_icon:               'fas fa-folder'
         title_mode:                 'single_image'
+#        default_icon:               'fas fa-folder'
 #        list_action_button_content: 'icon'
         pager_links:                10
         lock_protection:            true
+    templates:
+        layout:    'backend/layout.html.twig'
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }

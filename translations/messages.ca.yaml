@@ -1,3 +1,6 @@
+back:
+  layout:
+    developed_by: 'Desenvolupat per'
 front:
   layout:
     title: 'Lo Pati'

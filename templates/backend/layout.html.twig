@@ -1,0 +1,19 @@
+{% extends "@SonataAdmin/standard_layout.html.twig" %}
+
+{# removes top search bar #}
+{% block sonata_sidebar_search %}{% endblock %}
+
+{# custom sidebar footer #}
+{% block side_bar_after_nav %}
+    <div style="margin-top:60px;padding:20px">
+        <p class="text-left small right-sidebar-footer">
+            {{ admin_tag_version }}
+        </p>
+        <p class="text-left small">
+            <i class="far fa-code"></i> {{ 'back.layout.developed_by' | trans }} <a href="{{ developer_url }}" target="_blank">{{ developer_name }}</a>
+        </p>
+        <p class="text-left small">
+            <i class="far fa-copyright"></i> {{ 'now' | date('Y') }} <a href="{{ customer_url }}" target="_blank">{{ customer_name }}</a>
+        </p>
+    </div>
+{% endblock %}

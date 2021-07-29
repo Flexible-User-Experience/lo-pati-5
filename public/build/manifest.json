@@ -2906,5 +2906,6 @@
   "build/ckeditor/plugins/print/lang/vi.js": "/build/ckeditor/plugins/print/lang/vi.js",
   "build/ckeditor/plugins/save/lang/da.js": "/build/ckeditor/plugins/save/lang/da.js",
   "build/ckeditor/skins/kama/images/dialog_sides.gif": "/build/ckeditor/skins/kama/images/dialog_sides.gif",
-  "build/ckeditor/plugins/exportpdf/plugindefinition.js": "/build/ckeditor/plugins/exportpdf/plugindefinition.js"
+  "build/ckeditor/plugins/exportpdf/plugindefinition.js": "/build/ckeditor/plugins/exportpdf/plugindefinition.js",
+  "build/logo_lopati_fuchsia.jpg": "/build/logo_lopati_fuchsia.jpg"
 }
