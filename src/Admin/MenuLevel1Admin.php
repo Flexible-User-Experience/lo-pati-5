@@ -27,7 +27,7 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->addIdentifier('name')
+            ->add('name')
             ->add(
                 'active',
                 null,
@@ -44,14 +44,15 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
                     'label' => 'admin.action',
                     'header_class' => 'text-right',
                     'row_align' => 'right',
-//                    'actions' => [
+                    'actions' => [
+                        'edit' => [],
 //                        'edit' => [
 //                            'template' => 'buttons/list__action_edit_button.html.twig',
 //                        ],
 //                        'delete' => [
 //                            'template' => 'buttons/list__action_super_admin_delete_button.html.twig',
 //                        ],
-//                    ],
+                    ],
                 ]
             )
         ;

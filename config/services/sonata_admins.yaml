@@ -1,0 +1,13 @@
+services:
+    # Menu Level 1
+    admin.menu_level1:
+        class: App\Admin\MenuLevel1Admin
+        arguments:
+            - ~
+            - App\Entity\MenuLevel1
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: 'Menu', label: 'Level 1' }

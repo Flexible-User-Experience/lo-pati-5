@@ -1,5 +1,15 @@
 sonata_admin:
-    title: 'Sonata Admin'
+    title:              '%project_title%'
+#    title_logo:         '%admin_logo%'
+    persist_filters:    true
+    show_mosaic_button: false
+    options:
+        skin:                       'skin-red-light'
+#        default_icon:               'fas fa-folder'
+        title_mode:                 'single_image'
+#        list_action_button_content: 'icon'
+        pager_links:                10
+        lock_protection:            true
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
