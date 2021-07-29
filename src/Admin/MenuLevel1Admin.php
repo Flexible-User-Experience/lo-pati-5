@@ -3,23 +3,28 @@
 namespace App\Admin;
 
 use App\Enum\SortOrderTypeEnum;
+use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class MenuLevel1Admin extends AbstractBaseAdmin
 {
-    protected array $datagridValues = [
-        '_sort_by' => 'name',
-        '_sort_order' => SortOrderTypeEnum::ASC,
-    ];
+    protected function configureDefaultSortValues(array &$sortValues): void
+    {
+        $sortValues[DatagridInterface::PAGE] = 1;
+        $sortValues[DatagridInterface::SORT_ORDER] = SortOrderTypeEnum::ASC;
+        $sortValues[DatagridInterface::SORT_BY] = 'position';
+    }
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
             ->add('name')
+            ->add('position')
             ->add('active')
         ;
     }
@@ -31,6 +36,15 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
                 'name',
                 null,
                 [
+                    'editable' => true,
+                ]
+            )
+            ->add(
+                'position',
+                null,
+                [
+                    'header_class' => 'text-right',
+                    'row_align' => 'right',
                     'editable' => true,
                 ]
             )
@@ -61,7 +75,22 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     {
         $form
             ->with('admin.common.general', $this->getFormMdSuccessBoxArray(4))
-            ->add('name', TextType::class)
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'required' => true,
+                ]
+            )
+            ->end()
+            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
+            ->add(
+                'position',
+                NumberType::class,
+                [
+                    'required' => false,
+                ]
+            )
             ->add(
                 'active',
                 CheckboxType::class,
@@ -77,10 +106,11 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     {
         return [
             'id',
+            'position',
             'name',
             'active',
-//            'createdAtString',
-//            'updatedAtString',
+            'createdAtString',
+            'updatedAtString',
         ];
     }
 }

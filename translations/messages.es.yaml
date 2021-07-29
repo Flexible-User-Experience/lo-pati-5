@@ -1,3 +1,27 @@
+breadcrumb:
+  link_menu_level1_list: 'Menú'
+filter:
+  label_name: 'Nombre'
+  label_position: 'Posición'
+  label_active: 'Activo'
+list:
+  label_name: 'Nombre'
+  label_position: 'Posición'
+  label_active: 'Activo'
+  label__actions: 'Acciones'
+form:
+  label_name: 'Nombre'
+  label_position: 'Posición'
+  label_active: 'Activo'
+  group_admin_common_general: 'General'
+  group_admin_common_controls: 'Controles'
+export:
+  label_name: 'Nombre'
+  label_position: 'Posición'
+  label_active: 'Activo'
+back:
+  layout:
+    developed_by: 'Desarrollado por'
 front:
   layout:
     title: 'Lo Pati'

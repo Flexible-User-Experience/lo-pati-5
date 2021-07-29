@@ -2,15 +2,23 @@ breadcrumb:
   link_menu_level1_list: 'Menú'
 filter:
   label_name: 'Nom'
+  label_position: 'Posició'
   label_active: 'Actiu'
 list:
   label_name: 'Nom'
+  label_position: 'Posició'
   label_active: 'Actiu'
   label__actions: 'Accions'
 form:
   label_name: 'Nom'
+  label_position: 'Posició'
   label_active: 'Actiu'
   group_admin_common_general: 'General'
+  group_admin_common_controls: 'Controls'
+export:
+  label_name: 'Nom'
+  label_position: 'Posició'
+  label_active: 'Actiu'
 back:
   layout:
     developed_by: 'Desenvolupat per'
