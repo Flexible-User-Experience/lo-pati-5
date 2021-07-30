@@ -2,11 +2,13 @@
 
 namespace App\Admin;
 
+use App\Entity\Page;
 use App\Enum\SortOrderTypeEnum;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -24,6 +26,20 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     {
         $filter
             ->add('name')
+            ->add(
+                'page',
+                null,
+                [
+                    'field_type' => EntityType::class,
+                    'field_options' => [
+                        'class' => Page::class,
+                        'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByName(),
+                        'choice_label' => 'name',
+                        'multiple' => false,
+                        'required' => true,
+                    ],
+                ]
+            )
             ->add('position')
             ->add('active')
         ;
@@ -37,6 +53,17 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
                 null,
                 [
                     'editable' => true,
+                ]
+            )
+            ->addIdentifier(
+                'page',
+                null,
+                [
+                    'sortable' => true,
+                    'associated_property' => 'name',
+                    'sort_field_mapping' => ['fieldName' => 'name'],
+                    'sort_parent_association_mappings' => [['fieldName' => 'page']],
+                    'editable' => false,
                 ]
             )
             ->add(
@@ -85,6 +112,17 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
             ->end()
             ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
+                'page',
+                EntityType::class,
+                [
+                    'class' => Page::class,
+                    'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByName(),
+                    'choice_label' => 'name',
+                    'multiple' => false,
+                    'required' => false,
+                ]
+            )
+            ->add(
                 'position',
                 NumberType::class,
                 [
@@ -107,6 +145,7 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
         return [
             'id',
             'name',
+            'page',
             'position',
             'active',
             'createdAtString',

@@ -1,4 +1,4 @@
--- Local exports to CSV
+-- Remote exports to CSV
 
 SELECT S.*
 INTO OUTFILE '/var/lib/mysql-files/slideshow.csv'
@@ -27,16 +27,17 @@ LINES TERMINATED BY '\r\n'
 FROM lopati.Artista A
 ORDER BY A.id;
 
-SELECT C.*
+SELECT C.*, P.data_publicacio, P.titol
 INTO OUTFILE '/var/lib/mysql-files/menulevel1.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
 ESCAPED BY '\\'
 LINES TERMINATED BY '\r\n'
 FROM lopati.Categoria C
+LEFT JOIN lopati.Pagina P ON p.id = C.link_id
 ORDER BY C.id;
 
-SELECT SC.*, C.nom AS categoria
+SELECT SC.*, C.nom AS categoria, P.data_publicacio, P.titol
 INTO OUTFILE '/var/lib/mysql-files/menulevel2.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
@@ -44,6 +45,7 @@ ESCAPED BY '\\'
 LINES TERMINATED BY '\r\n'
 FROM lopati.SubCategoria SC
 LEFT JOIN lopati.Categoria C ON C.id = SC.categoria_id
+LEFT JOIN lopati.Pagina P ON p.id = SC.link_id
 ORDER BY SC.id;
 
 SELECT P.*, C.nom AS categoria, SC.nom AS subcategoria

@@ -50,4 +50,9 @@ class PageRepository extends ServiceEntityRepository
             ->setParameter('cover', true)
             ->orderBy('p.publishDate', $sortOrder);
     }
+
+    public function getAllSortedByName(string $sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')->orderBy('p.name', $sortOrder);
+    }
 }

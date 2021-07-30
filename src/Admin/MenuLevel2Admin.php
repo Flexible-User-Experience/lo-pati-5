@@ -3,6 +3,7 @@
 namespace App\Admin;
 
 use App\Entity\MenuLevel1;
+use App\Entity\Page;
 use App\Enum\SortOrderTypeEnum;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -37,6 +38,20 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
         $filter
             ->add('menuLevel1')
             ->add('name')
+            ->add(
+                'page',
+                null,
+                [
+                    'field_type' => EntityType::class,
+                    'field_options' => [
+                        'class' => Page::class,
+                        'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByName(),
+                        'choice_label' => 'name',
+                        'multiple' => false,
+                        'required' => true,
+                    ],
+                ]
+            )
             ->add('position')
             ->add(
                 'isList',
@@ -78,6 +93,17 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                 null,
                 [
                     'editable' => true,
+                ]
+            )
+            ->addIdentifier(
+                'page',
+                null,
+                [
+                    'sortable' => true,
+                    'associated_property' => 'name',
+                    'sort_field_mapping' => ['fieldName' => 'name'],
+                    'sort_parent_association_mappings' => [['fieldName' => 'page']],
+                    'editable' => false,
                 ]
             )
             ->add(
@@ -146,6 +172,17 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                 ]
             )
             ->add(
+                'page',
+                EntityType::class,
+                [
+                    'class' => Page::class,
+                    'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByName(),
+                    'choice_label' => 'name',
+                    'multiple' => false,
+                    'required' => false,
+                ]
+            )
+            ->add(
                 'position',
                 NumberType::class,
                 [
@@ -176,6 +213,7 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
             'id',
             'menuLevel1',
             'name',
+            'page',
             'position',
             'isList',
             'active',
