@@ -56,7 +56,7 @@ class MenuBuilder
             $homepage->setLinkAttribute('class', 'nav-link');
         }
         $homepage->setAttribute('class', 'nav-item');
-        $ml1Items = $ml1r->getAllSortedByPositionAndName()->getQuery()->getResult();
+        $ml1Items = $ml1r->getEnabledSortedByPositionAndName()->getQuery()->getResult();
         /** @var MenuLevel1 $ml1Item */
         foreach ($ml1Items as $ml1Item) {
             $item = $menu->addChild(

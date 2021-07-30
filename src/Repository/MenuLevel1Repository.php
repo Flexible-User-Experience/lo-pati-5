@@ -30,4 +30,14 @@ class MenuLevel1Repository extends ServiceEntityRepository
     {
         return $this->getAllSortedByPosition($sortOrder)->addOrderBy('m.name', $sortOrder);
     }
+
+    public function getEnabledSortedByPosition($sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
+    {
+        return $this->getAllSortedByPosition($sortOrder)->where('m.active = :active')->setParameter('active', true);
+    }
+
+    public function getEnabledSortedByPositionAndName($sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
+    {
+        return $this->getEnabledSortedByPosition($sortOrder)->addOrderBy('m.name', $sortOrder);
+    }
 }

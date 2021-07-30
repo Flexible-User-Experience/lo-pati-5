@@ -2,11 +2,15 @@
 
 namespace App\Admin;
 
+use App\Entity\MenuLevel1;
 use App\Enum\SortOrderTypeEnum;
+use App\Repository\MenuLevel1Repository;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -17,7 +21,16 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
     {
         $sortValues[DatagridInterface::PAGE] = 1;
         $sortValues[DatagridInterface::SORT_ORDER] = SortOrderTypeEnum::ASC;
-        $sortValues[DatagridInterface::SORT_BY] = 'name';
+        $sortValues[DatagridInterface::SORT_BY] = 'menuLevel1.position';
+    }
+
+    protected function configureQuery(ProxyQueryInterface $query): ProxyQueryInterface
+    {
+        $rootAlias = current($query->getRootAliases());
+        $query->addOrderBy($rootAlias.'.position', SortOrderTypeEnum::ASC);
+        $query->addOrderBy($rootAlias.'.name', SortOrderTypeEnum::ASC);
+
+        return $query;
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
@@ -26,7 +39,38 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
             ->add('menuLevel1')
             ->add('name')
             ->add('position')
-            ->add('isList')
+            ->add(
+                'isList',
+                null,
+                [
+                    'field_type' => EntityType::class,
+                    'field_options' => [
+                        'class' => MenuLevel1::class,
+
+                        'query_builder' => static function (MenuLevel1Repository $ml1r) {
+                            return $ml1r->getAllSortedByPosition();
+                        },
+//                        'query_builder' => $this->em->getRepository(MenuLevel1::class)->getAllSortedByPositionAndName(),
+//                        'choice_label' => 'name',
+//                        'multiple' => false,
+//                        'required' => true,
+                    ],
+//                    'query_builder' => $this->dictionaryRepository->getAllSortedByName(),
+                ]
+            )
+//            ->add(
+//                'isList',
+//                null,
+////                [],
+////                EntityType::class,
+//                [
+//                    'class' => MenuLevel1::class,
+//                    'query_builder' => $this->em->getRepository(MenuLevel1::class)->getAllSortedByPositionAndName(),
+//                    'choice_label' => 'name',
+//                    'multiple' => false,
+//                    'required' => true,
+//                ]
+//            )
             ->add('active')
         ;
     }
@@ -34,7 +78,7 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->add(
+            ->addIdentifier(
                 'menuLevel1',
                 null,
                 [
@@ -108,8 +152,12 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
             ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'menuLevel1',
-                null,
+                EntityType::class,
                 [
+                    'class' => MenuLevel1::class,
+                    'query_builder' => $this->em->getRepository(MenuLevel1::class)->getAllSortedByPositionAndName(),
+                    'choice_label' => 'name',
+                    'multiple' => false,
                     'required' => true,
                 ]
             )
