@@ -4,7 +4,6 @@ namespace App\Admin;
 
 use App\Entity\MenuLevel1;
 use App\Enum\SortOrderTypeEnum;
-use App\Repository\MenuLevel1Repository;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -46,31 +45,16 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                     'field_type' => EntityType::class,
                     'field_options' => [
                         'class' => MenuLevel1::class,
-
-                        'query_builder' => static function (MenuLevel1Repository $ml1r) {
-                            return $ml1r->getAllSortedByPosition();
-                        },
-//                        'query_builder' => $this->em->getRepository(MenuLevel1::class)->getAllSortedByPositionAndName(),
-//                        'choice_label' => 'name',
-//                        'multiple' => false,
-//                        'required' => true,
+//                        'query_builder' => static function (MenuLevel1Repository $ml1r) {
+//                            return $ml1r->getAllSortedByPosition();
+//                        },
+                        'query_builder' => $this->em->getRepository(MenuLevel1::class)->getAllSortedByPositionAndName(),
+                        'choice_label' => 'position',
+                        'multiple' => false,
+                        'required' => true,
                     ],
-//                    'query_builder' => $this->dictionaryRepository->getAllSortedByName(),
                 ]
             )
-//            ->add(
-//                'isList',
-//                null,
-////                [],
-////                EntityType::class,
-//                [
-//                    'class' => MenuLevel1::class,
-//                    'query_builder' => $this->em->getRepository(MenuLevel1::class)->getAllSortedByPositionAndName(),
-//                    'choice_label' => 'name',
-//                    'multiple' => false,
-//                    'required' => true,
-//                ]
-//            )
             ->add('active')
         ;
     }

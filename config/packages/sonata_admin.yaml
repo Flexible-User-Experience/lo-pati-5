@@ -20,6 +20,12 @@ sonata_admin:
                 label_catalogue: 'messages'
 #                roles:           [ 'ROLE_ADMIN' ]
                 keep_open:       true
+            Page:
+                icon:            '<i class="fas fa-file"></i>'
+                label:           'sidebarmenu.page.title'
+                label_catalogue: 'messages'
+#                roles:           [ 'ROLE_ADMIN' ]
+                keep_open:       true
         blocks:
             -
                 position: top
@@ -33,6 +39,11 @@ sonata_admin:
                 type: sonata.admin.block.admin_list
                 settings:
                     groups: [ 'Menu' ]
+            -
+                position: right
+                type: sonata.admin.block.admin_list
+                settings:
+                    groups: [ 'Page' ]
             -
                 position: bottom
                 type: sonata.block.service.text
