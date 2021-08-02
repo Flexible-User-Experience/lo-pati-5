@@ -81,3 +81,12 @@ enum:
     page: 'Pàgina'
     blog: 'Blog'
     info: 'Informació'
+  newsletter_type:
+    news: 'Notícies'
+    menu: 'Activitats'
+    events: 'Exposicions'
+    expositions: 'Recomanem'
+  newsletter_status:
+    wating: 'Pendent'
+    sending: 'Enviant'
+    sended: 'Enviat'
