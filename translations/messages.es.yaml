@@ -6,6 +6,10 @@ sidebarmenu:
   page:
     title:  'Páginas'
     page:  'Página'
+  newsletter:
+    title: 'Newsletters'
+    group: 'Grupo'
+    user: 'Usuario'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivel'
   link_menu_level1_create: 'Crear'
@@ -13,8 +17,13 @@ breadcrumb:
   link_menu_level2_create: 'Crear'
   link_page_list: 'Página'
   link_page_create: 'Crear'
+  link_newsletter_group_list: 'Grupo'
+  link_newsletter_group_create: 'Crear'
+  link_newsletter_user_list: 'Usuario'
+  link_newsletter_user_create: 'Crear'
 filter:
   label_name: 'Nombre'
+  label_email: 'Email'
   label_position: 'Posición'
   label_menu_level1: 'Menú primer nivel'
   label_page: 'Página'
@@ -22,6 +31,7 @@ filter:
   label_active: 'Activo'
 list:
   label_name: 'Nombre'
+  label_email: 'Email'
   label_position: 'Posición'
   label_menu_level1: 'Menú primer nivel'
   label_page: 'Página'
@@ -30,6 +40,7 @@ list:
   label__actions: 'Acciones'
 form:
   label_name: 'Nombre'
+  label_email: 'Email'
   label_position: 'Posición'
   label_menu_level1: 'Menú primer nivel'
   label_page: 'Página'
@@ -40,6 +51,7 @@ form:
 export:
   label_id: 'Id'
   label_name: 'Nombre'
+  label_email: 'Email'
   label_position: 'Posición'
   label_menu_level1: 'Menú primer nivel'
   label_page: 'Página'
@@ -77,3 +89,12 @@ enum:
     page: 'Página'
     blog: 'Blog'
     info: 'Información'
+  newsletter_type:
+    news: 'Notícias'
+    menu: 'Actividades'
+    events: 'Exposiciones'
+    expositions: 'Recomendamos'
+  newsletter_status:
+    wating: 'Pendiente'
+    sending: 'Enviando'
+    sended: 'Enviado'
