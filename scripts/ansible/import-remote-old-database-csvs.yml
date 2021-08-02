@@ -28,3 +28,11 @@
       shell: "/usr/bin/php7.4 bin/console app:import:page var/csv/imports/page.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
+    - name: execute fetch page menu level 1 CSV command
+      shell: "/usr/bin/php7.4 bin/console app:import:fetch:page:menu:level1 var/csv/imports/menulevel1.csv --env=prod"
+      args:
+        chdir: "{{ vhost_path_prod }}/current/"
+    - name: execute fetch page menu level 2 CSV command
+      shell: "/usr/bin/php7.4 bin/console app:import:fetch:page:menu:level2 var/csv/imports/menulevel2.csv --env=prod"
+      args:
+        chdir: "{{ vhost_path_prod }}/current/"

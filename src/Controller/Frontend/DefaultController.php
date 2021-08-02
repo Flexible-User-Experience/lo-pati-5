@@ -67,8 +67,8 @@ class DefaultController extends AbstractController
 
     /**
      * @Route("/{menu}/{submenu}", name="front_app_menu_level_2")
-     * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      * @Entity("submenu", class="App\Entity\MenuLevel2", expr="repository.getByMenuAndSubmenuSlugs(menu, submenu)")
+     * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
     public function menuLevel2Action(MenuLevel1 $menu, MenuLevel2 $submenu): Response
     {
