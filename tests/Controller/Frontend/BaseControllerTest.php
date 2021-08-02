@@ -34,6 +34,7 @@ class BaseControllerTest extends WebTestCase
             ['/es/menu-2'],
             ['/es/menu-2/submenu-2-1'],
             ['/es/menu-2/submenu-2-2'],
+            ['/es/menu-1/submenu-1-1/01-08-2021/page-1'],
         ];
     }
 

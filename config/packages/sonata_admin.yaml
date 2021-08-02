@@ -26,6 +26,12 @@ sonata_admin:
                 label_catalogue: 'messages'
 #                roles:           [ 'ROLE_ADMIN' ]
                 keep_open:       true
+            Newsletter:
+                icon:            '<i class="fas fa-rss"></i>'
+                label:           'sidebarmenu.newsletter.title'
+                label_catalogue: 'messages'
+#                roles:           [ 'ROLE_ADMIN' ]
+                keep_open:       true
         blocks:
             -
                 position: top
@@ -38,7 +44,7 @@ sonata_admin:
                 position: left
                 type: sonata.admin.block.admin_list
                 settings:
-                    groups: [ 'Menu' ]
+                    groups: [ 'Menu', 'Newsletter' ]
             -
                 position: right
                 type: sonata.admin.block.admin_list

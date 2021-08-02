@@ -6,6 +6,9 @@ sidebarmenu:
   page:
     title:  'Pàgines'
     page:  'Pàgina'
+  newsletter:
+    title:  'Newsletters'
+    group:  'Grup'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivell'
   link_menu_level1_create: 'Crear'
