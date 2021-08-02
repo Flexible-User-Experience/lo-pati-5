@@ -51,10 +51,8 @@ class Newsletter extends AbstractBase
     private ?DateTimeInterface $endSend = null;
 
     /**
-     * var array|ArrayCollection.
-     *
      * ORM\OneToMany(targetEntity="IsolatedNewsletterPost", mappedBy="newsletter", cascade={"persist", "remove"}, orphanRemoval=true)
-     * ORM\OrderBy({"position" = "ASC"})
+     * ORM\OrderBy({"position" = "ASC"}).
      */
     private Collection $posts;
 
@@ -122,6 +120,11 @@ class Newsletter extends AbstractBase
         return $this->tested;
     }
 
+    public function getTested(): bool
+    {
+        return $this->isTested();
+    }
+
     public function setTested(bool $tested): self
     {
         $this->tested = $tested;
@@ -181,6 +184,6 @@ class Newsletter extends AbstractBase
 
     public function __toString(): string
     {
-        return $this->date ? $this->getDate()->format('d/m/Y').' · '.$this->subject : ($this->id ? $this->subject : '---');
+        return self::transformDateAsString($this->getDate()).' · '.$this->getSubject();
     }
 }
