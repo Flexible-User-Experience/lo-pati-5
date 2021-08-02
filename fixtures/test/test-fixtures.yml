@@ -1,3 +1,21 @@
+# Archive
+App\Entity\Archive:
+  archive1:
+    year: 2020
+  archive2:
+    year: 2021
+
+# Artist
+App\Entity\Artist:
+  artist1:
+    name: 'Artist 1'
+    description: '<sentence()>'
+    year: 1980
+  artist2:
+    name: 'Artist 2'
+    description: '<sentence()>'
+    year: 1990
+
 # MenuLevel1
 App\Entity\MenuLevel1:
   menulevel1:
@@ -32,6 +50,24 @@ App\Entity\MenuLevel2:
     isList: '<boolean()>'
     menuLevel1: '@menulevel2'
 
+# NewsletterGroup
+App\Entity\NewsletterGroup:
+  newslettergroup1:
+    name: 'Newsletter Group 1'
+  newslettergroup2:
+    name: 'Newsletter Group 2'
+
+# NewsletterUser
+App\Entity\NewsletterUser:
+  newsletteruser1:
+    name: 'Newsletter User 1'
+    email: '<safeEmail()>'
+    token: '<password()>'
+  newsletteruser2:
+    name: 'Newsletter User 2'
+    email: '<safeEmail()>'
+    token: '<password()>'
+
 # Page
 App\Entity\Page:
   page1:
@@ -43,3 +79,12 @@ App\Entity\Page:
     showPublishDate: '<boolean()>'
     expirationDate: '<dateTime()>'
     menuLevel1: '@menulevel1'
+
+# Slideshow
+App\Entity\Slideshow:
+  slideshow1:
+    name: 'Slideshow 1'
+    position: 1
+  slideshow2:
+    name: 'Slideshow 2'
+    position: 2
