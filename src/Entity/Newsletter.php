@@ -51,8 +51,8 @@ class Newsletter extends AbstractBase
     private ?DateTimeInterface $endSend = null;
 
     /**
-     * ORM\OneToMany(targetEntity="IsolatedNewsletterPost", mappedBy="newsletter", cascade={"persist", "remove"}, orphanRemoval=true)
-     * ORM\OrderBy({"position" = "ASC"}).
+     * @ORM\OneToMany(targetEntity="App\Entity\NewsletterPost", mappedBy="newsletter", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @ORM\OrderBy({"position"="ASC"})
      */
     private Collection $posts;
 
@@ -168,7 +168,24 @@ class Newsletter extends AbstractBase
         return $this;
     }
 
-    // TODO add/remove Post
+    public function addPost(NewsletterPost $post): self
+    {
+        if (!$this->posts->contains($post)) {
+            $post->setNewsletter($this);
+            $this->posts->add($post);
+        }
+
+        return $this;
+    }
+
+    public function removePost(NewsletterPost $post): self
+    {
+        if ($this->posts->contains($post)) {
+            $this->posts->removeElement($post);
+        }
+
+        return $this;
+    }
 
     public function getGroup(): ?NewsletterGroup
     {

@@ -7,6 +7,7 @@ use App\Entity\Traits\PositionTrait;
 use App\Enum\NewsletterTypeEnum;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -27,13 +28,10 @@ class NewsletterPost extends AbstractBase
     private string $title;
 
     /**
-     * @Assert\File(
-     *     maxSize="5M",
-     *     mimeTypes={"image/png", "image/jpg", "image/jpeg", "image/pjpeg", "image/gif"}
-     * )
-     * @Vich\UploadableField(mapping="isolated_newsletter", fileNameProperty="image1FileName")
+     * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg", "image/gif"})
+     * @Vich\UploadableField(mapping="newsletter", fileNameProperty="image1FileName")
      */
-    private $imageFile; // TODO
+    private ?File $imageFile = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -84,18 +82,6 @@ class NewsletterPost extends AbstractBase
     public function setTitle(string $title): self
     {
         $this->title = $title;
-
-        return $this;
-    }
-
-    public function getImageFile()
-    {
-        return $this->imageFile;
-    }
-
-    public function setImageFile($imageFile)
-    {
-        $this->imageFile = $imageFile;
 
         return $this;
     }

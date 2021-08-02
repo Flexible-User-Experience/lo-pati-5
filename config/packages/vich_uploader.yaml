@@ -21,7 +21,7 @@ vich_uploader:
             namer:              Vich\UploaderBundle\Naming\UniqidNamer
             uri_prefix:         '/uploads/slides'
             upload_destination: '%kernel.project_dir%/public/uploads/slides'
-        isolated_newsletter:
+        newsletter:
             namer:              Vich\UploaderBundle\Naming\UniqidNamer
-            uri_prefix:         '/uploads/isolated-newsletters'
-            upload_destination: '%kernel.project_dir%/public/uploads/isolated-newsletters'
+            uri_prefix:         '/uploads/newsletters'
+            upload_destination: '%kernel.project_dir%/public/uploads/newsletters'
