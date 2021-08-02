@@ -31,7 +31,7 @@ class NewsletterPost extends AbstractBase
      * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg", "image/gif"})
      * @Vich\UploadableField(mapping="newsletter", fileNameProperty="image1FileName")
      */
-    private ?File $imageFile = null;
+    private ?File $image1File = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)

@@ -50,7 +50,7 @@ services:
         class: App\Admin\NewsletterUserAdmin
         arguments:
             - ~
-            - App\Entity\NewsletterUserp
+            - App\Entity\NewsletterUser
             - ~
             - '@doctrine.orm.entity_manager'
             - '@security.helper'

@@ -64,7 +64,7 @@ class NewsletterUser extends AbstractBase
     private ?int $fail = 0;
 
     /**
-     * ORM\ManyToMany(targetEntity="LoPati\NewsletterBundle\Entity\NewsletterGroup", mappedBy="users").
+     * @ORM\ManyToMany(targetEntity="App\Entity\NewsletterGroup", mappedBy="users").
      */
     protected ?Collection $groups;
 

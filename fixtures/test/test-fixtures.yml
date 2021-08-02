@@ -51,12 +51,32 @@ App\Entity\MenuLevel2:
     isList: '<boolean()>'
     menuLevel1: '@menulevel2'
 
+# Newsletter
+App\Entity\Newsletter:
+  newsletter1:
+    subject: 'Newsletter 1'
+  newsletter2:
+    subject: 'Newsletter 2'
+
 # NewsletterGroup
 App\Entity\NewsletterGroup:
   newslettergroup1:
     name: 'Newsletter Group 1'
   newslettergroup2:
     name: 'Newsletter Group 2'
+
+# NewsletterPost
+App\Entity\NewsletterPost:
+  newsletterpost1:
+    title: 'Newsletter Post 1'
+    image1FileName: 'imagefile1.png'
+    newsletter: '@newsletter1'
+    position: 1
+  newsletterpost2:
+    title: 'Newsletter Post 2'
+    image1FileName: 'imagefile2.png'
+    newsletter: '@newsletter2'
+    position: 1
 
 # NewsletterUser
 App\Entity\NewsletterUser:
