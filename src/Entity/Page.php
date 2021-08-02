@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="published_date_name_unique_idx", columns={"name", "publish_date"})})
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_page_published_date_name_index", columns={"name", "publish_date"})})
  * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
  * @UniqueEntity(fields={"name", "publishDate"}, errorPath="name")
  * @Vich\Uploadable()

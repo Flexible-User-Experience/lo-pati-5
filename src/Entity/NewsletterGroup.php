@@ -9,9 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Table()
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_newsletter_group_name_index", columns={"name"})})
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterGroupRepository")
- * @UniqueEntity("name")
+ * @UniqueEntity(fields={"name"}, errorPath="name")
  */
 class NewsletterGroup extends AbstractBase
 {

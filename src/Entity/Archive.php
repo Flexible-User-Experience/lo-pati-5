@@ -9,7 +9,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_year_index", columns={"year"})})
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_archive_year_index", columns={"year"})})
  * @ORM\Entity(repositoryClass="App\Repository\ArchiveRepository")
  * @UniqueEntity(fields={"year"}, errorPath="year")
  * @Vich\Uploadable()

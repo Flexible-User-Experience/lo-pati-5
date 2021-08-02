@@ -11,9 +11,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table()
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_newsletter_user_email_index", columns={"email"})})
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterUserRepository")
- * @UniqueEntity("email")
+ * @UniqueEntity(fields={"email"}, errorPath="email")
  */
 class NewsletterUser extends AbstractBase
 {
