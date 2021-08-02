@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Controller\Frontend;
+namespace App\Tests\Controller\Backend;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
@@ -19,21 +19,16 @@ class BaseControllerTest extends WebTestCase
     public function provideUrls(): array
     {
         return [
-            ['/'],
-            ['/menu-1'],
-            ['/menu-1/submenu-1-1'],
-            ['/menu-1/submenu-1-2'],
-            ['/menu-2'],
-            ['/menu-2/submenu-2-1'],
-            ['/menu-2/submenu-2-2'],
-            ['/menu-1/submenu-1-1/01-08-2021/page-1'],
-            ['/es/'],
-            ['/es/menu-1'],
-            ['/es/menu-1/submenu-1-1'],
-            ['/es/menu-1/submenu-1-2'],
-            ['/es/menu-2'],
-            ['/es/menu-2/submenu-2-1'],
-            ['/es/menu-2/submenu-2-2'],
+            ['/admin/dashboard'],
+            ['/admin/app/menulevel1/list'],
+            ['/admin/app/menulevel1/create'],
+            ['/admin/app/menulevel1/1/edit'],
+            ['/admin/app/menulevel2/list'],
+            ['/admin/app/menulevel2/create'],
+            ['/admin/app/menulevel2/1/edit'],
+            ['/admin/app/page/list'],
+            ['/admin/app/page/create'],
+            ['/admin/app/page/1/edit'],
         ];
     }
 
@@ -50,10 +45,12 @@ class BaseControllerTest extends WebTestCase
     public function provideNotFoundUrls(): array
     {
         return [
-            ['/not-found-page'],
-            ['/not-found-page/inside'],
-            ['/menu-1/submenu-1-3'],
-            ['/menu-3'],
+            ['/admin/app/menulevel1/9/edit'],
+            ['/admin/app/menulevel1/1/show'],
+            ['/admin/app/menulevel2/9/edit'],
+            ['/admin/app/menulevel2/1/show'],
+            ['/admin/app/page/9/edit'],
+            ['/admin/app/page/1/show'],
         ];
     }
 }

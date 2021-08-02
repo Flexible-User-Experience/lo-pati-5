@@ -34,6 +34,7 @@ App\Entity\MenuLevel2:
     position: 1
     isList: '<boolean()>'
     menuLevel1: '@menulevel1'
+    page: '@page1'
   submenulevel2:
     name: 'Submenu 1.2'
     position: 2
@@ -75,7 +76,7 @@ App\Entity\Page:
     description: '<sentence()>'
     summary: '<sentence()>'
     isFrontCover: '<boolean()>'
-    publishDate: '<dateTime()>'
+    publishDate: '<(new \DateTime("2021-08-01"))>'
     showPublishDate: '<boolean()>'
     expirationDate: '<dateTime()>'
     menuLevel1: '@menulevel1'
@@ -84,7 +85,9 @@ App\Entity\Page:
 App\Entity\Slideshow:
   slideshow1:
     name: 'Slideshow 1'
+    image1FileName: 'imagefile1.png'
     position: 1
   slideshow2:
     name: 'Slideshow 2'
+    image1FileName: 'imagefile2.png'
     position: 2

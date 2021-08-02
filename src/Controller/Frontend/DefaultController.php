@@ -83,9 +83,9 @@ class DefaultController extends AbstractController
 
     /**
      * @Route("/{menu}/{submenu}/{date}/{page}", name="front_app_page_detail")
-     * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      * @Entity("submenu", class="App\Entity\MenuLevel2", expr="repository.getByMenuAndSubmenuSlugs(menu, submenu)")
      * @Entity("page", class="App\Entity\Page", expr="repository.getByDateAndSlug(date, page)")
+     * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
     public function pageDetailAction(MenuLevel1 $menu, MenuLevel2 $submenu, Page $page): Response
     {
