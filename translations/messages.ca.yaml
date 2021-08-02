@@ -1,14 +1,15 @@
 sidebarmenu:
   menu:
-    title:  'Menús'
+    title: 'Menús'
     level1: 'Primer nivell'
     level2: 'Segon nivell'
   page:
-    title:  'Pàgines'
-    page:  'Pàgina'
+    title: 'Pàgines'
+    page: 'Pàgina'
   newsletter:
-    title:  'Newsletters'
-    group:  'Grup'
+    title: 'Newsletters'
+    group: 'Grup'
+    user: 'Usuari'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivell'
   link_menu_level1_create: 'Crear'

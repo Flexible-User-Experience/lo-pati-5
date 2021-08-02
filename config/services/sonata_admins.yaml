@@ -46,3 +46,14 @@ services:
             - '@twig'
         tags:
             - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Newsletter', label: 'sidebarmenu.newsletter.group' }
+    admin.newsletter_user:
+        class: App\Admin\NewsletterUserAdmin
+        arguments:
+            - ~
+            - App\Entity\NewsletterUserp
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Newsletter', label: 'sidebarmenu.newsletter.user' }
