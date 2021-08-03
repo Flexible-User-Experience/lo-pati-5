@@ -14,6 +14,9 @@ sidebarmenu:
   artist:
     title: 'Irradiador'
     artist: 'Artista'
+  archive:
+    title: 'Arxius'
+    archive: 'Any'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivell'
   link_menu_level1_create: 'Crear'

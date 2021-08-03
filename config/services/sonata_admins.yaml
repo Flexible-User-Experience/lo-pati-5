@@ -80,3 +80,15 @@ services:
             - '@twig'
         tags:
             - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Artist', label: 'sidebarmenu.artist.artist' }
+    # Archives
+    admin.archive:
+        class: App\Admin\ArchiveAdmin
+        arguments:
+            - ~
+            - App\Entity\Archive
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Archive', label: 'sidebarmenu.archive.archive' }
