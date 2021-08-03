@@ -42,7 +42,7 @@ final class ImportCsvNewsletterGroupCommand extends AbstractBaseCommand
                     $this->em->persist($newsletterGroup);
                     ++$newRecords;
                 } else {
-                    $newsletterGroup->setActive((bool) $this->readColumn(1, $data));
+                    $newsletterGroup->setActive((bool) $this->readColumn(2, $data));
                 }
                 if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
                     $this->em->flush();

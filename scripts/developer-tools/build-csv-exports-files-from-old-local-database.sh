@@ -12,6 +12,7 @@ php ./bin/console app:import:menu:level1 ./var/csv/imports/menulevel1.csv
 php ./bin/console app:import:menu:level2 ./var/csv/imports/menulevel2.csv
 php ./bin/console app:import:page ./var/csv/imports/page.csv
 php ./bin/console app:import:newsletter:group ./var/csv/imports/newslettergroup.csv
+php ./bin/console app:import:newsletter:user ./var/csv/imports/newsletteruser.csv
 cp -r ../lo-pati/web/uploads/artists/* public/uploads/artists/
 cp ../lo-pati/web/uploads/slides/* public/uploads/slides/
 echo "Finished at $(date +"%T %d/%m/%Y")"
