@@ -35,11 +35,8 @@ sonata_admin:
         blocks:
             -
                 position: top
-                type: sonata.block.service.text
+                type: app.block_info_boxes_dashboard
                 class: 'col-xs-12'
-                settings:
-                    content: >
-                        <h1 style="margin: -20px 0 10px 0">CMS %project_title%</h1>
             -
                 position: left
                 type: sonata.admin.block.admin_list
@@ -53,7 +50,6 @@ sonata_admin:
             -
                 position: bottom
                 type: sonata.block.service.text
-                class: 'col-xs-12'
                 settings:
                     content: >
                         <div><hr style="margin-top:40px;border-top:solid 1px #d2d6de"><p><i class="fas fa-info-circle"></i> Per rebre assistència tècnica envieu un missatge a <a href="mailto:suport@flux.cat?subject=Ajuda CMS %project_title%" style="color:#000">suport@flux.cat</a></p></div>

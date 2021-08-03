@@ -1,0 +1,66 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="{{ path('admin_app_page_list') }}">
+                <div class="info-box bg-light-blue">
+                    <span class="info-box-icon"><i class="fas fa-file"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{{ 'front.homepage.highlighted' | trans }}</span>
+                        <span class="info-box-number">{{ total_pages_amount | i }}</span>
+                        <div class="progress">{#<!-- TODO The progress section is optional -->#}
+                            {#<div class="progress-bar" style="width: 0%"></div>#}
+                        </div>
+                        <span class="progress-description">{{ total_newsletters_amount | i }} {{ 'front.homepage.highlighted' | trans }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+{#        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">#}
+{#            <a href="{{ path('admin_app_contact_list') }}">#}
+{#                <div class="info-box bg-aqua">#}
+{#                    <span class="info-box-icon"><i class="fa fa-address-card"></i></span>#}
+{#                    <div class="info-box-content">#}
+{#                        <span class="info-box-text">{{ 'Contact List' | trans }}</span>#}
+{#                        <span class="info-box-number">{{ total_contacts_amount | i }}</span>#}
+{#                        <div class="progress">#}{#<!-- TODO The progress section is optional -->#}
+{#                            #}{#                        <div class="progress-bar" style="width: 60%"></div>#}
+{#                        </div>#}
+{#                        <span class="progress-description">{{ last_30_days_contacts_amount | i }} {{ 'last_new_customers_increase' | trans }}</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </a>#}
+{#        </div>#}
+{#        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">#}
+{#            <a href="{{ path('admin_app_proceeding_list') }}">#}
+{#                <div class="info-box bg-teal">#}
+{#                    <span class="info-box-icon"><i class="fa fa-folder-open"></i></span>#}
+{#                    <div class="info-box-content">#}
+{#                        <span class="info-box-text">{{ 'Proceeding List' | trans }}</span>#}
+{#                        <span class="info-box-number">{{ total_proceedings_amount | i }}</span>#}
+{#                        <div class="progress">#}{#<!-- TODO The progress section is optional -->#}
+{#                            #}{#                        <div class="progress-bar" style="width: 45%"></div>#}
+{#                        </div>#}
+{#                        <span class="progress-description">{{ last_30_days_proceedings_amount | i }} {{ 'last_new_customers_increase' | trans }}</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </a>#}
+{#        </div>#}
+{#        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">#}
+{#            <a href="{{ path('admin_app_offer_list') }}">#}
+{#                <div class="info-box bg-yellow">#}
+{#                    <span class="info-box-icon"><i class="fa fa-file-text"></i></span>#}
+{#                    <div class="info-box-content">#}
+{#                        <span class="info-box-text">{{ 'Offer List' | trans }}</span>#}
+{#                        <span class="info-box-number">{{ total_offers_amount | i }}</span>#}
+{#                        <div class="progress"><!-- TODO The progress section is optional -->#}
+{#                            #}{#                        <div class="progress-bar" style="width: 80%"></div>#}
+{#                        </div>#}
+{#                        <span class="progress-description">{{ last_30_days_offers_amount | i }} {{ 'last_new_customers_increase' | trans }}</span>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </a>#}
+{#        </div>#}
+    </div>
+{% endblock %}

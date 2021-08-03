@@ -5,11 +5,13 @@ namespace App\Repository;
 use App\Entity\AbstractBase;
 use App\Entity\Page;
 use App\Enum\SortOrderTypeEnum;
+use DateInterval;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Exception;
 
 /**
  * @method Page|null find($id, $lockMode = null, $lockVersion = null)
@@ -54,5 +56,37 @@ class PageRepository extends ServiceEntityRepository
     public function getAllSortedByName(string $sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
     {
         return $this->createQueryBuilder('p')->orderBy('p.name', $sortOrder);
+    }
+
+    public function getTotalRecordsAmount(): int
+    {
+        try {
+            $amount = $this->createQueryBuilder('p')
+                ->select('COUNT(p.id) AS amount')
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (Exception $e) {
+            $amount = -1;
+        }
+
+        return $amount;
+    }
+
+    public function getLast30DaysRecordsAmount(): int
+    {
+        try {
+            $moment = new DateTime();
+            $moment->sub(new DateInterval('P30D'));
+            $amount = $this->createQueryBuilder('p')
+                ->select('COUNT(p.id) AS amount')
+                ->where('p.createdAt >= :moment')
+                ->setParameter('moment', $moment)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (Exception $e) {
+            $amount = -1;
+        }
+
+        return $amount;
     }
 }

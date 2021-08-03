@@ -1,5 +1,6 @@
 imports:
     - { resource: 'services/sonata_admins.yaml' }
+    - { resource: 'services/sonata_blocks.yaml' }
 
 parameters:
     default_locale:             '%env(string:DEFAULT_LOCALE)%'
