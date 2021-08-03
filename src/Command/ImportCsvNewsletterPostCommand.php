@@ -39,7 +39,7 @@ final class ImportCsvNewsletterPostCommand extends AbstractBaseCommand
                 if ($input->getOption('show-data')) {
                     $output->writeln(implode(self::CSV_DELIMITER, $data));
                 }
-                $serachedNewsletterSubject = $this->readColumn(14, $data);
+                $serachedNewsletterSubject = self::sanitizeDoubleQuoteEscapeChar($this->readColumn(14, $data));
                 $newsletter = $nr->findOneBy([
                     'subject' => $serachedNewsletterSubject,
                 ]);
