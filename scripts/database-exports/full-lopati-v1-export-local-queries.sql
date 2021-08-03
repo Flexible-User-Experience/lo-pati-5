@@ -97,7 +97,7 @@ FROM lopati.isolated_newsletter N
 LEFT JOIN lopati.newsletter_groups NG ON NG.id = N.newsletter_group_id
 ORDER BY N.id;
 
-SELECT NP.*
+SELECT NP.*, N.subject
 INTO OUTFILE '/tmp/newsletterpost.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
