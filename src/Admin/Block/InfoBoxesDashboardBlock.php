@@ -2,6 +2,9 @@
 
 namespace App\Admin\Block;
 
+use App\Entity\Artist;
+use App\Entity\Newsletter;
+use App\Entity\NewsletterUser;
 use App\Entity\Page;
 use Doctrine\ORM\EntityManagerInterface;
 use Sonata\BlockBundle\Block\BlockContextInterface;
@@ -28,20 +31,12 @@ class InfoBoxesDashboardBlock extends AbstractBlockService
             'settings' => $settings,
             'total_pages_amount' => $this->em->getRepository(Page::class)->getTotalRecordsAmount(),
             'last_30_days_pages_amount' => $this->em->getRepository(Page::class)->getLast30DaysRecordsAmount(),
-            'total_newsletters_amount' => 30,
-            'last_30_days_newsletters_amount' => 40,
-            'total_newsletter_users_amount' => 50,
-            'last_30_days_newsletter_users_amount' => 60,
-            'total_artists_amount' => 70,
-            'last_30_days_artists_amount' => 80,
-//            'total_accounts_amount' => $this->rm->getAr()->getTotalRecordsAmount(),
-//            'last_30_days_accounts_amount' => $this->rm->getAr()->getLast30DaysRecordsAmount(),
-//            'total_contacts_amount' => $this->rm->getCr()->getTotalRecordsAmount(),
-//            'last_30_days_contacts_amount' => $this->rm->getCr()->getLast30DaysRecordsAmount(),
-//            'total_proceedings_amount' => $this->rm->getPr()->getTotalRecordsAmount(),
-//            'last_30_days_proceedings_amount' => $this->rm->getPr()->getLast30DaysRecordsAmount(),
-//            'total_offers_amount' => $this->rm->getOfr()->getTotalRecordsAmount(),
-//            'last_30_days_offers_amount' => $this->rm->getOfr()->getLast30DaysRecordsAmount(),
+            'total_newsletters_amount' => $this->em->getRepository(Newsletter::class)->getTotalRecordsAmount(),
+            'last_30_days_newsletters_amount' => $this->em->getRepository(Newsletter::class)->getLast30DaysRecordsAmount(),
+            'total_newsletter_users_amount' => $this->em->getRepository(NewsletterUser::class)->getTotalRecordsAmount(),
+            'last_30_days_newsletter_users_amount' => $this->em->getRepository(NewsletterUser::class)->getLast30DaysRecordsAmount(),
+            'total_artists_amount' => $this->em->getRepository(Artist::class)->getTotalRecordsAmount(),
+            'last_30_days_artists_amount' => $this->em->getRepository(Artist::class)->getLast30DaysRecordsAmount(),
         ];
 
         return $this->renderResponse(

@@ -24,6 +24,14 @@ breadcrumb:
   link_newsletter_user_create: 'Crear'
   link_newsletter_list: 'Newsletter'
   link_newsletter_create: 'Crear'
+dashboard:
+  infoboxes:
+    last_30_days_amount_m: 'nous en els últims 30 dies'
+    last_30_days_amount_f: 'noves en els últims 30 dies'
+    total_pages_amount: 'Pàgines'
+    total_newsletters_amount: 'Newsletters'
+    total_newsletter_users_amount: 'Usuaris newsletter'
+    total_artists_amount: 'Artistes'
 filter:
   label_name: 'Nom'
   label_email: 'Email'
