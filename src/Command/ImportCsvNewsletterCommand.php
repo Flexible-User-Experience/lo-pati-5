@@ -34,29 +34,28 @@ final class ImportCsvNewsletterCommand extends AbstractBaseCommand
         $errors = 0;
         while (false !== ($data = $this->readRow($fr))) {
             if (count($data) >= 10) {
-                $serachedNewsletterSubject = $this->readColumn(2, $data);
+                $serachedNewsletterSubject = self::sanitizeDoubleQuoteEscapeChar($this->readColumn(2, $data));
                 $newsletter = $nr->findOneBy([
                     'subject' => $serachedNewsletterSubject,
                 ]);
                 if (!$newsletter) {
                     $newsletter = new Newsletter();
-                    $newsletter->setSubject($serachedNewsletterSubject);
                     $this->em->persist($newsletter);
                     ++$newRecords;
-                } else {
-                    $newsletter
-                        ->setStatus((int) $this->readColumn(4, $data))
-                        ->setType((int) $this->readColumn(5, $data))
-                        ->setTested((bool) $this->readColumn(6, $data))
-                    ;
-                    $date = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(3, $data));
-                    if ($date) {
-                        $newsletter->setDate($date);
-                    }
-                    $beginSendDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(7, $data));
-                    if ($beginSendDate) {
-                        $newsletter->setBeginSend($beginSendDate);
-                    }
+                }
+                $newsletter
+                    ->setSubject($serachedNewsletterSubject)
+                    ->setStatus((int) $this->readColumn(4, $data))
+                    ->setType((int) $this->readColumn(5, $data))
+                    ->setTested((bool) $this->readColumn(6, $data))
+                ;
+                $date = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(3, $data));
+                if ($date) {
+                    $newsletter->setDate($date);
+                }
+                $beginSendDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(7, $data));
+                if ($beginSendDate) {
+                    $newsletter->setBeginSend($beginSendDate);
                 }
                 if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
                     $this->em->flush();

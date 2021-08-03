@@ -10,6 +10,7 @@ sidebarmenu:
     title: 'Newsletters'
     group: 'Grup'
     user: 'Usuari'
+    newsletter: 'Newsletter'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivell'
   link_menu_level1_create: 'Crear'
@@ -21,6 +22,8 @@ breadcrumb:
   link_newsletter_group_create: 'Crear'
   link_newsletter_user_list: 'Usuari'
   link_newsletter_user_create: 'Crear'
+  link_newsletter_list: 'Newsletter'
+  link_newsletter_create: 'Crear'
 filter:
   label_name: 'Nom'
   label_email: 'Email'
@@ -31,7 +34,9 @@ filter:
   label_phone: 'Telèfon'
   label_postal_code: 'Codi postal'
   label_fail: 'Errors enviament'
+  label_subject: 'Títol del missatge'
   label_created_at: 'Creat el'
+  label_date: 'Data'
   label_active: 'Actiu'
 list:
   label_name: 'Nom'
@@ -43,7 +48,9 @@ list:
   label_phone: 'Telèfon'
   label_postal_code: 'Codi postal'
   label_fail: 'Errors enviament'
+  label_subject: 'Títol del missatge'
   label_created_at: 'Creat el'
+  label_date: 'Data'
   label_active: 'Actiu'
   label__actions: 'Accions'
 form:
@@ -56,7 +63,9 @@ form:
   label_phone: 'Telèfon'
   label_postal_code: 'Codi postal'
   label_fail: 'Errors enviament'
+  label_subject: 'Títol del missatge'
   label_created_at: 'Creat el'
+  label_date: 'Data'
   label_active: 'Actiu'
   group_admin_common_general: 'General'
   group_admin_common_controls: 'Controls'
@@ -72,9 +81,11 @@ export:
   label_active: 'Actiu'
   label_postal_code: 'Codi postal'
   label_fail: 'Errors enviament'
+  label_subject: 'Títol del missatge'
   label_created_at: 'Creat el'
   label_created_at_string: 'Creat el'
   label_updated_at_string: 'Actualitzat el'
+  label_date: 'Data'
 back:
   layout:
     developed_by: 'Desenvolupat per'
