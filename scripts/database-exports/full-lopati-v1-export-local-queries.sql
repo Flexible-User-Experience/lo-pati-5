@@ -58,3 +58,51 @@ FROM lopati.Pagina P
 LEFT JOIN lopati.Categoria C ON C.id = P.categoria_id
 LEFT JOIN lopati.SubCategoria SC ON SC.id = P.subCategoria_id
 ORDER BY P.id;
+
+SELECT NG.*
+INTO OUTFILE '/tmp/newslettergroup.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.newsletter_groups NG
+ORDER BY NG.id;
+
+SELECT NU.*
+INTO OUTFILE '/tmp/newsletteruser.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.newsletter_users NU
+ORDER BY NU.id;
+
+SELECT NGNU.*, NG.name, NU.email
+INTO OUTFILE '/tmp/newslettergroupnewsletteruser.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.newslettergroup_newsletteruser NGNU
+LEFT JOIN lopati.newsletter_groups NG ON NG.id = NGNU.newslettergroup_id
+LEFT JOIN lopati.newsletter_users NU ON NU.id = NGNU.newsletteruser_id;
+
+SELECT N.*, NG.name
+INTO OUTFILE '/tmp/newsletter.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.isolated_newsletter N
+LEFT JOIN lopati.newsletter_groups NG ON NG.id = N.newsletter_group_id
+ORDER BY N.id;
+
+SELECT NP.*
+INTO OUTFILE '/tmp/newsletterpost.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.isolated_newsletter_post NP
+LEFT JOIN lopati.isolated_newsletter N ON N.id = NP.isolated_newsletter_id
+ORDER BY NP.id;
