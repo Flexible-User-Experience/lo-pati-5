@@ -48,8 +48,7 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                         'name' => $serachedMenuLevel2Name,
                         'menuLevel1' => $menuLevel1,
                     ]);
-
-                    $serachedPageName = $this->readColumn(3, $data);
+                    $serachedPageName = self::sanitizeDoubleQuoteEscapeChar($this->readColumn(3, $data));
                     $serachedPagePublishDate = $this->readColumn(8, $data);
                     $publishDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $serachedPagePublishDate);
                     if ($publishDate) {

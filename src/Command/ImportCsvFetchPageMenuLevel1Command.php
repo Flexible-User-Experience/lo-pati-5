@@ -45,7 +45,7 @@ final class ImportCsvFetchPageMenuLevel1Command extends AbstractBaseCommand
                     if ($serachedPagePublishDateString) {
                         $serachedPagePublishDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $serachedPagePublishDateString);
                         if ($serachedPagePublishDate) {
-                            $serachedPageName = $this->readColumn(7, $data);
+                            $serachedPageName = self::sanitizeDoubleQuoteEscapeChar($this->readColumn(7, $data));
                             $page = $pr->findOneBy([
                                 'publishDate' => $serachedPagePublishDate,
                                 'name' => $serachedPageName,
