@@ -19,19 +19,25 @@ sonata_admin:
                 label:           'sidebarmenu.menu.title'
                 label_catalogue: 'messages'
 #                roles:           [ 'ROLE_ADMIN' ]
-                keep_open:       true
+                keep_open:       false
             Page:
                 icon:            '<i class="fas fa-file"></i>'
                 label:           'sidebarmenu.page.title'
                 label_catalogue: 'messages'
 #                roles:           [ 'ROLE_ADMIN' ]
-                keep_open:       true
+                keep_open:       false
             Newsletter:
                 icon:            '<i class="fas fa-rss"></i>'
                 label:           'sidebarmenu.newsletter.title'
                 label_catalogue: 'messages'
 #                roles:           [ 'ROLE_ADMIN' ]
-                keep_open:       true
+                keep_open:       false
+            Artist:
+                icon:            '<i class="fas fa-street-view"></i>'
+                label:           'sidebarmenu.artist.title'
+                label_catalogue: 'messages'
+#                roles:           [ 'ROLE_ADMIN' ]
+                keep_open:       false
         blocks:
             -
                 position: top
@@ -46,10 +52,11 @@ sonata_admin:
                 position: right
                 type: sonata.admin.block.admin_list
                 settings:
-                    groups: [ 'Page' ]
+                    groups: [ 'Page', 'Artist' ]
             -
                 position: bottom
                 type: sonata.block.service.text
+                class: 'col-xs-12'
                 settings:
                     content: >
                         <div><hr style="margin-top:40px;border-top:solid 1px #d2d6de"><p><i class="fas fa-info-circle"></i> Per rebre assistència tècnica envieu un missatge a <a href="mailto:suport@flux.cat?subject=Ajuda CMS %project_title%" style="color:#000">suport@flux.cat</a></p></div>

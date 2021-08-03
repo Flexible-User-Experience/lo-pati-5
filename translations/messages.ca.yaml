@@ -11,6 +11,9 @@ sidebarmenu:
     group: 'Grup'
     user: 'Usuari'
     newsletter: 'Newsletter'
+  artist:
+    title: 'Irradiador'
+    artist: 'Artista'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivell'
   link_menu_level1_create: 'Crear'

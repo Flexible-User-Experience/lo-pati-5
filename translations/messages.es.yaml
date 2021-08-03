@@ -11,6 +11,9 @@ sidebarmenu:
     group: 'Grupo'
     user: 'Usuario'
     newsletter: 'Newsletter'
+  artist:
+    title: 'Irradiador'
+    artist: 'Artista'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivel'
   link_menu_level1_create: 'Crear'
@@ -24,6 +27,14 @@ breadcrumb:
   link_newsletter_user_create: 'Crear'
   link_newsletter_list: 'Newsletter'
   link_newsletter_create: 'Crear'
+dashboard:
+  infoboxes:
+    last_30_days_amount_m: 'nuevos en los últimos 30 días'
+    last_30_days_amount_f: 'nuevas en los últimos 30 días'
+    total_pages_amount: 'Páginas'
+    total_newsletters_amount: 'Newsletters'
+    total_newsletter_users_amount: 'Usuarios newsletter'
+    total_artists_amount: 'Artistas'
 filter:
   label_name: 'Nombre'
   label_email: 'Email'
