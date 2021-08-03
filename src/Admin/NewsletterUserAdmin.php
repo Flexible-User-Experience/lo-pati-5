@@ -131,6 +131,20 @@ final class NewsletterUserAdmin extends AbstractBaseAdmin
                     'required' => true,
                 ]
             )
+            ->add(
+                'postalCode',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'phone',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
             ->end()
             ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3));
         if (!$this->isFormToCreateNewRecord()) {
@@ -140,6 +154,16 @@ final class NewsletterUserAdmin extends AbstractBaseAdmin
                     DatePickerType::class,
                     [
                         'format' => AbstractBase::FORM_TYPE_DATETIME_FORMAT,
+                        'required' => false,
+                        'attr' => [
+                            'readonly' => 'readonly',
+                        ],
+                    ]
+                )
+                ->add(
+                    'fail',
+                    null,
+                    [
                         'required' => false,
                         'attr' => [
                             'readonly' => 'readonly',

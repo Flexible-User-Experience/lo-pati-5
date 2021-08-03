@@ -44,3 +44,7 @@
       shell: "/usr/bin/php7.4 bin/console app:import:newsletter:user var/csv/imports/newsletteruser.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
+    - name: execute fetch newsletter group user CSV command
+      shell: "/usr/bin/php7.4 bin/console app:import:fetch:newsletter:group:user var/csv/imports/newslettergroupnewsletteruser.csv --env=prod"
+      args:
+        chdir: "{{ vhost_path_prod }}/current/"
