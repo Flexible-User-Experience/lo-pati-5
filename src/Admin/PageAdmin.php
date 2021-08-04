@@ -23,6 +23,7 @@ final class PageAdmin extends AbstractBaseAdmin
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection
+            ->add('duplicate', $this->getRouterIdParameter().'/duplicate')
             ->remove('show')
             ->remove('batch')
         ;
@@ -167,6 +168,9 @@ final class PageAdmin extends AbstractBaseAdmin
                     'row_align' => 'right',
                     'actions' => [
                         'edit' => [],
+                        'duplicate' => [
+                            'template' => 'backend/actions/list__action_page_duplicate.html.twig',
+                        ],
                         'delete' => [],
                     ],
                 ]

@@ -28,7 +28,7 @@ services:
         arguments:
             - ~
             - App\Entity\Page
-            - ~
+            - App\Controller\Backend\PageAdminController
             - '@doctrine.orm.entity_manager'
             - '@security.helper'
             - '@twig'

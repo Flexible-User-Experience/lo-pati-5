@@ -182,6 +182,17 @@ class Page extends AbstractBase
      */
     private ?MenuLevel2 $menuLevel2 = null;
 
+    public function __clone()
+    {
+        $this
+            ->setImageFileName(null)
+            ->setSmallImage1FileName(null)
+            ->setSmallImage2FileName(null)
+            ->setDocument1FileName(null)
+            ->setDocument2FileName(null)
+        ;
+    }
+
     public function isHighlitedImageSquared(): bool
     {
         return (bool) $this->getSmallImage1FileName();

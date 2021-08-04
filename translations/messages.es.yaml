@@ -134,6 +134,11 @@ export:
 back:
   layout:
     developed_by: 'Desarrollado por'
+  action:
+    duplicate: 'Duplicar'
+    duplicated: 'duplicado'
+  flash:
+    duplicate: 'La página se ha duplicado correctamente, recuerda que tienes que modificar el nuevo nombre asignado.'
 front:
   layout:
     title: 'Lo Pati'
