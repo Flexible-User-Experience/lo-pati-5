@@ -12,7 +12,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_subname_index", columns={"name", "menu_level1_id"})})
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_menu_level2_name_level1_index", columns={"name", "menu_level1_id"})})
  * @ORM\Entity(repositoryClass="App\Repository\MenuLevel2Repository")
  * @UniqueEntity(fields={"name", "menuLevel1"}, errorPath="name")
  */

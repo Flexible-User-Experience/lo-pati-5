@@ -19,11 +19,14 @@
         "doctrine/doctrine-bundle": "^2.4",
         "doctrine/doctrine-migrations-bundle": "^3.1",
         "doctrine/orm": "^2.9",
+        "friendsofsymfony/ckeditor-bundle": "^2.3",
         "knplabs/knp-menu-bundle": "^3.1",
         "knplabs/knp-paginator-bundle": "^5.6",
         "liip/imagine-bundle": "^2.6",
         "phpdocumentor/reflection-docblock": "^5.2",
         "sensio/framework-extra-bundle": "^6.1",
+        "sonata-project/admin-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
         "stof/doctrine-extensions-bundle": "^1.6",
         "symfony/asset": "5.3.*",
         "symfony/console": "5.3.*",
@@ -97,6 +100,7 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
+            "ckeditor:install --clear=drop": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
         "post-install-cmd": [

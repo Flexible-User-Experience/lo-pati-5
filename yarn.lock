@@ -1588,6 +1588,11 @@ chrome-trace-event@^1.0.2:
   resolved "https://registry.yarnpkg.com/chrome-trace-event/-/chrome-trace-event-1.0.3.tgz#1015eced4741e15d06664a957dbbf50d041e26ac"
   integrity sha512-p3KULyQg4S7NIHixdwbGX+nFHkoBiA4YQmyWtjb8XngSKV124nJmRysgAeujbUVb15vh+RvFUfCPqU7rXk+hZg==
 
+ckeditor4@^4.16.1:
+  version "4.16.1"
+  resolved "https://registry.yarnpkg.com/ckeditor4/-/ckeditor4-4.16.1.tgz#c1d34d032085d33e2efe3c12b30431b5f9230c16"
+  integrity sha512-dfclP3QDQfXMOrPex3s/l6b5E+MBSxhMpW3+nUM6lFX3ax1u/1tl2ETpe7iYJRtoN4TdvddL5XFweQT17woN5A==
+
 clean-stack@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/clean-stack/-/clean-stack-2.2.0.tgz#ee8472dbb129e727b31e8a10a427dee9dfe4008b"
@@ -4698,9 +4703,9 @@ webpack-sources@^1.1.0:
     source-map "~0.6.1"
 
 webpack-sources@^3.0.1:
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.0.2.tgz#29942415daf201a06278f8e2b92e44e564a9288e"
-  integrity sha512-XQ6aGLmqoxZtmpbgwySGhYLNFav1W6+qgMWPGgn6qScxfGrQgMdigkUqZXQ7oB0ydUrvfs9RRyHaSfV153K8Xg==
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.0.3.tgz#33c478e1f67bf5577d3ec5ced4bded0a06ec88d0"
+  integrity sha512-/Qgfp3i1FT2z/tpNj+d/ZeDTbdOWG5V6DdTjIvMLVhrhtpFxmMTZrGnEQEa0J7HF8Plls5kGa7TZ7IsvgnFdtA==
 
 webpack@^5.35:
   version "5.47.0"

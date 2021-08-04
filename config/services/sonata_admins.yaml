@@ -1,0 +1,94 @@
+services:
+    # Menus
+    admin.menu_level1:
+        class: App\Admin\MenuLevel1Admin
+        arguments:
+            - ~
+            - App\Entity\MenuLevel1
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Menu', label: 'sidebarmenu.menu.level1' }
+    admin.menu_level2:
+        class: App\Admin\MenuLevel2Admin
+        arguments:
+            - ~
+            - App\Entity\MenuLevel2
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Menu', label: 'sidebarmenu.menu.level2' }
+    # Pages
+    admin.page:
+        class: App\Admin\PageAdmin
+        arguments:
+            - ~
+            - App\Entity\Page
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Page', label: 'sidebarmenu.page.page' }
+    # Newsletters
+    admin.newsletter_group:
+        class: App\Admin\NewsletterGroupAdmin
+        arguments:
+            - ~
+            - App\Entity\NewsletterGroup
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Newsletter', label: 'sidebarmenu.newsletter.group' }
+    admin.newsletter_user:
+        class: App\Admin\NewsletterUserAdmin
+        arguments:
+            - ~
+            - App\Entity\NewsletterUser
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Newsletter', label: 'sidebarmenu.newsletter.user' }
+    admin.newsletter:
+        class: App\Admin\NewsletterAdmin
+        arguments:
+            - ~
+            - App\Entity\Newsletter
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Newsletter', label: 'sidebarmenu.newsletter.newsletter' }
+    # Artists
+    admin.artist:
+        class: App\Admin\ArtistAdmin
+        arguments:
+            - ~
+            - App\Entity\Artist
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Artist', label: 'sidebarmenu.artist.artist' }
+    # Archives
+    admin.archive:
+        class: App\Admin\ArchiveAdmin
+        arguments:
+            - ~
+            - App\Entity\Archive
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Archive', label: 'sidebarmenu.archive.archive' }

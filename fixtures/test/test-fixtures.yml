@@ -1,3 +1,21 @@
+# Archive
+App\Entity\Archive:
+  archive1:
+    year: 2020
+  archive2:
+    year: 2021
+
+# Artist
+App\Entity\Artist:
+  artist1:
+    name: 'Artist 1'
+    description: '<sentence()>'
+    year: 1980
+  artist2:
+    name: 'Artist 2'
+    description: '<sentence()>'
+    year: 1990
+
 # MenuLevel1
 App\Entity\MenuLevel1:
   menulevel1:
@@ -16,6 +34,7 @@ App\Entity\MenuLevel2:
     position: 1
     isList: '<boolean()>'
     menuLevel1: '@menulevel1'
+    page: '@page1'
   submenulevel2:
     name: 'Submenu 1.2'
     position: 2
@@ -32,6 +51,44 @@ App\Entity\MenuLevel2:
     isList: '<boolean()>'
     menuLevel1: '@menulevel2'
 
+# Newsletter
+App\Entity\Newsletter:
+  newsletter1:
+    subject: 'Newsletter 1'
+  newsletter2:
+    subject: 'Newsletter 2'
+
+# NewsletterGroup
+App\Entity\NewsletterGroup:
+  newslettergroup1:
+    name: 'Newsletter Group 1'
+  newslettergroup2:
+    name: 'Newsletter Group 2'
+
+# NewsletterPost
+App\Entity\NewsletterPost:
+  newsletterpost1:
+    title: 'Newsletter Post 1'
+    image1FileName: 'imagefile1.png'
+    newsletter: '@newsletter1'
+    position: 1
+  newsletterpost2:
+    title: 'Newsletter Post 2'
+    image1FileName: 'imagefile2.png'
+    newsletter: '@newsletter2'
+    position: 1
+
+# NewsletterUser
+App\Entity\NewsletterUser:
+  newsletteruser1:
+    name: 'Newsletter User 1'
+    email: '<safeEmail()>'
+    token: '<password()>'
+  newsletteruser2:
+    name: 'Newsletter User 2'
+    email: '<safeEmail()>'
+    token: '<password()>'
+
 # Page
 App\Entity\Page:
   page1:
@@ -39,7 +96,18 @@ App\Entity\Page:
     description: '<sentence()>'
     summary: '<sentence()>'
     isFrontCover: '<boolean()>'
-    publishDate: '<dateTime()>'
+    publishDate: '<(new \DateTime("2021-08-01"))>'
     showPublishDate: '<boolean()>'
     expirationDate: '<dateTime()>'
     menuLevel1: '@menulevel1'
+
+# Slideshow
+App\Entity\Slideshow:
+  slideshow1:
+    name: 'Slideshow 1'
+    image1FileName: 'imagefile1.png'
+    position: 1
+  slideshow2:
+    name: 'Slideshow 2'
+    image1FileName: 'imagefile2.png'
+    position: 2

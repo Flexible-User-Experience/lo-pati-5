@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\MenuLevel1;
+use App\Enum\SortOrderTypeEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,13 +21,23 @@ class MenuLevel1Repository extends ServiceEntityRepository
         parent::__construct($registry, MenuLevel1::class);
     }
 
-    public function getAllSortedByPosition($sortOrder = 'ASC'): QueryBuilder
+    public function getAllSortedByPosition($sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
     {
         return $this->createQueryBuilder('m')->orderBy('m.position', $sortOrder);
     }
 
-    public function getAllSortedByPositionAndName($sortOrder = 'ASC'): QueryBuilder
+    public function getAllSortedByPositionAndName($sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
     {
         return $this->getAllSortedByPosition($sortOrder)->addOrderBy('m.name', $sortOrder);
+    }
+
+    public function getEnabledSortedByPosition($sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
+    {
+        return $this->getAllSortedByPosition($sortOrder)->where('m.active = :active')->setParameter('active', true);
+    }
+
+    public function getEnabledSortedByPositionAndName($sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
+    {
+        return $this->getEnabledSortedByPosition($sortOrder)->addOrderBy('m.name', $sortOrder);
     }
 }

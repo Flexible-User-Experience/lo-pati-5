@@ -107,6 +107,16 @@ ul.pagination {
   height: 12px;
 }
 
+// buttons
+a.btn.btn-outline-dark.btn-sm.rounded-0.border-2.text-uppercase {
+  font-weight: 500;
+}
+.carousel-indicators [data-bs-target] {
+  height: 7px !important;
+  margin-left: 8px !important;
+  margin-right: 8px !important;
+}
+
 // custom footer
 footer {
   div.lp-bg-timetable-section {

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Slideshow;
+use App\Enum\SortOrderTypeEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -20,17 +21,17 @@ class SlideshowRepository extends ServiceEntityRepository
         parent::__construct($registry, Slideshow::class);
     }
 
-    public function getAllSortedByPosition($sortOrder = 'ASC'): QueryBuilder
+    public function getAllSortedByPosition($sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
     {
         return $this->createQueryBuilder('s')->orderBy('s.position', $sortOrder);
     }
 
-    public function getAllSortedByPositionAndName($sortOrder = 'ASC'): QueryBuilder
+    public function getAllSortedByPositionAndName($sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
     {
         return $this->getAllSortedByPosition($sortOrder)->addOrderBy('s.name', $sortOrder);
     }
 
-    public function getEnabledSortedByPositionAndName($sortOrder = 'ASC'): QueryBuilder
+    public function getEnabledSortedByPositionAndName($sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
     {
         return $this->getAllSortedByPositionAndName($sortOrder)
             ->where('s.active = :active')

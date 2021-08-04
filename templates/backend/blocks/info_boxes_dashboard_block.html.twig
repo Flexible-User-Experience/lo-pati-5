@@ -1,0 +1,70 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="{{ path('admin_app_page_list') }}">
+                <div class="info-box bg-light-blue">
+                    <span class="info-box-icon"><i class="fas fa-file"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{{ 'dashboard.infoboxes.total_pages_amount' | trans }}</span>
+                        <span class="info-box-number">{{ total_pages_amount | i }}</span>
+                        <div class="progress">
+                            {#<!-- the progress section is optional -->#}
+                            {#<div class="progress-bar" style="width: 0%"></div>#}
+                        </div>
+                        <span class="progress-description">{{ last_30_days_pages_amount | i }} {{ 'dashboard.infoboxes.last_30_days_amount_f' | trans }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="{{ path('admin_app_newsletter_list') }}">
+                <div class="info-box bg-aqua">
+                    <span class="info-box-icon"><i class="fas fa-rss"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{{ 'dashboard.infoboxes.total_newsletters_amount' | trans }}</span>
+                        <span class="info-box-number">{{ total_newsletters_amount | i }}</span>
+                        <div class="progress">
+                            {#<!-- the progress section is optional -->#}
+                            {#<div class="progress-bar" style="width: 60%"></div>#}
+                        </div>
+                        <span class="progress-description">{{ last_30_days_newsletters_amount | i }} {{ 'dashboard.infoboxes.last_30_days_amount_f' | trans }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="{{ path('admin_app_newsletteruser_list') }}">
+                <div class="info-box bg-teal">
+                    <span class="info-box-icon"><i class="fas fa-user"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{{ 'dashboard.infoboxes.total_newsletter_users_amount' | trans }}</span>
+                        <span class="info-box-number">{{ total_newsletter_users_amount | i }}</span>
+                        <div class="progress">
+                            {#<!-- the progress section is optional -->#}
+                            {#<div class="progress-bar" style="width: 45%"></div>#}
+                        </div>
+                        <span class="progress-description">{{ last_30_days_newsletter_users_amount | i }} {{ 'dashboard.infoboxes.last_30_days_amount_m' | trans }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <a href="{{ path('admin_app_artist_list') }}">
+                <div class="info-box bg-yellow">
+                    <span class="info-box-icon"><i class="far fa-street-view"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">{{ 'dashboard.infoboxes.total_artists_amount' | trans }}</span>
+                        <span class="info-box-number">{{ total_artists_amount | i }}</span>
+                        <div class="progress">
+                            {#<!-- the progress section is optional -->#}
+                            {#<div class="progress-bar" style="width: 80%"></div>#}
+                        </div>
+                        <span class="progress-description">{{ last_30_days_artists_amount | i }} {{ 'dashboard.infoboxes.last_30_days_amount_m' | trans }}</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endblock %}

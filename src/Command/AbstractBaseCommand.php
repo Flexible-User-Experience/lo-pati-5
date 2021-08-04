@@ -123,4 +123,9 @@ abstract class AbstractBaseCommand extends Command
         }
         $this->io->success('Total ellapsed time: '.$beginTimestamp->diff($endTimestamp)->format('%H:%I:%S'));
     }
+
+    protected static function sanitizeDoubleQuoteEscapeChar($text): string
+    {
+        return str_replace('\"', '"', $text);
+    }
 }

@@ -1,0 +1,8 @@
+services:
+    app.block_info_boxes_dashboard:
+        class: App\Admin\Block\InfoBoxesDashboardBlock
+        arguments:
+            - '@twig'
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: sonata.block }

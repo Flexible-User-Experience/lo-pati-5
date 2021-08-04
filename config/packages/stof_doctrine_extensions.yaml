@@ -5,9 +5,9 @@ stof_doctrine_extensions:
             timestampable:  true
             sluggable:      true
             translatable:   true
+            sortable:       false
             softdeleteable: false
             uploadable:     false
-            sortable:       false
             blameable:      false
             loggable:       false
             tree:           false

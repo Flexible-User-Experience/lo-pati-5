@@ -19,7 +19,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="published_date_name_unique_idx", columns={"name", "publish_date"})})
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_page_published_date_name_index", columns={"name", "publish_date"})})
  * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
  * @UniqueEntity(fields={"name", "publishDate"}, errorPath="name")
  * @Vich\Uploadable()
@@ -224,6 +224,11 @@ class Page extends AbstractBase
     public function getPublishDate(): DateTimeInterface
     {
         return $this->publishDate;
+    }
+
+    public function getPublishDateString(): string
+    {
+        return AbstractBase::transformDateAsString($this->publishDate);
     }
 
     public function setPublishDate(DateTimeInterface $publishDate): self
@@ -501,6 +506,11 @@ class Page extends AbstractBase
         $this->menuLevel2 = $menuLevel2;
 
         return $this;
+    }
+
+    public function humanReadableIdentifier(): string
+    {
+        return $this->getId() ? '#'.$this->getId().AbstractBase::DEFAULT_SEPARATOR.$this->getPublishDateString().AbstractBase::DEFAULT_SEPARATOR.$this->getName() : self::DEFAULT_EMPTY_STRING;
     }
 
     public function __toString(): string
