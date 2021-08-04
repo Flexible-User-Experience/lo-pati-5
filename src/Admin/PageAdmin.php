@@ -208,7 +208,7 @@ final class PageAdmin extends AbstractBaseAdmin
         return [
             'id',
             'name',
-            'active',
+            'activeString',
             'createdAtString',
             'updatedAtString',
         ];

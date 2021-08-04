@@ -3,12 +3,16 @@
 namespace App\Controller\Backend;
 
 use Sonata\AdminBundle\Controller\CRUDController;
+use Sonata\AdminBundle\Exception\ModelManagerException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PageAdminController extends CRUDController
 {
+    /**
+     * @throws ModelManagerException
+     */
     public function duplicateAction($id): Response
     {
         $object = $this->admin->getSubject();

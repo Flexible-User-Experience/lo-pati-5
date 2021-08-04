@@ -23,8 +23,9 @@ class NewsletterGroup extends AbstractBase
     private string $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\NewsletterUser", inversedBy="groups", orphanRemoval=true)
+     * @ORM\ManyToMany(targetEntity="App\Entity\NewsletterUser", inversedBy="groups")
      * @ORM\OrderBy({"email"="ASC"})
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private ?Collection $users;
 
@@ -36,6 +37,11 @@ class NewsletterGroup extends AbstractBase
     public function getUsers(): ?Collection
     {
         return $this->users;
+    }
+
+    public function getUsersAmount(): int
+    {
+        return $this->getUsers() ? $this->getUsers()->count() : 0;
     }
 
     public function setUsers(?Collection $users): self

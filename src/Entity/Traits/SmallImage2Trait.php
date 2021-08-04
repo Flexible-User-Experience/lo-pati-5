@@ -12,7 +12,7 @@ trait SmallImage2Trait
 {
     /**
      * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
-     * @Vich\UploadableField(mapping="image", fileNameProperty="smallImage1FileName")
+     * @Vich\UploadableField(mapping="image", fileNameProperty="smallImage2FileName")
      */
     private ?File $smallImage2File = null;
 

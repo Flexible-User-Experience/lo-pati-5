@@ -33,9 +33,11 @@ class BaseControllerTest extends WebTestCase
             ['/admin/app/newslettergroup/list'],
             ['/admin/app/newslettergroup/create'],
             ['/admin/app/newslettergroup/1/edit'],
+            ['/admin/app/newslettergroup/1/delete'],
             ['/admin/app/newsletteruser/list'],
             ['/admin/app/newsletteruser/create'],
             ['/admin/app/newsletteruser/1/edit'],
+            ['/admin/app/newsletteruser/1/delete'],
         ];
     }
 
@@ -62,10 +64,8 @@ class BaseControllerTest extends WebTestCase
             ['/admin/app/page/1/show'],
             ['/admin/app/newslettergroup/9/edit'],
             ['/admin/app/newslettergroup/1/show'],
-            ['/admin/app/newslettergroup/1/delete'],
             ['/admin/app/newsletteruser/9/edit'],
             ['/admin/app/newsletteruser/1/show'],
-            ['/admin/app/newsletteruser/1/delete'],
         ];
     }
 }

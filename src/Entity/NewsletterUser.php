@@ -64,7 +64,7 @@ class NewsletterUser extends AbstractBase
     private ?int $fail = 0;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\NewsletterGroup", mappedBy="users").
+     * @ORM\ManyToMany(targetEntity="App\Entity\NewsletterGroup", mappedBy="users")
      */
     protected ?Collection $groups;
 
@@ -190,6 +190,26 @@ class NewsletterUser extends AbstractBase
     public function setGroups(?Collection $groups): self
     {
         $this->groups = $groups;
+
+        return $this;
+    }
+
+    public function addGroup(NewsletterGroup $group): self
+    {
+        if (!$this->groups->contains($group)) {
+            $this->groups->add($group);
+            $group->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeGroup(NewsletterGroup $group): self
+    {
+        if ($this->groups->contains($group)) {
+            $this->groups->removeElement($group);
+            $group->removeUser($this);
+        }
 
         return $this;
     }
