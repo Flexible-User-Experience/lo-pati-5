@@ -136,6 +136,11 @@ class MenuLevel2 extends AbstractBase
         return $this;
     }
 
+    public function getHierarchyName(): string
+    {
+        return $this->getMenuLevel1()->getName().AbstractBase::DEFAULT_HIERARCHY_SEPARATOR.$this->getName();
+    }
+
     public function __toString(): string
     {
         return $this->getId() ? $this->getName() : self::DEFAULT_EMPTY_STRING;

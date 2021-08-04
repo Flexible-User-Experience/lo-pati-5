@@ -5,6 +5,7 @@ Changelog
  * improve sonata admins
  * improve frontend page templates render
  * add trasnlatable fields
+ * add Page template types management & make frontend templates render according to it
 
 ##### Version 5.03.00 (2021-08-04)
  * add sonata admin dependency

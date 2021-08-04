@@ -149,7 +149,7 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(4))
+            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(5))
             ->add(
                 'name',
                 TextType::class,
@@ -157,8 +157,6 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                     'required' => true,
                 ]
             )
-            ->end()
-            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'menuLevel1',
                 EntityType::class,
@@ -174,6 +172,7 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                 'page',
                 EntityType::class,
                 [
+                    'label' => 'list.label_related_page',
                     'class' => Page::class,
                     'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByName(),
                     'choice_label' => 'name',
@@ -181,6 +180,8 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
+            ->end()
+            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'position',
                 NumberType::class,
