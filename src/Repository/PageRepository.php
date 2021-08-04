@@ -58,6 +58,11 @@ class PageRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('p')->orderBy('p.name', $sortOrder);
     }
 
+    public function getAllSortedByPublishDate(string $sortOrder = SortOrderTypeEnum::DESC): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')->orderBy('p.publishDate', $sortOrder);
+    }
+
     public function getTotalRecordsAmount(): int
     {
         try {

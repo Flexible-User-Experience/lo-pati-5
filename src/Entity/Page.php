@@ -226,6 +226,11 @@ class Page extends AbstractBase
         return $this->publishDate;
     }
 
+    public function getPublishDateString(): string
+    {
+        return AbstractBase::transformDateAsString($this->publishDate);
+    }
+
     public function setPublishDate(DateTimeInterface $publishDate): self
     {
         $this->publishDate = $publishDate;
@@ -501,6 +506,11 @@ class Page extends AbstractBase
         $this->menuLevel2 = $menuLevel2;
 
         return $this;
+    }
+
+    public function humanReadableIdentifier(): string
+    {
+        return $this->getId() ? '#'.$this->getId().AbstractBase::DEFAULT_SEPARATOR.$this->getPublishDateString().AbstractBase::DEFAULT_SEPARATOR.$this->getName() : self::DEFAULT_EMPTY_STRING;
     }
 
     public function __toString(): string

@@ -16,6 +16,7 @@ abstract class AbstractBase
     public const FORM_TYPE_DATETIME_FORMAT = 'd/M/y H:mm';
     public const DATAGRID_TYPE_DATE_FORMAT = 'd-m-Y';
     public const DATAGRID_WIDGET_DATE_FORMAT = 'dd-MM-yyyy';
+    public const DEFAULT_SEPARATOR = ' · ';
     public const DEFAULT_EMPTY_STRING = '---';
     public const DEFAULT_EMPTY_DATE = '--/--/----';
     public const DEFAULT_EMPTY_DATETIME = '--/--/---- --:--';
@@ -95,7 +96,7 @@ abstract class AbstractBase
 
     public function getActiveString(): string
     {
-        return $this->isActive() ? 'yes' : 'no';
+        return self::transformBooleanAsString($this->isActive());
     }
 
     public function setActive(bool $active): self
@@ -110,6 +111,11 @@ abstract class AbstractBase
         return $value ? number_format($value, 2, '\'', '.').' €' : self::DEFAULT_EMPTY_STRING.' €';
     }
 
+    protected static function transformBooleanAsString(bool $value): string
+    {
+        return $value ? 'sí' : 'no';
+    }
+
     protected static function transformDateAsString(?DateTimeInterface $date): string
     {
         return $date ? $date->format(self::DATE_FORMAT) : self::DEFAULT_EMPTY_DATE;
@@ -122,6 +128,6 @@ abstract class AbstractBase
 
     public function __toString(): string
     {
-        return $this->id ? $this->getId().' · '.$this->getCreatedAtString() : self::DEFAULT_EMPTY_STRING;
+        return $this->id ? $this->getId().self::DEFAULT_SEPARATOR.$this->getCreatedAtString() : self::DEFAULT_EMPTY_STRING;
     }
 }

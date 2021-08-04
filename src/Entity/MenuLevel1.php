@@ -84,6 +84,11 @@ class MenuLevel1 extends AbstractBase
         return $this->isArchive;
     }
 
+    public function isArchiveString(): string
+    {
+        return AbstractBase::transformBooleanAsString($this->isArchive());
+    }
+
     public function getIsArchive(): bool
     {
         return $this->isArchive();

@@ -201,6 +201,6 @@ class Newsletter extends AbstractBase
 
     public function __toString(): string
     {
-        return self::transformDateAsString($this->getDate()).' · '.$this->getSubject();
+        return self::transformDateAsString($this->getDate()).AbstractBase::DEFAULT_SEPARATOR.$this->getSubject();
     }
 }

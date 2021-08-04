@@ -30,17 +30,19 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
                 'page',
                 null,
                 [
+                    'label' => 'filter.label_related_page',
                     'field_type' => EntityType::class,
                     'field_options' => [
                         'class' => Page::class,
-                        'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByName(),
-                        'choice_label' => 'name',
-                        'multiple' => false,
-                        'required' => true,
+                        'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByPublishDate(),
+                        'choice_label' => 'humanReadableIdentifier',
+                        'multiple' => true,
+                        'required' => false,
                     ],
                 ]
             )
             ->add('position')
+            ->add('isArchive')
             ->add('active')
         ;
     }
@@ -59,8 +61,9 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
                 'page',
                 null,
                 [
+                    'label' => 'list.label_related_page',
                     'sortable' => true,
-                    'associated_property' => 'name',
+                    'associated_property' => 'humanReadableIdentifier',
                     'sort_field_mapping' => ['fieldName' => 'name'],
                     'sort_parent_association_mappings' => [['fieldName' => 'page']],
                     'editable' => false,
@@ -72,6 +75,15 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
                 [
                     'header_class' => 'text-right',
                     'row_align' => 'right',
+                    'editable' => true,
+                ]
+            )
+            ->add(
+                'isArchive',
+                null,
+                [
+                    'header_class' => 'text-center',
+                    'row_align' => 'center',
                     'editable' => true,
                 ]
             )
@@ -101,7 +113,7 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(4))
+            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(5))
             ->add(
                 'name',
                 TextType::class,
@@ -109,24 +121,32 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
                     'required' => true,
                 ]
             )
-            ->end()
-            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'page',
                 EntityType::class,
                 [
+                    'label' => 'form.label_related_page',
                     'class' => Page::class,
-                    'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByName(),
-                    'choice_label' => 'name',
+                    'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByPublishDate(),
+                    'choice_label' => 'humanReadableIdentifier',
                     'multiple' => false,
                     'required' => false,
                 ]
             )
+            ->end()
+            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'position',
                 NumberType::class,
                 [
                     'required' => true,
+                ]
+            )
+            ->add(
+                'isArchive',
+                CheckboxType::class,
+                [
+                    'required' => false,
                 ]
             )
             ->add(
@@ -147,7 +167,8 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
             'name',
             'page',
             'position',
-            'active',
+            'isArchiveString',
+            'activeString',
             'createdAtString',
             'updatedAtString',
         ];
