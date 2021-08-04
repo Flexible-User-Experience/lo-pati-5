@@ -41,9 +41,8 @@
         {%- endif -%}
         {%- if download_uri -%}
             <a style="margin-bottom:15px" class="btn btn-warning btn-xs" href="{{ asset_helper is same as(true) ? asset(download_uri) : download_uri }}" download>
-                <i class="fa fa-download"></i> {{ translation_domain is same as(false) ? download_label : download_label|trans({}, translation_domain) }}
+                <i class="fa fa-download"></i> {{ translation_domain is same as(false) ? download_label : download_label | trans({}, translation_domain) }}
             </a>
         {%- endif -%}
     </div>
 {%- endblock -%}
-

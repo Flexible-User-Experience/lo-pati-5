@@ -75,7 +75,7 @@ final class NewsletterAdmin extends AbstractBaseAdmin
         $form
             ->with('admin.common.general', $this->getFormMdSuccessBoxArray(4))
             ->add(
-                'name',
+                'subject',
                 TextType::class,
                 [
                     'required' => true,

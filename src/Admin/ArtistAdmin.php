@@ -2,13 +2,12 @@
 
 namespace App\Admin;
 
-use App\Entity\AbstractBase;
 use App\Enum\SortOrderTypeEnum;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -17,14 +16,34 @@ final class ArtistAdmin extends AbstractBaseAdmin
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
-        $sortValues[DatagridInterface::SORT_ORDER] = SortOrderTypeEnum::DESC;
-        $sortValues[DatagridInterface::SORT_BY] = 'date';
+        $sortValues[DatagridInterface::SORT_ORDER] = SortOrderTypeEnum::ASC;
+        $sortValues[DatagridInterface::SORT_BY] = 'name';
+    }
+
+    protected function configureRoutes(RouteCollectionInterface $collection): void
+    {
+        $collection
+            ->remove('show')
+            ->remove('batch')
+        ;
+    }
+
+    public function configureBatchActions(array $actions): array
+    {
+        unset($actions['delete']);
+
+        return $actions;
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
-            ->add('subject')
+            ->add('name')
+            ->add('category')
+            ->add('city')
+            ->add('webpage')
+            ->add('year')
+            ->add('active')
         ;
     }
 
@@ -32,30 +51,51 @@ final class ArtistAdmin extends AbstractBaseAdmin
     {
         $list
             ->add(
-                'date',
-                FieldDescriptionInterface::TYPE_DATE,
-                [
-                    'format' => AbstractBase::DATE_FORMAT,
-                    'header_class' => 'text-center',
-                    'row_align' => 'center',
-                ]
-            )
-            ->add(
-                'subject',
+                'name',
                 null,
                 [
                     'editable' => true,
                 ]
             )
-//            ->add(
-//                'active',
-//                null,
-//                [
-//                    'header_class' => 'text-center',
-//                    'row_align' => 'center',
-//                    'editable' => true,
-//                ]
-//            )
+            ->add(
+                'category',
+                null,
+                [
+                    'editable' => true,
+                ]
+            )
+            ->add(
+                'city',
+                null,
+                [
+                    'editable' => true,
+                ]
+            )
+            ->add(
+                'webpage',
+                null,
+                [
+                    'editable' => true,
+                ]
+            )
+            ->add(
+                'year',
+                null,
+                [
+                    'header_class' => 'text-right',
+                    'row_align' => 'right',
+                    'editable' => true,
+                ]
+            )
+            ->add(
+                'active',
+                null,
+                [
+                    'header_class' => 'text-center',
+                    'row_align' => 'center',
+                    'editable' => true,
+                ]
+            )
             ->add(
                 ListMapper::NAME_ACTIONS,
                 null,
@@ -64,6 +104,7 @@ final class ArtistAdmin extends AbstractBaseAdmin
                     'row_align' => 'right',
                     'actions' => [
                         'edit' => [],
+                        'delete' => [],
                     ],
                 ]
             )
