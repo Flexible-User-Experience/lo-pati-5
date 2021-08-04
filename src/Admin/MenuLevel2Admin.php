@@ -36,40 +36,38 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
-            ->add('menuLevel1')
-            ->add('name')
             ->add(
-                'page',
-                null,
-                [
-                    'field_type' => EntityType::class,
-                    'field_options' => [
-                        'class' => Page::class,
-                        'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByName(),
-                        'choice_label' => 'name',
-                        'multiple' => false,
-                        'required' => true,
-                    ],
-                ]
-            )
-            ->add('position')
-            ->add(
-                'isList',
+                'menuLevel1',
                 null,
                 [
                     'field_type' => EntityType::class,
                     'field_options' => [
                         'class' => MenuLevel1::class,
-//                        'query_builder' => static function (MenuLevel1Repository $ml1r) {
-//                            return $ml1r->getAllSortedByPosition();
-//                        },
                         'query_builder' => $this->em->getRepository(MenuLevel1::class)->getAllSortedByPositionAndName(),
-                        'choice_label' => 'position',
-                        'multiple' => false,
-                        'required' => true,
+                        'choice_label' => 'name',
+                        'multiple' => true,
+                        'required' => false,
                     ],
                 ]
             )
+            ->add('name')
+            ->add(
+                'page',
+                null,
+                [
+                    'label' => 'filter.label_related_page',
+                    'field_type' => EntityType::class,
+                    'field_options' => [
+                        'class' => Page::class,
+                        'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByPublishDate(),
+                        'choice_label' => 'humanReadableIdentifier',
+                        'multiple' => true,
+                        'required' => false,
+                    ],
+                ]
+            )
+            ->add('position')
+            ->add('isList')
             ->add('active')
         ;
     }
@@ -99,8 +97,9 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                 'page',
                 null,
                 [
+                    'label' => 'list.label_related_page',
                     'sortable' => true,
-                    'associated_property' => 'name',
+                    'associated_property' => 'humanReadableIdentifier',
                     'sort_field_mapping' => ['fieldName' => 'name'],
                     'sort_parent_association_mappings' => [['fieldName' => 'page']],
                     'editable' => false,
@@ -213,10 +212,10 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
             'id',
             'menuLevel1',
             'name',
-            'page',
+            'page.humanReadableIdentifier',
             'position',
-            'isList',
-            'active',
+            'isListString',
+            'activeString',
             'createdAtString',
             'updatedAtString',
         ];

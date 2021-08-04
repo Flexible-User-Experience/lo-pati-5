@@ -65,6 +65,11 @@ class MenuLevel2 extends AbstractBase
         return $this->isList;
     }
 
+    public function isListString(): string
+    {
+        return AbstractBase::transformBooleanAsString($this->isList());
+    }
+
     public function getIsList(): bool
     {
         return $this->isList();

@@ -165,7 +165,7 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
         return [
             'id',
             'name',
-            'page',
+            'page.humanReadableIdentifier',
             'position',
             'isArchiveString',
             'activeString',
