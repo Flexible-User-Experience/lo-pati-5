@@ -8,7 +8,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class ArchiveAdmin extends AbstractBaseAdmin
 {
@@ -37,6 +38,7 @@ final class ArchiveAdmin extends AbstractBaseAdmin
                     'header_class' => 'text-center',
                     'row_align' => 'center',
                     'template' => 'backend/cells/list__cell_archive_small_image1.html.twig',
+                    'sortable' => false,
                     'editable' => false,
                 ]
             )
@@ -47,6 +49,7 @@ final class ArchiveAdmin extends AbstractBaseAdmin
                     'header_class' => 'text-center',
                     'row_align' => 'center',
                     'template' => 'backend/cells/list__cell_archive_small_image2.html.twig',
+                    'sortable' => false,
                     'editable' => false,
                 ]
             )
@@ -85,12 +88,30 @@ final class ArchiveAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(4))
+            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(3))
             ->add(
-                'name',
-                TextType::class,
+                'year',
+                NumberType::class,
                 [
                     'required' => true,
+                ]
+            )
+            ->end()
+            ->with('admin.common.images', $this->getFormMdSuccessBoxArray(3))
+            ->add(
+                'smallImage1File',
+                VichImageType::class,
+                [
+                    'imagine_pattern' => '100x100',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'smallImage2File',
+                VichImageType::class,
+                [
+                    'imagine_pattern' => '100x100',
+                    'required' => false,
                 ]
             )
             ->end()
