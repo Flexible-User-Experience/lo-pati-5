@@ -9,6 +9,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class ArtistAdmin extends AbstractBaseAdmin
@@ -114,7 +116,7 @@ final class ArtistAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(4))
+            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(8))
             ->add(
                 'name',
                 TextType::class,
@@ -122,8 +124,56 @@ final class ArtistAdmin extends AbstractBaseAdmin
                     'required' => true,
                 ]
             )
+            ->add(
+                'summary',
+                TextareaType::class,
+                [
+                    'required' => false,
+                    'attr' => [
+                        'rows' => 5,
+                    ],
+                ]
+            )
+            ->add(
+                'description',
+                TextareaType::class,
+                [
+                    'required' => false,
+                    'attr' => [
+                        'rows' => 5,
+                    ],
+                ]
+            )
             ->end()
-            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
+            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'category',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'city',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'webpage',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'year',
+                NumberType::class,
+                [
+                    'required' => false,
+                ]
+            )
             ->add(
                 'active',
                 CheckboxType::class,
@@ -140,7 +190,11 @@ final class ArtistAdmin extends AbstractBaseAdmin
         return [
             'id',
             'name',
-            'active',
+            'category',
+            'city',
+            'webpage',
+            'year',
+            'activeString',
             'createdAtString',
             'updatedAtString',
         ];
