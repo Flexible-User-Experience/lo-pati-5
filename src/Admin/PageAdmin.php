@@ -20,6 +20,13 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class PageAdmin extends AbstractBaseAdmin
 {
+    protected function configureDefaultSortValues(array &$sortValues): void
+    {
+        $sortValues[DatagridInterface::PAGE] = 1;
+        $sortValues[DatagridInterface::SORT_ORDER] = SortOrderTypeEnum::DESC;
+        $sortValues[DatagridInterface::SORT_BY] = 'publishDate';
+    }
+
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection
@@ -34,13 +41,6 @@ final class PageAdmin extends AbstractBaseAdmin
         unset($actions['delete']);
 
         return $actions;
-    }
-
-    protected function configureDefaultSortValues(array &$sortValues): void
-    {
-        $sortValues[DatagridInterface::PAGE] = 1;
-        $sortValues[DatagridInterface::SORT_ORDER] = SortOrderTypeEnum::DESC;
-        $sortValues[DatagridInterface::SORT_BY] = 'publishDate';
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter): void

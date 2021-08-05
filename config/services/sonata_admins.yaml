@@ -68,6 +68,17 @@ services:
             - '@twig'
         tags:
             - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Newsletter', label: 'sidebarmenu.newsletter.newsletter' }
+    admin.newsletter_post:
+        class: App\Admin\NewsletterPostAdmin
+        arguments:
+            - ~
+            - App\Entity\NewsletterPost
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Newsletter', label: 'sidebarmenu.newsletter.newsletter_post', show_in_dashboard: true }
     # Artists
     admin.artist:
         class: App\Admin\ArtistAdmin
