@@ -226,6 +226,8 @@ back:
   action:
     duplicate: 'Duplicar'
     duplicated: 'duplicado'
+    pdf_preview: 'Previsualització PDF'
+    close: 'Cerrar ventana'
   flash:
     duplicate: 'La página se ha duplicado correctamente, recuerda que tienes que modificar el nuevo nombre asignado.'
 front:

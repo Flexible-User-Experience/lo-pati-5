@@ -122,6 +122,9 @@ final class ArtistAdmin extends AbstractBaseAdmin
                     'row_align' => 'right',
                     'actions' => [
                         'edit' => [],
+                        'pdf' => [
+                            'template' => 'backend/actions/list__action_pdf_preview_button.html.twig',
+                        ],
                         'delete' => [],
                     ],
                 ]

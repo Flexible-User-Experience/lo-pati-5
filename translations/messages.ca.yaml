@@ -229,6 +229,10 @@ back:
   action:
     duplicate: 'Duplicar'
     duplicated: 'duplicat'
+    pdf_preview: 'Previsualització PDF'
+    close: 'Tancar finestra'
+    page: 'pàgina'
+    of: 'de'
   flash:
     duplicate: 'La pàgina s''ha duplicat correctament, recorda que has de moficar el nou nom assignat.'
 front:

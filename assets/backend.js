@@ -5,8 +5,6 @@ import './bootstrap';
 import jQuery from 'jquery';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/lib/pdf';
 GlobalWorkerOptions.workerSrc = require('pdfjs-dist/build/pdf.worker.entry.js');
-// import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.entry';
-// GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 jQuery(document).ready(function() {
     let pdfHolderNodes = jQuery('[data-holder]');
