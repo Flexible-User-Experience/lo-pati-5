@@ -3,6 +3,7 @@
 namespace App\Admin;
 
 use App\Enum\SortOrderTypeEnum;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class ArtistAdmin extends AbstractBaseAdmin
 {
@@ -45,6 +47,8 @@ final class ArtistAdmin extends AbstractBaseAdmin
             ->add('city')
             ->add('webpage')
             ->add('year')
+            ->add('summary')
+            ->add('description')
             ->add('active')
         ;
     }
@@ -52,6 +56,17 @@ final class ArtistAdmin extends AbstractBaseAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
+            ->add(
+                'image1FileName',
+                null,
+                [
+                    'header_class' => 'text-center',
+                    'row_align' => 'center',
+                    'template' => 'backend/cells/list__cell_artist_image1.html.twig',
+                    'sortable' => false,
+                    'editable' => false,
+                ]
+            )
             ->add(
                 'name',
                 null,
@@ -136,7 +151,7 @@ final class ArtistAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'description',
-                TextareaType::class,
+                CKEditorType::class,
                 [
                     'required' => false,
                     'attr' => [
@@ -182,6 +197,40 @@ final class ArtistAdmin extends AbstractBaseAdmin
                 ]
             )
             ->end()
+            ->with('admin.common.images', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'image1File',
+                VichImageType::class,
+                [
+                    'imagine_pattern' => '800xY',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'image2File',
+                VichImageType::class,
+                [
+                    'imagine_pattern' => '800xY',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'image3File',
+                VichImageType::class,
+                [
+                    'imagine_pattern' => '800xY',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'image4File',
+                VichImageType::class,
+                [
+                    'imagine_pattern' => '800xY',
+                    'required' => false,
+                ]
+            )
+            ->end()
         ;
     }
 
@@ -193,6 +242,9 @@ final class ArtistAdmin extends AbstractBaseAdmin
             'category',
             'city',
             'webpage',
+            'year',
+            'summary',
+            'description',
             'year',
             'activeString',
             'createdAtString',

@@ -102,6 +102,17 @@ final class PageAdmin extends AbstractBaseAdmin
     {
         $list
             ->add(
+                'smallImage1FileName',
+                null,
+                [
+                    'header_class' => 'text-center',
+                    'row_align' => 'center',
+                    'template' => 'backend/cells/list__cell_page_small_image1.html.twig',
+                    'sortable' => false,
+                    'editable' => false,
+                ]
+            )
+            ->add(
                 'id',
                 null,
                 [

@@ -128,4 +128,18 @@ abstract class AbstractBaseCommand extends Command
     {
         return str_replace('\"', '"', $text);
     }
+
+    protected static function sanitizeNewLineEscapeChar($text): string
+    {
+        return str_replace('\\', '', $text);
+    }
+
+    protected static function sanitizeLinksWithoutProtocol($text): string
+    {
+        if (0 !== strpos($text, 'https://')) {
+            $text = 'https://'.$text;
+        }
+
+        return $text;
+    }
 }
