@@ -183,6 +183,7 @@ form:
   group_admin_common_controls: 'Controls'
   group_admin_common_images: 'Imatges'
   group_admin_common_documents: 'Documents'
+  group_admin_common_information: 'Informació'
 export:
   label_id: 'ID'
   label_name: 'Nom'
@@ -239,6 +240,8 @@ back:
   layout:
     developed_by: 'Desenvolupat per'
   action:
+    test: 'Envia una prova'
+    preview: 'Previsualitza'
     duplicate: 'Duplicar'
     duplicated: 'duplicat'
     pdf_preview: 'Previsualització PDF'

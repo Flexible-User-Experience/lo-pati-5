@@ -182,6 +182,7 @@ form:
   group_admin_common_general: 'General'
   group_admin_common_controls: 'Controles'
   group_admin_common_documents: 'Documentos'
+  group_admin_common_information: 'Información'
 export:
   label_id: 'ID'
   label_name: 'Nombre'
@@ -236,6 +237,8 @@ back:
   layout:
     developed_by: 'Desarrollado por'
   action:
+    test: 'Enviar una prueba'
+    preview: 'Previsualita'
     duplicate: 'Duplicar'
     duplicated: 'duplicado'
     pdf_preview: 'Previsualització PDF'

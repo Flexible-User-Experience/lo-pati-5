@@ -3,6 +3,7 @@
 namespace App\Admin;
 
 use App\Entity\AbstractBase;
+use App\Enum\NewsletterStatusEnum;
 use App\Enum\SortOrderTypeEnum;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -10,8 +11,12 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
+use Sonata\DoctrineORMAdminBundle\Filter\ChoiceFilter;
 use Sonata\DoctrineORMAdminBundle\Filter\DateFilter;
 use Sonata\Form\Type\DatePickerType;
+use Sonata\Form\Type\DateTimePickerType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class NewsletterAdmin extends AbstractBaseAdmin
@@ -26,6 +31,8 @@ final class NewsletterAdmin extends AbstractBaseAdmin
     protected function configureRoutes(RouteCollectionInterface $collection): void
     {
         $collection
+            ->add('preview', $this->getRouterIdParameter().'/preview')
+            ->add('test', $this->getRouterIdParameter().'/test')
             ->remove('show')
             ->remove('batch')
         ;
@@ -56,7 +63,18 @@ final class NewsletterAdmin extends AbstractBaseAdmin
             )
             ->add('subject')
             ->add('tested')
-            ->add('status') // TODO
+            ->add(
+                'status',
+                ChoiceFilter::class,
+                [
+                    'field_type' => ChoiceType::class,
+                    'field_options' => [
+                        'choices' => NewsletterStatusEnum::getReversedEnumArray(),
+                        'multiple' => true,
+                        'required' => false,
+                    ],
+                ]
+            )
             ->add(
                 'beginSend',
                 DateFilter::class,
@@ -83,6 +101,7 @@ final class NewsletterAdmin extends AbstractBaseAdmin
                     'format' => AbstractBase::DATE_FORMAT,
                     'header_class' => 'text-center',
                     'row_align' => 'center',
+                    'editable' => true,
                 ]
             )
             ->add(
@@ -98,7 +117,7 @@ final class NewsletterAdmin extends AbstractBaseAdmin
                 [
                     'header_class' => 'text-center',
                     'row_align' => 'center',
-                    'editable' => true,
+                    'editable' => false,
                 ]
             )
             ->add(
@@ -118,6 +137,7 @@ final class NewsletterAdmin extends AbstractBaseAdmin
                     'format' => AbstractBase::DATETIME_FORMAT,
                     'header_class' => 'text-center',
                     'row_align' => 'center',
+                    'editable' => false,
                 ]
             )
             ->add(
@@ -127,6 +147,12 @@ final class NewsletterAdmin extends AbstractBaseAdmin
                     'header_class' => 'text-right',
                     'row_align' => 'right',
                     'actions' => [
+                        'preview' => [
+                            'template' => 'backend/actions/list__action_newsletter_email_preview_button.html.twig',
+                        ],
+                        'test' => [
+                            'template' => 'backend/actions/list__action_newsletter_send_test_email_button.html.twig',
+                        ],
                         'edit' => [],
                         'delete' => [],
                     ],
@@ -138,7 +164,7 @@ final class NewsletterAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(4))
+            ->with('admin.common.general', $this->getFormMdSuccessBoxArray())
             ->add(
                 'subject',
                 TextType::class,
@@ -148,13 +174,42 @@ final class NewsletterAdmin extends AbstractBaseAdmin
             )
             ->end()
             ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
-//            ->add(
-//                'active',
-//                CheckboxType::class,
-//                [
-//                    'required' => false,
-//                ]
-//            )
+            ->add(
+                'date',
+                DatePickerType::class,
+                [
+                    'format' => AbstractBase::FORM_TYPE_DATE_FORMAT,
+                    'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.information', $this->getFormMdSuccessBoxArray(3))
+            ->add(
+                'tested',
+                CheckboxType::class,
+                [
+                    'disabled' => true,
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'status',
+                ChoiceType::class,
+                [
+                    'choices' => NewsletterStatusEnum::getReversedEnumArray(),
+                    'disabled' => true,
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'beginSend',
+                DateTimePickerType::class,
+                [
+                    'format' => AbstractBase::FORM_TYPE_DATETIME_FORMAT,
+                    'disabled' => true,
+                    'required' => false,
+                ]
+            )
             ->end()
         ;
     }
