@@ -6,8 +6,8 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="author" content="www.flux.cat">
         <title>{% block title %}{{ 'front.layout.title' | trans }}{% endblock %}</title>
-        {% block stylesheets %}{{ encore_entry_link_tags('app') }}{% endblock %}
-        {% block javascripts %}{{ encore_entry_script_tags('app') }}{% endblock %}
+        {% block stylesheets %}{{ encore_entry_link_tags('frontend') }}{% endblock %}
+        {% block javascripts %}{{ encore_entry_script_tags('frontend') }}{% endblock %}
     </head>
     <body>
         <div class="container-fluid bg-dark p-0">

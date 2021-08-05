@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class ArtistAdmin extends AbstractBaseAdmin
@@ -227,6 +228,15 @@ final class ArtistAdmin extends AbstractBaseAdmin
                 VichImageType::class,
                 [
                     'imagine_pattern' => '800xY',
+                    'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.documents', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'document1File',
+                VichFileType::class,
+                [
                     'required' => false,
                 ]
             )
