@@ -9,7 +9,9 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
+use Sonata\DoctrineORMAdminBundle\Filter\DateFilter;
+use Sonata\Form\Type\DatePickerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class NewsletterAdmin extends AbstractBaseAdmin
@@ -21,10 +23,52 @@ final class NewsletterAdmin extends AbstractBaseAdmin
         $sortValues[DatagridInterface::SORT_BY] = 'date';
     }
 
+    protected function configureRoutes(RouteCollectionInterface $collection): void
+    {
+        $collection
+            ->remove('show')
+            ->remove('batch')
+        ;
+    }
+
+    public function configureBatchActions(array $actions): array
+    {
+        unset($actions['delete']);
+
+        return $actions;
+    }
+
     protected function configureDatagridFilters(DatagridMapper $filter): void
     {
         $filter
+            ->add(
+                'date',
+                DateFilter::class,
+                [
+                    'label' => 'filter.label_created_at',
+                    'field_type' => DatePickerType::class,
+                    'format' => AbstractBase::DATAGRID_TYPE_DATE_FORMAT,
+                    'field_options' => [
+                        'widget' => 'single_text',
+                        'format' => AbstractBase::DATAGRID_WIDGET_DATE_FORMAT,
+                    ],
+                ]
+            )
             ->add('subject')
+            ->add('tested')
+            ->add('status') // TODO
+            ->add(
+                'beginSend',
+                DateFilter::class,
+                [
+                    'field_type' => DatePickerType::class,
+                    'format' => AbstractBase::DATAGRID_TYPE_DATE_FORMAT,
+                    'field_options' => [
+                        'widget' => 'single_text',
+                        'format' => AbstractBase::DATAGRID_WIDGET_DATE_FORMAT,
+                    ],
+                ]
+            )
         ;
     }
 
@@ -35,6 +79,7 @@ final class NewsletterAdmin extends AbstractBaseAdmin
                 'date',
                 FieldDescriptionInterface::TYPE_DATE,
                 [
+                    'label' => 'list.label_created_at',
                     'format' => AbstractBase::DATE_FORMAT,
                     'header_class' => 'text-center',
                     'row_align' => 'center',
@@ -47,15 +92,34 @@ final class NewsletterAdmin extends AbstractBaseAdmin
                     'editable' => true,
                 ]
             )
-//            ->add(
-//                'active',
-//                null,
-//                [
-//                    'header_class' => 'text-center',
-//                    'row_align' => 'center',
-//                    'editable' => true,
-//                ]
-//            )
+            ->add(
+                'tested',
+                null,
+                [
+                    'header_class' => 'text-center',
+                    'row_align' => 'center',
+                    'editable' => true,
+                ]
+            )
+            ->add(
+                'status',
+                null,
+                [
+                    'header_class' => 'text-center',
+                    'row_align' => 'center',
+                    'editable' => false,
+                    'template' => 'backend/cells/list__cell_newsletter_status_field.html.twig',
+                ]
+            )
+            ->add(
+                'beginSend',
+                FieldDescriptionInterface::TYPE_DATE,
+                [
+                    'format' => AbstractBase::DATETIME_FORMAT,
+                    'header_class' => 'text-center',
+                    'row_align' => 'center',
+                ]
+            )
             ->add(
                 ListMapper::NAME_ACTIONS,
                 null,
@@ -64,6 +128,7 @@ final class NewsletterAdmin extends AbstractBaseAdmin
                     'row_align' => 'right',
                     'actions' => [
                         'edit' => [],
+                        'delete' => [],
                     ],
                 ]
             )
@@ -83,13 +148,13 @@ final class NewsletterAdmin extends AbstractBaseAdmin
             )
             ->end()
             ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
-            ->add(
-                'active',
-                CheckboxType::class,
-                [
-                    'required' => false,
-                ]
-            )
+//            ->add(
+//                'active',
+//                CheckboxType::class,
+//                [
+//                    'required' => false,
+//                ]
+//            )
             ->end()
         ;
     }
@@ -99,7 +164,6 @@ final class NewsletterAdmin extends AbstractBaseAdmin
         return [
             'id',
             'name',
-            'active',
             'createdAtString',
             'updatedAtString',
         ];

@@ -53,7 +53,7 @@ final class ImportCsvNewsletterCommand extends AbstractBaseCommand
                 if ($date) {
                     $newsletter->setDate($date);
                 }
-                $beginSendDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(7, $data));
+                $beginSendDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(7, $data));
                 if ($beginSendDate) {
                     $newsletter->setBeginSend($beginSendDate);
                 }
