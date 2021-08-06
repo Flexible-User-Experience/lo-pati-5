@@ -32,6 +32,8 @@
 
 ###> vich/uploader-bundle ###
 /public/uploads/artists/*
+/public/uploads/images/*
+/public/uploads/newsletters/*
 /public/uploads/slides/*
 !/public/uploads/.gitkeep
 ###< vich/uploader-bundle ###

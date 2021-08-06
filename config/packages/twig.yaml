@@ -4,6 +4,7 @@ twig:
         - 'bootstrap_5_layout.html.twig'
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
         - '@SonataForm/Form/datepicker.html.twig'
+        - 'form/type/edit_newsletter_post_action_button.html.twig'
     globals:
         admin_tag_version: 'v5.04.00'
         developer_name:    '%developer_name%'

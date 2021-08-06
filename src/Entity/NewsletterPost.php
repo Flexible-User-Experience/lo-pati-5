@@ -45,7 +45,7 @@ class NewsletterPost extends AbstractBase
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url
+     * @Assert\Url()
      */
     private ?string $link = null;
 

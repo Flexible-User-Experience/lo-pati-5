@@ -13,6 +13,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\DoctrineORMAdminBundle\Filter\ChoiceFilter;
 use Sonata\DoctrineORMAdminBundle\Filter\DateFilter;
+use Sonata\Form\Type\CollectionType;
 use Sonata\Form\Type\DatePickerType;
 use Sonata\Form\Type\DateTimePickerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -210,8 +211,27 @@ final class NewsletterAdmin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
-            ->end()
-        ;
+            ->end();
+        if (!$this->isFormToCreateNewRecord()) {
+            $form
+                ->with('admin.common.newsletter_posts', $this->getFormMdSuccessBoxArray(12))
+                ->add(
+                    'posts',
+                    CollectionType::class,
+                    [
+                        'label' => ' ',
+                        'error_bubbling' => true,
+                        'required' => false,
+                    ],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'sortable' => 'position',
+                    ]
+                )
+                ->end()
+            ;
+        }
     }
 
     protected function configureExportFields(): array
