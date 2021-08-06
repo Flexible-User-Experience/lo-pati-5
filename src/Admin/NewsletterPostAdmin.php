@@ -115,19 +115,23 @@ final class NewsletterPostAdmin extends AbstractBaseAdmin
                         'required' => true,
                     ]
                 )
-                ->add(
-                    'fakeAction',
-                    EditNewsletterPostActionButtonFormType::class,
-                    [
-                        'text' => $this->getTranslator()->trans('back.action.edit'),
-                        'url' => $this->generateObjectUrl('edit', $this->getSubject()),
-                        'label' => $this->getTranslator()->trans('list.label__actions'),
-                        'mapped' => false,
-                        'required' => false,
-                    ]
-                )
-                ->end()
             ;
+            if (!$this->isFormToCreateNewRecord()) {
+                $form
+                    ->add(
+                        'fakeAction',
+                        EditNewsletterPostActionButtonFormType::class,
+                        [
+                            'text' => $this->getTranslator()->trans('back.action.edit'),
+                            'url' => $this->generateObjectUrl('edit', $this->getSubject()),
+                            'label' => $this->getTranslator()->trans('list.label__actions'),
+                            'mapped' => false,
+                            'required' => false,
+                        ]
+                    )
+                ;
+            }
+            $form->end();
         } else {
             // normal admin view
             $form

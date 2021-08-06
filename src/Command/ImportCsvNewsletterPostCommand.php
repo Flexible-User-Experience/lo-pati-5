@@ -53,13 +53,13 @@ final class ImportCsvNewsletterPostCommand extends AbstractBaseCommand
                     }
                     $newsletterPost
                         ->setNewsletter($newsletter)
-                        ->setTitle($this->readColumn(2, $data))
+                        ->setTitle(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(2, $data)))
                         ->setImage1FileName($this->readColumn(3, $data))
-                        ->setShortDescription($this->readColumn(4, $data))
-                        ->setDescription($this->readColumn(5, $data))
+                        ->setShortDescription(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(4, $data)))
+                        ->setDescription(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(5, $data)))
                         ->setPosition((int) $this->readColumn(6, $data))
                         ->setLink($this->readColumn(7, $data))
-                        ->setIntervalDateText($this->readColumn(12, $data))
+                        ->setIntervalDateText(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(12, $data)))
                         ->setType((int) $this->readColumn(13, $data))
                     ;
                     $date = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $this->readColumn(8, $data));
