@@ -4807,3 +4807,8 @@ yocto-queue@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/yocto-queue/-/yocto-queue-0.1.0.tgz#0294eb3dee05028d31ee1a5fa2c556a6aaf10a1b"
   integrity sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==
+
+zurb-foundation-5@^5.4.7:
+  version "5.4.7"
+  resolved "https://registry.yarnpkg.com/zurb-foundation-5/-/zurb-foundation-5-5.4.7.tgz#bd94bbe93c94b3a6b226ac2fde0ebeedd664e024"
+  integrity sha1-vZS76TyUs6ayJqwv3g6+7dZk4CQ=

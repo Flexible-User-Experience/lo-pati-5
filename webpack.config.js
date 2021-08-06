@@ -22,6 +22,7 @@ Encore
     // entries
     .addEntry('frontend', './assets/frontend.js')
     .addEntry('backend', './assets/backend.js')
+    .addEntry('mail', './assets/mail.js')
     // configs
     .enableStimulusBridge('./assets/controllers.json')
     .splitEntryChunks()

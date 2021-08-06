@@ -20,6 +20,15 @@
         "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
         "/build/backend.js"
       ]
+    },
+    "mail": {
+      "js": [
+        "/build/runtime.js",
+        "/build/mail.js"
+      ],
+      "css": [
+        "/build/mail.css"
+      ]
     }
   }
 }
