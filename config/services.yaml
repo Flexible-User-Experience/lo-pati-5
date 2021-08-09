@@ -17,6 +17,9 @@ services:
     _defaults:
         autowire:      true
         autoconfigure: true
+        bind:
+            $customerName: '%project_title%'
+            $customerEmail: '%customer_email%'
     App\:
         resource: '../src/'
         exclude:
