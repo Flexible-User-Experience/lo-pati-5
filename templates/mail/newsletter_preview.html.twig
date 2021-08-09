@@ -24,6 +24,8 @@
                                 <img src="{{ absolute_url(vich_uploader_asset(post, 'image1File')) }}" alt="{{ post.title }}">
                             {% endif %}
                         {% endif %}
+                    </columns>
+                    <columns small="12" large="4" class="small-padding-bottom">
                         {% if post.type is not null %}
                             <h6 class="h6-type">
                                 {{ post.typeTransString | trans | upper }}{% if post.date and post.endDate is null and post.intervalDateText is null %} <span>{{ post.date | date('d | m | y') }}</span>{% endif %}
