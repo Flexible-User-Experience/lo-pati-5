@@ -4,6 +4,7 @@ namespace App\Controller\Frontend;
 
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
+use App\Entity\Newsletter;
 use App\Entity\Page;
 use App\Repository\PageRepository;
 use App\Repository\SlideshowRepository;
@@ -37,6 +38,22 @@ class DefaultController extends AbstractController
             [
                 'slides' => $slides,
                 'highlighted_pages' => $highlightedPages,
+            ]
+        );
+    }
+
+    /**
+     * @Route("/newsletter/{id}", name="front_app_newsletter_web_version")
+     * @ParamConverter("id", class="App\Entity\Newsletter", options={"mapping": {"id": "id"}})
+     */
+    public function newsletterWebAction(Newsletter $newsletter)
+    {
+        return $this->render(
+            'mail/newsletter_preview.html.twig',
+            [
+                'newsletter' => $newsletter,
+                'show_top_bar' => false,
+                'show_bottom_bar' => false,
             ]
         );
     }

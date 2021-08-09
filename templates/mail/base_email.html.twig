@@ -69,6 +69,16 @@
                         </a>
                     </columns>
                 </row>
+                {% if show_bottom_bar %}
+                    <row>
+                        <columns small="12" large="12">
+                            <spacer size="15"></spacer>
+                            <p class="heading-date">
+                                {{ 'mail.click' | trans }} <a href="{{ url('front_app_newsletter_web_version', {id: newsletter.id}) }}">{{ 'mail.here' | trans }}</a> {{ 'mail.to_show_web_version' | trans }} | {{ 'mail.click' | trans }} <a href="%token%">{{ 'mail.here' | trans }}</a> {{ 'mail.to_unsubscribe' | trans }}
+                            </p>
+                        </columns>
+                    </row>
+                {% endif %}
             </container>
         </wrapper>
     {% endblock %}

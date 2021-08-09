@@ -302,6 +302,10 @@ front:
 mail:
   back_to_cms: 'tornar al CMS'
   preview_mode: 'mode previsualització'
+  click: 'Clica'
+  here: 'aquí'
+  to_show_web_version: 'per visualitzar correctament'
+  to_unsubscribe: 'per donar-te de baixa'
 enum:
   page_template_type:
     default: 'Per defecte'

@@ -299,6 +299,13 @@ front:
     highlighted: 'Destacado en Lo Pati'
     read_more: 'Ampliar'
     paginator_label: 'Paginador de destacados'
+mail:
+  back_to_cms: 'volver al CMS'
+  preview_mode: 'mode previsualización'
+  click: 'Clica'
+  here: 'aquí'
+  to_show_web_version: 'para visualizar correctamente'
+  to_unsubscribe: 'para darte de baja'
 enum:
   page_template_type:
     default: 'Por defecto'
