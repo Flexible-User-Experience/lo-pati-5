@@ -29,7 +29,7 @@ class NewsletterAdminController extends CRUDController
         );
     }
 
-    public function testAction($id, MailManager $mm): RedirectResponse
+    public function testAction($id, MailManager $mm, string $emailAddressTest1, string $emailAddressTest2, string $emailAddressTest3): RedirectResponse
     {
         /** @var Newsletter $newsletter */
         $newsletter = $this->admin->getObject($id);
@@ -45,16 +45,12 @@ class NewsletterAdminController extends CRUDController
             ]
         );
         $sendingSuccessStatus = $mm->sendNewsletterEmailTest('[TEST] '.$newsletter->getSubject(), $content);
-
-//        $result = $ms->batchDelivery('[TEST] '.$object->getSubject(), $this->getTestEmailsDestinationList(), $content); // TODO
         if (false === $sendingSuccessStatus) {
             $this->addFlash('sonata_flash_error', $this->trans('back.flash.newsletter_email_test_failure'));
         } else {
             $newsletter->setTested(true);
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-            $this->addFlash('sonata_flash_success', $this->trans('back.flash.newsletter_email_test_success'));
-//     'S\'ha enviat correctament un email de test a les bústies: '.$this->getParameter('email_address_test_1').', '.$this->getParameter('email_address_test_2').' i '.$this->getParameter('email_address_test_3')
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('sonata_flash_success', $this->trans('back.flash.newsletter_email_test_success', ['%emails%' => $emailAddressTest1.', '.$emailAddressTest2.' '.$this->trans('mail.and').' '.$emailAddressTest3]));
         }
 
         return new RedirectResponse($this->admin->generateUrl('list'));

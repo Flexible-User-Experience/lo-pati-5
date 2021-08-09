@@ -12,6 +12,9 @@ parameters:
     customer_name:              '%env(string:CUSTOMER_NAME)%'
     customer_email:             '%env(string:CUSTOMER_EMAIL)%'
     customer_url:               '%env(string:CUSTOMER_URL)%'
+    email_address_test_1:       '%env(string:EMAIL_ADDRESS_TEST_1)%'
+    email_address_test_2:       '%env(string:EMAIL_ADDRESS_TEST_2)%'
+    email_address_test_3:       '%env(string:EMAIL_ADDRESS_TEST_3)%'
 
 services:
     _defaults:
@@ -20,6 +23,9 @@ services:
         bind:
             $customerName: '%project_title%'
             $customerEmail: '%customer_email%'
+            $emailAddressTest1: '%email_address_test_1%'
+            $emailAddressTest2: '%email_address_test_2%'
+            $emailAddressTest3: '%email_address_test_3%'
     App\:
         resource: '../src/'
         exclude:
