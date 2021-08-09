@@ -20,7 +20,7 @@ class NewsletterAdminController extends CRUDController
         }
 
         return $this->renderWithExtraParams(
-            'mail/base_email.html.twig',
+            'mail/newsletter_preview.html.twig',
             [
                 'newsletter' => $object,
                 'show_top_bar' => true,

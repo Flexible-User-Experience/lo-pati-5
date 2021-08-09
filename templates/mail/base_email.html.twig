@@ -1,93 +1,32 @@
 {% apply inky_to_html %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>ZURBemails</title>
-    {% block style %}
-        {{ encore_entry_link_tags('mail') }}
-    {% endblock %}
-</head>
-<body>
-
-{#    </style>#}
-    <container>
-        <row class="header">
-            <columns>
-                <a href="{{ url('front_app_homepage') }}">
-{#                    <img src="{{ email.image('@images/email/logo.png') }}" class="logo" alt="SpaceBar Logo">#}
-                </a>
-            </columns>
-        </row>
-        <row class="welcome">
-            <columns>
-                <spacer size="35"></spacer>
-                <h1>
-                    <center>
-{#                        Nice to meet you {{ email.toName }}!#}
-                    </center>
-                </h1>
-                <spacer size="10"></spacer>
-            </columns>
-        </row>
-        <spacer size="30"></spacer>
-        <row>
-            <columns>
-                <p>
-                    Welcome to <strong>the Space Bar</strong>, we can't wait to read what you have to write.
-                    Get started on your first article and connect with the space bar community.
-                </p>
-            </columns>
-        </row>
-        <row>
-            <columns>
-                <center>
-                    <button href="{{ url('front_app_homepage') }}">Get writing!</button>
-                </center>
-            </columns>
-        </row>
-        <row>
-            <columns>
-                <p>
-                    Check out our existing articles and share your thoughts in the comments!
-                </p>
-            </columns>
-        </row>
-        <row>
-            <columns>
-                <center>
-                    <button href="{{ url('front_app_homepage') }}">Get reading!</button>
-                </center>
-            </columns>
-        </row>
-        <row>
-            <columns>
-                <p>
-                    We're so excited that you've decided to join us in our corner of the universe,
-                    it's a friendly one with other creative and insightful writers just like you!
-                    Need help from a friend? We're always just a message away.
-                </p>
-            </columns>
-        </row>
-        <row class="footer">
-            <columns>
-                <p>Cheers,</p>
-                <p>Your friendly <em>Space Bar Team</em></p>
-            </columns>
-        </row>
-        <row class="bottom">
-            <columns>
-                <center>
-                    <spacer size="20"></spacer>
-                    <div>
-                        Sent with ❤️ from the friendly folks at The Space Bar
-                    </div>
-                </center>
-            </columns>
-        </row>
-    </container>
-</body>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{{ project_title }}</title>
+        {% block style %}
+            {{ encore_entry_link_tags('mail') }}
+        {% endblock %}
+    </head>
+    <body>
+    {% if show_top_bar %}
+        <wrapper class="header black-background">
+            <container>
+                <row class="collapse">
+                    <columns small="6" large="6" class="black-background vertical-padding">
+                        <a href="{{ path('admin_app_newsletter_list') }}">&laquo; {{ 'mail.back_to_cms' | trans }}</a>
+                    </columns>
+                    <columns small="6" large="6" class="black-background vertical-padding">
+                        <p class="white-color text-right">[ {{ 'mail.preview_mode' | trans }} ]</p>
+                    </columns>
+                </row>
+            </container>
+        </wrapper>
+    {% endif %}
+    {% block main %}{% endblock %}
+    <div style="display:none; white-space:nowrap; font:15px courier; line-height:0;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </div>
+    </body>
 {% endapply %}
 
 {#{% extends "@GremoZurbInk/foundation-emails/base.html.twig" %}#}

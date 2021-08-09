@@ -299,6 +299,9 @@ front:
     highlighted: 'Destacat a Lo Pati'
     read_more: 'Ampliar'
     paginator_label: 'Paginador de destacats'
+mail:
+  back_to_cms: 'tornar al CMS'
+  preview_mode: 'mode previsualització'
 enum:
   page_template_type:
     default: 'Per defecte'
