@@ -49,7 +49,7 @@ class DefaultController extends AbstractController
     public function newsletterWebAction(Newsletter $newsletter): Response
     {
         return $this->render(
-            'mail/newsletter_preview.html.twig',
+            'mail/newsletter.html.twig',
             [
                 'newsletter' => $newsletter,
                 'show_top_bar' => false,
@@ -64,7 +64,7 @@ class DefaultController extends AbstractController
     public function newsletterUnsuscribeAction(string $token): Response // TODO
     {
         return $this->render(
-            'mail/newsletter_preview.html.twig',
+            'mail/newsletter.html.twig',
             [
                 'newsletter' => $token,
                 'show_top_bar' => false,

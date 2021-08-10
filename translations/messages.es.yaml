@@ -282,6 +282,8 @@ back:
     of: 'de'
   flash:
     duplicate: 'La página se ha duplicado correctamente, recuerda que tienes que modificar el nuevo nombre asignado.'
+    newsletter_email_success: 'El newsletter se ha enviado correctamente a todos los buzones'
+    newsletter_email_failure: 'Se ha producido un ERROR al enviar el newsletter a todos los buzones. Contacta con el administrador del sistema'
     newsletter_email_test_success: 'Se ha enviado correctamente el newsletter de prueba por email a los buzones: %emails%'
     newsletter_email_test_failure: 'Se ha producido un ERROR al enviar el newsletter de prueba por email'
 front:

@@ -3,6 +3,8 @@
 namespace App\Controller\Backend;
 
 use App\Entity\Newsletter;
+use App\Entity\NewsletterUser;
+use App\Enum\NewsletterStatusEnum;
 use App\Manager\MailManager;
 use App\Model\SendGridEmailToken;
 use Sonata\AdminBundle\Controller\CRUDController;
@@ -21,7 +23,7 @@ class NewsletterAdminController extends CRUDController
         }
 
         return $this->renderWithExtraParams(
-            'mail/newsletter_preview.html.twig',
+            'mail/newsletter.html.twig',
             [
                 'newsletter' => $newsletter,
                 'show_top_bar' => true,
@@ -38,7 +40,7 @@ class NewsletterAdminController extends CRUDController
             throw new NotFoundHttpException(sprintf('unable to find the object with id: %s', $id));
         }
         $content = $this->renderView(
-            'mail/newsletter_preview.html.twig',
+            'mail/newsletter.html.twig',
             [
                 'newsletter' => $newsletter,
                 'show_top_bar' => false,
@@ -46,8 +48,9 @@ class NewsletterAdminController extends CRUDController
             ]
         );
         $emailDestinationList = [
-            new SendGridEmailToken($emailAddressTest1, 'fake-token-1'),
-            new SendGridEmailToken($emailAddressTest2, 'fake-token-2'),
+            // TODO uncomment it
+//            new SendGridEmailToken($emailAddressTest1, 'fake-token-1'),
+//            new SendGridEmailToken($emailAddressTest2, 'fake-token-2'),
             new SendGridEmailToken($emailAddressTest3, 'fake-token-3'),
         ];
         $sendingSuccessStatus = $mm->sendGridBatchDelivery('[TEST] '.$newsletter->getSubject(), $content, $emailDestinationList);
@@ -62,21 +65,40 @@ class NewsletterAdminController extends CRUDController
         return new RedirectResponse($this->admin->generateUrl('list'));
     }
 
-    public function sendAction($id): Response // TODO
+    public function sendAction($id, MailManager $mm): RedirectResponse
     {
         /** @var Newsletter $object */
         $newsletter = $this->admin->getObject($id);
         if (!$newsletter) {
             throw $this->createNotFoundException(sprintf('unable to find the object with id: %s', $id));
         }
-
-        return $this->renderWithExtraParams(
-            'mail/newsletter_preview.html.twig',
+        $content = $this->renderView(
+            'mail/newsletter.html.twig',
             [
                 'newsletter' => $newsletter,
-                'show_top_bar' => true,
-                'show_bottom_bar' => false,
+                'show_top_bar' => false,
+                'show_bottom_bar' => true,
             ]
         );
+        if ($newsletter->getGroup()) {
+            $users = $this->getDoctrine()->getRepository(NewsletterUser::class)->getActiveUsersByGroup($object->getGroup());
+        } else {
+            $users = $this->getDoctrine()->getRepository(NewsletterUser::class)->findAllEnabled();
+        }
+        $emailsDestinationList = [];
+        /** @var NewsletterUser $user */
+        foreach ($users as $user) {
+            $emailsDestinationList[] = new SendGridEmailToken($user->getEmail(), $user->getToken());
+        }
+        $sendingSuccessStatus = $mm->sendGridBatchDelivery($newsletter->getSubject(), $content, $emailsDestinationList);
+        if (false === $sendingSuccessStatus) {
+            $this->addFlash('sonata_flash_error', $this->trans('back.flash.newsletter_email_failure'));
+        } else {
+            $newsletter->setStatus(NewsletterStatusEnum::SENDED);
+            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('sonata_flash_success', $this->trans('back.flash.newsletter_email_success'));
+        }
+
+        return new RedirectResponse($this->admin->generateUrl('list'));
     }
 }

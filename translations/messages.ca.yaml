@@ -282,6 +282,8 @@ back:
     of: 'de'
   flash:
     duplicate: 'La pàgina s''ha duplicat correctament, recorda que has de moficar el nou nom assignat.'
+    newsletter_email_success: 'El newsletter s''ha enviat correctament a totes les bústies'
+    newsletter_email_failure: 'S''ha produït un ERROR en enviar el newsletter a totes les bústies. Contacta amb l''administrador del sistema'
     newsletter_email_test_success: 'S''ha enviat correctament el newsletter de prova per email a les bústies: %emails%'
     newsletter_email_test_failure: 'S''ha produït un ERROR en enviar el newsletter de prova per email'
 front:

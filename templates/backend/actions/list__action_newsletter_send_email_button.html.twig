@@ -1,4 +1,5 @@
-{% if admin.hasAccess('edit', object) and admin.hasRoute('test') and object.status == constant('App\\Enum\\NewsletterStatusEnum::WAITING') and object.tested %}
+{#{% if admin.hasAccess('edit', object) and admin.hasRoute('test') and object.status == constant('App\\Enum\\NewsletterStatusEnum::WAITING') and object.tested %} TODO #}
+{% if admin.hasAccess('edit', object) and admin.hasRoute('test') and object.status == constant('App\\Enum\\NewsletterStatusEnum::SENDED') and object.tested %}
     {% set button_content = sonata_config.getOption('list_action_button_content') %}
     <a
             href="{{ admin.generateObjectUrl('send', object, actions.link_parameters | default([])) }}"
