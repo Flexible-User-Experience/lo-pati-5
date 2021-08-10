@@ -248,7 +248,7 @@ final class PageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->end()
-            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(4))
+            ->with('admin.common.dates', $this->getFormMdSuccessBoxArray(4))
             ->add(
                 'publishDate',
                 DatePickerType::class,
@@ -257,6 +257,30 @@ final class PageAdmin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
+            ->add(
+                'showPublishDate',
+                CheckboxType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'expirationDate',
+                DatePickerType::class,
+                [
+                    'format' => AbstractBase::FORM_TYPE_DATE_FORMAT,
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'realizationDateString',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(4))
             ->add(
                 'menuLevel1',
                 EntityType::class,
@@ -285,6 +309,34 @@ final class PageAdmin extends AbstractBaseAdmin
                 [
                     'choices' => PageTemplateTypeEnum::getReversedEnumArray(),
                     'required' => true,
+                ]
+            )
+            ->add(
+                'place',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'video',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'isFrontCover',
+                CheckboxType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'showSocialNetworksSharingButtons',
+                CheckboxType::class,
+                [
+                    'required' => false,
                 ]
             )
             ->add(
