@@ -151,6 +151,7 @@ final class NewsletterPostAdmin extends AbstractBaseAdmin
                         'required' => false,
                         'attr' => [
                             'rows' => 12,
+                            'style' => 'resize:vertical',
                         ],
                     ]
                 )

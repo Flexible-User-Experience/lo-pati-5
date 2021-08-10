@@ -5,17 +5,22 @@ namespace App\Admin;
 use App\Entity\AbstractBase;
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
+use App\Enum\PageTemplateTypeEnum;
 use App\Enum\SortOrderTypeEnum;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
+use Sonata\DoctrineORMAdminBundle\Filter\ChoiceFilter;
 use Sonata\DoctrineORMAdminBundle\Filter\DateFilter;
 use Sonata\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class PageAdmin extends AbstractBaseAdmin
@@ -89,6 +94,18 @@ final class PageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->add(
+                'templateType',
+                ChoiceFilter::class,
+                [
+                    'field_type' => ChoiceType::class,
+                    'field_options' => [
+                        'choices' => PageTemplateTypeEnum::getReversedEnumArray(),
+                        'multiple' => true,
+                        'required' => false,
+                    ],
+                ]
+            )
+            ->add(
                 'active',
                 null,
                 [
@@ -129,7 +146,6 @@ final class PageAdmin extends AbstractBaseAdmin
                     'format' => AbstractBase::DATE_FORMAT,
                     'header_class' => 'text-center',
                     'row_align' => 'center',
-                    'editable' => true, // TODO make it editable
                 ]
             )
             ->add(
@@ -159,6 +175,15 @@ final class PageAdmin extends AbstractBaseAdmin
                     'sort_field_mapping' => ['fieldName' => 'name'],
                     'sort_parent_association_mappings' => [['fieldName' => 'menuLevel2']],
                     'editable' => false,
+                ]
+            )
+            ->add(
+                'templateType',
+                FieldDescriptionInterface::TYPE_CHOICE,
+                [
+                    'header_class' => 'text-center',
+                    'row_align' => 'center',
+                    'editable' => true,
                 ]
             )
             ->add(
@@ -192,7 +217,7 @@ final class PageAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(4))
+            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(8))
             ->add(
                 'name',
                 TextType::class,
@@ -200,8 +225,68 @@ final class PageAdmin extends AbstractBaseAdmin
                     'required' => true,
                 ]
             )
+            ->add(
+                'summary',
+                TextareaType::class,
+                [
+                    'required' => false,
+                    'help' => 'form.help_short_description_length',
+                    'attr' => [
+                        'rows' => 8,
+                        'style' => 'resize:vertical',
+                    ],
+                ]
+            )
+            ->add(
+                'description',
+                CKEditorType::class,
+                [
+                    'required' => false,
+                    'attr' => [
+                        'rows' => 5,
+                    ],
+                ]
+            )
             ->end()
-            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
+            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'publishDate',
+                DatePickerType::class,
+                [
+                    'format' => AbstractBase::FORM_TYPE_DATE_FORMAT,
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'menuLevel1',
+                EntityType::class,
+                [
+                    'class' => MenuLevel1::class,
+                    'query_builder' => $this->em->getRepository(MenuLevel1::class)->getAllSortedByPositionAndName(),
+                    'choice_label' => 'name',
+                    'multiple' => false,
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'menuLevel2',
+                EntityType::class,
+                [
+                    'class' => MenuLevel2::class,
+                    'query_builder' => $this->em->getRepository(MenuLevel2::class)->getAllSortedByPositionAndName(),
+                    'choice_label' => 'hierarchyName',
+                    'multiple' => false,
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'templateType',
+                ChoiceType::class,
+                [
+                    'choices' => PageTemplateTypeEnum::getReversedEnumArray(),
+                    'required' => true,
+                ]
+            )
             ->add(
                 'active',
                 CheckboxType::class,

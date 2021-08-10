@@ -3,6 +3,7 @@ Changelog
 
 ##### Version 5.05.00 (WIP)
  * fix bugs
+ * fix ArtistAdmin edit error
 
 ##### Version 5.04.00 (2021-08-15)
  * improve sonata admins

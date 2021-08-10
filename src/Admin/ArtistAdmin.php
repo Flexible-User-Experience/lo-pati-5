@@ -150,6 +150,7 @@ final class ArtistAdmin extends AbstractBaseAdmin
                     'required' => false,
                     'attr' => [
                         'rows' => 5,
+                        'style' => 'resize:vertical',
                     ],
                 ]
             )

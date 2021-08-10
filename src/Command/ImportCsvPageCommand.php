@@ -66,8 +66,8 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                             ++$newRecords;
                         }
                         $page
-                            ->setSummary($this->readColumn(4, $data))
-                            ->setDescription($this->readColumn(5, $data))
+                            ->setSummary(AbstractBaseCommand::sanitizeNewLineEscapeChar(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(4, $data))))
+                            ->setDescription(AbstractBaseCommand::sanitizeNewLineEscapeChar(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(5, $data))))
                             ->setActive((bool) $this->readColumn(6, $data))
                             ->setIsFrontCover((bool) $this->readColumn(7, $data))
                             ->setShowPublishDate((bool) $this->readColumn(9, $data))
