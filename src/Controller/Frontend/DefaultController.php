@@ -61,7 +61,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/newsletter/unsuscribe/{token}", name="front_app_newsletter_unsuscribe")
      */
-    public function newsletterUnsuscribeAction(string $token): Response // TODO
+    public function newsletterUnsuscribeAction(string $token): Response // TODO implement method use case
     {
         return $this->render(
             'mail/newsletter.html.twig',

@@ -16,7 +16,7 @@ class NewsletterAdminController extends CRUDController
 {
     public function previewAction($id): Response
     {
-        /** @var Newsletter $object */
+        /** @var Newsletter $newsletter */
         $newsletter = $this->admin->getObject($id);
         if (!$newsletter) {
             throw $this->createNotFoundException(sprintf('unable to find the object with id: %s', $id));
@@ -67,7 +67,7 @@ class NewsletterAdminController extends CRUDController
 
     public function sendAction($id, MailManager $mm): RedirectResponse
     {
-        /** @var Newsletter $object */
+        /** @var Newsletter $newsletter */
         $newsletter = $this->admin->getObject($id);
         if (!$newsletter) {
             throw $this->createNotFoundException(sprintf('unable to find the object with id: %s', $id));
@@ -81,9 +81,9 @@ class NewsletterAdminController extends CRUDController
             ]
         );
         if ($newsletter->getGroup()) {
-            $users = $this->getDoctrine()->getRepository(NewsletterUser::class)->getActiveUsersByGroup($object->getGroup());
+            $users = $this->getDoctrine()->getRepository(NewsletterUser::class)->getEnabledByGroup($newsletter->getGroup())->getQuery()->getResult();
         } else {
-            $users = $this->getDoctrine()->getRepository(NewsletterUser::class)->findAllEnabled();
+            $users = $this->getDoctrine()->getRepository(NewsletterUser::class)->getAllEnabled()->getQuery()->getResult();
         }
         $emailsDestinationList = [];
         /** @var NewsletterUser $user */

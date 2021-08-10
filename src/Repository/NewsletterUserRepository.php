@@ -2,10 +2,12 @@
 
 namespace App\Repository;
 
+use App\Entity\NewsletterGroup;
 use App\Entity\NewsletterUser;
 use DateInterval;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
 
@@ -20,6 +22,21 @@ class NewsletterUserRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, NewsletterUser::class);
+    }
+
+    public function getAllEnabled(): QueryBuilder
+    {
+        return $this->createQueryBuilder('nu')
+            ->where('nu.active = :active')
+            ->setParameter('active', true);
+    }
+
+    public function getEnabledByGroup(NewsletterGroup $group): QueryBuilder
+    {
+        return $this->getAllEnabled()
+            ->join('nu.groups', 'g')
+            ->andWhere('g.id = :id')
+            ->setParameter('id', $group->getId());
     }
 
     public function getTotalRecordsAmount(): int

@@ -27,51 +27,22 @@ class MailManager
     private LoggerInterface $logger;
     private string $customerName;
     private string $customerEmail;
-    private string $emailAddressTest1;
-    private string $emailAddressTest2;
-    private string $emailAddressTest3;
 
-    public function __construct(MailerInterface $mailer, RouterInterface $router, LoggerInterface $logger, string $sendGridApiKey, string $customerName, string $customerEmail, string $emailAddressTest1, string $emailAddressTest2, string $emailAddressTest3)
+    public function __construct(MailerInterface $mailer, RouterInterface $router, LoggerInterface $logger, string $sendGridApiKey, string $customerName, string $customerEmail)
     {
         $this->mailer = $mailer;
         $this->router = $router;
         $this->logger = $logger;
         $this->customerName = $customerName;
         $this->customerEmail = $customerEmail;
-        $this->emailAddressTest1 = $emailAddressTest1;
-        $this->emailAddressTest2 = $emailAddressTest2;
-        $this->emailAddressTest3 = $emailAddressTest3;
         $this->sg = new SendGrid($sendGridApiKey);
     }
 
-    public function sendNewsletterEmailTest(string $subject, string $htmlContent): bool
+    public function sendEmail(string $subject, string $htmlContent, string $toEmailAddress, ?string $toNameAddress = ''): bool
     {
         $email = (new Email())
             ->from(new Address($this->customerEmail, $this->customerName))
-            ->to($this->emailAddressTest1)
-            ->addTo($this->emailAddressTest2)
-            ->addTo($this->emailAddressTest3)
-            ->subject($subject)
-            ->html($htmlContent);
-        try {
-            $this->mailer->send($email);
-            $sendingSuccessStatus = true;
-        } catch (TransportExceptionInterface $e) {
-            $sendingSuccessStatus = false;
-        }
-
-        return $sendingSuccessStatus;
-    }
-
-    private function sendEmail(string $subject, string $htmlContent): bool
-    {
-        $email = (new Email())
-            ->from(new Address($this->customerEmail, $this->customerName))
-            ->to('you@example.com') // TODO
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
+            ->to(new Address($toEmailAddress, $toNameAddress))
             ->subject($subject)
             ->html($htmlContent);
         try {
@@ -111,8 +82,8 @@ class MailManager
                 }
                 $result = true;
             } catch (Exception $e) {
-                $this->logger->error('ERROR: Sendgrid code: '.$e->getCode());
-                $this->logger->error('ERROR: Sendgrid msg: '.$e->getMessage());
+                $this->logger->error('ERROR: SendGrid code: '.$e->getCode());
+                $this->logger->error('ERROR: SendGrid message: '.$e->getMessage());
 
                 $result = false;
             }
