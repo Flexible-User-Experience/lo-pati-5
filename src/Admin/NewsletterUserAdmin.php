@@ -238,7 +238,7 @@ final class NewsletterUserAdmin extends AbstractBaseAdmin
             'name',
             'postalCode',
             'phone',
-            'fails',
+            'fail',
             'activeString',
             'updatedAtString',
         ];
