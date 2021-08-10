@@ -45,7 +45,7 @@ class NewsletterPost extends AbstractBase
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url
+     * @Assert\Url()
      */
     private ?string $link = null;
 
@@ -68,6 +68,11 @@ class NewsletterPost extends AbstractBase
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $intervalDateText = null;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $location = null;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -170,9 +175,26 @@ class NewsletterPost extends AbstractBase
         return $this;
     }
 
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?string $location): self
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
     public function getType(): ?int
     {
         return $this->type;
+    }
+
+    public function getTypeTransString(): ?string
+    {
+        return NewsletterTypeEnum::getEnumArray()[$this->getType() ?? 0];
     }
 
     public function setType(?int $type): self

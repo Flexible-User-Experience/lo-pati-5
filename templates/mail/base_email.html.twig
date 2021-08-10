@@ -1,0 +1,91 @@
+{% apply inline_css %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ app.request.locale }}" xml:lang="{{ app.request.locale }}">
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>{{ project_title }}</title>
+        {% block style %}
+            <style>
+                {{ source('@styles/mail.css') }}
+            </style>
+        {% endblock %}
+    </head>
+    <body>
+    {% apply inky_to_html %}
+    {% if show_top_bar %}
+        <wrapper class="header black-background">
+            <container>
+                <row class="collapse">
+                    <columns small="6" large="6" class="black-background vertical-padding">
+                        <a href="{{ path('admin_app_newsletter_list') }}">&laquo; {{ 'mail.back_to_cms' | trans }}</a>
+                    </columns>
+                    <columns small="6" large="6" class="black-background vertical-padding">
+                        <p class="white-color text-right">[ {{ 'mail.preview_mode' | trans }} ]</p>
+                    </columns>
+                </row>
+            </container>
+        </wrapper>
+    {% endif %}
+    {% block content %}{% endblock %}
+    {% block footer %}
+        <wrapper class="light-grey-background">
+            <container>
+                <row>
+                    <columns small="12" large="12" class="vertical-padding">
+                        <p class="grey-color footer-right">
+                            <a href="https://www.amposta.cat" class="footer-pre-bottom-icon">
+                                <img class="float-right" src="{{ absolute_url(asset('build/newsletter_logo_amposta.png')) }}" alt="Ajuntament Amposta">
+                            </a>
+                            <a href="https://www.diputaciodetarragona.cat" class="footer-pre-bottom-icon">
+                                <img class="float-right" src="{{ absolute_url(asset('build/newsletter_logo_tarragona.png')) }}" alt="Diputacio Tarragona">
+                            </a>
+                            <a href="https://cultura.gencat.cat/ca/inici/" class="footer-pre-bottom-icon">
+                                <img class="float-right" src="{{ absolute_url(asset('build/newsletter_logo_gencat.png')) }}" alt="Generalitat Catalunya">
+                            </a>
+                        </p>
+                        <spacer size="13"></spacer>
+                    </columns>
+                </row>
+                {% include "mail/fragment/hr_row_divider.html.twig" %}
+                <row>
+                    <columns small="8" large="8">
+                        <p class="footer-bottom">
+                            LO PATI | C. Gran Capità, 38-40 | 43870 Amposta | <a class="lopati-footer-email" href="mailto:info@lopati.cat">info@lopati.cat</a>
+                        </p>
+                    </columns>
+                    <columns small="4" large="4" class="text-right">
+                        <a href="https://www.flickr.com/photos/lopati" class="footer-bottom-icon">
+                            <img style="width:18px;" class="float-right" src="{{ absolute_url(asset('build/newsletter_icon_fl.png')) }}" alt="Flickr">
+                        </a>
+                        <a href="https://vimeo.com/lopati" class="footer-bottom-icon">
+                            <img style="width:18px;" class="float-right" src="{{ absolute_url(asset('build/newsletter_icon_vm.png')) }}" alt="Vimeo">
+                        </a>
+                        <a href="https://www.instagram.com/centreartlopati/" class="footer-bottom-icon">
+                            <img style="width:18px;" class="float-right" src="{{ absolute_url(asset('build/newsletter_icon_it.png')) }}" alt="Instagram">
+                        </a>
+                        <a href="https://twitter.com/centreartlopati" class="footer-bottom-icon">
+                            <img style="width:18px;" class="float-right" src="{{ absolute_url(asset('build/newsletter_icon_tw.png')) }}" alt="Twitter">
+                        </a>
+                        <a href="https://www.facebook.com/centreartlopati/" class="footer-bottom-icon">
+                            <img style="width:18px;" class="float-right" src="{{ absolute_url(asset('build/newsletter_icon_fb.png')) }}" alt="Facebook">
+                        </a>
+                    </columns>
+                </row>
+                {% if show_bottom_bar %}
+                    <row>
+                        <columns small="12" large="12">
+                            <spacer size="15"></spacer>
+                            <p class="heading-date">
+                                {{ 'mail.click' | trans }} <a href="{{ url('front_app_newsletter_web_version', {id: newsletter.id}) }}">{{ 'mail.here' | trans }}</a> {{ 'mail.to_show_web_version' | trans }} | {{ 'mail.click' | trans }} <a href="%token%">{{ 'mail.here' | trans }}</a> {{ 'mail.to_unsubscribe' | trans }}
+                            </p>
+                        </columns>
+                    </row>
+                {% endif %}
+            </container>
+        </wrapper>
+    {% endblock %}
+    <div style="display:none;white-space:nowrap;font:15px courier;line-height:0;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </div>
+    {% endapply %}
+    </body>
+{% endapply %}

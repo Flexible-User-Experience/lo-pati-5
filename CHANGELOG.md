@@ -1,10 +1,19 @@
 Changelog
 =========
 
-##### Version 5.04.00 (WIP)
+##### Version 5.05.00 (WIP)
+ * fix bugs
+
+##### Version 5.04.00 (2021-08-15)
  * improve sonata admins
  * improve frontend page templates render
- * add trasnlatable fields
+ * add translatable fields
+ * add Page template types management & make frontend templates render according to it
+ * add NewsletterPost location attribute
+ * add NewsletterPost admin
+ * add SendGrid mail manager
+ * add Foundation for Emails CSS framwork
+ * add Newsletter preview, test & send actions
 
 ##### Version 5.03.00 (2021-08-04)
  * add sonata admin dependency
@@ -31,3 +40,4 @@ To Do
 
  * decide better highlighted homepage aspect ratio covers
  * fix responsiveness issues
+ * manage Sendgrid unsubscriptions callback hooks

@@ -28,7 +28,7 @@ services:
         arguments:
             - ~
             - App\Entity\Page
-            - ~
+            - App\Controller\Backend\PageAdminController
             - '@doctrine.orm.entity_manager'
             - '@security.helper'
             - '@twig'
@@ -62,12 +62,23 @@ services:
         arguments:
             - ~
             - App\Entity\Newsletter
-            - ~
+            - App\Controller\Backend\NewsletterAdminController
             - '@doctrine.orm.entity_manager'
             - '@security.helper'
             - '@twig'
         tags:
             - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Newsletter', label: 'sidebarmenu.newsletter.newsletter' }
+    admin.newsletter_post:
+        class: App\Admin\NewsletterPostAdmin
+        arguments:
+            - ~
+            - App\Entity\NewsletterPost
+            - App\Controller\Backend\NewsletterPostAdminController
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Newsletter', label: 'sidebarmenu.newsletter.newsletter_post', show_in_dashboard: false }
     # Artists
     admin.artist:
         class: App\Admin\ArtistAdmin

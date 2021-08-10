@@ -16,6 +16,8 @@ abstract class AbstractBase
     public const FORM_TYPE_DATETIME_FORMAT = 'd/M/y H:mm';
     public const DATAGRID_TYPE_DATE_FORMAT = 'd-m-Y';
     public const DATAGRID_WIDGET_DATE_FORMAT = 'dd-MM-yyyy';
+    public const DEFAULT_ID_PREFIX = '#';
+    public const DEFAULT_HIERARCHY_SEPARATOR = ' → ';
     public const DEFAULT_SEPARATOR = ' · ';
     public const DEFAULT_EMPTY_STRING = '---';
     public const DEFAULT_EMPTY_DATE = '--/--/----';
@@ -48,6 +50,11 @@ abstract class AbstractBase
     public function getId(): int
     {
         return $this->id;
+    }
+
+    public function getIdString(): string
+    {
+        return self::DEFAULT_ID_PREFIX.$this->getId();
     }
 
     public function setCreatedAt(DateTimeInterface $createdAt): self

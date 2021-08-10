@@ -65,6 +65,11 @@ class MenuLevel2 extends AbstractBase
         return $this->isList;
     }
 
+    public function isListString(): string
+    {
+        return AbstractBase::transformBooleanAsString($this->isList());
+    }
+
     public function getIsList(): bool
     {
         return $this->isList();
@@ -129,6 +134,11 @@ class MenuLevel2 extends AbstractBase
         }
 
         return $this;
+    }
+
+    public function getHierarchyName(): string
+    {
+        return $this->getMenuLevel1()->getName().AbstractBase::DEFAULT_HIERARCHY_SEPARATOR.$this->getName();
     }
 
     public function __toString(): string

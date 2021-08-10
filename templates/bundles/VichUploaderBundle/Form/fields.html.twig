@@ -1,0 +1,53 @@
+{%- block vich_file_row -%}
+    {%- set force_error = true -%}
+    {{- block('form_row') -}}
+{%- endblock -%}
+
+{%- block vich_file_widget -%}
+    <div class="vich-file">
+        {%- if errors | length > 0 -%}
+            {%- set attr = attr | merge({class: (attr.class | default('') ~ ' is-invalid') | trim}) -%}
+        {%- endif -%}
+        {{- form_widget(form.file, {attr: attr}) -}}
+        {%- if form.delete is defined -%}
+            {{- form_row(form.delete) -}}
+        {%- endif -%}
+        {%- if download_uri -%}
+            <div id="preview-{{ form.vars.id }}" data-holder="pdf" data-download="{{ asset_helper is same as(true) ? asset(download_uri) : download_uri }}">
+                <canvas style="width:100%;border:solid 1px lightgrey" id="canvas-pdf-preview-{{ form.vars.id }}">
+                    <i class="fa fa-5x fa-circle-o-notch" aria-hidden="true"></i>
+                </canvas>
+            </div>
+            <a style="margin-bottom:15px" class="btn btn-warning btn-xs" href="{{ asset_helper is same as(true) ? asset(download_uri) : download_uri }}" download>
+                <i class="fa fa-download"></i> {{ translation_domain is same as(false) ? download_label : download_label | trans({}, translation_domain) }}
+            </a>
+        {%- endif -%}
+    </div>
+{%- endblock -%}
+
+{%- block vich_image_row -%}
+    {%- set force_error = true -%}
+    {{- block('form_row') -}}
+{%- endblock -%}
+
+{%- block vich_image_widget -%}
+    <div class="vich-image">
+        {%- if errors|length > 0 -%}
+            {%- set attr = attr | merge({class: (attr.class | default('') ~ ' is-invalid') | trim}) -%}
+        {%- endif -%}
+        {{- form_widget(form.file, {attr: attr}) -}}
+        {%- if image_uri -%}
+            <a href="{{ asset_helper is same as(true) ? asset(image_uri) : image_uri }}" download>
+                <img class="img-thumbnail" src="{{ asset_helper is same as(true) ? asset(image_uri) : image_uri }}" alt="" />
+            </a>
+        {%- endif -%}
+        {%- if form.delete is defined -%}
+            {{- form_row(form.delete) -}}
+        {%- endif -%}
+        {%- if download_uri -%}
+            <a style="margin-bottom:15px" class="btn btn-warning btn-xs" href="{{ asset_helper is same as(true) ? asset(download_uri) : download_uri }}" download>
+                <i class="fa fa-download"></i> {{ translation_domain is same as(false) ? download_label : download_label | trans({}, translation_domain) }}
+            </a>
+        {%- endif -%}
+    </div>
+{%- endblock -%}

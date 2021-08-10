@@ -5,13 +5,15 @@ namespace App\Entity\Traits;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 trait Document1Trait
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\File(mimeTypes={"application/pdf"})
      */
-    private ?string $document1FileName;
+    private ?string $document1FileName = null;
 
     public function getDocument1File(): ?File
     {

@@ -20,7 +20,9 @@ Encore
         {from: './node_modules/ckeditor4/vendor', to: 'ckeditor/vendor/[path][name].[ext]'}
     ])
     // entries
-    .addEntry('app', './assets/app.js')
+    .addEntry('frontend', './assets/frontend.js')
+    .addEntry('backend', './assets/backend.js')
+    .addEntry('mail', './assets/mail.js')
     // configs
     .enableStimulusBridge('./assets/controllers.json')
     .splitEntryChunks()

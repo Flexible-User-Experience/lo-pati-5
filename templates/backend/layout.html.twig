@@ -25,3 +25,35 @@
         </p>
     </div>
 {% endblock %}
+
+{# override custom JS #}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('backend') }}
+{% endblock %}
+
+{# custom main content #}
+{% block sonata_page_content %}
+    <div class="modal fade" id="pdf-preview-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div data-controller="pdf-preview" data-action="app-pdf-preview-button-clicked@window->pdf-preview#update" data-pdf-preview-hidden-class="hidden" class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{{ 'back.action.close' | trans }}"><span aria-hidden="true">&times;</span></button>
+                    <div class="btn-group mr-3" role="group" aria-label="{{ 'back.action.pdf_preview' | trans }}">
+                        <a data-pdf-preview-target="downloader" style="margin-top:1px;" class="btn btn-warning" download><i class="fa fa-download"></i> {{ 'vich_uploader.link.download' | trans | capitalize }}</a>
+                    </div>
+                    <div class="btn-group" role="group" aria-label="{{ 'back.action.pdf_preview' | trans }}">
+                        <button data-action="pdf-preview#onPrevPage" type="button" class="btn btn-warning"><i class="fa fa-chevron-left"></i></button>
+                        <button type="button" class="btn btn-default">{{ 'back.action.page' | trans }}&nbsp;<span data-pdf-preview-target="current"></span>&nbsp;{{ 'back.action.of' | trans }}&nbsp;<span data-pdf-preview-target="total"></span></button>
+                        <button data-action="pdf-preview#onNextPage" type="button" class="btn btn-warning"><i class="fa fa-chevron-right"></i></button>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p data-pdf-preview-target="loader" class="lead text-center mb-0"><i class="fa fa-5x fa-spin fa-circle-o-notch"></i></p>
+                    <canvas style="width:100%;border: solid 1px lightgrey" class="pdf-canvas hidden" data-pdf-preview-target="canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ parent() }}
+{% endblock %}

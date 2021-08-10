@@ -108,6 +108,11 @@ class Newsletter extends AbstractBase
         return $this->type;
     }
 
+    public function getTypeTransString(): ?string
+    {
+        return NewsletterTypeEnum::getEnumArray()[$this->getType() ?? 0];
+    }
+
     public function setType(?int $type): self
     {
         $this->type = $type;
