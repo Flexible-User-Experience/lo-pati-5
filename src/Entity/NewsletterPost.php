@@ -70,6 +70,11 @@ class NewsletterPost extends AbstractBase
     private ?string $intervalDateText = null;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $location = null;
+
+    /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private ?int $type = NewsletterTypeEnum::NEWS;
@@ -166,6 +171,18 @@ class NewsletterPost extends AbstractBase
     public function setIntervalDateText(?string $intervalDateText): self
     {
         $this->intervalDateText = $intervalDateText;
+
+        return $this;
+    }
+
+    public function getLocation(): ?string
+    {
+        return $this->location;
+    }
+
+    public function setLocation(?string $location): self
+    {
+        $this->location = $location;
 
         return $this;
     }

@@ -154,6 +154,13 @@ final class NewsletterPostAdmin extends AbstractBaseAdmin
                         ],
                     ]
                 )
+                ->add(
+                    'location',
+                    TextType::class,
+                    [
+                        'required' => false,
+                    ]
+                )
                 ->end()
                 ->with('admin.common.dates', $this->getFormMdSuccessBoxArray(3))
                 ->add(
