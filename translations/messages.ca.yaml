@@ -308,6 +308,8 @@ front:
     highlighted: 'Destacat a Lo Pati'
     read_more: 'Ampliar'
     paginator_label: 'Paginador de destacats'
+  newsletter:
+    unsubscribe_success: 'La teva subscripció al newsletter ha estat eliminada correctament.'
 mail:
   back_to_cms: 'tornar al CMS'
   preview_mode: 'mode previsualització'

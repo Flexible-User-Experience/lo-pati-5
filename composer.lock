@@ -3362,12 +3362,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "272af24251bf68f7077a3ed88d87e6e90b2ebe7f"
+                "reference": "35c6dd988b8a0435ee364c23a613fa52dcff21c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/272af24251bf68f7077a3ed88d87e6e90b2ebe7f",
-                "reference": "272af24251bf68f7077a3ed88d87e6e90b2ebe7f",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/35c6dd988b8a0435ee364c23a613fa52dcff21c8",
+                "reference": "35c6dd988b8a0435ee364c23a613fa52dcff21c8",
                 "shasum": ""
             },
             "require": {
@@ -3500,7 +3500,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-08-07T14:55:34+00:00"
+            "time": "2021-08-10T02:00:52+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -3820,12 +3820,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "5e624cb430fe35931bd9cd623959d8853870413c"
+                "reference": "4d7049debb7f6639f341b63bdb7ec2660fb0dd0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/5e624cb430fe35931bd9cd623959d8853870413c",
-                "reference": "5e624cb430fe35931bd9cd623959d8853870413c",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/4d7049debb7f6639f341b63bdb7ec2660fb0dd0c",
+                "reference": "4d7049debb7f6639f341b63bdb7ec2660fb0dd0c",
                 "shasum": ""
             },
             "require": {
@@ -3939,7 +3939,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-08-09T07:18:42+00:00"
+            "time": "2021-08-09T17:25:50+00:00"
         },
         {
             "name": "sonata-project/exporter",

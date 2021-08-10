@@ -73,7 +73,7 @@ class MailManager
                     foreach ($chunk as $destEmail) {
                         $personalitzation = new SendGridEmailPersonalization();
                         $personalitzation->addTo(new SendGridEmailTo($destEmail->getEmail()));
-                        $personalitzation->addSubstitution('%token%', $this->router->generate('front_app_newsletter_unsuscribe', [
+                        $personalitzation->addSubstitution('%token%', $this->router->generate('front_app_newsletter_unsubscribe', [
                             'token' => $destEmail->getToken(),
                         ], UrlGeneratorInterface::ABSOLUTE_URL));
                         $mail->addPersonalization($personalitzation);

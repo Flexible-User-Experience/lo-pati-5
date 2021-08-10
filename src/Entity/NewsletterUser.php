@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_newsletter_user_email_index", columns={"email"})})
+ * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_newsletter_user_email_index", columns={"email"}), @ORM\UniqueConstraint(name="unique_newsletter_user_token_index", columns={"token"})})
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterUserRepository")
  * @UniqueEntity(fields={"email"}, errorPath="email")
  */
@@ -54,7 +54,7 @@ class NewsletterUser extends AbstractBase
     private string $language = LanguageEnum::CA;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private string $token;
 

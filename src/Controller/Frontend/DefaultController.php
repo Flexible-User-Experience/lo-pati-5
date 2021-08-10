@@ -5,6 +5,7 @@ namespace App\Controller\Frontend;
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
 use App\Entity\Newsletter;
+use App\Entity\NewsletterUser;
 use App\Entity\Page;
 use App\Repository\PageRepository;
 use App\Repository\SlideshowRepository;
@@ -12,9 +13,11 @@ use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DefaultController extends AbstractController
 {
@@ -59,18 +62,16 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/newsletter/unsuscribe/{token}", name="front_app_newsletter_unsuscribe")
+     * @Route("/newsletter/unsubscribe/{token}", name="front_app_newsletter_unsubscribe")
+     * @ParamConverter("token", class="App\Entity\NewsletterUser", options={"mapping": {"token": "token"}})
      */
-    public function newsletterUnsuscribeAction(string $token): Response // TODO implement method use case
+    public function newsletterUnsubscribeAction(NewsletterUser $user, TranslatorInterface $translator): RedirectResponse
     {
-        return $this->render(
-            'mail/newsletter.html.twig',
-            [
-                'newsletter' => $token,
-                'show_top_bar' => false,
-                'show_bottom_bar' => false,
-            ]
-        );
+        $this->getDoctrine()->getManager()->remove($user);
+        $this->getDoctrine()->getManager()->flush();
+        $this->addFlash('notice', $translator->trans('front.newsletter.unsubscribe_success'));
+
+        return $this->redirectToRoute('front_app_homepage');
     }
 
     /**
