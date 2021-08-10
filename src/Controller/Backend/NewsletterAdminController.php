@@ -48,9 +48,8 @@ class NewsletterAdminController extends CRUDController
             ]
         );
         $emailDestinationList = [
-            // TODO uncomment it
-//            new SendGridEmailToken($emailAddressTest1, 'fake-token-1'),
-//            new SendGridEmailToken($emailAddressTest2, 'fake-token-2'),
+            new SendGridEmailToken($emailAddressTest1, 'fake-token-1'),
+            new SendGridEmailToken($emailAddressTest2, 'fake-token-2'),
             new SendGridEmailToken($emailAddressTest3, 'fake-token-3'),
         ];
         $sendingSuccessStatus = $mm->sendGridBatchDelivery('[TEST] '.$newsletter->getSubject(), $content, $emailDestinationList);

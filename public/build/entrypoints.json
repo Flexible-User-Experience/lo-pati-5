@@ -23,8 +23,7 @@
     },
     "mail": {
       "js": [
-        "/build/runtime.js",
-        "/build/mail.js"
+        "/build/runtime.js"
       ],
       "css": [
         "/build/mail.css"

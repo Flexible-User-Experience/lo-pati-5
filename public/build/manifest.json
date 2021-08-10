@@ -3,7 +3,6 @@
   "build/frontend.js": "/build/frontend.js",
   "build/backend.js": "/build/backend.js",
   "build/mail.css": "/build/mail.css",
-  "build/mail.js": "/build/mail.js",
   "build/runtime.js": "/build/runtime.js",
   "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_da-a5f826.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_da-a5f826.js",
   "build/vendors-node_modules_symfony_webpack-encore_lib_webpack_copy-files-loader_js_context_Users_da-3ac4ab.js": "/build/vendors-node_modules_symfony_webpack-encore_lib_webpack_copy-files-loader_js_context_Users_da-3ac4ab.js",

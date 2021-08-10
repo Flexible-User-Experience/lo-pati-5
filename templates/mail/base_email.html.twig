@@ -1,4 +1,4 @@
-{% apply inky_to_html %}
+{% apply inline_css %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="{{ app.request.locale }}" xml:lang="{{ app.request.locale }}">
     <head>
@@ -6,10 +6,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>{{ project_title }}</title>
         {% block style %}
-            {{ encore_entry_link_tags('mail') }}
+            <style>
+                {{ source('@styles/mail.css') }}
+            </style>
         {% endblock %}
     </head>
     <body>
+    {% apply inky_to_html %}
     {% if show_top_bar %}
         <wrapper class="header black-background">
             <container>
@@ -83,5 +86,6 @@
         </wrapper>
     {% endblock %}
     <div style="display:none;white-space:nowrap;font:15px courier;line-height:0;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </div>
+    {% endapply %}
     </body>
 {% endapply %}
