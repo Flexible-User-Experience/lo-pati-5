@@ -46,12 +46,27 @@ class DefaultController extends AbstractController
      * @Route("/newsletter/{id}", name="front_app_newsletter_web_version")
      * @ParamConverter("id", class="App\Entity\Newsletter", options={"mapping": {"id": "id"}})
      */
-    public function newsletterWebAction(Newsletter $newsletter)
+    public function newsletterWebAction(Newsletter $newsletter): Response
     {
         return $this->render(
             'mail/newsletter_preview.html.twig',
             [
                 'newsletter' => $newsletter,
+                'show_top_bar' => false,
+                'show_bottom_bar' => false,
+            ]
+        );
+    }
+
+    /**
+     * @Route("/newsletter/unsuscribe/{token}", name="front_app_newsletter_unsuscribe")
+     */
+    public function newsletterUnsuscribeAction(string $token): Response // TODO
+    {
+        return $this->render(
+            'mail/newsletter_preview.html.twig',
+            [
+                'newsletter' => $token,
                 'show_top_bar' => false,
                 'show_bottom_bar' => false,
             ]

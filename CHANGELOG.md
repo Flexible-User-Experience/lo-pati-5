@@ -33,3 +33,4 @@ To Do
 
  * decide better highlighted homepage aspect ratio covers
  * fix responsiveness issues
+ * manage Sendgrid unsubscriptions callback hooks

@@ -34,6 +34,7 @@ final class NewsletterAdmin extends AbstractBaseAdmin
         $collection
             ->add('preview', $this->getRouterIdParameter().'/preview')
             ->add('test', $this->getRouterIdParameter().'/test')
+            ->add('send', $this->getRouterIdParameter().'/send')
             ->remove('show')
             ->remove('batch')
         ;
@@ -153,6 +154,9 @@ final class NewsletterAdmin extends AbstractBaseAdmin
                         ],
                         'test' => [
                             'template' => 'backend/actions/list__action_newsletter_send_test_email_button.html.twig',
+                        ],
+                        'send' => [
+                            'template' => 'backend/actions/list__action_newsletter_send_email_button.html.twig',
                         ],
                         'edit' => [],
                         'delete' => [],

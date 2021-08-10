@@ -271,8 +271,9 @@ back:
     developed_by: 'Desarrollado por'
   action:
     edit: 'Editar'
-    test: 'Enviar una prueba'
-    preview: 'Previsualita'
+    send_newsletter: 'Enviar newsletter'
+    test_newsletter: 'Enviar una prueba'
+    preview_newsletter: 'Previsualita'
     duplicate: 'Duplicar'
     duplicated: 'duplicado'
     pdf_preview: 'Previsualització PDF'

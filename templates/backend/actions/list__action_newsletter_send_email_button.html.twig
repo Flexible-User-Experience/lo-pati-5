@@ -1,0 +1,19 @@
+{% if admin.hasAccess('edit', object) and admin.hasRoute('test') and object.status == constant('App\\Enum\\NewsletterStatusEnum::WAITING') and object.tested %}
+    {% set button_content = sonata_config.getOption('list_action_button_content') %}
+    <a
+            href="{{ admin.generateObjectUrl('send', object, actions.link_parameters | default([])) }}"
+            class="btn btn-sm btn-default edit_link"
+            title="{{ 'back.action.send_newsletter' | trans({}, 'messages') }}"
+    >
+        {% if button_content == 'icon' or button_content == 'all' %}
+            <i class="far fa-envelope" aria-hidden="true"></i>
+        {% endif %}
+        {% if button_content == 'text' or button_content == 'all' %}
+            {{ 'back.action.send_newsletter' | trans({}, 'messages') }}
+        {% else %}
+            <span class="sr-only">
+                {{ 'back.action.send_newsletter' | trans({}, 'messages') }}
+            </span>
+        {% endif %}
+    </a>
+{% endif %}

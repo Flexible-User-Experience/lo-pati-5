@@ -9,6 +9,7 @@ parameters:
     developer_name:             '%env(string:DEVELOPER_NAME)%'
     developer_delivery_address: '%env(string:DEV_DELIVERY_ADDRESS)%'
     developer_url:              '%env(string:DEVELOPER_URL)%'
+    send_grid_api_key:          '%env(string:SEND_GRID_API_KEY)%'
     customer_name:              '%env(string:CUSTOMER_NAME)%'
     customer_email:             '%env(string:CUSTOMER_EMAIL)%'
     customer_url:               '%env(string:CUSTOMER_URL)%'
@@ -21,6 +22,7 @@ services:
         autowire:      true
         autoconfigure: true
         bind:
+            $sendGridApiKey: '%send_grid_api_key%'
             $customerName: '%project_title%'
             $customerEmail: '%customer_email%'
             $emailAddressTest1: '%email_address_test_1%'

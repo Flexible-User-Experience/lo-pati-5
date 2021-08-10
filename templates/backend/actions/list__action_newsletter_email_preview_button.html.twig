@@ -3,16 +3,16 @@
     <a
             href="{{ admin.generateObjectUrl('preview', object, actions.link_parameters | default([])) }}"
             class="btn btn-sm btn-default edit_link"
-            title="{{ 'back.action.preview' | trans({}, 'messages') }}"
+            title="{{ 'back.action.preview_newsletter' | trans({}, 'messages') }}"
     >
         {% if button_content == 'icon' or button_content == 'all' %}
             <i class="far fa-eye" aria-hidden="true"></i>
         {% endif %}
         {% if button_content == 'text' or button_content == 'all' %}
-            {{ 'back.action.preview' | trans({}, 'messages') }}
+            {{ 'back.action.preview_newsletter' | trans({}, 'messages') }}
         {% else %}
             <span class="sr-only">
-                {{ 'back.action.preview' | trans({}, 'messages') }}
+                {{ 'back.action.preview_newsletter' | trans({}, 'messages') }}
             </span>
         {% endif %}
     </a>

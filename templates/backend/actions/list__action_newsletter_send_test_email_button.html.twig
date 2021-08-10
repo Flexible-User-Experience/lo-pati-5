@@ -3,16 +3,16 @@
     <a
             href="{{ admin.generateObjectUrl('test', object, actions.link_parameters | default([])) }}"
             class="btn btn-sm btn-default edit_link"
-            title="{{ 'back.action.test' | trans({}, 'messages') }}"
+            title="{{ 'back.action.test_newsletter' | trans({}, 'messages') }}"
     >
         {% if button_content == 'icon' or button_content == 'all' %}
             <i class="far fa-check" aria-hidden="true"></i>
         {% endif %}
         {% if button_content == 'text' or button_content == 'all' %}
-            {{ 'back.action.test' | trans({}, 'messages') }}
+            {{ 'back.action.test_newsletter' | trans({}, 'messages') }}
         {% else %}
             <span class="sr-only">
-                {{ 'back.action.test' | trans({}, 'messages') }}
+                {{ 'back.action.test_newsletter' | trans({}, 'messages') }}
             </span>
         {% endif %}
     </a>

@@ -304,6 +304,12 @@
     "sebastian/version": {
         "version": "3.0.2"
     },
+    "sendgrid/php-http-client": {
+        "version": "3.14.0"
+    },
+    "sendgrid/sendgrid": {
+        "version": "7.9.2"
+    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -359,6 +365,9 @@
     },
     "sonata-project/twig-extensions": {
         "version": "1.7.0"
+    },
+    "starkbank/ecdsa": {
+        "version": "0.0.5"
     },
     "stof/doctrine-extensions-bundle": {
         "version": "1.2",
