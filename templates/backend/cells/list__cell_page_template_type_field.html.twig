@@ -1,0 +1,5 @@
+{% extends "@SonataAdmin/CRUD/base_list_field.html.twig" %}
+
+{% block field %}
+    {{ object | draw_page_template_type | raw }}
+{% endblock %}

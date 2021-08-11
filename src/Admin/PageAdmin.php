@@ -179,11 +179,12 @@ final class PageAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'templateType',
-                FieldDescriptionInterface::TYPE_CHOICE,
+                null,
                 [
                     'header_class' => 'text-center',
                     'row_align' => 'center',
-                    'editable' => true,
+                    'template' => 'backend/cells/list__cell_page_template_type_field.html.twig',
+                    'editable' => false,
                 ]
             )
             ->add(
@@ -254,7 +255,7 @@ final class PageAdmin extends AbstractBaseAdmin
                 DatePickerType::class,
                 [
                     'format' => AbstractBase::FORM_TYPE_DATE_FORMAT,
-                    'required' => false,
+                    'required' => true,
                 ]
             )
             ->add(

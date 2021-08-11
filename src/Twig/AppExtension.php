@@ -4,7 +4,9 @@ namespace App\Twig;
 
 use App\Entity\AbstractBase;
 use App\Entity\Newsletter;
+use App\Entity\Page;
 use App\Enum\NewsletterStatusEnum;
+use App\Enum\PageTemplateTypeEnum;
 use ReflectionClass;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
@@ -37,10 +39,16 @@ class AppExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
+            new TwigFilter('draw_page_template_type', [$this, 'drawPageTemplateType']),
             new TwigFilter('draw_newsletter_status', [$this, 'drawNewsletterStatusHtmlSpan']),
             new TwigFilter('i', [$this, 'integerNumberFormattedString']),
             new TwigFilter('f', [$this, 'floatNumberFormattedString']),
         ];
+    }
+
+    public function drawPageTemplateType(Page $page): string
+    {
+        return '<span class="label label-default">'.$this->ts->trans(PageTemplateTypeEnum::getEnumArray()[$page->getTemplateType()]).'</span>';
     }
 
     public function drawNewsletterStatusHtmlSpan(Newsletter $newsletter): string
