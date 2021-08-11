@@ -233,7 +233,7 @@ final class PageAdmin extends AbstractBaseAdmin
                     'required' => false,
                     'help' => 'form.help_short_description_length',
                     'attr' => [
-                        'rows' => 8,
+                        'rows' => 5,
                         'style' => 'resize:vertical',
                     ],
                 ]
@@ -270,6 +270,7 @@ final class PageAdmin extends AbstractBaseAdmin
                 DatePickerType::class,
                 [
                     'format' => AbstractBase::FORM_TYPE_DATE_FORMAT,
+                    'help' => 'form.help_expiration_date',
                     'required' => false,
                 ]
             )
@@ -345,6 +346,59 @@ final class PageAdmin extends AbstractBaseAdmin
                 CheckboxType::class,
                 [
                     'label' => 'form.label_active_f',
+                    'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.links', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'links',
+                CKEditorType::class,
+                [
+                    'required' => false,
+                    'config_name' => 'app_custom_half_height_config',
+                    'attr' => [
+                        'rows' => 5,
+                    ],
+                ]
+            )
+            ->add(
+                'urlVimeo',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'urlFlickr',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.calendar', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'startDate',
+                DatePickerType::class,
+                [
+                    'format' => AbstractBase::FORM_TYPE_DATE_FORMAT,
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'endDate',
+                DatePickerType::class,
+                [
+                    'format' => AbstractBase::FORM_TYPE_DATE_FORMAT,
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'alwaysShowOnCalendar',
+                CheckboxType::class,
+                [
+                    'help' => 'form.help_always_show_on_calendar',
                     'required' => false,
                 ]
             )

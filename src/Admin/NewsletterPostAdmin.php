@@ -150,16 +150,9 @@ final class NewsletterPostAdmin extends AbstractBaseAdmin
                         'label' => 'form.label_summary',
                         'required' => false,
                         'attr' => [
-                            'rows' => 12,
+                            'rows' => 5,
                             'style' => 'resize:vertical',
                         ],
-                    ]
-                )
-                ->add(
-                    'location',
-                    TextType::class,
-                    [
-                        'required' => false,
                     ]
                 )
                 ->end()
@@ -196,6 +189,13 @@ final class NewsletterPostAdmin extends AbstractBaseAdmin
                     ChoiceType::class,
                     [
                         'choices' => NewsletterTypeEnum::getReversedEnumArray(),
+                        'required' => false,
+                    ]
+                )
+                ->add(
+                    'location',
+                    TextType::class,
+                    [
                         'required' => false,
                     ]
                 )
