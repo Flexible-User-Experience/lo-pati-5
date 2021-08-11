@@ -249,6 +249,8 @@ form:
   label_begin_send: 'Enviado el'
   label_active: 'Activo'
   label_active_f: 'Activa'
+  label_password: 'Contraseña'
+  label_login: 'Iniciar sessión'
   group_admin_common_general: 'General'
   group_admin_common_controls: 'Controles'
   group_admin_common_images: 'Imagenes'
