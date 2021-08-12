@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
+use App\Enum\UserRolesEnum;
 use DateTimeInterface;
-use Doctrine\DBAL\Types\JsonType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -30,7 +30,7 @@ class User extends AbstractBase implements UserInterface
     /**
      * @ORM\Column(type="json", nullable=false)
      */
-    private JsonType $roles;
+    private array $roles = [];
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -61,19 +61,26 @@ class User extends AbstractBase implements UserInterface
         return $this;
     }
 
-    public function addRoles(string $role): self
+    public function getRoles(): array
     {
+        $roles = $this->roles;
+        $roles[] = UserRolesEnum::ROLE_USER;
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
         return $this;
     }
 
-    public function getRoles(): JsonType
+    public function addRole(string $role): self
     {
-        return $this->roles;
-    }
-
-    public function setRoles(JsonType $roles): self
-    {
-        $this->roles = $roles;
+        $roles = $this->roles;
+        $roles[] = $role;
+        $this->roles = array_unique($roles);
 
         return $this;
     }

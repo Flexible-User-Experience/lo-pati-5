@@ -13,6 +13,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\Security;
 
 abstract class AbstractBaseCommand extends Command
@@ -25,14 +26,16 @@ abstract class AbstractBaseCommand extends Command
     protected Security $ss;
     protected EntityManagerInterface $em;
     protected Filesystem $fss;
+    protected UserPasswordHasherInterface $phs;
     protected ?ConsoleCustomStyle $io = null;
 
-    public function __construct(Security $ss, EntityManagerInterface $em, Filesystem $fss)
+    public function __construct(Security $ss, EntityManagerInterface $em, Filesystem $fss, UserPasswordHasherInterface $phs)
     {
         parent::__construct();
         $this->ss = $ss;
         $this->em = $em;
         $this->fss = $fss;
+        $this->phs = $phs;
     }
 
     protected function configure(): void

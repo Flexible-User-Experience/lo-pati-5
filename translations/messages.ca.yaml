@@ -409,3 +409,7 @@ enum:
     wating: 'Pendent'
     sending: 'Enviant'
     sended: 'Enviat'
+  user_roles:
+    user: 'Usuari'
+    admin: 'Administrador'
+    super_admin: 'Superadministrador'

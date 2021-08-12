@@ -3,7 +3,7 @@
 namespace App\Command;
 
 use App\Entity\User;
-use Exception;
+use App\Enum\UserRolesEnum;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -25,58 +25,29 @@ final class UserAdminCreateCommand extends AbstractBaseCommand
         ;
     }
 
-    /**
-     * @throws Exception
-     */
-    protected function interact(InputInterface $input, OutputInterface $output): void
-    {
-        if (!$input->getArgument('email')) {
-            $email = $this->getHelper('dialog')->askAndValidate(
-                $output,
-                'Please choose an email:',
-                function ($email) {
-                    if (empty($email)) {
-                        throw new Exception('Email can not be empty');
-                    }
-
-                    return $email;
-                }
-            );
-            $input->setArgument('email', $email);
-        }
-        if (!$input->getArgument('password')) {
-            $password = $this->getHelper('dialog')->askAndValidate(
-                $output,
-                'Please choose a password:',
-                function ($password) {
-                    if (empty($password)) {
-                        throw new Exception('Password can not be empty');
-                    }
-
-                    return $password;
-                }
-            );
-            $input->setArgument('password', $password);
-        }
-    }
-
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $email = $input->getArgument('email');
         $password = $input->getArgument('password');
         $superadmin = $input->getOption('super-admin');
-        $user = new User();
+        $ur = $this->em->getRepository(User::class);
+        $user = $ur->findOneBy([
+            'email' => $email,
+        ]);
+        if (!$user) {
+            $user = new User();
+        }
         $user
             ->setEmail($email)
-            ->addRole('ROLE_USER')
-            ->addRole('ROLE_ADMIN')
+            ->setPassword($this->phs->hashPassword($user, $password))
+            ->addRole(UserRolesEnum::ROLE_USER)
+            ->addRole(UserRolesEnum::ROLE_ADMIN)
         ;
         if ($superadmin) {
-            $user->addRole('ROLE_SUPER_ADMIN');
+            $user->addRole(UserRolesEnum::ROLE_SUPER_ADMIN);
         }
-
-//        $manipulator = $this->getContainer()->get('fos_user.util.user_manipulator');
-//        $manipulator->create($username, $password, $email, !$inactive, $superadmin);
+        $this->em->persist($user);
+        $this->em->flush();
         $output->writeln(sprintf('Created user <comment>%s</comment>', $email));
 
         return Command::SUCCESS;
