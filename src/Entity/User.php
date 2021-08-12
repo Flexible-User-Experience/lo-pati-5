@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Enum\UserRolesEnum;
+use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -37,6 +38,13 @@ class User extends AbstractBase implements UserInterface
      */
     private ?DateTimeInterface $lastLogin = null;
 
+    /**
+     * @ORM\Column(type="integer", nullable=false, options={"unsigned":true, "default": 0})
+     */
+    private int $loginCount = 0;
+
+    private ?string $plainPassword = null;
+
     public function getEmail(): string
     {
         return $this->email;
@@ -57,6 +65,19 @@ class User extends AbstractBase implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(?string $plainPassword): self
+    {
+        $this->setUpdatedAt(new DateTimeImmutable());
+        $this->plainPassword = $plainPassword;
 
         return $this;
     }
@@ -97,14 +118,35 @@ class User extends AbstractBase implements UserInterface
         return $this;
     }
 
-    public function getSalt()
+    public function getLoginCount(): int
     {
-        // TODO: Implement getSalt() method.
+        return $this->loginCount;
     }
 
-    public function eraseCredentials()
+    public function addLoginCount(): self
     {
-        // TODO: Implement eraseCredentials() method.
+        ++$this->loginCount;
+
+        return $this;
+    }
+
+    public function setLoginCount(int $loginCount): self
+    {
+        $this->loginCount = $loginCount;
+
+        return $this;
+    }
+
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    public function eraseCredentials(): self
+    {
+        $this->plainPassword = null;
+
+        return $this;
     }
 
     public function getUsername(): string
@@ -112,8 +154,8 @@ class User extends AbstractBase implements UserInterface
         return $this->getEmail();
     }
 
-    public function __call($name, $arguments)
+    public function __toString(): string
     {
-        // TODO: Implement @method string getUserIdentifier()
+        return $this->id ? self::DEFAULT_ID_PREFIX.$this->getId().self::DEFAULT_SEPARATOR.$this->getEmail() : self::DEFAULT_EMPTY_STRING;
     }
 }

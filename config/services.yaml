@@ -46,3 +46,20 @@ services:
         factory: [ '@App\Menu\Frontend\LanguageBuilder', createLanguageMenu ]
         tags:
             - { name: knp_menu.menu, alias: 'frontend_language' }
+    app.backend_top_rigth_nav_menu:
+        class: Knp\Menu\MenuItem
+        factory: [ '@app.backend_top_rigth_nav_menu_builder', createRigthTopNavMenu ]
+        tags:
+            - { name: knp_menu.menu, alias: backend_top_rigth_nav_menu }
+    app.backend_top_rigth_nav_menu_builder:
+        class: App\Menu\Backend\TopRigthNavMenuBuilder
+        arguments:
+            - '@knp_menu.factory'
+            - '@security.helper'
+    # event listeners
+    app.user_success_login_event_listener:
+        class: App\Event\Listener\UserSuccessLoginEventListener
+        arguments:
+            - '@doctrine.orm.entity_manager'
+        tags:
+            - { name: kernel.event_listener, event: app.user_success_login_event, method: onUserSuccessLogin, priority: 1 }
