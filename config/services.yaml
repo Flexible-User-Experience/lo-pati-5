@@ -63,3 +63,10 @@ services:
             - '@doctrine.orm.entity_manager'
         tags:
             - { name: kernel.event_listener, event: app.user_success_login_event, method: onUserSuccessLogin, priority: 1 }
+    app.doctrine_user_event:
+        class: App\Event\Listener\DoctrineUserEventListener
+        arguments:
+            - '@security.user_password_hasher'
+        tags:
+            - { name: doctrine.orm.entity_listener, event: prePersist, entity: App\Entity\User, priority: 2 }
+            - { name: doctrine.orm.entity_listener, event: preUpdate, entity: App\Entity\User, priority: 2 }

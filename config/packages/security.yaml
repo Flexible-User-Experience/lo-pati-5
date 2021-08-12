@@ -53,3 +53,9 @@ security:
         - { path: ^/admin/logout$, roles: PUBLIC_ACCESS }
         - { path: ^/admin/, roles: ROLE_ADMIN }
         - { path: ^/.*, roles: PUBLIC_ACCESS }
+
+when@test:
+    security:
+        firewalls:
+            admin:
+                http_basic: ~

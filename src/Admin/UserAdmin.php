@@ -4,12 +4,15 @@ namespace App\Admin;
 
 use App\Entity\AbstractBase;
 use App\Enum\SortOrderTypeEnum;
+use App\Enum\UserRolesEnum;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class UserAdmin extends AbstractBaseAdmin
@@ -97,13 +100,30 @@ final class UserAdmin extends AbstractBaseAdmin
             ->with('admin.common.general', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'email',
-                TextType::class,
+                EmailType::class,
                 [
                     'required' => true,
                 ]
             )
+            ->add(
+                'roles',
+                ChoiceType::class,
+                [
+                    'choices' => UserRolesEnum::getReversedEnumArray(),
+                    'multiple' => true,
+                    'expanded' => true,
+                    'required' => false,
+                ]
+            )
             ->end()
             ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
+            ->add(
+                'plainPassword',
+                TextType::class,
+                [
+                    'required' => $this->isFormToCreateNewRecord(),
+                ]
+            )
             ->add(
                 'active',
                 CheckboxType::class,
@@ -120,6 +140,9 @@ final class UserAdmin extends AbstractBaseAdmin
         return [
             'id',
             'email',
+            'roles',
+            'lastLoginString',
+            'loginCount',
             'activeString',
             'createdAtString',
             'updatedAtString',

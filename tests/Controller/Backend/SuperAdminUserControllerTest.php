@@ -2,17 +2,25 @@
 
 namespace App\Tests\Controller\Backend;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class BaseControllerTest extends WebTestCase
+class SuperAdminUserControllerTest extends WebTestCase
 {
+    private KernelBrowser $client;
+
+    public function setUp(): void
+    {
+        $this->client = $this->getSuperAdminAuthenticatedClient();
+    }
+
     /**
      * @dataProvider provideUrls
      */
     public function testHomepage(string $url): void
     {
-        $client = WebTestCase::createClient();
-        $client->request('GET', $url);
+
+        $this->client->request('GET', $url);
         self::assertResponseIsSuccessful();
     }
 
@@ -53,6 +61,9 @@ class BaseControllerTest extends WebTestCase
             ['/admin/app/archive/list'],
             ['/admin/app/archive/create'],
             ['/admin/app/archive/1/edit'],
+            ['/admin/app/user/list'],
+            ['/admin/app/user/create'],
+            ['/admin/app/user/1/edit'],
         ];
     }
 
@@ -61,8 +72,7 @@ class BaseControllerTest extends WebTestCase
      */
     public function testNotFoundPages(string $url): void
     {
-        $client = WebTestCase::createClient();
-        $client->request('GET', $url);
+        $this->client->request('GET', $url);
         self::assertResponseStatusCodeSame(404);
     }
 
@@ -90,6 +100,17 @@ class BaseControllerTest extends WebTestCase
             ['/admin/app/archive/9/edit'],
             ['/admin/app/archive/1/show'],
             ['/admin/app/archive/1/delete'],
+            ['/admin/app/user/9/edit'],
+            ['/admin/app/user/1/show'],
+            ['/admin/app/user/1/delete'],
         ];
+    }
+
+    private function getSuperAdminAuthenticatedClient(): KernelBrowser
+    {
+        return WebTestCase::createClient([], [
+            'PHP_AUTH_USER' => 'user2@user.com',
+            'PHP_AUTH_PW'   => 'password2',
+        ]);
     }
 }
