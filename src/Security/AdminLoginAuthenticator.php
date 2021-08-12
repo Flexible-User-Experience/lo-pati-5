@@ -2,7 +2,9 @@
 
 namespace App\Security;
 
+use App\Event\UserSuccessLoginEvent;
 use App\Form\Type\AdminLoginFormType;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,12 +22,14 @@ class AdminLoginAuthenticator extends AbstractFormLoginAuthenticator implements 
     private FormFactoryInterface $formFactory;
     private RouterInterface $router;
     private UserPasswordHasherInterface $passwordHasher;
+    private EventDispatcherInterface $eventsDispatcher;
 
-    public function __construct(FormFactoryInterface $formFactory, RouterInterface $router, UserPasswordHasherInterface $passwordHasher)
+    public function __construct(FormFactoryInterface $formFactory, RouterInterface $router, UserPasswordHasherInterface $passwordHasher, EventDispatcherInterface $eventsDispatcher)
     {
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->passwordHasher = $passwordHasher;
+        $this->eventsDispatcher = $eventsDispatcher;
     }
 
     protected function getLoginUrl(): string
@@ -63,6 +67,9 @@ class AdminLoginAuthenticator extends AbstractFormLoginAuthenticator implements 
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey): RedirectResponse
     {
+        $event = new UserSuccessLoginEvent($token->getUser());
+        $this->eventsDispatcher->dispatch($event, UserSuccessLoginEvent::NAME);
+
         return new RedirectResponse($this->router->generate('sonata_admin_dashboard'));
     }
 }
