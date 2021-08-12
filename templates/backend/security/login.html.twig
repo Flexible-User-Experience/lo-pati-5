@@ -9,11 +9,11 @@
 {% block body_attributes %}class="sonata-bc login-page"{% endblock %}
 
 {% block sonata_wrapper %}
-    <div class="login-box">
-        <div class="center-block" style="margin-bottom:0;padding:10px;background-color:#F92178;">
-            <img src="{{ asset('build/logo_lopati_fuchsia.jpg') }}" alt="{{ project_title }}" class="img-responsive">
+    <div class="login-box" style="max-width:400px;width:90%">
+        <div class="center-block" style="margin-bottom:0;padding:30px;background-color:#15181D;">
+            <img src="{{ asset('build/lo_pati_centre_art_logo.svg') }}" alt="{{ project_title }}" class="img-responsive">
         </div>
-        <div class="login-box-body">
+        <div class="login-box-body" style="padding:30px 20px">
             {% block sonata_user_login_form %}
                 {% block sonata_user_login_error %}
                     {% if error %}
@@ -27,6 +27,7 @@
                         <div class="alert alert-{{ label }}">{{ flash }}</div>
                     {% endfor %}
                 {% endfor %}
+                <p class="login-box-msg" style="padding: 0 0 20px 0;text-align:left;"><strong>{{ 'back.login.welcome' | trans }}</strong></p>
                 <form action="{{ path('admin_app_login') }}" method="post" role="form">
                     {{ form_row(form._token) }}
                     <div class="form-group has-feedback">
@@ -38,15 +39,20 @@
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="row">
-                        <div class="col-xs-5 col-xs-offset-7">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'form.label_login' | trans }}</button>
+                        <div class="col-xs-12">
+                            <button type="submit" class="btn btn-primary btn-flat pull-right">{{ 'form.label_login' | trans }}</button>
                         </div>
                     </div>
                 </form>
             {% endblock %}
         </div>
-        <div class="login-box-bottom">
+        <div class="login-box-bottom" style="margin-top:5px">
             <span>{{ admin_tag_version }}</span>
         </div>
     </div>
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <p class="navbar-text"><i class="far fa-copyright"></i> {{ 'now' | date('Y') }} <a href="{{ customer_url }}" target="_blank">{{ customer_name }}</a></p>
+        </div>
+    </nav>
 {% endblock sonata_wrapper %}

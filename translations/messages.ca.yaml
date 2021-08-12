@@ -342,6 +342,8 @@ export:
   label_end_date: 'Data fi'
   label_interval_date_text: 'Interval o data en forma de text'
 back:
+  login:
+    welcome: 'Gestor de continguts pàgina web'
   layout:
     developed_by: 'Desenvolupat per'
   action:

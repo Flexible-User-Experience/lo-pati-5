@@ -342,6 +342,8 @@ export:
   label_end_date: 'Fecha fin'
   label_interval_date_text: 'Intervalo de fecha en formato de texto'
 back:
+  login:
+    welcome: 'Gestor de contenidos página web'
   layout:
     developed_by: 'Desarrollado por'
   action:

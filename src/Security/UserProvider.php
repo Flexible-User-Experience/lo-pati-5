@@ -28,7 +28,7 @@ final class UserProvider implements UserProviderInterface
     public function refreshUser(UserInterface $user): User
     {
         assert($user instanceof User);
-        if (null === $reloadedUser = $this->findOneUserByFilterOptions(['id' => $user->getId()])) {
+        if (null === $reloadedUser = $this->findOneUserByFilterOptions(['id' => $user->getId(), 'active' => true])) {
             throw new UserNotFoundException(sprintf('User with ID "%s" could not be reloaded.', $user->getId()));
         }
 
@@ -42,7 +42,10 @@ final class UserProvider implements UserProviderInterface
 
     public function loadUserByUsername(string $username): User
     {
-        $user = $this->findOneUserByFilterOptions(['email' => $username]);
+        $user = $this->findOneUserByFilterOptions([
+            'email' => $username,
+            'active' => true,
+        ]);
         if (!$user) {
             throw new UserNotFoundException(sprintf('User with "%s" email does not exist.', $username));
         }

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\DBAL\Types\JsonType;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -31,6 +32,11 @@ class User extends AbstractBase implements UserInterface
      */
     private JsonType $roles;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?DateTimeInterface $lastLogin = null;
+
     public function getEmail(): string
     {
         return $this->email;
@@ -55,6 +61,11 @@ class User extends AbstractBase implements UserInterface
         return $this;
     }
 
+    public function addRoles(string $role): self
+    {
+        return $this;
+    }
+
     public function getRoles(): JsonType
     {
         return $this->roles;
@@ -63,6 +74,18 @@ class User extends AbstractBase implements UserInterface
     public function setRoles(JsonType $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
+    }
+
+    public function getLastLogin(): ?DateTimeInterface
+    {
+        return $this->lastLogin;
+    }
+
+    public function setLastLogin(?DateTimeInterface $lastLogin): self
+    {
+        $this->lastLogin = $lastLogin;
 
         return $this;
     }
