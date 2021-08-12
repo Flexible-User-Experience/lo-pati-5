@@ -12,6 +12,10 @@ sonata_admin:
         lock_protection:            true
     templates:
         layout:    'backend/layout.html.twig'
+    security:
+        handler:          sonata.admin.security.handler.role
+        role_admin:       'ROLE_ADMIN'
+        role_super_admin: 'ROLE_SUPER_ADMIN'
     dashboard:
         groups:
             Menu:
@@ -44,6 +48,12 @@ sonata_admin:
                 label_catalogue: 'messages'
                 roles:           [ 'ROLE_ADMIN' ]
                 keep_open:       false
+            User:
+                icon:            '<i class="fas fa-cogs"></i>'
+                label:           'sidebarmenu.settings.title'
+                label_catalogue: 'messages'
+                roles:           [ 'ROLE_SUPER_ADMIN' ]
+                keep_open:       false
         blocks:
             -
                 position: top
@@ -53,7 +63,7 @@ sonata_admin:
                 position: left
                 type: sonata.admin.block.admin_list
                 settings:
-                    groups: [ 'Menu', 'Newsletter' ]
+                    groups: [ 'Menu', 'Newsletter', 'User' ]
             -
                 position: right
                 type: sonata.admin.block.admin_list

@@ -20,11 +20,6 @@ final class UserProvider implements UserProviderInterface
         $this->em = $em;
     }
 
-    public function __call($name, $arguments)
-    {
-        // TODO: Implement @method UserInterface loadUserByIdentifier(string $identifier)
-    }
-
     public function refreshUser(UserInterface $user): User
     {
         assert($user instanceof User);

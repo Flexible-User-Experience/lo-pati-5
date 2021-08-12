@@ -18,6 +18,9 @@ sidebarmenu:
   archive:
     title: 'Archivos'
     archive: 'Año'
+  settings:
+    title: 'Configuración'
+    user: 'Usuario'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivel'
   link_menu_level1_create: 'Crear'

@@ -1,9 +1,26 @@
 security:
-    # https://symfony.com/doc/current/security/experimental_authenticators.html
     enable_authenticator_manager: true
     role_hierarchy:
-        ROLE_ADMIN:       [ ROLE_USER, ROLE_SONATA_ADMIN ]
-        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
+        ROLE_SONATA_ADMIN:
+            - ROLE_USER
+            - ROLE_ADMIN_MENU_LEVEL1_ALL
+            - ROLE_ADMIN_MENU_LEVEL2_ALL
+            - ROLE_ADMIN_PAGE_ALL
+            - ROLE_ADMIN_NEWSLETTER_ALL
+            - ROLE_ADMIN_NEWSLETTER_GROUP_ALL
+            - ROLE_ADMIN_NEWSLETTER_POST_ALL
+            - ROLE_ADMIN_NEWSLETTER_USER_ALL
+            - ROLE_ADMIN_ARTIST_ALL
+            - ROLE_ADMIN_ARCHIVE_ALL
+        ROLE_SONATA_SUPER_ADMIN:
+            - ROLE_SONATA_ADMIN
+            - ROLE_ADMIN_USER_ALL
+        ROLE_ADMIN:
+            - ROLE_SONATA_ADMIN
+        ROLE_SUPER_ADMIN:
+            - ROLE_ADMIN
+            - ROLE_SONATA_SUPER_ADMIN
+            - ROLE_ALLOWED_TO_SWITCH
     encoders:
         App\Entity\User: auto
     providers:
@@ -34,5 +51,5 @@ security:
     access_control:
         - { path: ^/admin/login$, roles: PUBLIC_ACCESS }
         - { path: ^/admin/logout$, roles: PUBLIC_ACCESS }
-        - { path: ^/admin/, roles: [ ROLE_ADMIN, ROLE_SONATA_ADMIN ] }
+        - { path: ^/admin/, roles: ROLE_ADMIN }
         - { path: ^/.*, roles: PUBLIC_ACCESS }

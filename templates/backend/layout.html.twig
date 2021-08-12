@@ -5,7 +5,7 @@
 
 {# custom logo #}
 {% block logo %}
-    <a class="logo" href="{{ path('sonata_admin_dashboard') }}" style="background-color:#F92178;">
+    <a class="logo" href="{{ path('sonata_admin_dashboard') }}" style="background-color:#F92178;border-right: solid 1px #F92178;">
         <img src="{{ asset(sonata_config.logo) }}" alt="{{ sonata_config.title }} logo" class="img-responsive" style="margin-top:-2px;padding:0;max-width:100px;">
         <span>{{ project_title }}</span>
     </a>
