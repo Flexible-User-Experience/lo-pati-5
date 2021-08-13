@@ -35,24 +35,27 @@ final class ImportCsvNewsletterPostCommand extends AbstractBaseCommand
         $newRecords = 0;
         $errors = 0;
         while (false !== ($data = $this->readRow($fr))) {
-            if (count($data) >= 15) {
+            if (count($data) >= 16) {
                 if ($input->getOption('show-data')) {
                     $output->writeln(implode(self::CSV_DELIMITER, $data));
                 }
-                $serachedNewsletterSubject = self::sanitizeDoubleQuoteEscapeChar($this->readColumn(14, $data));
+                $serachedNewsletterOldDatabaseVersionId = (int) $this->readColumn(15, $data);
                 $newsletter = $nr->findOneBy([
-                    'subject' => $serachedNewsletterSubject,
+                    'oldDatabaseVersionId' => $serachedNewsletterOldDatabaseVersionId,
                 ]);
                 if ($newsletter) {
-                    $serachedNewsletterPostId = (int) $this->readColumn(0, $data);
-                    $newsletterPost = $npr->find($serachedNewsletterPostId);
+                    $serachedNewsletterPostOldDatabaseVersionId = (int) $this->readColumn(0, $data);
+                    $newsletterPost = $npr->find($serachedNewsletterPostOldDatabaseVersionId);
                     if (!$newsletterPost) {
                         $newsletterPost = new NewsletterPost();
+                        $newsletterPost
+                            ->setOldDatabaseVersionId($serachedNewsletterPostOldDatabaseVersionId)
+                            ->setNewsletter($newsletter)
+                        ;
                         $this->em->persist($newsletterPost);
                         ++$newRecords;
                     }
                     $newsletterPost
-                        ->setNewsletter($newsletter)
                         ->setTitle(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(2, $data)))
                         ->setImage1FileName($this->readColumn(3, $data))
                         ->setShortDescription(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(4, $data)))

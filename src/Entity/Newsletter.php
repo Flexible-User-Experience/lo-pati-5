@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\OldDatabaseVersionIdTrait;
 use App\Enum\NewsletterStatusEnum;
 use App\Enum\NewsletterTypeEnum;
 use DateTimeInterface;
@@ -15,6 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Newsletter extends AbstractBase
 {
+    use OldDatabaseVersionIdTrait;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      */
