@@ -22,9 +22,9 @@ services:
         autowire:      true
         autoconfigure: true
         bind:
-            $sendGridApiKey: '%send_grid_api_key%'
-            $customerName: '%project_title%'
-            $customerEmail: '%customer_email%'
+            $sendGridApiKey:    '%send_grid_api_key%'
+            $customerName:      '%project_title%'
+            $customerEmail:     '%customer_email%'
             $emailAddressTest1: '%email_address_test_1%'
             $emailAddressTest2: '%email_address_test_2%'
             $emailAddressTest3: '%email_address_test_3%'
@@ -69,4 +69,4 @@ services:
             - '@security.user_password_hasher'
         tags:
             - { name: doctrine.orm.entity_listener, event: prePersist, entity: App\Entity\User, priority: 2 }
-            - { name: doctrine.orm.entity_listener, event: preUpdate, entity: App\Entity\User, priority: 2 }
+            - { name: doctrine.orm.entity_listener, event: preUpdate,  entity: App\Entity\User, priority: 2 }

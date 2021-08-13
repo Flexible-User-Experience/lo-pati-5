@@ -64,7 +64,10 @@ final class PageAdmin extends AbstractBaseAdmin
                     ],
                 ]
             )
+            ->add('showPublishDate')
             ->add('name')
+            ->add('summary')
+            ->add('description')
             ->add(
                 'menuLevel1',
                 null,
@@ -105,6 +108,51 @@ final class PageAdmin extends AbstractBaseAdmin
                     ],
                 ]
             )
+            ->add(
+                'expirationDate',
+                DateFilter::class,
+                [
+                    'field_type' => DatePickerType::class,
+                    'format' => AbstractBase::DATAGRID_TYPE_DATE_FORMAT,
+                    'field_options' => [
+                        'widget' => 'single_text',
+                        'format' => AbstractBase::DATAGRID_WIDGET_DATE_FORMAT,
+                    ],
+                ]
+            )
+            ->add('realizationDateString')
+            ->add('place')
+            ->add('video')
+            ->add('links')
+            ->add('urlVimeo')
+            ->add('urlFlickr')
+            ->add('isFrontCover')
+            ->add(
+                'startDate',
+                DateFilter::class,
+                [
+                    'field_type' => DatePickerType::class,
+                    'format' => AbstractBase::DATAGRID_TYPE_DATE_FORMAT,
+                    'field_options' => [
+                        'widget' => 'single_text',
+                        'format' => AbstractBase::DATAGRID_WIDGET_DATE_FORMAT,
+                    ],
+                ]
+            )
+            ->add(
+                'endDate',
+                DateFilter::class,
+                [
+                    'field_type' => DatePickerType::class,
+                    'format' => AbstractBase::DATAGRID_TYPE_DATE_FORMAT,
+                    'field_options' => [
+                        'widget' => 'single_text',
+                        'format' => AbstractBase::DATAGRID_WIDGET_DATE_FORMAT,
+                    ],
+                ]
+            )
+            ->add('alwaysShowOnCalendar')
+            ->add('showSocialNetworksSharingButtons')
             ->add(
                 'active',
                 null,
@@ -410,7 +458,26 @@ final class PageAdmin extends AbstractBaseAdmin
     {
         return [
             'id',
+            'publishDateString',
+            'showPublishDateString',
             'name',
+            'summary',
+            'description',
+            'menuLevel1',
+            'menuLevel2',
+            'templateType',
+            'expirationDateString',
+            'realizationDateString',
+            'place',
+            'video',
+            'links',
+            'urlVimeo',
+            'urlFlickr',
+            'isFrontCoverString',
+            'startDateString',
+            'endDateString',
+            'alwaysShowOnCalendarString',
+            'showSocialNetworksSharingButtonsString',
             'activeString',
             'createdAtString',
             'updatedAtString',

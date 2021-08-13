@@ -11,7 +11,7 @@ sonata_admin:
         pager_links:                10
         lock_protection:            true
     templates:
-        layout:    'backend/layout.html.twig'
+        layout: 'backend/layout.html.twig'
     security:
         handler:          sonata.admin.security.handler.role
         role_admin:       'ROLE_ADMIN'
@@ -57,22 +57,22 @@ sonata_admin:
         blocks:
             -
                 position: top
-                type: app.block_info_boxes_dashboard
-                class: 'col-xs-12'
+                type:     app.block_info_boxes_dashboard
+                class:    'col-xs-12'
             -
                 position: left
-                type: sonata.admin.block.admin_list
+                type:     sonata.admin.block.admin_list
                 settings:
                     groups: [ 'Menu', 'Newsletter', 'User' ]
             -
                 position: right
-                type: sonata.admin.block.admin_list
+                type:     sonata.admin.block.admin_list
                 settings:
                     groups: [ 'Page', 'Artist', 'Archive' ]
             -
                 position: bottom
-                type: sonata.block.service.text
-                class: 'col-xs-12'
+                type:     sonata.block.service.text
+                class:    'col-xs-12'
                 settings:
                     content: >
                         <div><hr style="margin-top:40px;border-top:solid 1px #d2d6de"><p><i class="fas fa-info-circle"></i> Per rebre assistència tècnica envieu un missatge a <a href="mailto:suport@flux.cat?subject=Ajuda CMS %project_title%" style="color:#000">suport@flux.cat</a></p></div>

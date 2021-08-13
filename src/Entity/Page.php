@@ -225,6 +225,11 @@ class Page extends AbstractBase
         return $this->isFrontCover;
     }
 
+    public function isFrontCoverString(): string
+    {
+        return self::transformBooleanAsString($this->isFrontCover());
+    }
+
     public function setIsFrontCover(bool $isFrontCover): self
     {
         $this->isFrontCover = $isFrontCover;
@@ -239,7 +244,7 @@ class Page extends AbstractBase
 
     public function getPublishDateString(): string
     {
-        return AbstractBase::transformDateAsString($this->publishDate);
+        return AbstractBase::transformDateAsString($this->getPublishDate());
     }
 
     public function setPublishDate(DateTimeInterface $publishDate): self
@@ -254,6 +259,11 @@ class Page extends AbstractBase
         return $this->showPublishDate;
     }
 
+    public function showPublishDateString(): string
+    {
+        return self::transformBooleanAsString($this->isShowPublishDate());
+    }
+
     public function setShowPublishDate(bool $showPublishDate): self
     {
         $this->showPublishDate = $showPublishDate;
@@ -266,6 +276,11 @@ class Page extends AbstractBase
         return $this->alwaysShowOnCalendar;
     }
 
+    public function alwaysShowOnCalendarString(): string
+    {
+        return self::transformBooleanAsString($this->isAlwaysShowOnCalendar());
+    }
+
     public function setAlwaysShowOnCalendar(bool $alwaysShowOnCalendar): self
     {
         $this->alwaysShowOnCalendar = $alwaysShowOnCalendar;
@@ -276,6 +291,11 @@ class Page extends AbstractBase
     public function getExpirationDate(): ?DateTimeInterface
     {
         return $this->expirationDate;
+    }
+
+    public function getExpirationDateString(): string
+    {
+        return AbstractBase::transformDateAsString($this->getExpirationDate());
     }
 
     public function setExpirationDate(?DateTimeInterface $expirationDate): self
@@ -324,6 +344,11 @@ class Page extends AbstractBase
     public function isShowSocialNetworksSharingButtons(): bool
     {
         return $this->showSocialNetworksSharingButtons;
+    }
+
+    public function showSocialNetworksSharingButtonsString(): string
+    {
+        return self::transformBooleanAsString($this->isShowSocialNetworksSharingButtons());
     }
 
     public function setShowSocialNetworksSharingButtons(bool $showSocialNetworksSharingButtons): self
@@ -464,6 +489,11 @@ class Page extends AbstractBase
         return $this->startDate;
     }
 
+    public function getStartDateString(): string
+    {
+        return AbstractBase::transformDateAsString($this->getStartDate());
+    }
+
     public function setStartDate(?DateTimeInterface $startDate): self
     {
         $this->startDate = $startDate;
@@ -474,6 +504,11 @@ class Page extends AbstractBase
     public function getEndDate(): ?DateTimeInterface
     {
         return $this->endDate;
+    }
+
+    public function getEndDateString(): string
+    {
+        return AbstractBase::transformDateAsString($this->getEndDate());
     }
 
     public function setEndDate(?DateTimeInterface $endDate): self
