@@ -21,4 +21,6 @@ php ./bin/console app:import:newsletter:post ./var/csv/imports/newsletterpost.cs
 cp -r ../lo-pati/web/uploads/artists/* public/uploads/artists/
 cp ../lo-pati/web/uploads/slides/* public/uploads/slides/
 cp ../lo-pati/web/uploads/isolated-newsletter/* public/uploads/newsletters/
+cp ../lo-pati/web/uploads/images/* public/uploads/images/
+cp ../lo-pati/web/uploads/documents/* public/uploads/documents/
 echo "Finished at $(date +"%T %d/%m/%Y")"
