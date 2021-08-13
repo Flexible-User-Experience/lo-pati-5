@@ -3,33 +3,26 @@
 namespace App\Controller\Backend;
 
 use App\Form\Type\AdminLoginFormType;
+use App\Model\AdminLogin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class AdminLoginController extends AbstractController
 {
-    private AuthenticationUtils $authenticationUtils;
-
-    public function __construct(AuthenticationUtils $authenticationUtils)
-    {
-        $this->authenticationUtils = $authenticationUtils;
-    }
-
     /**
      * @Route("/admin/login", name="admin_app_login")
      */
-    public function loginAction(): Response
+    public function loginAction(AuthenticationUtils $authenticationUtils): Response
     {
-        $form = $this->createForm(AdminLoginFormType::class, [
-            'email' => $this->authenticationUtils->getLastUsername(),
-        ]);
+        $form = $this->createForm(AdminLoginFormType::class, new AdminLogin());
 
         return $this->render('backend/security/login.html.twig', [
-            'last_username' => $this->authenticationUtils->getLastUsername(),
+            Security::LAST_USERNAME => $authenticationUtils->getLastUsername(),
+            Security::AUTHENTICATION_ERROR => $authenticationUtils->getLastAuthenticationError(),
             'form' => $form->createView(),
-            'error' => $this->authenticationUtils->getLastAuthenticationError(),
         ]);
     }
 
@@ -38,6 +31,5 @@ class AdminLoginController extends AbstractController
      */
     public function logoutAction(): void
     {
-        // Left empty intentionally because this will be handled by Symfony.
     }
 }

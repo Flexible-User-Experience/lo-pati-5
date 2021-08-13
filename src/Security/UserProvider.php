@@ -8,9 +8,6 @@ use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
-/**
- * @method UserInterface loadUserByIdentifier(string $identifier)
- */
 final class UserProvider implements UserProviderInterface
 {
     private EntityManagerInterface $em;
@@ -35,6 +32,16 @@ final class UserProvider implements UserProviderInterface
         return User::class === $class;
     }
 
+    public function loadUserByIdentifier(string $identifier): User
+    {
+        return $this->loadUserByUsername($identifier);
+    }
+
+    private function findOneUserByFilterOptions(array $filterOptions): ?User
+    {
+        return $this->em->getRepository(User::class)->findOneBy($filterOptions);
+    }
+
     public function loadUserByUsername(string $username): User
     {
         $user = $this->findOneUserByFilterOptions([
@@ -46,10 +53,5 @@ final class UserProvider implements UserProviderInterface
         }
 
         return $user;
-    }
-
-    private function findOneUserByFilterOptions(array $filterOptions): ?User
-    {
-        return $this->em->getRepository(User::class)->findOneBy($filterOptions);
     }
 }

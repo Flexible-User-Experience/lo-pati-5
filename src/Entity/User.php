@@ -7,16 +7,15 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_user_email_index", columns={"email"})})
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"email"}, errorPath="email")
- *
- * @method string getUserIdentifier()
  */
-class User extends AbstractBase implements UserInterface
+class User extends AbstractBase implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Column(type="string", nullable=false, unique=true)
@@ -44,6 +43,11 @@ class User extends AbstractBase implements UserInterface
     private int $loginCount = 0;
 
     private ?string $plainPassword = null;
+
+    public function getUserIdentifier(): string
+    {
+        return $this->getEmail();
+    }
 
     public function getEmail(): string
     {

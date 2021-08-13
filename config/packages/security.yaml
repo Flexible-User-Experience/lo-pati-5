@@ -21,8 +21,9 @@ security:
             - ROLE_ADMIN
             - ROLE_SONATA_SUPER_ADMIN
             - ROLE_ALLOWED_TO_SWITCH
-    encoders:
-        App\Entity\User: auto
+    password_hashers:
+        App\Entity\User:
+            algorithm: auto
     providers:
         users:
             id: App\Security\UserProvider
@@ -33,19 +34,12 @@ security:
         admin:
             pattern:     /admin(.*)
             lazy:        true
-            entry_point: form_login
-            form_login:
-                provider:     users
-                login_path:   admin_app_login
-                check_path:   admin_app_login
-                use_forward:  false
-                failure_path: null
+            entry_point: App\Security\AdminLoginAuthenticator
             logout:
                 path:   admin_app_logout
                 target: admin_app_login
-            guard:
-                authenticators:
-                    - App\Security\AdminLoginAuthenticator
+            custom_authenticators:
+                - App\Security\AdminLoginAuthenticator
         main:
             lazy: true
     access_control:
