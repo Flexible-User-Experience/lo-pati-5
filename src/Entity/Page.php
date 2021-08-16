@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\Document1Trait;
+use App\Entity\Traits\Document2Trait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\SmallImage1Trait;
@@ -28,6 +29,7 @@ class Page extends AbstractBase
 {
     use DescriptionTrait;
     use Document1Trait;
+    use Document2Trait;
     use NameTrait;
     use SlugTrait;
     use SmallImage1Trait;
@@ -130,7 +132,7 @@ class Page extends AbstractBase
     private ?string $imageCaption = null;
 
     /**
-     * @Assert\File(maxSize="16M")
+     * @Assert\File(maxSize="20M", mimeTypes={"application/pdf"})
      * @Vich\UploadableField(mapping="document", fileNameProperty="document1FileName")
      */
     private ?File $document1File = null;
@@ -141,15 +143,10 @@ class Page extends AbstractBase
     private ?string $titleDocument1 = null;
 
     /**
-     * @Assert\File(maxSize="16M")
+     * @Assert\File(maxSize="20M", mimeTypes={"application/pdf"})
      * @Vich\UploadableField(mapping="document", fileNameProperty="document2FileName")
      */
     private ?File $document2File = null;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $document2FileName;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -441,33 +438,6 @@ class Page extends AbstractBase
     public function setTitleDocument1(?string $titleDocument1): self
     {
         $this->titleDocument1 = $titleDocument1;
-
-        return $this;
-    }
-
-    public function getDocument2File(): ?File
-    {
-        return $this->document2File;
-    }
-
-    public function setDocument2File(?File $document2File): self
-    {
-        $this->document2File = $document2File;
-        if (null !== $document2File) {
-            $this->updatedAt = new DateTimeImmutable();
-        }
-
-        return $this;
-    }
-
-    public function getDocument2FileName(): ?string
-    {
-        return $this->document2FileName;
-    }
-
-    public function setDocument2FileName(?string $document2FileName): self
-    {
-        $this->document2FileName = $document2FileName;
 
         return $this;
     }
