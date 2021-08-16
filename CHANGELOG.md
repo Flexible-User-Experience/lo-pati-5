@@ -1,12 +1,18 @@
 Changelog
 =========
 
-##### Version 5.05.00 (WIP)
+##### Version 5.06.00 (WIP)
  * fix bugs
 
-##### Version 5.04.00 (2021-08-15)
+##### Version 5.05.00 (2021-08-16)
+ * fix ArtistAdmin edit error
+ * add Admin user securized area
+ * improve PageAdmin
+
+##### Version 5.04.00 (2021-08-10)
  * improve sonata admins
  * improve frontend page templates render
+ * add Admin Dashboard info blocks
  * add translatable fields
  * add Page template types management & make frontend templates render according to it
  * add NewsletterPost location attribute
@@ -41,3 +47,6 @@ To Do
  * decide better highlighted homepage aspect ratio covers
  * fix responsiveness issues
  * manage Sendgrid unsubscriptions callback hooks
+ * enable frontend Newsletter subscribtion
+ * add latest version of Elasticsearch engine
+ * add entities traslation and Admin management

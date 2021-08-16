@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Twig\Environment;
 
-class InfoBoxesDashboardBlock extends AbstractBlockService
+final class InfoBoxesDashboardBlock extends AbstractBlockService
 {
     private EntityManagerInterface $em;
 

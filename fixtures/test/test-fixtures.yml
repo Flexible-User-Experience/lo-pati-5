@@ -111,3 +111,16 @@ App\Entity\Slideshow:
     name: 'Slideshow 2'
     image1FileName: 'imagefile2.png'
     position: 2
+
+# User
+App\Entity\User:
+  user1:
+    email: 'user1@user.com'
+    plainPassword: 'password1'
+    roles:
+      - 'ROLE_ADMIN'
+  user2:
+    email: 'user2@user.com'
+    plainPassword: 'password2'
+    roles:
+      - 'ROLE_SUPER_ADMIN'

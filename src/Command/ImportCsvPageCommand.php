@@ -66,14 +66,14 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                             ++$newRecords;
                         }
                         $page
-                            ->setSummary($this->readColumn(4, $data))
-                            ->setDescription($this->readColumn(5, $data))
+                            ->setSummary(AbstractBaseCommand::sanitizeNewLineEscapeChar(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(4, $data))))
+                            ->setDescription(AbstractBaseCommand::sanitizeNewLineEscapeChar(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(5, $data))))
                             ->setActive((bool) $this->readColumn(6, $data))
                             ->setIsFrontCover((bool) $this->readColumn(7, $data))
                             ->setShowPublishDate((bool) $this->readColumn(9, $data))
-                            ->setRealizationDateString($this->readColumn(11, $data))
-                            ->setPlace($this->readColumn(12, $data))
-                            ->setLinks($this->readColumn(14, $data))
+                            ->setRealizationDateString(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(11, $data)))
+                            ->setPlace(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(12, $data)))
+                            ->setLinks(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(14, $data)))
                             ->setShowSocialNetworksSharingButtons((bool) $this->readColumn(15, $data))
                             ->setVideo($this->readColumn(16, $data))
                             ->setUrlVimeo($this->readColumn(17, $data))

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\NewsletterGroup;
 use App\Entity\NewsletterUser;
+use App\Enum\SortOrderTypeEnum;
 use DateInterval;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -29,6 +30,11 @@ class NewsletterUserRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('nu')
             ->where('nu.active = :active')
             ->setParameter('active', true);
+    }
+
+    public function getAllSortedByEmail(string $sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
+    {
+        return $this->createQueryBuilder('nu')->orderBy('nu.email', $sortOrder);
     }
 
     public function getEnabledByGroup(NewsletterGroup $group): QueryBuilder

@@ -20,9 +20,25 @@
         group: "{{ remote_system_group }}"
         mode: 0755
         recurse: no
+    - name: creates newsletters directory
+      file:
+        path: "{{ remote_new_uploads_folder }}/newsletters"
+        state: directory
+        owner: "{{ remote_system_user }}"
+        group: "{{ remote_system_group }}"
+        mode: 0755
+        recurse: no
     - name: creates images directory
       file:
         path: "{{ remote_new_uploads_folder }}/images"
+        state: directory
+        owner: "{{ remote_system_user }}"
+        group: "{{ remote_system_group }}"
+        mode: 0755
+        recurse: no
+    - name: creates documents directory
+      file:
+        path: "{{ remote_new_uploads_folder }}/documents"
         state: directory
         owner: "{{ remote_system_user }}"
         group: "{{ remote_system_group }}"
@@ -32,8 +48,12 @@
       shell: "cp -r {{ remote_old_uploads_folder }}/artists/* {{ remote_new_uploads_folder }}/artists/"
     - name: copy slides images
       shell: "cp -r {{ remote_old_uploads_folder }}/slides/* {{ remote_new_uploads_folder }}/slides/"
+    - name: copy newsletters images
+      shell: "cp -r {{ remote_old_uploads_folder }}/isolated-newsletter/* {{ remote_new_uploads_folder }}/newsletters/"
     - name: copy photo images
       shell: "cp -r {{ remote_old_uploads_folder }}/images/* {{ remote_new_uploads_folder }}/images/"
+    - name: copy document files
+      shell: "cp -r {{ remote_old_uploads_folder }}/documents/* {{ remote_new_uploads_folder }}/documents/"
     - name: fix ownership to copied files
       file:
         path: "{{ remote_new_uploads_folder }}/"

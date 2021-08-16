@@ -105,7 +105,7 @@ class Artist extends AbstractBase
     private ?string $image5FileName = null;
 
     /**
-     * @Assert\File(maxSize="16M")
+     * @Assert\File(maxSize="20M", mimeTypes={"application/pdf"})
      * @Vich\UploadableField(mapping="artist_cv", fileNameProperty="document1FileName")
      */
     private ?File $document1File = null;

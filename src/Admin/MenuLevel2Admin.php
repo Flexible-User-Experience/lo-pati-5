@@ -151,13 +151,6 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
         $form
             ->with('admin.common.general', $this->getFormMdSuccessBoxArray(5))
             ->add(
-                'name',
-                TextType::class,
-                [
-                    'required' => true,
-                ]
-            )
-            ->add(
                 'menuLevel1',
                 EntityType::class,
                 [
@@ -165,6 +158,13 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                     'query_builder' => $this->em->getRepository(MenuLevel1::class)->getAllSortedByPositionAndName(),
                     'choice_label' => 'name',
                     'multiple' => false,
+                    'required' => true,
+                ]
+            )
+            ->add(
+                'name',
+                TextType::class,
+                [
                     'required' => true,
                 ]
             )

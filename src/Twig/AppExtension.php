@@ -4,7 +4,11 @@ namespace App\Twig;
 
 use App\Entity\AbstractBase;
 use App\Entity\Newsletter;
+use App\Entity\Page;
+use App\Entity\User;
 use App\Enum\NewsletterStatusEnum;
+use App\Enum\PageTemplateTypeEnum;
+use App\Enum\UserRolesEnum;
 use ReflectionClass;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Twig\Extension\AbstractExtension;
@@ -37,10 +41,17 @@ class AppExtension extends AbstractExtension
     public function getFilters(): array
     {
         return [
+            new TwigFilter('draw_page_template_type', [$this, 'drawPageTemplateTypeHtmlSpan']),
             new TwigFilter('draw_newsletter_status', [$this, 'drawNewsletterStatusHtmlSpan']),
+            new TwigFilter('draw_user_roles', [$this, 'drawUserRolesHtmlSpan']),
             new TwigFilter('i', [$this, 'integerNumberFormattedString']),
             new TwigFilter('f', [$this, 'floatNumberFormattedString']),
         ];
+    }
+
+    public function drawPageTemplateTypeHtmlSpan(Page $page): string
+    {
+        return '<span class="label label-default">'.$this->ts->trans(PageTemplateTypeEnum::getEnumArray()[$page->getTemplateType()]).'</span>';
     }
 
     public function drawNewsletterStatusHtmlSpan(Newsletter $newsletter): string
@@ -59,6 +70,26 @@ class AppExtension extends AbstractExtension
         }
 
         return '<span class="label label-'.$class.'">'.$text.'</span>';
+    }
+
+    public function drawUserRolesHtmlSpan(User $user): string
+    {
+        $span = '';
+        if (count($user->getRoles()) > 0) {
+            $ea = UserRolesEnum::getEnumArray();
+            /** @var string $role */
+            foreach ($user->getRoles() as $role) {
+                if (UserRolesEnum::ROLE_ADMIN === $role) {
+                    $span .= '<span class="label label-info" style="margin-right:10px">'.$this->ts->trans($ea[UserRolesEnum::ROLE_ADMIN]).'</span>';
+                } elseif (UserRolesEnum::ROLE_SUPER_ADMIN === $role) {
+                    $span .= '<span class="label label-warning" style="margin-right:10px">'.$this->ts->trans($ea[UserRolesEnum::ROLE_SUPER_ADMIN]).'</span>';
+                }
+            }
+        } else {
+            $span = '<span class="label label-default" style="margin-right:10px">'.AbstractBase::DEFAULT_EMPTY_STRING.'</span>';
+        }
+
+        return $span;
     }
 
     public function integerNumberFormattedString(int $value): string

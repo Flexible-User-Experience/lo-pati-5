@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\OldDatabaseVersionIdTrait;
 use App\Enum\NewsletterStatusEnum;
 use App\Enum\NewsletterTypeEnum;
 use DateTimeInterface;
@@ -15,6 +16,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Newsletter extends AbstractBase
 {
+    use OldDatabaseVersionIdTrait;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=false)
      */
@@ -84,6 +87,11 @@ class Newsletter extends AbstractBase
         return $this->date;
     }
 
+    public function getDateString(): string
+    {
+        return AbstractBase::transformDateAsString($this->getDate());
+    }
+
     public function setDate(?DateTimeInterface $date): self
     {
         $this->date = $date;
@@ -94,6 +102,11 @@ class Newsletter extends AbstractBase
     public function getStatus(): int
     {
         return $this->status;
+    }
+
+    public function getStatusTransString(): ?string
+    {
+        return NewsletterStatusEnum::getEnumArray()[$this->getStatus() ?? 0];
     }
 
     public function setStatus(int $status): self
@@ -130,6 +143,11 @@ class Newsletter extends AbstractBase
         return $this->isTested();
     }
 
+    public function getTestedString(): string
+    {
+        return self::transformBooleanAsString($this->isTested());
+    }
+
     public function setTested(bool $tested): self
     {
         $this->tested = $tested;
@@ -140,6 +158,11 @@ class Newsletter extends AbstractBase
     public function getBeginSend(): ?DateTimeInterface
     {
         return $this->beginSend;
+    }
+
+    public function getBeginSendString(): string
+    {
+        return AbstractBase::transformDateTimeAsString($this->getBeginSend());
     }
 
     public function setBeginSend(?DateTimeInterface $beginSend): self

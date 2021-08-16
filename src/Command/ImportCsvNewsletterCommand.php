@@ -34,17 +34,18 @@ final class ImportCsvNewsletterCommand extends AbstractBaseCommand
         $errors = 0;
         while (false !== ($data = $this->readRow($fr))) {
             if (count($data) >= 10) {
-                $serachedNewsletterSubject = self::sanitizeDoubleQuoteEscapeChar($this->readColumn(2, $data));
+                $serachedNewsletterOldDatabaseVersionId = (int) $this->readColumn(0, $data);
                 $newsletter = $nr->findOneBy([
-                    'subject' => $serachedNewsletterSubject,
+                    'oldDatabaseVersionId' => $serachedNewsletterOldDatabaseVersionId,
                 ]);
                 if (!$newsletter) {
                     $newsletter = new Newsletter();
+                    $newsletter->setOldDatabaseVersionId($serachedNewsletterOldDatabaseVersionId);
                     $this->em->persist($newsletter);
                     ++$newRecords;
                 }
                 $newsletter
-                    ->setSubject($serachedNewsletterSubject)
+                    ->setSubject(self::sanitizeDoubleQuoteEscapeChar($this->readColumn(2, $data)))
                     ->setStatus((int) $this->readColumn(4, $data))
                     ->setType((int) $this->readColumn(5, $data))
                     ->setTested((bool) $this->readColumn(6, $data))

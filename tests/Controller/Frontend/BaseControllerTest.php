@@ -2,17 +2,24 @@
 
 namespace App\Tests\Controller\Frontend;
 
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BaseControllerTest extends WebTestCase
 {
+    private KernelBrowser $client;
+
+    public function setUp(): void
+    {
+        $this->client = WebTestCase::createClient();
+    }
+
     /**
      * @dataProvider provideUrls
      */
     public function testHomepage(string $url): void
     {
-        $client = WebTestCase::createClient();
-        $client->request('GET', $url);
+        $this->client->request('GET', $url);
         self::assertResponseIsSuccessful();
     }
 
@@ -43,8 +50,7 @@ class BaseControllerTest extends WebTestCase
      */
     public function testNotFoundPages(string $url): void
     {
-        $client = WebTestCase::createClient();
-        $client->request('GET', $url);
+        $this->client->request('GET', $url);
         self::assertResponseStatusCodeSame(404);
     }
 

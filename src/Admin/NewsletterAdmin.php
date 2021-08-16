@@ -242,7 +242,11 @@ final class NewsletterAdmin extends AbstractBaseAdmin
     {
         return [
             'id',
-            'name',
+            'dateString',
+            'subject',
+            'testedString',
+            'statusTransString',
+            'beginSendString',
             'createdAtString',
             'updatedAtString',
         ];

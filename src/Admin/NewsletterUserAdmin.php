@@ -147,17 +147,17 @@ final class NewsletterUserAdmin extends AbstractBaseAdmin
         $form
             ->with('admin.common.general', $this->getFormMdSuccessBoxArray(5))
             ->add(
-                'name',
-                TextType::class,
-                [
-                    'required' => false,
-                ]
-            )
-            ->add(
                 'email',
                 TextType::class,
                 [
                     'required' => true,
+                ]
+            )
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'required' => false,
                 ]
             )
             ->add(
@@ -175,11 +175,21 @@ final class NewsletterUserAdmin extends AbstractBaseAdmin
                 ]
             )
             ->end()
-            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3));
+            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
+            ->add(
+                'active',
+                CheckboxType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->end()
+        ;
         if (!$this->isFormToCreateNewRecord()) {
             $form
+                ->with('admin.common.information', $this->getFormMdSuccessBoxArray(4))
                 ->add(
-                    'groups', // TODO not working
+                    'groups',
                     EntityType::class,
                     [
                         'class' => NewsletterGroup::class,
@@ -187,6 +197,9 @@ final class NewsletterUserAdmin extends AbstractBaseAdmin
                         'choice_label' => 'name',
                         'multiple' => true,
                         'required' => false,
+                        'attr' => [
+                            'disabled' => 'disabled',
+                        ],
                     ]
                 )
                 ->add(
@@ -210,18 +223,9 @@ final class NewsletterUserAdmin extends AbstractBaseAdmin
                         ],
                     ]
                 )
+                ->end()
             ;
         }
-        $form
-            ->add(
-                'active',
-                CheckboxType::class,
-                [
-                    'required' => false,
-                ]
-            )
-            ->end()
-        ;
     }
 
     protected function configureExportFields(): array
@@ -234,7 +238,7 @@ final class NewsletterUserAdmin extends AbstractBaseAdmin
             'name',
             'postalCode',
             'phone',
-            'fails',
+            'fail',
             'activeString',
             'updatedAtString',
         ];
