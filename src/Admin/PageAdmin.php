@@ -22,6 +22,8 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class PageAdmin extends AbstractBaseAdmin
 {
@@ -296,6 +298,20 @@ final class PageAdmin extends AbstractBaseAdmin
                     ],
                 ]
             )
+            ->add(
+                'place',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'video',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
             ->end()
             ->with('admin.common.dates', $this->getFormMdSuccessBoxArray(4))
             ->add(
@@ -324,6 +340,71 @@ final class PageAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'realizationDateString',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.cover', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'smallImage1File',
+                VichImageType::class,
+                [
+                    'imagine_pattern' => '300x300',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'smallImage2File',
+                VichImageType::class,
+                [
+                    'imagine_pattern' => '300x300',
+                    'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.images', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'imageFile',
+                VichImageType::class,
+                [
+                    'imagine_pattern' => '800xY',
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'imageCaption',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.documents', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'document1File',
+                VichFileType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'titleDocument1',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'document2File',
+                VichFileType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
+                'titleDocument2',
                 TextType::class,
                 [
                     'required' => false,
@@ -359,20 +440,6 @@ final class PageAdmin extends AbstractBaseAdmin
                 [
                     'choices' => PageTemplateTypeEnum::getReversedEnumArray(),
                     'required' => true,
-                ]
-            )
-            ->add(
-                'place',
-                TextType::class,
-                [
-                    'required' => false,
-                ]
-            )
-            ->add(
-                'video',
-                TextType::class,
-                [
-                    'required' => false,
                 ]
             )
             ->add(
@@ -463,13 +530,13 @@ final class PageAdmin extends AbstractBaseAdmin
             'name',
             'summary',
             'description',
+            'place',
+            'video',
             'menuLevel1',
             'menuLevel2',
             'templateType',
             'expirationDateString',
             'realizationDateString',
-            'place',
-            'video',
             'links',
             'urlVimeo',
             'urlFlickr',
