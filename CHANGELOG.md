@@ -1,8 +1,10 @@
 Changelog
 =========
 
-##### Version 5.05.00 (WIP)
+##### Version 5.06.00 (WIP)
  * fix bugs
+
+##### Version 5.05.00 (2021-08-16)
  * fix ArtistAdmin edit error
  * add Admin user securized area
  * improve PageAdmin
