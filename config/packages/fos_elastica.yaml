@@ -1,0 +1,18 @@
+# Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/doc/setup.md
+fos_elastica:
+    clients:
+        default: { url: '%env(ELASTICSEARCH_URL)%' }
+    indexes:
+        app:
+            index_name: 'lopati_website_index_app_%kernel.environment%'
+            persistence:
+                driver:   orm
+                model:    App\Entity\Page
+                provider: ~
+                finder:   ~
+            properties:
+                name:                  ~
+                summary:               ~
+                description:           ~
+                realizationDateString: ~
+                place:                 ~
