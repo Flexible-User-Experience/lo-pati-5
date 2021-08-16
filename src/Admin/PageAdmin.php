@@ -70,6 +70,8 @@ final class PageAdmin extends AbstractBaseAdmin
             ->add('name')
             ->add('summary')
             ->add('description')
+            ->add('place')
+            ->add('video')
             ->add(
                 'menuLevel1',
                 null,
@@ -123,12 +125,14 @@ final class PageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->add('realizationDateString')
-            ->add('place')
-            ->add('video')
+            ->add('imageCaption')
+            ->add('titleDocument1')
+            ->add('titleDocument2')
+            ->add('isFrontCover')
+            ->add('showSocialNetworksSharingButtons')
             ->add('links')
             ->add('urlVimeo')
             ->add('urlFlickr')
-            ->add('isFrontCover')
             ->add(
                 'startDate',
                 DateFilter::class,
@@ -154,7 +158,6 @@ final class PageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->add('alwaysShowOnCalendar')
-            ->add('showSocialNetworksSharingButtons')
             ->add(
                 'active',
                 null,
@@ -537,10 +540,14 @@ final class PageAdmin extends AbstractBaseAdmin
             'templateType',
             'expirationDateString',
             'realizationDateString',
+            'imageCaption',
+            'titleDocument1',
+            'titleDocument2',
+            'isFrontCoverString',
+            'showSocialNetworksSharingButtons',
             'links',
             'urlVimeo',
             'urlFlickr',
-            'isFrontCoverString',
             'startDateString',
             'endDateString',
             'alwaysShowOnCalendarString',

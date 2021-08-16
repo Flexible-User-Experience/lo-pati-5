@@ -48,4 +48,3 @@ To Do
  * enable frontend Newsletter subscribtion
  * add latest version of Elasticsearch engine
  * add entities traslation and Admin management
- * improve PageAdmin
