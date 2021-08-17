@@ -27,8 +27,11 @@
                     </div>
                 </nav>
                 <form class="d-flex p-4 ms-auto">
-{#                    <input class="form-control ms-auto me-2" type="search" placeholder="Search" aria-label="Search">#}
-                    <button class="btn" type="submit"><i class="fas fa-search fa-2x text-light"></i></button>
+                    <div class="input-group" {{ stimulus_controller('autocomplete', {'url': path('front_app_search'), 'min-length': 3}) }}>
+                        <input class="form-control ms-auto me-2" type="search" placeholder="Search" aria-label="Search" data-autocomplete-target="input">
+                        <button class="btn" type="submit"><i class="fas fa-search fa-2x text-light"></i></button>
+                        <div class="sticky-top" data-autocomplete-target="results"></div>
+                    </div>
                 </form>
             </header>
         </div>

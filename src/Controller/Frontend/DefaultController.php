@@ -9,6 +9,7 @@ use App\Entity\NewsletterUser;
 use App\Entity\Page;
 use App\Repository\PageRepository;
 use App\Repository\SlideshowRepository;
+use FOS\ElasticaBundle\Manager\RepositoryManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
@@ -41,6 +42,21 @@ class DefaultController extends AbstractController
             [
                 'slides' => $slides,
                 'highlighted_pages' => $highlightedPages,
+            ]
+        );
+    }
+
+    /**
+     * @Route("/search", name="front_app_search")
+     */
+    public function searchAction(Request $request, RepositoryManagerInterface $finder): Response
+    {
+        $pages = $finder->getRepository(Page::class)->find($request->query->get('q'));
+
+        return $this->render(
+            'frontend/partials/full_text_search_results.html.twig',
+            [
+                'pages' => $pages,
             ]
         );
     }

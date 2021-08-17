@@ -1,0 +1,17 @@
+<div class="list-group">
+    {% for page in pages %}
+        {% if page.menuLevel2 %} {# TODO fix this situation #}
+            <a role="option" class="list-group-item list-group-item-action" href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <img alt="{{ page.name }}" src="{{ vich_uploader_asset(page, page.highlitedImageField) | imagine_filter(page.highlitedImageFilter) }}" class="rounded">
+                        <span class="px-1">{{ page.name }}</span>
+                    </div>
+                    <em>{{ page.realizationDateString }}</em>
+                </div>
+            </a>
+        {% endif %}
+    {% else %}
+        <div class="list-group-item" role="option" aria-disabled="true">{{ 'front.layout.search.no_results_found' | trans }}</div>
+    {% endfor %}
+</div>
