@@ -25,6 +25,14 @@ liip_imagine:
             quality: 95
             filters:
                 thumbnail: { size: [ 300, 300 ], mode: outbound }
+        379x379_fixed:
+            quality: 90
+            filters:
+                fixed: { width: 379, height: 379 }
+        379x214:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 379, 214 ], mode: outbound }
         465x246:
             quality: 95
             filters:

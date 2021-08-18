@@ -10,6 +10,18 @@
         {% block javascripts %}{{ encore_entry_script_tags('frontend') }}{% endblock %}
     </head>
     <body>
+        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasSearchLabel">{{ 'front.layout.search.engine' | trans }}</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="{{ 'back.action.close' | trans }}"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div {{ stimulus_controller('autocomplete', {'url': path('front_app_search'), 'min-length': 3}) }}>
+                    <input id="inputOffcanvasSearchField" class="form-control ms-auto me-2" type="search" aria-label="Search" data-autocomplete-target="input">
+                    <div data-autocomplete-target="results"></div>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid bg-dark p-0">
             <header class="d-flex">
                 <a class="py-4 px-5" href="{{ path('front_app_homepage') }}">
@@ -26,13 +38,11 @@
                         {{ knp_menu_render('frontend_language', {'currentClass': 'active'}) }}
                     </div>
                 </nav>
-                <form class="d-flex p-4 ms-auto">
-                    <div class="input-group" {{ stimulus_controller('autocomplete', {'url': path('front_app_search'), 'min-length': 3}) }}>
-                        <input class="form-control ms-auto me-2" type="search" placeholder="Search" aria-label="Search" data-autocomplete-target="input">
-                        <button class="btn" type="submit"><i class="fas fa-search fa-2x text-light"></i></button>
-                        <div class="sticky-top" data-autocomplete-target="results"></div>
-                    </div>
-                </form>
+                <div class="d-flex p-4 ms-auto">
+                    <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasSearch" role="button" aria-controls="offcanvasSearch">
+                        <i class="fas fa-search fa-2x text-light"></i>
+                    </a>
+                </div>
             </header>
         </div>
         {% block submenu_header %}{% endblock %}

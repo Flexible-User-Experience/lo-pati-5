@@ -418,6 +418,7 @@ front:
   layout:
     title: 'Lo Pati'
     search:
+      engine: 'Buscador'
       no_results_found: 'Lo sentimos, no se han encontrado resultados.'
     footer:
       visit: 'Visita el centro'

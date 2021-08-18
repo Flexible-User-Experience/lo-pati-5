@@ -205,6 +205,11 @@ class Page extends AbstractBase
         return $this->getSmallImage1FileName() ? '758x758_fixed' : '758x428';
     }
 
+    public function getHighlitedImageFilterSmallSize(): string
+    {
+        return $this->getSmallImage1FileName() ? '379x379_fixed' : '379x214';
+    }
+
     public function getSummary(): ?string
     {
         return $this->summary;
