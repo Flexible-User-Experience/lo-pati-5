@@ -13,21 +13,24 @@
 {% endblock %}
 
 {% block main %}
-    <div class="row my-5">
-        <div class="col">
-            <h1>{{ menu }}</h1>
-            {% if menu.page %}
-                {% if app.environment == constant('App\\Kernel::DEV_ENV') %}
-                    <hr>
-                    <pre>P_ID# {{ menu.page.id }} · PTT# '{{ menu.page.templateTypeTransString | trans }}'</pre>
-                {% endif %}
-            {% else %}
+    {% if show_debug_page_info %}
+        <div class="row my-5">
+            <div class="col">
+                <h1>{{ menu }}</h1>
                 <hr>
-                <pre>TO DO... {# TODO render empty menu level 1 template #}</pre>
-            {% endif %}
+                <pre>P_ID# {{ menu.page.id }} · PTT# '{{ menu.page.templateTypeTransString | trans }}'</pre>
+            </div>
         </div>
-    </div>
+    {% endif %}
     {% if menu.page %}
-        {% include 'frontend/partials/page_template_types/'~menu.page.templateTypeString~'.html.twig' %}
+        {% include 'frontend/partials/page_template_types/'~menu.page.templateTypeString~'.html.twig' with {page: menu.page} %}
+    {% else %}
+        <div class="row my-5">
+            <div class="col">
+                <h1>{{ menu }}</h1>
+                <hr>
+                <pre>TO DO... {# TODO render empty menu level 2 template #}</pre>
+            </div>
+        </div>
     {% endif %}
 {% endblock %}

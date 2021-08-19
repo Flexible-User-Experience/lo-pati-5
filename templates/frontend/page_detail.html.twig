@@ -15,27 +15,14 @@
 {% endblock %}
 
 {% block main %}
-    <div class="row my-5">
-        <div class="col">
-            <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
-            {% if app.environment == constant('App\\Kernel::DEV_ENV') %}
+    {% if show_debug_page_info %}
+        <div class="row my-5">
+            <div class="col">
+                <h1>{{ page }}</h1>
                 <hr>
                 <pre>P_ID# {{ page.id }} · PTT# '{{ page.templateTypeTransString | trans }}'</pre>
-            {% endif %}
-
+            </div>
         </div>
-    </div>
-    {% include 'frontend/partials/page_template_types/'~page.templateTypeString~'.html.twig' %}
-{#    <div class="row">#}
-{#        <div class="col">#}
-{#            <h4>Pages list</h4>#}
-{#            <ul class="nav flex-column">#}
-{#                {% for page in submenu.pages %}#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link active" href="#">{{ page.name }}</a>#}
-{#                    </li>#}
-{#                {% endfor %}#}
-{#            </ul>#}
-{#        </div>#}
-{#    </div>#}
+    {% endif %}
+    {% include 'frontend/partials/page_template_types/'~page.templateTypeString~'.html.twig' with {page: page} %}
 {% endblock %}

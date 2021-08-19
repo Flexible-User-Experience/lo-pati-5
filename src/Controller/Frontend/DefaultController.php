@@ -108,6 +108,7 @@ class DefaultController extends AbstractController
             'frontend/menu_level_1.html.twig',
             [
                 'menu' => $menu,
+                'show_debug_page_info' => false,
             ]
         );
     }
@@ -124,6 +125,7 @@ class DefaultController extends AbstractController
             [
                 'menu' => $menu,
                 'submenu' => $submenu,
+                'show_debug_page_info' => false,
             ]
         );
     }
@@ -142,6 +144,7 @@ class DefaultController extends AbstractController
                 'menu' => $menu,
                 'submenu' => $submenu,
                 'page' => $page,
+                'show_debug_page_info' => false,
             ]
         );
     }
