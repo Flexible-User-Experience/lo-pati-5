@@ -498,6 +498,21 @@ class Page extends AbstractBase
         return $this->templateType;
     }
 
+    public function getTemplateTypeTransString(): string
+    {
+        $result = self::DEFAULT_EMPTY_STRING;
+        if (array_key_exists($this->getTemplateType(), PageTemplateTypeEnum::getEnumArray())) {
+            $result = PageTemplateTypeEnum::getEnumArray()[$this->getTemplateType()];
+        }
+
+        return $result;
+    }
+
+    public function getTemplateTypeString(): string
+    {
+        return array_key_exists($this->getTemplateType(), PageTemplateTypeEnum::getTemplateTypeArray()) ? PageTemplateTypeEnum::getTemplateTypeArray()[$this->getTemplateType()] : PageTemplateTypeEnum::getTemplateTypeArray()[0];
+    }
+
     public function setTemplateType(int $templateType): self
     {
         $this->templateType = $templateType;

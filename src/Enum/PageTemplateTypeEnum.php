@@ -12,6 +12,19 @@ class PageTemplateTypeEnum
     public const BLOG = 5;
     public const INFO = 6;
 
+    public static function getTemplateTypeArray(): array
+    {
+        return [
+            self::DEFAULT => 'default',
+            self::MENU => 'menu',
+            self::SUBMENU => 'submenu',
+            self::LIST => 'list',
+            self::PAGE => 'page',
+            self::BLOG => 'blog',
+            self::INFO => 'info',
+        ];
+    }
+
     public static function getEnumArray(): array
     {
         return [

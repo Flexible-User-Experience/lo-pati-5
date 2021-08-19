@@ -7,7 +7,6 @@ use App\Entity\Newsletter;
 use App\Entity\Page;
 use App\Entity\User;
 use App\Enum\NewsletterStatusEnum;
-use App\Enum\PageTemplateTypeEnum;
 use App\Enum\UserRolesEnum;
 use ReflectionClass;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -51,7 +50,7 @@ class AppExtension extends AbstractExtension
 
     public function drawPageTemplateTypeHtmlSpan(Page $page): string
     {
-        return '<span class="label label-default">'.$this->ts->trans(PageTemplateTypeEnum::getEnumArray()[$page->getTemplateType()]).'</span>';
+        return '<span class="label label-default">'.$this->ts->trans($page->getTemplateTypeTransString()).'</span>';
     }
 
     public function drawNewsletterStatusHtmlSpan(Newsletter $newsletter): string

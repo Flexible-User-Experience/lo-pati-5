@@ -16,7 +16,18 @@
     <div class="row my-5">
         <div class="col">
             <h1>{{ menu }}</h1>
-            <pre>#{{ menu.id }}</pre>
+            {% if menu.page %}
+                {% if app.environment == constant('App\\Kernel::DEV_ENV') %}
+                    <hr>
+                    <pre>P_ID# {{ menu.page.id }} · PTT# '{{ menu.page.templateTypeTransString | trans }}'</pre>
+                {% endif %}
+            {% else %}
+                <hr>
+                <pre>TO DO... {# TODO render empty menu level 1 template #}</pre>
+            {% endif %}
         </div>
     </div>
+    {% if menu.page %}
+        {% include 'frontend/partials/page_template_types/'~menu.page.templateTypeString~'.html.twig' %}
+    {% endif %}
 {% endblock %}
