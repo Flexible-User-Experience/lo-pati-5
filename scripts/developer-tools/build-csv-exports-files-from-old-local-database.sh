@@ -18,6 +18,7 @@ php ./bin/console app:import:newsletter:user ./var/csv/imports/newsletteruser.cs
 php ./bin/console app:import:fetch:newsletter:group:user ./var/csv/imports/newslettergroupnewsletteruser.csv
 php ./bin/console app:import:newsletter ./var/csv/imports/newsletter.csv
 php ./bin/console app:import:newsletter:post ./var/csv/imports/newsletterpost.csv
+php ./bin/console fos:elastica:populate
 cp -r ../lo-pati/web/uploads/artists/* public/uploads/artists/
 cp ../lo-pati/web/uploads/slides/* public/uploads/slides/
 cp ../lo-pati/web/uploads/isolated-newsletter/* public/uploads/newsletters/

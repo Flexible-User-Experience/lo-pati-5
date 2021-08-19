@@ -56,3 +56,7 @@
       shell: "/usr/bin/php7.4 bin/console app:import:newsletter:post var/csv/imports/newsletterpost.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
+    - name: populate Elasticsearch 7 server index command
+      shell: "/usr/bin/php7.4 bin/console fos:elastica:populate --env=prod"
+      args:
+        chdir: "{{ vhost_path_prod }}/current/"

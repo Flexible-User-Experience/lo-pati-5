@@ -3,6 +3,8 @@ Changelog
 
 ##### Version 5.06.00 (WIP)
  * fix bugs
+ * add latest version of Elasticsearch engine
+ * add Stimulus autocomplete frontend layout search bar
 
 ##### Version 5.05.00 (2021-08-16)
  * fix ArtistAdmin edit error
@@ -48,5 +50,5 @@ To Do
  * fix responsiveness issues
  * manage Sendgrid unsubscriptions callback hooks
  * enable frontend Newsletter subscribtion
- * add latest version of Elasticsearch engine
  * add entities traslation and Admin management
+ * fix detail page render on menu level 2 unassigned case
