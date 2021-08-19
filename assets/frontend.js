@@ -12,4 +12,4 @@ import './bootstrap';
 let searchOffcanvas = document.getElementById('offcanvasSearch');
 searchOffcanvas.addEventListener('shown.bs.offcanvas', function () {
     document.getElementById('inputOffcanvasSearchField').focus();
-})
+});

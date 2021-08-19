@@ -51,12 +51,10 @@ class DefaultController extends AbstractController
      */
     public function searchAction(Request $request, RepositoryManagerInterface $finder): Response
     {
-        $pages = $finder->getRepository(Page::class)->find($request->query->get('q'));
-
         return $this->render(
             'frontend/partials/full_text_search_results.html.twig',
             [
-                'pages' => $pages,
+                'pages' => $finder->getRepository(Page::class)->getFulltextSearchByQueryFilteredByActive($request->query->get('q')),
             ]
         );
     }

@@ -5,15 +5,15 @@ fos_elastica:
         app:
             index_name: 'lopati_website_index_app_%kernel.environment%'
             persistence:
-                driver:   orm
-                model:    App\Entity\Page
-                provider: ~
-                finder:   ~
-#                elastica_to_model_transformer:
-#                    query_builder_method: 'getElasticsearchEnabledSortedByNameAndPublishDate'
+                driver:     orm
+                model:      App\Entity\Page
+                repository: App\Repository\PageElasticaRepository
+                provider:   ~
+                finder:     ~
             properties:
-                name:                  { boost: 10 }
-                summary:               { boost: 5 }
-                description:           { boost: 5 }
-                realizationDateString: { boost: 1 }
-                place:                 { boost: 1 }
+                name:                  { boost: 2.0 }
+                summary:               { boost: 1.4 }
+                description:           { boost: 0.9 }
+                realizationDateString: { boost: 0.2 }
+                place:                 { boost: 0.1 }
+                active:                { type: 'boolean' }

@@ -53,15 +53,6 @@ class PageRepository extends ServiceEntityRepository
             ->orderBy('p.publishDate', $sortOrder);
     }
 
-    public function getElasticsearchEnabledSortedByNameAndPublishDate(string $entityAlias): QueryBuilder
-    {
-        return $this->createQueryBuilder($entityAlias)
-            ->orderBy($entityAlias.'.name', SortOrderTypeEnum::ASC)
-            ->addOrderBy($entityAlias.'.publishDate', SortOrderTypeEnum::DESC)
-            ->where($entityAlias.'.active = :active')
-            ->setParameter('active', true);
-    }
-
     public function getAllSortedByName(string $sortOrder = SortOrderTypeEnum::ASC): QueryBuilder
     {
         return $this->createQueryBuilder('p')->orderBy('p.name', $sortOrder);

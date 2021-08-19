@@ -9,6 +9,7 @@ Changelog
 ##### Version 5.05.00 (2021-08-16)
  * fix ArtistAdmin edit error
  * add Admin user securized area
+ * decide better highlighted homepage aspect ratio covers
  * improve PageAdmin
 
 ##### Version 5.04.00 (2021-08-10)
@@ -46,9 +47,8 @@ Changelog
 To Do
 =====
 
- * decide better highlighted homepage aspect ratio covers
  * fix responsiveness issues
  * manage Sendgrid unsubscriptions callback hooks
  * enable frontend Newsletter subscribtion
  * add entities traslation and Admin management
- * fix detail page render on menu level 2 unassigned case
+ * fix broken detail page render path on menu level 2 unassigned case
