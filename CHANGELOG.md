@@ -6,6 +6,7 @@ Changelog
  * add latest version of Elasticsearch engine
  * add Stimulus autocomplete frontend layout search bar
  * improve frontend page templates types render
+ * improve current menu render in frontend detail page render
 
 ##### Version 5.05.00 (2021-08-16)
  * fix ArtistAdmin edit error
