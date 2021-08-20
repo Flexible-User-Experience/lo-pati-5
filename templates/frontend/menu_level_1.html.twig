@@ -13,24 +13,30 @@
 {% endblock %}
 
 {% block main %}
-    {% if show_debug_page_info %}
-        <div class="row my-5">
-            <div class="col">
-                <h1>{{ menu }}</h1>
-                <hr>
-                <pre>P_ID# {{ menu.page.id }} · PTT# '{{ menu.page.templateTypeTransString | trans }}'</pre>
+    <main>
+        {% if show_debug_page_info %}
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col">
+                        <h1>{{ menu }}</h1>
+                        <hr>
+                        <pre>P_ID# {{ menu.page.id }} · PTT# '{{ menu.page.templateTypeTransString | trans }}'</pre>
+                    </div>
+                </div>
             </div>
-        </div>
-    {% endif %}
-    {% if menu.page %}
-        {% include 'frontend/partials/page_template_types/'~menu.page.templateTypeString~'.html.twig' with {page: menu.page} %}
-    {% else %}
-        <div class="row my-5">
-            <div class="col">
-                <h1>{{ menu }}</h1>
-                <hr>
-                <pre>TO DO... {# TODO render empty menu level 2 template #}</pre>
+        {% endif %}
+        {% if menu.page %}
+            {% include 'frontend/partials/page_template_types/'~menu.page.templateTypeString~'.html.twig' with {page: menu.page} %}
+        {% else %}
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col">
+                        <h1>{{ menu }}</h1>
+                        <hr>
+                        <pre>TO DO... {# TODO render empty menu level 2 template #}</pre>
+                    </div>
+                </div>
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
+    </main>
 {% endblock %}

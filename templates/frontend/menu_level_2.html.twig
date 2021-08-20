@@ -13,24 +13,30 @@
 {% endblock %}
 
 {% block main %}
-    {% if show_debug_page_info %}
-        <div class="row my-5">
-            <div class="col">
-                <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
-                <hr>
-                <pre>P_ID# {{ submenu.page.id }} · PTT# '{{ submenu.page.templateTypeTransString | trans }}'</pre>
+    <main>
+        {% if show_debug_page_info %}
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col">
+                        <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
+                        <hr>
+                        <pre>P_ID# {{ submenu.page.id }} · PTT# '{{ submenu.page.templateTypeTransString | trans }}'</pre>
+                    </div>
+                </div>
             </div>
-        </div>
-    {% endif %}
-    {% if submenu.page %}
-        {% include 'frontend/partials/page_template_types/'~submenu.page.templateTypeString~'.html.twig' with {page: submenu.page} %}
-    {% else %}
-        <div class="row my-5">
-            <div class="col">
-                <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
-                <hr>
-                <pre>TO DO... {# TODO render empty menu level 2 template #}</pre>
+        {% endif %}
+        {% if submenu.page %}
+            {% include 'frontend/partials/page_template_types/'~submenu.page.templateTypeString~'.html.twig' with {page: submenu.page} %}
+        {% else %}
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col">
+                        <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
+                        <hr>
+                        <pre>TO DO... {# TODO render empty menu level 2 template #}</pre>
+                    </div>
+                </div>
             </div>
-        </div>
-    {% endif %}
+        {% endif %}
+    </main>
 {% endblock %}
