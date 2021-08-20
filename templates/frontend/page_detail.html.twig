@@ -5,15 +5,11 @@
 {% block title %}{{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
 
 {% block submenu_header %}
-    {% if app.environment == constant('App\\Kernel::DEV_ENV') %}
-        {{ dump(item) }}
-    {% endif %}
-{#    <header class="d-flex border-bottom">#}
-{#        <nav class="submenu navbar navbar-light bg-white text-uppercase mx-auto">#}
-{#            {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}#}
-{#        </nav>#}
-{#    </header>#}
-{#    {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}#}
+    <header class="d-flex border-bottom">
+        <nav class="submenu navbar navbar-light bg-white text-uppercase mx-auto">
+            {{ knp_menu_render(item, {'currentClass': 'active', 'depth': 2}) }}
+        </nav>
+    </header>
 {% endblock %}
 
 {% block main %}

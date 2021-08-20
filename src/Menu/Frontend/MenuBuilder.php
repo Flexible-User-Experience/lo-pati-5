@@ -70,8 +70,8 @@ class MenuBuilder
                 ]
             );
             $item->setChildrenAttribute('class', 'nav nav-pills');
-            if ($menuRoute && ($this->isMenuLevel1RouteCurrent($currentRoute) || $this->isMenuLevel2RouteCurrent($currentRoute)) && $menuRoute->getId() === $ml1Item->getId()) {
-                if ($this->isMenuLevel1RouteCurrent($currentRoute)) {
+            if ($menuRoute && $menuRoute->getId() === $ml1Item->getId()) {
+                if ($this->isMenuLevel1RouteCurrent($currentRoute) || $this->isPageDetailRouteCurrent($currentRoute)) {
                     $item->setCurrent(true);
                 }
                 $item->setLinkAttribute('class', 'nav-link active');
@@ -93,7 +93,7 @@ class MenuBuilder
                         ],
                     ]
                 );
-                if ($menuRoute && $submenuRoute && $this->isMenuLevel2RouteCurrent($currentRoute) && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute->getId() === $ml2Item->getId()) {
+                if ($menuRoute && $submenuRoute && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute->getId() === $ml2Item->getId()) {
                     $submenu->setCurrent(true);
                     $submenu->setLinkAttribute('class', 'nav-link active');
                     $submenu->setLinkAttribute('aria-current', 'page');
@@ -120,5 +120,10 @@ class MenuBuilder
     private function isMenuLevel2RouteCurrent(string $route): bool
     {
         return 'front_app_menu_level_2' === $route;
+    }
+
+    private function isPageDetailRouteCurrent(string $route): bool
+    {
+        return 'front_app_page_detail' === $route;
     }
 }
