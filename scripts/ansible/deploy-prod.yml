@@ -33,7 +33,7 @@
     symfony_run_composer: true
     symfony_composer_path: "{{ ansistrano_deploy_to }}/composer.phar"
     symfony_composer_options: "--no-dev --optimize-autoloader --no-interaction --no-scripts"
-    symfony_composer_version: "2.1.6"
+    symfony_composer_version: "2.1.11"
     symfony_composer_self_update: false
     symfony_run_assets_install: false
     symfony_run_assetic_dump: false
