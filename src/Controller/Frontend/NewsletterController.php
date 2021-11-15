@@ -5,6 +5,7 @@ namespace App\Controller\Frontend;
 use App\Entity\Newsletter;
 use App\Entity\NewsletterUser;
 use App\Form\Type\NewsletterSubscriptionFormType;
+use App\Repository\NewsletterUserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -18,7 +19,7 @@ final class NewsletterController extends AbstractController
     /**
      * @Route("/newsletter/subscribe", name="front_app_newsletter_subscribe_form", priority=10)
      */
-    public function form(Request $request, TranslatorInterface $translator): Response
+    public function form(Request $request, NewsletterUserRepository $newsletterUserRepository, TranslatorInterface $translator): Response
     {
         $newsletterUser = new NewsletterUser();
         $newsletterSubscriptionForm = $this->createForm(NewsletterSubscriptionFormType::class, $newsletterUser, [
@@ -26,7 +27,25 @@ final class NewsletterController extends AbstractController
         ]);
         $newsletterSubscriptionForm->handleRequest($request);
         if ($newsletterSubscriptionForm->isSubmitted() && $newsletterSubscriptionForm->isValid()) {
-            $this->addFlash('success', $translator->trans('submitted'));
+            $searchedNewsletterUser = $newsletterUserRepository->findOneBy(
+                ['email' => $newsletterUser->getEmail()]
+            );
+            if ($searchedNewsletterUser) {
+                // update an existent user
+                $searchedNewsletterUser
+                    ->setName($newsletterUser->getName())
+                    ->setPhone($newsletterUser->getPhone())
+                    ->setPostalCode($newsletterUser->getPostalCode())
+                    ->setLanguage($request->getLocale())
+                    ->setActive(false)
+                ;
+            } else {
+                // create a new user
+                $newsletterUser->setActive(false);
+                $this->getDoctrine()->getManager()->persist($newsletterUser);
+            }
+//            $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', $translator->trans('newsletter.flash.register'));
 
             return $this->redirectToRoute('front_app_homepage', ['_locale' => $request->getLocale()]);
         }

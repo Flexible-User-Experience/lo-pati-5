@@ -466,6 +466,13 @@ newsletter:
     phone: 'Teléfono'
     accept_legal_terms: 'Accept'
     submit: 'Enviar'
+  flash:
+    register: 'Se ha registrado correctamente. Ahora recibira un email de confirmacion para activar su usuario.'
+    error:  'Ya existe un usuario con ese email.'
+  email:
+    confirmation:
+      congratulations: '¡Enhorabuena! Se ha registrado correctamente.'
+      subject:  'Activada su dirección de correo electrónico.'
 mail:
   back_to_cms: 'volver al CMS'
   preview_mode: 'mode previsualización'
