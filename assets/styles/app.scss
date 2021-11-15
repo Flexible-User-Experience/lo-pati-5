@@ -1,6 +1,7 @@
 // custom variables
 $lp-base-precent: 25%;
 $lp-color-white: #FFFFFF;
+$lp-color-ultra-black: #0E131C;
 $lp-color-black: #151920;
 $lp-color-light-grey: #78838C;
 $lp-color-ultra-light-grey: #CBCFD1;
@@ -143,6 +144,12 @@ footer {
 }
 .lp-c-ultra-light-grey {
   color: $lp-color-ultra-light-grey !important;
+}
+.lp-c-white {
+  color: $lp-color-white !important;
+}
+.lp-bg-ultra-black {
+  background-color: $lp-color-ultra-black !important;
 }
 .lp-bg-black {
   background-color: $lp-color-black !important;

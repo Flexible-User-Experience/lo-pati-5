@@ -429,6 +429,22 @@ front:
       timetable_h1: '16:00h - 20:00h'
       timetable_h2: '11:00h - 14:00h'
       timetable_ab: 'Reservar'
+    footer_2:
+      left:
+        name: 'Centre d''Art · Terres de l''Ebre'
+        address: 'C. Gran Capità, núm. 38-40'
+        phone: '977 709 400'
+        zip_code: '43870 Amposta'
+        visit_hours: 'Horari de visita'
+        hours_line_1: 'Dimecres, dijous, divendres i dissabtes de 16:00 a 20:00'
+        hours_line_2: 'Diumenges de 11:00 a 14:00'
+        follow_us: 'Segueix-nos a:'
+      middle:
+        organize: 'Organitza'
+        support_by: 'Amb el suport de:'
+        collaboration: 'I la col·laboració de:'
+      right:
+        subscribe: 'Subscriu-te al butlletí'
   menu:
     start: 'Inici'
   homepage:
