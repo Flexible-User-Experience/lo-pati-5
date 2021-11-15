@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EditNewsletterPostActionButtonFormType extends AbstractType
+final class EditNewsletterPostActionButtonFormType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver): void
     {

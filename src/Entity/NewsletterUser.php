@@ -19,11 +19,13 @@ class NewsletterUser extends AbstractBase
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
      */
     private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      * @Assert\Email()
      */
     private string $email;

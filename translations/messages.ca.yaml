@@ -458,6 +458,14 @@ front:
     paginator_label: 'Paginador de destacats'
   newsletter:
     unsubscribe_success: 'La teva subscripció al newsletter ha estat eliminada correctament.'
+newsletter:
+  form:
+    name: 'Nom *'
+    email: 'Email *'
+    zip: 'Codi postal'
+    phone: 'Telèfon'
+    accept_legal_terms: 'Accepto'
+    submit: 'Enviar'
 mail:
   back_to_cms: 'tornar al CMS'
   preview_mode: 'mode previsualització'

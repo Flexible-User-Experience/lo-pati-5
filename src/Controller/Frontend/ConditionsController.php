@@ -6,12 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TermsController extends AbstractController
+final class ConditionsController extends AbstractController
 {
     /**
-     * @Route("/politica-de-privacitat", name="front_app_privacy_policy")
+     * @Route({"ca": "/politica-de-privacitat", "es": "/politica-de-privacidad"}, name="front_app_privacy_policy")
      */
-    public function privacyPolicyAction(): Response
+    public function privacyPolicy(): Response
     {
         return $this->render('frontend/terms/privacy_policy.html.twig');
     }

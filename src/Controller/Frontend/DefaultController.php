@@ -4,8 +4,6 @@ namespace App\Controller\Frontend;
 
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
-use App\Entity\Newsletter;
-use App\Entity\NewsletterUser;
 use App\Entity\Page;
 use App\Repository\PageRepository;
 use App\Repository\SlideshowRepository;
@@ -14,18 +12,16 @@ use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
-class DefaultController extends AbstractController
+final class DefaultController extends AbstractController
 {
     /**
      * @Route("/", name="front_app_homepage")
      */
-    public function indexAction(Request $request, SlideshowRepository $sr, PageRepository $pr, PaginatorInterface $pi): Response
+    public function index(Request $request, SlideshowRepository $sr, PageRepository $pr, PaginatorInterface $pi): Response
     {
         $slides = $sr->getEnabledSortedByPositionAndName()->getQuery()->getResult();
         $highlightedPages = $pi->paginate(
@@ -49,7 +45,7 @@ class DefaultController extends AbstractController
     /**
      * @Route("/search", name="front_app_search")
      */
-    public function searchAction(Request $request, RepositoryManagerInterface $finder): Response
+    public function search(Request $request, RepositoryManagerInterface $finder): Response
     {
         return $this->render(
             'frontend/partials/full_text_search_results.html.twig',
@@ -60,38 +56,9 @@ class DefaultController extends AbstractController
     }
 
     /**
-     * @Route("/newsletter/{id}", name="front_app_newsletter_web_version")
-     * @ParamConverter("id", class="App\Entity\Newsletter", options={"mapping": {"id": "id"}})
-     */
-    public function newsletterWebAction(Newsletter $newsletter): Response
-    {
-        return $this->render(
-            'mail/newsletter.html.twig',
-            [
-                'newsletter' => $newsletter,
-                'show_top_bar' => false,
-                'show_bottom_bar' => false,
-            ]
-        );
-    }
-
-    /**
-     * @Route("/newsletter/unsubscribe/{token}", name="front_app_newsletter_unsubscribe")
-     * @ParamConverter("token", class="App\Entity\NewsletterUser", options={"mapping": {"token": "token"}})
-     */
-    public function newsletterUnsubscribeAction(NewsletterUser $user, TranslatorInterface $translator): RedirectResponse
-    {
-        $this->getDoctrine()->getManager()->remove($user);
-        $this->getDoctrine()->getManager()->flush();
-        $this->addFlash('notice', $translator->trans('front.newsletter.unsubscribe_success'));
-
-        return $this->redirectToRoute('front_app_homepage');
-    }
-
-    /**
      * @Route({"ca": "/canviar-a-idioma/{locale}", "es": "/cambiar-idioma/{locale}"}, name="front_app_language_switcher")
      */
-    public function languageSwitcherAction(Request $request, string $locale): Response
+    public function languageSwitcher(Request $request, string $locale): Response
     {
         $request->getSession()->set('_locale', $locale);
 
@@ -102,7 +69,7 @@ class DefaultController extends AbstractController
      * @Route("/{menu}", name="front_app_menu_level_1")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
-    public function menuLevel1Action(MenuLevel1 $menu): Response
+    public function menuLevel1(MenuLevel1 $menu): Response
     {
         return $this->render(
             'frontend/menu_level_1.html.twig',
@@ -118,7 +85,7 @@ class DefaultController extends AbstractController
      * @Entity("submenu", class="App\Entity\MenuLevel2", expr="repository.getByMenuAndSubmenuSlugs(menu, submenu)")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
-    public function menuLevel2Action(MenuLevel1 $menu, MenuLevel2 $submenu): Response
+    public function menuLevel2(MenuLevel1 $menu, MenuLevel2 $submenu): Response
     {
         return $this->render(
             'frontend/menu_level_2.html.twig',
@@ -136,7 +103,7 @@ class DefaultController extends AbstractController
      * @Entity("page", class="App\Entity\Page", expr="repository.getByDateAndSlug(date, page)")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
-    public function pageDetailAction(MenuLevel1 $menu, MenuLevel2 $submenu, Page $page): Response
+    public function pageDetail(MenuLevel1 $menu, MenuLevel2 $submenu, Page $page): Response
     {
         return $this->render(
             'frontend/page_detail.html.twig',
