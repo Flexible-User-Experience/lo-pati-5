@@ -445,6 +445,11 @@ front:
         collaboration: 'I la col·laboració de:'
       right:
         subscribe: 'Subscriu-te al butlletí'
+    footer_3:
+      left:
+        legal_terms: 'Termes legals'
+        privacy_policy: 'Política de privacitat'
+        cookies_policy: 'Política de cookies'
   menu:
     start: 'Inici'
   homepage:
