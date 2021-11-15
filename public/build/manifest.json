@@ -2936,5 +2936,10 @@
   "build/ckeditor/plugins/print/lang/vi.js": "/build/ckeditor/plugins/print/lang/vi.js",
   "build/ckeditor/plugins/save/lang/da.js": "/build/ckeditor/plugins/save/lang/da.js",
   "build/ckeditor/skins/kama/images/dialog_sides.gif": "/build/ckeditor/skins/kama/images/dialog_sides.gif",
-  "build/ckeditor/plugins/exportpdf/plugindefinition.js": "/build/ckeditor/plugins/exportpdf/plugindefinition.js"
+  "build/ckeditor/plugins/exportpdf/plugindefinition.js": "/build/ckeditor/plugins/exportpdf/plugindefinition.js",
+  "build/instagram.svg": "/build/instagram.svg",
+  "build/vimeo.svg": "/build/vimeo.svg",
+  "build/twitter.svg": "/build/twitter.svg",
+  "build/facebook.svg": "/build/facebook.svg",
+  "build/flickr.svg": "/build/flickr.svg"
 }

@@ -464,7 +464,7 @@ newsletter:
     email: 'Email *'
     zip: 'Codi postal'
     phone: 'Telèfon'
-    accept_legal_terms: 'Accepto'
+    accept_legal_terms: 'Accepto els termes legals'
     submit: 'Enviar'
   flash:
     register: 'S''ha registrat correctament. Ara rebrà un correu electrònic de confirmació per activar el seu usuari.'
