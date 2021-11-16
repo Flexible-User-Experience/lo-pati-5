@@ -3,7 +3,7 @@
     "frontend": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_symfony_stimulus-brid-5c8528.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_symfony_stimulus-brid-c23df9.js",
         "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js.js",
         "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
         "/build/frontend.js"
@@ -15,7 +15,7 @@
     "backend": {
       "js": [
         "/build/runtime.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_symfony_stimulus-brid-5c8528.js",
+        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_symfony_stimulus-brid-c23df9.js",
         "/build/vendors-node_modules_jquery_dist_jquery_js.js",
         "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
         "/build/backend.js"

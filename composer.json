@@ -23,6 +23,7 @@
         "doctrine/orm": "^2.9",
         "friendsofsymfony/ckeditor-bundle": "^2.3",
         "friendsofsymfony/elastica-bundle": "^6.0@beta",
+        "friendsofsymfony/jsrouting-bundle": "^2.7",
         "knplabs/knp-menu-bundle": "^3.1",
         "knplabs/knp-paginator-bundle": "^5.6",
         "liip/imagine-bundle": "^2.6",
