@@ -6,18 +6,43 @@ const routes = require('../../public/js/fos_js_routes.json');
 
 export default class extends Controller {
     static targets = [ 'agenda' ]
+    static values = {
+        month: Number,
+        year: Number,
+    }
 
     connect() {
-        let self = this;
         Routing.setRoutingData(routes);
-        axios.get(Routing.generate('front_app_calendar'))
+        this.postCalendar();
+    }
+
+    previous() {
+        this.agendaTarget.innerHTML = '<i class="fas fa-spin fa-circle-notch fa-5x"></i>';
+        this.monthValue--;
+        if (this.monthValue === 0) {
+            this.monthValue = 12;
+            this.yearValue--;
+        }
+        this.postCalendar();
+    }
+
+    next() {
+        this.agendaTarget.innerHTML = '<i class="fas fa-spin fa-circle-notch fa-5x"></i>';
+        this.monthValue++;
+        if (this.monthValue === 13) {
+            this.monthValue = 1;
+            this.yearValue++;
+        }
+        this.postCalendar();
+    }
+
+    postCalendar() {
+        let self = this;
+        axios.post(Routing.generate('front_app_calendar'), {month: this.monthValue, year: this.yearValue})
             .then(function (response) {
-                console.log('[Calendar::connect] axios get response', response);
                 if (response.hasOwnProperty('data') && response.hasOwnProperty('status') && response.status === 200) {
-                    // draw calendar
                     self.agendaTarget.innerHTML = response.data;
                 } else {
-                    // draw error
                     self.agendaTarget.innerHTML = '<i class="fas fa-exclamation-triangle lp-c-light-grey"></i>';
                     console.error('[Calendar::connect] axios get response error');
                 }
@@ -27,13 +52,5 @@ export default class extends Controller {
                 console.error('[Calendar::connect] axios get error response', error);
             })
         ;
-    }
-
-    previous() {
-        console.log('[Calendar::previous] clicked');
-    }
-
-    next() {
-        console.log('[Calendar::next] clicked');
     }
 }

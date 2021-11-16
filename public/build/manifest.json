@@ -2941,5 +2941,6 @@
   "build/ckeditor/plugins/print/lang/vi.js": "/build/ckeditor/plugins/print/lang/vi.js",
   "build/ckeditor/plugins/save/lang/da.js": "/build/ckeditor/plugins/save/lang/da.js",
   "build/ckeditor/skins/kama/images/dialog_sides.gif": "/build/ckeditor/skins/kama/images/dialog_sides.gif",
-  "build/ckeditor/plugins/exportpdf/plugindefinition.js": "/build/ckeditor/plugins/exportpdf/plugindefinition.js"
+  "build/ckeditor/plugins/exportpdf/plugindefinition.js": "/build/ckeditor/plugins/exportpdf/plugindefinition.js",
+  "build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_symfony_stimulus-brid-66c068.js": "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_symfony_stimulus-brid-66c068.js"
 }

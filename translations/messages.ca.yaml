@@ -517,7 +517,7 @@ enum:
     september: 'Setemebre'
     october: 'Octubre'
     november: 'Novembre'
-    december: 'Decembre'
+    december: 'Desembre'
   week:
     monday: 'DL'
     tuesday: 'DM'

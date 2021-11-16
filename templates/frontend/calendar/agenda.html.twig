@@ -1,0 +1,23 @@
+{% extends "frontend/base.html.twig" %}
+
+{% set item = knp_menu_get_current_item('frontend_main') %}
+
+{% block title %}{{ moment | date(constant('App\\Entity\\AbstractBase::DATE_FORMAT')) }} · {{ parent() }}{% endblock %}
+
+{% block main %}
+    <main>
+        <div class="container">
+            <div class="row my-5">
+                <div class="col">
+                    <h1>{{ 'list' | trans }} {{ moment | date(constant('App\\Entity\\AbstractBase::DATE_FORMAT')) }}</h1>
+                    <hr>
+                    <pre>
+                        {% for page in pages %}
+                            {{ page }}<br>
+                        {% endfor %}
+                    </pre>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
