@@ -108,7 +108,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2" data-controller="calendar" data-calendar-month-value="11" data-calendar-year-value="2021">
+                        <div class="col-2" data-controller="calendar" data-calendar-month-value="{{ 'now' | date('n') }}" data-calendar-year-value="{{ 'now' | date('Y') }}">
                             <div class="row">
                                 <div class="col-6">
                                     <h6 class="lp-bg-light-grey text-white text-uppercase p-2 mb-3">{{ 'front.layout.footer.agenda.dates' | trans }}</h6>
