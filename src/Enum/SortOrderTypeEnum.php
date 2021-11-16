@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-class SortOrderTypeEnum
+final class SortOrderTypeEnum
 {
     public const ASC = 'ASC';
     public const DESC = 'DESC';

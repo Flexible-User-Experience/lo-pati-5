@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-class NewsletterStatusEnum
+final class NewsletterStatusEnum
 {
     public const WAITING = 0;
     public const SENDING = 1;

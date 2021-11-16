@@ -429,6 +429,8 @@ front:
       timetable_h1: '16:00h - 20:00h'
       timetable_h2: '11:00h - 14:00h'
       timetable_ab: 'Reservar'
+      agenda:
+        dates: 'Fechas'
     footer_2:
       left:
         name: 'Centre d''Art · Terres de l''Ebre'
@@ -503,3 +505,16 @@ enum:
     user: 'Usuario'
     admin: 'Administrador'
     super_admin: 'Superadministrador'
+  month:
+    january: 'Enero'
+    febraury: 'Febrero'
+    march: 'Marzo'
+    april: 'Abril'
+    may: 'Mayo'
+    june: 'Junio'
+    july: 'Julio'
+    august: 'Agosto'
+    september: 'Septimebre'
+    october: 'Octubre'
+    november: 'Noviembre'
+    december: 'Diciembre'

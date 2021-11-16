@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-class PageTemplateTypeEnum
+final class PageTemplateTypeEnum
 {
     public const DEFAULT = 0;
     public const MENU = 1;
