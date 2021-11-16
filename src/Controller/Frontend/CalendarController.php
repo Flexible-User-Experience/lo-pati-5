@@ -20,7 +20,6 @@ final class CalendarController extends AbstractController
         $now = new DateTimeImmutable();
         $month = (int) $now->format('n');
         $year = (int) $now->format('Y');
-        $workingDays = $cm->getActiveWorkingDaysItems();
         $daysMatrix = $cm->getDaysMatrixByMonthAndYear($month, $year);
 
         return $this->render('frontend/calendar/calendar.html.twig', [
@@ -29,8 +28,8 @@ final class CalendarController extends AbstractController
             'month_string' => $translator->trans(MonthEnum::getEnumArray()[$now->format('n')]),
             'month' => $month,
             'year' => $year,
-            'working_days' => $workingDays,
             'days_matrix' => $daysMatrix,
+            'hits_matrix' => $cm->getHitDaysMatrix($month, $year),
         ]);
     }
 }

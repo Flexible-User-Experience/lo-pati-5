@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\MenuLevel2Repository")
  * @UniqueEntity(fields={"name", "menuLevel1"}, errorPath="name")
  */
-final class MenuLevel2 extends AbstractBase
+class MenuLevel2 extends AbstractBase
 {
     use NameTrait;
     use PositionTrait;

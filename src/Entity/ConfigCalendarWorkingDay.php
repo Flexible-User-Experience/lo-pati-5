@@ -11,7 +11,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\ConfigCalendarWorkingDayRepository")
  * @UniqueEntity("workingDayNumber")
  */
-final class ConfigCalendarWorkingDay extends AbstractBase
+class ConfigCalendarWorkingDay extends AbstractBase
 {
     use NameTrait;
 

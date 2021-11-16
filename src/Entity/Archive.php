@@ -14,7 +14,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @UniqueEntity(fields={"year"}, errorPath="year")
  * @Vich\Uploadable()
  */
-final class Archive extends AbstractBase
+class Archive extends AbstractBase
 {
     use SmallImage1Trait;
     use SmallImage2Trait;

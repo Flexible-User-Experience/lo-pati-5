@@ -17,7 +17,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterPostRepository")
  * @Vich\Uploadable
  */
-final class NewsletterPost extends AbstractBase
+class NewsletterPost extends AbstractBase
 {
     use Image1Trait;
     use OldDatabaseVersionIdTrait;

@@ -38,7 +38,7 @@ final class CalendarManager
 
     public function getHitDaysMatrix($month, $year): array
     {
-        // Marca els hits d'esdeveniments de periodes de dates i esdeveniments d'una sola data
+        $workingDays = $this->getActiveWorkingDaysItems();
         $pages = $this->pr->getActiveItemsFromMonthAndYear($month, $year);
         $hitsMatrix = [];
         $monthString = (string) $month;
@@ -58,17 +58,17 @@ final class CalendarManager
                     $iMod6 = date_format(date_create_from_format('Y-m-d', $currentDayString), 'w'); // get the number day of week (0=sunday, 1=monday .. 6=saturday)
                     $found = false;
                     foreach ($workingDays as $workingDay) {
-                        if ($workingDay->getId() == $iMod6) {
+                        if ($workingDay->getId() === $iMod6) {
                             $found = true;
                             break;
                         }
                     }
-                    if ((!$item1->getAlwaysShowOnCalendar() && $found) || $item1->getAlwaysShowOnCalendar()) {
-                        if ($item1->getStartDate() == $item1->getEndDate()) {
+                    if ((!$page->isAlwaysShowOnCalendar() && $found) || $page->isAlwaysShowOnCalendar()) {
+                        if ($page->getStartDateString() === $page->getEndDateString()) {
                             $hitsMatrix[$i] = 'hit-single';
                         }
                         if (isset($hitsMatrix[$i])) {
-                            if ('hit-single' != $hitsMatrix[$i]) {
+                            if ('hit-single' !== $hitsMatrix[$i]) {
                                 $hitsMatrix[$i] = 'hit-period';
                             }
                         } else {
@@ -78,6 +78,8 @@ final class CalendarManager
                 }
             }
         }
+
+        return $hitsMatrix;
     }
 
     public function getDaysMatrixByMonthAndYear(int $month, int $year): array
@@ -99,7 +101,7 @@ final class CalendarManager
         return $daysMatrix;
     }
 
-    public function getActiveWorkingDaysItems(): array
+    private function getActiveWorkingDaysItems(): array
     {
         return $this->ccwdr->getActiveWorkingDaysSortedByNumber();
     }

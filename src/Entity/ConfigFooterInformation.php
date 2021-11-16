@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\ConfigFooterInformationRepository")
  * Gedmo\TranslationEntity(class="LoPati\BlogBundle\Entity\Translation\ConfiguracioTranslation")
  */
-final class ConfigFooterInformation extends AbstractBase
+class ConfigFooterInformation extends AbstractBase
 {
     /**
      * @ORM\Column(type="text", length=10000, nullable=true)
@@ -32,7 +32,7 @@ final class ConfigFooterInformation extends AbstractBase
      * @ORM\Column(type="text", length=10000, nullable=true)
      * Gedmo\Translatable
      */
-    private ?string $colaborator = null;
+    private ?string $collaborator = null;
 
     public function getAddress(): ?string
     {
@@ -70,14 +70,14 @@ final class ConfigFooterInformation extends AbstractBase
         return $this;
     }
 
-    public function getColaborator(): ?string
+    public function getCollaborator(): ?string
     {
-        return $this->colaborator;
+        return $this->collaborator;
     }
 
-    public function setColaborator(?string $colaborator): self
+    public function setCollaborator(?string $collaborator): self
     {
-        $this->colaborator = $colaborator;
+        $this->collaborator = $collaborator;
 
         return $this;
     }

@@ -20,7 +20,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @UniqueEntity(fields={"name"}, errorPath="name")
  * @Vich\Uploadable()
  */
-final class Artist extends AbstractBase
+class Artist extends AbstractBase
 {
     use DescriptionTrait;
     use Document1Trait;

@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(fields={"email"}, errorPath="email")
  */
-final class User extends AbstractBase implements UserInterface, PasswordAuthenticatedUserInterface
+class User extends AbstractBase implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Column(type="string", nullable=false, unique=true)

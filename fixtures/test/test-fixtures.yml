@@ -112,6 +112,20 @@ App\Entity\Slideshow:
     image1FileName: 'imagefile2.png'
     position: 2
 
+# ConfigCalendarWorkingDay
+App\Entity\ConfigCalendarWorkingDay:
+  configcalendarworkingday{1..7}:
+    name: 'Name <current()>'
+    workingDayNumber: '<current()>'
+
+# ConfigFooterInformation
+App\Entity\ConfigFooterInformation:
+  configfooterinformation:
+    address: 'Address 1'
+    timetable: 'Timetable 1'
+    organizer: 'Organizer 1'
+    collaborator: 'Collaborator 1'
+
 # User
 App\Entity\User:
   user1:
