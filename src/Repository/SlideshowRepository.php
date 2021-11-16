@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method Slideshow[]    findAll()
  * @method Slideshow[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class SlideshowRepository extends ServiceEntityRepository
+final class SlideshowRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

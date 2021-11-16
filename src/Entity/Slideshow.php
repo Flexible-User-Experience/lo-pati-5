@@ -17,7 +17,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @UniqueEntity(fields={"name"}, errorPath="name")
  * @Vich\Uploadable()
  */
-class Slideshow extends AbstractBase
+final class Slideshow extends AbstractBase
 {
     use Image1Trait;
     use NameTrait;

@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterUserRepository")
  * @UniqueEntity(fields={"email"}, errorPath="email")
  */
-class NewsletterUser extends AbstractBase
+final class NewsletterUser extends AbstractBase
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)

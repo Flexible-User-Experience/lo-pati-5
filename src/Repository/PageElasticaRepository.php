@@ -7,7 +7,7 @@ use Elastica\Query\MultiMatch;
 use Elastica\Query\Term;
 use FOS\ElasticaBundle\Repository;
 
-class PageElasticaRepository extends Repository
+final class PageElasticaRepository extends Repository
 {
     public function getFulltextSearchByQueryFilteredByActive(string $query): array
     {

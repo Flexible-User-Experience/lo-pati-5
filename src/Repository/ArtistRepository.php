@@ -15,7 +15,7 @@ use Exception;
  * @method Artist[]    findAll()
  * @method Artist[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ArtistRepository extends ServiceEntityRepository
+final class ArtistRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

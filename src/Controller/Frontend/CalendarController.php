@@ -20,19 +20,8 @@ final class CalendarController extends AbstractController
         $now = new DateTimeImmutable();
         $month = (int) $now->format('n');
         $year = (int) $now->format('Y');
-        $daysMatrix = [];
-        $initDate = getdate(mktime(0, 0, 0, $month, 1, $year));
-        $initWeekDay = (int) $initDate['wday'];
-        $totalDays = cal_days_in_month(CAL_GREGORIAN, $month, $year);
-        if (0 === $initWeekDay) {
-            $initWeekDay = 7;
-        }
-        --$initWeekDay; // Reajuste del dia inicial de la setmana (lunes=0, domingo=6)
-        $num = 1;
-        for ($index = $initWeekDay; $index < ($totalDays + $initWeekDay); ++$index) {
-            $daysMatrix[$index] = ['nday' => $num];
-            ++$num;
-        }
+        $workingDays = $cm->getActiveWorkingDaysItems();
+        $daysMatrix = $cm->getDaysMatrixByMonthAndYear($month, $year);
 
         return $this->render('frontend/calendar/calendar.html.twig', [
             'show_week_days_name_in_calendar' => false,
@@ -40,6 +29,7 @@ final class CalendarController extends AbstractController
             'month_string' => $translator->trans(MonthEnum::getEnumArray()[$now->format('n')]),
             'month' => $month,
             'year' => $year,
+            'working_days' => $workingDays,
             'days_matrix' => $daysMatrix,
         ]);
     }

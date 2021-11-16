@@ -25,7 +25,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @UniqueEntity(fields={"name", "publishDate"}, errorPath="name")
  * @Vich\Uploadable()
  */
-class Page extends AbstractBase
+final class Page extends AbstractBase
 {
     use DescriptionTrait;
     use Document1Trait;

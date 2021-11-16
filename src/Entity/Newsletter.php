@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterRepository")
  */
-class Newsletter extends AbstractBase
+final class Newsletter extends AbstractBase
 {
     use OldDatabaseVersionIdTrait;
 

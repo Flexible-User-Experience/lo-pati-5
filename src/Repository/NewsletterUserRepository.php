@@ -18,7 +18,7 @@ use Exception;
  * @method NewsletterUser[]    findAll()
  * @method NewsletterUser[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class NewsletterUserRepository extends ServiceEntityRepository
+final class NewsletterUserRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

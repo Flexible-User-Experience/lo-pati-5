@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterGroupRepository")
  * @UniqueEntity(fields={"name"}, errorPath="name")
  */
-class NewsletterGroup extends AbstractBase
+final class NewsletterGroup extends AbstractBase
 {
     use NameTrait;
 
