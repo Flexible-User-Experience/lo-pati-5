@@ -10,7 +10,7 @@
 </div>
 <div class="row">
     <div class="col">
-        <table class="table table-transparent table-borderless text-end lp-c-ultra-light-grey">
+        <table class="table table-transparent table-borderless text-center lp-c-light-grey">
             {% if show_week_days_name_in_calendar %}
                 <thead>
                 <tr>
@@ -41,15 +41,13 @@
                                 {% set month_value_string = month %}
                             {% endif %}
                             {% set day_complete = year ~ '-' ~ month_value_string ~ '-' ~ day_string %}
-                            {#                    {% if hitsMatrix[day2] is defined %}#}
-                            {# a mes s'ha detectat un esdevenint dins d'aquella data #}
-                            {#                    <td class="{{ hitsMatrix[day2] }}">#}
-                            {#                        <a href="{{ path( 'agenda_' ~ app.request.locale, {year: any, month: mes2, day: day } ) }}">{{ daysMatrix[(semana * 7) + dia]['nday'] }}</a>#}
-                            {#                        <td class="tt"><a href="#"></a></td>#}
-                            {#                    {% else %}#}
-                            {# NO hi ha cap esdevenint, per tant pintar només el número de dia #}
-                            <td>{{ days_matrix[(week * 7) + day]['nday'] }}</td>
-                            {#                    {% endif %}#}
+                            {% if hits_matrix[day2] is defined %}
+                                <td class="{{ hits_matrix[day2] }}">
+                                    <a href="{{ path('front_app_agenda_list', {'year': year, 'month': month_value_string, 'day': day_string}) }}" class="lp-c-ultra-light-grey text-decoration-none">{{ days_matrix[(week * 7) + day]['nday'] }}</a>
+                                </td>
+                            {% else %}
+                                <td>{{ days_matrix[(week * 7) + day]['nday'] }}</td>
+                            {% endif %}
                         {% else %}
                             <td></td>
                         {% endif %}

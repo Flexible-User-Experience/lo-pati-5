@@ -10,7 +10,6 @@ export default class extends Controller {
     connect() {
         let self = this;
         Routing.setRoutingData(routes);
-        console.log('[Calendar::connect] hit', Routing.generate('front_app_calendar'));
         axios.get(Routing.generate('front_app_calendar'))
             .then(function (response) {
                 console.log('[Calendar::connect] axios get response', response);
@@ -19,10 +18,12 @@ export default class extends Controller {
                     self.agendaTarget.innerHTML = response.data;
                 } else {
                     // draw error
+                    self.agendaTarget.innerHTML = '<i class="fas fa-exclamation-triangle lp-c-light-grey"></i>';
                     console.error('[Calendar::connect] axios get response error');
                 }
             })
             .catch(function (error) {
+                self.agendaTarget.innerHTML = '<i class="fas fa-exclamation-triangle lp-c-light-grey"></i>';
                 console.error('[Calendar::connect] axios get error response', error);
             })
         ;

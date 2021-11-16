@@ -95,6 +95,19 @@ final class PageRepository extends ServiceEntityRepository
         return $amount;
     }
 
+    public function getActiveItemsFromDayAndMonthAndYear(string $day, string $month, string $year): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = :active')
+            ->andWhere('p.startDate <= :moment AND p.endDate >= :moment')
+            ->setParameter('active', true)
+            ->setParameter('moment', date(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, strtotime($year.'-'.$month.'-'.$day)))
+            ->orderBy('p.endDate', SortOrderTypeEnum::ASC)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
     public function getActiveItemsFromMonthAndYear(int $month, int $year): array
     {
         return $this->createQueryBuilder('p')

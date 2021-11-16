@@ -139,6 +139,9 @@ footer {
 }
 
 // custom color classes
+.lp-c-black {
+  color: $lp-color-black !important;
+}
 .lp-c-light-grey {
   color: $lp-color-light-grey !important;
 }
@@ -171,6 +174,15 @@ footer {
 }
 .lp-bg-yellow {
   background-color: $lp-color-yellow !important;
+}
+
+.round-background {
+  border-radius: 50%;
+  width: 50%;
+  height: 50%;
+  padding: 20%;
+  background: $lp-color-ultra-light-grey;
+  border: none;
 }
 
 @import '~bootstrap/scss/bootstrap.scss';

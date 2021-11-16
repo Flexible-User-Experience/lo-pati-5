@@ -3,9 +3,11 @@
 namespace App\Manager;
 
 use App\Entity\AbstractBase;
+use App\Entity\ConfigCalendarWorkingDay;
 use App\Entity\Page;
 use App\Repository\ConfigCalendarWorkingDayRepository;
 use App\Repository\PageRepository;
+use DateTimeInterface;
 
 final class CalendarManager
 {
@@ -57,8 +59,9 @@ final class CalendarManager
                 if ($page->getStartDate() && $page->getEndDate() && $currentDayString >= $page->getStartDate()->format(AbstractBase::DATABASE_IMPORT_DATE_FORMAT) && $currentDayString <= $page->getEndDate()->format(AbstractBase::DATABASE_IMPORT_DATE_FORMAT)) {
                     $iMod6 = date_format(date_create_from_format('Y-m-d', $currentDayString), 'w'); // get the number day of week (0=sunday, 1=monday .. 6=saturday)
                     $found = false;
+                    /** @var ConfigCalendarWorkingDay $workingDay */
                     foreach ($workingDays as $workingDay) {
-                        if ($workingDay->getId() === $iMod6) {
+                        if ((string) $workingDay->getWorkingDayNumber() === $iMod6) {
                             $found = true;
                             break;
                         }
@@ -99,6 +102,11 @@ final class CalendarManager
         }
 
         return $daysMatrix;
+    }
+
+    public function getActivePagesForDate(DateTimeInterface $date): array
+    {
+        return $this->pr->getActiveItemsFromDayAndMonthAndYear($date->format('d'), $date->format('m'), $date->format('Y'));
     }
 
     private function getActiveWorkingDaysItems(): array
