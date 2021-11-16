@@ -518,3 +518,11 @@ enum:
     october: 'Octubre'
     november: 'Noviembre'
     december: 'Diciembre'
+  week:
+    monday: 'LU'
+    tuesday: 'MA'
+    wednesday: 'MI'
+    thursday: 'JU'
+    friday: 'VI'
+    saturday: 'SA'
+    sunday: 'DO'

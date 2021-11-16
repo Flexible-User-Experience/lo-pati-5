@@ -21,7 +21,6 @@ export default class extends Controller {
                     // draw error
                     console.error('[Calendar::connect] axios get response error');
                 }
-
             })
             .catch(function (error) {
                 console.error('[Calendar::connect] axios get error response', error);

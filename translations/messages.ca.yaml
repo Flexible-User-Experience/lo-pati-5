@@ -518,3 +518,11 @@ enum:
     october: 'Octubre'
     november: 'Novembre'
     december: 'Decembre'
+  week:
+    monday: 'DL'
+    tuesday: 'DM'
+    wednesday: 'DC'
+    thursday: 'DJ'
+    friday: 'DV'
+    saturday: 'DS'
+    sunday: 'DG'
