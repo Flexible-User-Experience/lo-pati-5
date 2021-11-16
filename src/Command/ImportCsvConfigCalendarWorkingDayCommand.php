@@ -2,18 +2,18 @@
 
 namespace App\Command;
 
-use App\Entity\NewsletterGroup;
+use App\Entity\ConfigCalendarWorkingDay;
 use DateTimeImmutable;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class ImportCsvNewsletterGroupCommand extends AbstractBaseCommand
+final class ImportCsvConfigCalendarWorkingDayCommand extends AbstractBaseCommand
 {
     protected function configure(): void
     {
-        $this->setName('app:import:newsletter:group');
-        $this->setDescription('Import a newsletter group CSV file');
+        $this->setName('app:import:config:calendar:working:day');
+        $this->setDescription('Import a config calendar working day CSV file');
         parent::configure();
     }
 
@@ -23,7 +23,7 @@ final class ImportCsvNewsletterGroupCommand extends AbstractBaseCommand
         $fr = $this->initialValidation($input, $output);
 
         // Repository inits
-        $ngr = $this->em->getRepository(NewsletterGroup::class);
+        $ccwdr = $this->em->getRepository(ConfigCalendarWorkingDay::class);
 
         // Print CSV rows
         $beginTimestamp = new DateTimeImmutable();
@@ -31,21 +31,26 @@ final class ImportCsvNewsletterGroupCommand extends AbstractBaseCommand
         $newRecords = 0;
         $errors = 0;
         while (false !== ($data = $this->readRow($fr))) {
-            if (count($data) >= 3) {
-                $serachedNewsletterGroupName = $this->readColumn(1, $data);
-                $newsletterGroup = $ngr->findOneBy([
-                    'name' => $serachedNewsletterGroupName,
+            if (count($data) >= 4) {
+                $serachedConfigCalendarWorkingDayNumber = $this->readColumn(1, $data);
+                $configCalendarWorkingDay = $ccwdr->findOneBy([
+                    'workingDayNumber' => $serachedConfigCalendarWorkingDayNumber,
                 ]);
-                if (!$newsletterGroup) {
-                    $newsletterGroup = new NewsletterGroup();
-                    $newsletterGroup->setName($serachedNewsletterGroupName);
-                    $this->em->persist($newsletterGroup);
+                if (!$configCalendarWorkingDay) {
+                    $configCalendarWorkingDay = new ConfigCalendarWorkingDay();
                     ++$newRecords;
-                } else {
-                    $newsletterGroup->setActive((bool) $this->readColumn(2, $data));
                 }
+                $configCalendarWorkingDay
+                    ->setWorkingDayNumber($serachedConfigCalendarWorkingDayNumber)
+                    ->setName($this->readColumn(2, $data))
+                    ->setActive((bool) $this->readColumn(3, $data))
+                ;
+                $this->em->persist($configCalendarWorkingDay);
                 if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
                     $this->em->flush();
+                }
+                if ($input->getOption('show-data')) {
+                    $output->writeln(implode(self::CSV_DELIMITER, $data));
                 }
             } else {
                 $output->writeln('Not enough columns at "'.implode(self::CSV_DELIMITER, $data).'" <error>ERROR FOUND</error>');

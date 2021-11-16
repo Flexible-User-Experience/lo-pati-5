@@ -15,7 +15,7 @@ final class ImportCsvArtistCommand extends AbstractBaseCommand
     protected function configure(): void
     {
         $this->setName('app:import:artist');
-        $this->setDescription('Read an artist CSV file');
+        $this->setDescription('Import an artist CSV file');
         parent::configure();
     }
 

@@ -2,18 +2,18 @@
 
 namespace App\Command;
 
-use App\Entity\NewsletterGroup;
+use App\Entity\ConfigFooterInformation;
 use DateTimeImmutable;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-final class ImportCsvNewsletterGroupCommand extends AbstractBaseCommand
+final class ImportCsvConfigFooterInformationCommand extends AbstractBaseCommand
 {
     protected function configure(): void
     {
-        $this->setName('app:import:newsletter:group');
-        $this->setDescription('Import a newsletter group CSV file');
+        $this->setName('app:import:config:footer:information');
+        $this->setDescription('Import a config footer information CSV file');
         parent::configure();
     }
 
@@ -23,7 +23,7 @@ final class ImportCsvNewsletterGroupCommand extends AbstractBaseCommand
         $fr = $this->initialValidation($input, $output);
 
         // Repository inits
-        $ngr = $this->em->getRepository(NewsletterGroup::class);
+        $cfir = $this->em->getRepository(ConfigFooterInformation::class);
 
         // Print CSV rows
         $beginTimestamp = new DateTimeImmutable();
@@ -31,21 +31,24 @@ final class ImportCsvNewsletterGroupCommand extends AbstractBaseCommand
         $newRecords = 0;
         $errors = 0;
         while (false !== ($data = $this->readRow($fr))) {
-            if (count($data) >= 3) {
-                $serachedNewsletterGroupName = $this->readColumn(1, $data);
-                $newsletterGroup = $ngr->findOneBy([
-                    'name' => $serachedNewsletterGroupName,
-                ]);
-                if (!$newsletterGroup) {
-                    $newsletterGroup = new NewsletterGroup();
-                    $newsletterGroup->setName($serachedNewsletterGroupName);
-                    $this->em->persist($newsletterGroup);
+            if (count($data) >= 5) {
+                $configFooterInformationItems = $cfir->findAll();
+                if (0 === count($configFooterInformationItems)) {
+                    $configFooterInformationItem = new ConfigFooterInformation();
+                    $configFooterInformationItem
+                        ->setAddress($this->readColumn(1, $data))
+                        ->setTimetable($this->readColumn(2, $data))
+                        ->setOrganizer($this->readColumn(3, $data))
+                        ->setCollaborator($this->readColumn(4, $data))
+                    ;
                     ++$newRecords;
-                } else {
-                    $newsletterGroup->setActive((bool) $this->readColumn(2, $data));
+                    $this->em->persist($configFooterInformationItem);
                 }
                 if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
                     $this->em->flush();
+                }
+                if ($input->getOption('show-data')) {
+                    $output->writeln(implode(self::CSV_DELIMITER, $data));
                 }
             } else {
                 $output->writeln('Not enough columns at "'.implode(self::CSV_DELIMITER, $data).'" <error>ERROR FOUND</error>');

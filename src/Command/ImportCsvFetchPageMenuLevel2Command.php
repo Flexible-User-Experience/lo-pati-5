@@ -17,7 +17,7 @@ final class ImportCsvFetchPageMenuLevel2Command extends AbstractBaseCommand
     protected function configure(): void
     {
         $this->setName('app:import:fetch:page:menu:level2');
-        $this->setDescription('Read a menu level 2 CSV file');
+        $this->setDescription('Fetch a menu level 2 CSV file');
         parent::configure();
     }
 
