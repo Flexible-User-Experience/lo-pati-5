@@ -4,7 +4,6 @@ namespace App\Form\Type;
 
 use App\Entity\NewsletterUser;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -62,15 +61,6 @@ final class NewsletterSubscriptionFormType extends AbstractType
                         'placeholder' => 'newsletter.form.phone',
                         'class' => 'bg-transparent border-2 rounded-0 text-uppercase',
                     ],
-                ]
-            )
-            ->add(
-                'privacy_policy',
-                CheckboxType::class,
-                [
-                    'mapped' => false,
-                    'label' => 'newsletter.form.accept_legal_terms',
-                    'required' => true,
                 ]
             )
             ->add(
