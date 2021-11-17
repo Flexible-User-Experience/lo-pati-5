@@ -24,6 +24,7 @@ final class NewsletterController extends AbstractController
         $newsletterUser = new NewsletterUser();
         $newsletterSubscriptionForm = $this->createForm(NewsletterSubscriptionFormType::class, $newsletterUser, [
             'action' => $this->generateUrl('front_app_newsletter_subscribe_form'),
+            'allow_extra_fields' => true,
         ]);
         $newsletterSubscriptionForm->handleRequest($request);
         if ($newsletterSubscriptionForm->isSubmitted() && $newsletterSubscriptionForm->isValid()) {
@@ -44,7 +45,7 @@ final class NewsletterController extends AbstractController
                 $newsletterUser->setActive(false);
                 $this->getDoctrine()->getManager()->persist($newsletterUser);
             }
-//            $this->getDoctrine()->getManager()->flush();
+            $this->getDoctrine()->getManager()->flush();
             $this->addFlash('success', $translator->trans('newsletter.flash.register'));
 
             return $this->redirectToRoute('front_app_homepage', ['_locale' => $request->getLocale()]);
