@@ -298,6 +298,9 @@
     "react/promise": {
         "version": "v2.8.0"
     },
+    "roave/security-advisories": {
+        "version": "dev-latest"
+    },
     "ruflin/elastica": {
         "version": "6.1.5"
     },

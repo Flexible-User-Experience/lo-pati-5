@@ -5,7 +5,7 @@
 {% block main %}
     <div class="container">
         <main>
-            {% if slides | length == 0 %} {# TODO show it (length > 0) #}
+            {% if slides | length > 0 %}
                 <div data-controller="carousel-indicators">
                     <div class="row mt-5 mb-4">
                         <div class="col">

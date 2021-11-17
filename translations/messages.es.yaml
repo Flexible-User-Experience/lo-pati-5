@@ -460,6 +460,9 @@ front:
     paginator_label: 'Paginador de destacados'
   newsletter:
     unsubscribe_success: 'Tu suscripción al newsletter ha sido eliminada correctamente.'
+  agenda:
+    title: 'Agenda'
+    activities: 'Actividades para el día:'
 newsletter:
   form:
     name: 'Nombre *'
