@@ -478,6 +478,7 @@ newsletter:
     confirmation:
       congratulations: '¡Enhorabuena! Se ha registrado correctamente.'
       subject:  'Activada su dirección de correo electrónico.'
+      suject_confirmation: 'Confirmación para recibir el boletín de LO PATI'
 mail:
   back_to_cms: 'volver al CMS'
   preview_mode: 'mode previsualización'

@@ -5,21 +5,47 @@ namespace App\Controller\Frontend;
 use App\Entity\Newsletter;
 use App\Entity\NewsletterUser;
 use App\Form\Type\NewsletterSubscriptionFormType;
+use App\Manager\MailManager;
 use App\Repository\NewsletterUserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 final class NewsletterController extends AbstractController
 {
     /**
+     * @Route("/newsletter/test-email-template/{nui}", name="front_app_newsletter_test_email_template", priority=10)
+     */
+    public function test(int $nui, KernelInterface $kernel, NewsletterUserRepository $nur, TranslatorInterface $translator): Response
+    {
+        if (!$kernel->isDebug()) {
+            throw $this->createAccessDeniedException();
+        }
+        $newsletterUser = $nur->find($nui);
+        if (!$newsletterUser) {
+            throw $this->createNotFoundException();
+        }
+
+        return $this->render(
+            'mail/newsletter_subscribe_confirmation.html.twig',
+            [
+                'subject' => $translator->trans('newsletter.email.confirmation.suject_confirmation'),
+                'user' => $newsletterUser,
+                'show_top_bar' => false,
+                'show_bottom_bar' => false,
+            ]
+        );
+    }
+
+    /**
      * @Route("/newsletter/subscribe", name="front_app_newsletter_subscribe_form", priority=10)
      */
-    public function form(Request $request, NewsletterUserRepository $newsletterUserRepository, TranslatorInterface $translator): Response
+    public function form(Request $request, NewsletterUserRepository $nur, MailManager $mm, TranslatorInterface $translator): Response
     {
         $newsletterUser = new NewsletterUser();
         $newsletterSubscriptionForm = $this->createForm(NewsletterSubscriptionFormType::class, $newsletterUser, [
@@ -28,7 +54,7 @@ final class NewsletterController extends AbstractController
         ]);
         $newsletterSubscriptionForm->handleRequest($request);
         if ($newsletterSubscriptionForm->isSubmitted() && $newsletterSubscriptionForm->isValid()) {
-            $searchedNewsletterUser = $newsletterUserRepository->findOneBy(
+            $searchedNewsletterUser = $nur->findOneBy(
                 ['email' => $newsletterUser->getEmail()]
             );
             if ($searchedNewsletterUser) {
@@ -46,6 +72,21 @@ final class NewsletterController extends AbstractController
                 $this->getDoctrine()->getManager()->persist($newsletterUser);
             }
             $this->getDoctrine()->getManager()->flush();
+            $subject = $translator->trans('newsletter.email.confirmation.suject_confirmation');
+            $mm->sendEmail(
+                $subject,
+                $this->renderView(
+                    'mail/newsletter_subscribe_confirmation.html.twig',
+                    [
+                        'subject' => $subject,
+                        'user' => $newsletterUser,
+                        'show_top_bar' => false,
+                        'show_bottom_bar' => false,
+                    ]
+                ),
+                $newsletterUser->getEmail(),
+                $newsletterUser->getName(),
+            );
             $this->addFlash('success', $translator->trans('newsletter.flash.register'));
 
             return $this->redirectToRoute('front_app_homepage', ['_locale' => $request->getLocale()]);
