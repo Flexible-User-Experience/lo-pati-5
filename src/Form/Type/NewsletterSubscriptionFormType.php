@@ -5,7 +5,6 @@ namespace App\Form\Type;
 use App\Entity\NewsletterUser;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -60,16 +59,6 @@ final class NewsletterSubscriptionFormType extends AbstractType
                     'attr' => [
                         'placeholder' => 'newsletter.form.phone',
                         'class' => 'bg-transparent border-2 rounded-0 text-uppercase',
-                    ],
-                ]
-            )
-            ->add(
-                'submit',
-                SubmitType::class,
-                [
-                    'label' => 'newsletter.form.submit',
-                    'attr' => [
-                        'class' => 'btn text-white btn-outline-light border-2 rounded-0 text-uppercase',
                     ],
                 ]
             )
