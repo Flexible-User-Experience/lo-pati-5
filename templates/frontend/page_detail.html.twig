@@ -5,33 +5,26 @@
 {% block title %}{{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
 
 {% block submenu_header %}
-    {{ dump(item) }}
-{#    <header class="d-flex border-bottom">#}
-{#        <nav class="submenu navbar navbar-light bg-white text-uppercase mx-auto">#}
-{#            {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}#}
-{#        </nav>#}
-{#    </header>#}
-{#    {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}#}
+    <header class="d-flex border-bottom">
+        <nav class="submenu navbar navbar-light bg-white text-uppercase mx-auto">
+            {{ knp_menu_render(item, {'currentClass': 'active', 'depth': 2}) }}
+        </nav>
+    </header>
 {% endblock %}
 
 {% block main %}
-    <div class="row my-5">
-        <div class="col">
-            <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
-            <pre>#{{ submenu.id }} · #{{ menu.id }}</pre>
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <h4>Pages list</h4>
-            <ul class="nav flex-column">
-                {% for page in submenu.pages %}
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#">{{ page.name }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+    <main>
+        {% if show_debug_page_info %}
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col">
+                        <h1>{{ page }}</h1>
+                        <hr>
+                        <pre>P_ID# {{ page.id }} · PTT# '{{ page.templateTypeTransString | trans }}'</pre>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% include 'frontend/partials/page_template_types/'~page.templateTypeString~'.html.twig' with {page: page} %}
+    </main>
 {% endblock %}

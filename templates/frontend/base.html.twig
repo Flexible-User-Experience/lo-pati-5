@@ -10,6 +10,18 @@
         {% block javascripts %}{{ encore_entry_script_tags('frontend') }}{% endblock %}
     </head>
     <body>
+        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasSearchLabel">{{ 'front.layout.search.engine' | trans }}</h5>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="{{ 'back.action.close' | trans }}"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div {{ stimulus_controller('autocomplete', {'url': path('front_app_search'), 'min-length': 3}) }}>
+                    <input id="inputOffcanvasSearchField" class="form-control ms-auto me-2" type="search" aria-label="Search" data-autocomplete-target="input">
+                    <div data-autocomplete-target="results"></div>
+                </div>
+            </div>
+        </div>
         <div class="container-fluid bg-dark p-0">
             <header class="d-flex">
                 <a class="py-4 px-5" href="{{ path('front_app_homepage') }}">
@@ -26,18 +38,33 @@
                         {{ knp_menu_render('frontend_language', {'currentClass': 'active'}) }}
                     </div>
                 </nav>
-                <form class="d-flex p-4 ms-auto">
-{#                    <input class="form-control ms-auto me-2" type="search" placeholder="Search" aria-label="Search">#}
-                    <button class="btn" type="submit"><i class="fas fa-search fa-2x text-light"></i></button>
-                </form>
+                <div class="d-flex py-4 ms-auto">
+                    <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasSearch" role="button" aria-controls="offcanvasSearch">
+                        <i class="fas fa-search fa-2x text-light"></i>
+                    </a>
+                </div>
             </header>
         </div>
         {% block submenu_header %}{% endblock %}
-        <div class="container">
-            <main>
-                {% block main %}{% endblock %}
-            </main>
-        </div>
+        {% block flash_sections %}
+            {% if app.session.flashbag.peekAll | length > 0 %}
+                <div class="container my-5">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                                        {% if label == 'success' %}<i class="fas fa-check-circle mr-3"></i>{% else %}<i class="fas fa-exclamation-triangle mr-3"></i>{% endif %} {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endblock %}
+        {% block main %}{% endblock %}
         <div class="container-fluid p-0">
             <footer>
                 <div class="d-flex ms-auto w-90 p-2 lp-bg-purple"></div>
@@ -81,13 +108,127 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2">
-                            <h6 class="text-uppercase text-white m-5">OPEN CALL</h6>
+                        <div class="col-2" data-controller="calendar" data-calendar-month-value="{{ 'now' | date('n') }}" data-calendar-year-value="{{ 'now' | date('Y') }}">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6 class="lp-bg-light-grey text-white text-uppercase p-2 mb-3">{{ 'front.layout.footer.agenda.dates' | trans }}</h6>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <div data-calendar-target="agenda">
+                                        <i class="fas fa-spin fa-circle-notch fa-5x"></i>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="col"></div>
                     </div>
                 </div>
             </footer>
+        </div>
+        <div class="container-fluid lp-bg-ultra-black py-5">
+            <div class="row justify-content-center">
+                <div class="col-3">
+                    <div class="card rounded-0 lp-bg-ultra-black">
+                        <div class="card-body">
+                            <img src="{{ asset('build/lo_pati_centre_art_logo.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="246" height="51" class="d-block mb-4">
+                            <p class="card-text lp-c-light-grey">
+                                {{ 'front.layout.footer_2.left.name' | trans }}<br>
+                                {{ 'front.layout.footer_2.left.address' | trans }}<br>
+                                <i class="fas fa-phone-alt"></i> {{ 'front.layout.footer_2.left.phone' | trans }}<br>
+                                {{ 'front.layout.footer_2.left.zip_code' | trans }}
+                            </p>
+                            <p class="card-text text-uppercase lp-c-white">
+                                {{ 'front.layout.footer_2.left.visit_hours' | trans }}
+                            </p>
+                            <p class="card-text lp-c-light-grey">
+                                {{ 'front.layout.footer_2.left.hours_line_1' | trans }}<br>
+                                {{ 'front.layout.footer_2.left.hours_line_2' | trans }}
+                            </p>
+                            <p class="card-text text-uppercase lp-c-white">
+                                {{ 'front.layout.footer_2.left.follow_us' | trans }}<br>
+                            </p>
+                            <p class="card-text">
+                                <a href="https://www.facebook.com/centreartlopati" target="_blank" class="lp-c-light-grey text-decoration-none">
+                                    <img src="{{ asset('build/facebook.svg') }}" width="43" height="43" alt="Facebook logo">
+                                </a>
+                                <a href="https://twitter.com/centreartlopati" target="_blank" class="lp-c-light-grey text-decoration-none">
+                                    <img src="{{ asset('build/twitter.svg') }}" width="43" height="43" alt="Twitter logo">
+                                </a>
+                                <a href="https://www.instagram.com/centreartlopati" target="_blank" class="lp-c-light-grey text-decoration-none">
+                                    <img src="{{ asset('build/instagram.svg') }}" width="43" height="43" alt="Instagram logo">
+                                </a>
+                                <a href="https://vimeo.com/lopati" target="_blank" class="lp-c-light-grey text-decoration-none">
+                                    <img src="{{ asset('build/vimeo.svg') }}" width="43" height="43" alt="Vimeo logo">
+                                </a>
+                                <a href="https://www.flickr.com/photos/lopati" target="_blank" class="lp-c-light-grey text-decoration-none">
+                                    <img src="{{ asset('build/flickr.svg') }}" width="43" height="43" alt="Flickr logo">
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card rounded-0 lp-bg-ultra-black">
+                        <div class="card-body">
+                            <p class="card-text text-uppercase lp-c-white">
+                                {{ 'front.layout.footer_2.middle.organize' | trans }}
+                            </p>
+                            <a href="https://www.amposta.cat" target="_blank">
+                                <img src="{{ asset('build/logo_ajuntament_amposta.png') }}" alt="Ajuntament d'Amposta logo" class="mb-4">
+                            </a>
+                            <p class="card-text text-uppercase lp-c-white">
+                                {{ 'front.layout.footer_2.middle.support_by' | trans }}
+                            </p>
+                            <a href="https://cultura.gencat.cat/ca/inici" target="_blank">
+                                <img src="{{ asset('build/logo_gencat.png') }}" alt="Generalitat de Catalunya logo" class="d-block mb-4">
+                            </a>
+                            <a href="https://www.diputaciodetarragona.cat" target="_blank">
+                                <img src="{{ asset('build/logo_dipta.png') }}" alt="Diputació de Tarragona logo" class="mb-4">
+                            </a>
+                            <p class="card-text text-uppercase lp-c-white">
+                                {{ 'front.layout.footer_2.middle.collaboration' | trans }}
+                            </p>
+                            <a href="https://www.museuterresebre.cat" target="_blank">
+                                <img src="{{ asset('build/logo_museu_terres_ebre.png') }}" alt="Museu de les Terres de l'Ebre logo" class="mb-4">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="card rounded-0 lp-bg-ultra-black">
+                        <div class="card-body">
+                            <p class="card-text text-uppercase lp-c-white">
+                                {{ 'front.layout.footer_2.right.subscribe' | trans }}
+                            </p>
+                            {{ render(controller('App\\Controller\\Frontend\\NewsletterController::form')) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid lp-bg-white py-5">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <ul class="list-inline m-0">
+                        <li class="list-inline-item">
+                            <a href="#" class="lp-c-light-grey text-decoration-none me-5">{{ 'front.layout.footer_3.left.legal_terms' | trans | upper }}</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#" class="lp-c-light-grey text-decoration-none me-5">{{ 'front.layout.footer_3.left.cookies_policy' | trans | upper }}</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{{ path('front_app_privacy_policy') }}" class="lp-c-light-grey text-decoration-none">{{ 'front.layout.footer_3.left.privacy_policy' | trans | upper }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-3">
+                    <p class="lp-c-light-grey text-end m-0">
+                        {{ 'front.layout.title' | trans | upper }} {{ 'now' | date('Y') }} <i class="far fa-copyright"></i>
+                    </p>
+                </div>
+            </div>
         </div>
     </body>
 </html>

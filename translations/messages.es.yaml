@@ -417,6 +417,9 @@ back:
 front:
   layout:
     title: 'Lo Pati'
+    search:
+      engine: 'Buscador'
+      no_results_found: 'Lo sentimos, no se han encontrado resultados.'
     footer:
       visit: 'Visita el centro'
       information: 'Información'
@@ -426,14 +429,66 @@ front:
       timetable_h1: '16:00h - 20:00h'
       timetable_h2: '11:00h - 14:00h'
       timetable_ab: 'Reservar'
+      agenda:
+        dates: 'Fechas'
+    footer_2:
+      left:
+        name: 'Centre d''Art · Terres de l''Ebre'
+        address: 'C. Gran Capità, núm. 38-40'
+        phone: '977 709 400'
+        zip_code: '43870 Amposta'
+        visit_hours: 'Horario de visita'
+        hours_line_1: 'Miércoles, jueves, viernes y sábados de 16:00 a 20:00'
+        hours_line_2: 'Domingos de 11:00 a 14:00'
+        follow_us: 'Síguenos en:'
+      middle:
+        organize: 'Organiza'
+        support_by: 'Con el soporte de:'
+        collaboration: 'Y la colaboración de:'
+      right:
+        subscribe: 'Suscríbete al boletín'
+    footer_3:
+      left:
+        legal_terms: 'Términos legales'
+        privacy_policy: 'Política de privacidad'
+        cookies_policy: 'Política de cookies'
   menu:
     start: 'Inicio'
   homepage:
     highlighted: 'Destacado en Lo Pati'
     read_more: 'Ampliar'
     paginator_label: 'Paginador de destacados'
-  newsletter:
-    unsubscribe_success: 'Tu suscripción al newsletter ha sido eliminada correctamente.'
+  agenda:
+    title: 'Agenda'
+    activities: 'Actividades para el día:'
+newsletter:
+  form:
+    name: 'NOMBRE *'
+    email: 'EMAIL *'
+    zip: 'CÓDIGO POSTAL'
+    phone: 'TELÉFONO'
+    accept_legal_terms: 'ACEPTO LOS'
+    submit: 'Enviar'
+  flash:
+    register: 'Se ha registrado correctamente. Ahora recibira un email de confirmacion para activar su usuario.'
+    error:  'Ya existe un usuario con ese email.'
+    subscribe_success: 'Su suscripción al boletín ha sido registrada correctamente.'
+    unsubscribe_success: 'Su suscripción al boletín ha sido eliminada correctamente.'
+  email:
+    confirmation:
+      congratulations: '¡Enhorabuena! Se ha registrado correctamente.'
+      subject:  'Activada su dirección de correo electrónico.'
+      confirmation: 'Confirmación para recibir el boletín de LO PATI'
+      first_line: 'Hemos recibido una petición de suscripción de la dirección <strong>%email%</strong> en el boletín de Lo Pati. '
+      second_line: 'Para confirmar la suscripción, por favor, haz clic en el botón siguiente'
+      third_line: 'Si por cualquier motivo el botón de confirmación no funciona correctamente, copie en su navegador la siguiente dirección:'
+      button: 'Confirmar suscripción'
+    activated:
+      subject: 'Su dirección de correo electrónico ha sido activada correctamente'
+      first_line: 'Se ha activado su cuenta de correo. A partir de ahora podrá recibir nuestro boletín informativo. Gracias por su interés.'
+      second_line: 'Si por cualquier motivo <strong>no</strong> desea continuar recibiendo nuestros boletines, haz clic en el botón siguiente'
+      third_line: 'Atentamente, Lo Pati.'
+      button: 'Cancelar suscripción'
 mail:
   back_to_cms: 'volver al CMS'
   preview_mode: 'mode previsualización'
@@ -464,3 +519,24 @@ enum:
     user: 'Usuario'
     admin: 'Administrador'
     super_admin: 'Superadministrador'
+  month:
+    january: 'Enero'
+    febraury: 'Febrero'
+    march: 'Marzo'
+    april: 'Abril'
+    may: 'Mayo'
+    june: 'Junio'
+    july: 'Julio'
+    august: 'Agosto'
+    september: 'Septimebre'
+    october: 'Octubre'
+    november: 'Noviembre'
+    december: 'Diciembre'
+  week:
+    monday: 'LU'
+    tuesday: 'MA'
+    wednesday: 'MI'
+    thursday: 'JU'
+    friday: 'VI'
+    saturday: 'SA'
+    sunday: 'DO'

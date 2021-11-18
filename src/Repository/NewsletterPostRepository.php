@@ -12,7 +12,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method NewsletterPost[]    findAll()
  * @method NewsletterPost[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class NewsletterPostRepository extends ServiceEntityRepository
+final class NewsletterPostRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

@@ -14,7 +14,7 @@ use Doctrine\Persistence\ManagerRegistry;
  * @method NewsletterGroup[]    findAll()
  * @method NewsletterGroup[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class NewsletterGroupRepository extends ServiceEntityRepository
+final class NewsletterGroupRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {

@@ -4,7 +4,7 @@ namespace App\Enum;
 
 use App\Entity\MenuLevel1;
 
-class LabelColorEnum
+final class LabelColorEnum
 {
     public const BLACK = '#151920';
     public const LIGHT_GREY = '#78838C';

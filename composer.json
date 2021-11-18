@@ -7,6 +7,7 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.4",
+        "ext-calendar": "*",
         "ext-ctype": "*",
         "ext-curl": "*",
         "ext-fileinfo": "*",
@@ -22,6 +23,8 @@
         "doctrine/doctrine-migrations-bundle": "^3.1",
         "doctrine/orm": "^2.9",
         "friendsofsymfony/ckeditor-bundle": "^2.3",
+        "friendsofsymfony/elastica-bundle": "^6.0@beta",
+        "friendsofsymfony/jsrouting-bundle": "^2.7",
         "knplabs/knp-menu-bundle": "^3.1",
         "knplabs/knp-paginator-bundle": "^5.6",
         "liip/imagine-bundle": "^2.6",
@@ -67,6 +70,8 @@
         "vich/uploader-bundle": "^1.18"
     },
     "require-dev": {
+        "roave/security-advisories": "dev-latest"
+        ,
         "hautelook/alice-bundle": "^2.9",
         "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "^5.3",

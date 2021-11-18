@@ -17,7 +17,7 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
     protected function configure(): void
     {
         $this->setName('app:import:page');
-        $this->setDescription('Read a page CSV file');
+        $this->setDescription('Import a page CSV file');
         parent::configure();
     }
 

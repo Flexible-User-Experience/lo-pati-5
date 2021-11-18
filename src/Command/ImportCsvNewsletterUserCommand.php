@@ -15,7 +15,7 @@ final class ImportCsvNewsletterUserCommand extends AbstractBaseCommand
     protected function configure(): void
     {
         $this->setName('app:import:newsletter:user');
-        $this->setDescription('Read a newsletter user CSV file');
+        $this->setDescription('Import a newsletter user CSV file');
         parent::configure();
     }
 

@@ -7,23 +7,23 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_newsletter_user_email_index", columns={"email"}), @ORM\UniqueConstraint(name="unique_newsletter_user_token_index", columns={"token"})})
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterUserRepository")
- * @UniqueEntity(fields={"email"}, errorPath="email")
  */
 class NewsletterUser extends AbstractBase
 {
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\NotBlank()
      */
     private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\NotBlank()
      * @Assert\Email()
      */
     private string $email;
@@ -31,22 +31,22 @@ class NewsletterUser extends AbstractBase
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $city;
+    private ?string $city = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $postalCode;
+    private ?string $postalCode = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $phone;
+    private ?string $phone = null;
 
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private ?DateTimeInterface $birthdate;
+    private ?DateTimeInterface $birthdate = null;
 
     /**
      * @ORM\Column(type="string", length=2, options={"default": "ca"})
@@ -70,8 +70,8 @@ class NewsletterUser extends AbstractBase
 
     public function __construct()
     {
-        $this->token = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
         $this->groups = new ArrayCollection();
+        $this->resetToken();
     }
 
     public function getName(): ?string
@@ -166,6 +166,13 @@ class NewsletterUser extends AbstractBase
     public function setToken(string $token): self
     {
         $this->token = $token;
+
+        return $this;
+    }
+
+    public function resetToken(): self
+    {
+        $this->token = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
 
         return $this;
     }

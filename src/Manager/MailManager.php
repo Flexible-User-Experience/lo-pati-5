@@ -19,7 +19,7 @@ use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 
-class MailManager
+final class MailManager
 {
     private SendGrid $sg;
     private MailerInterface $mailer;

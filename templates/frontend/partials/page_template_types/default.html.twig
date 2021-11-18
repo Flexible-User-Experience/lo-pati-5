@@ -1,0 +1,35 @@
+{% if page.imageFileName %}
+    <div class="container-fluid" style="background-image:url('{{ asset('build/page_detail_header_backgroung.jpg') }}');background-size:cover;">
+        <div class="row">
+            <div class="text-center">
+                <img src="{{ vich_uploader_asset(page, 'imageFile') | imagine_filter('1200xY') }}" class="img-fluid rounded-0" alt="{{ page.name }}" style="margin-bottom:-70px;border-bottom:solid {{ page.menuLevel1.color }} 20px;">
+            </div>
+        </div>
+    </div>
+{% endif %}
+<div class="container mt-3 pt-3">
+    <div class="row my-5 pt-5">
+        <div class="col">
+            <div class="position-relative">
+                <div class="position-absolute top-50 start-50 translate-middle">
+                    <div class="mini-colored-box-detail d-flex me-auto {{ page.menuLevel1.cssBackgroudClassColor }}"></div>
+                    <div>
+                        <span class="h6 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-black text-white text-uppercase">{{ page.menuLevel1.name }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col text-center">
+            <h1>{{ page.name }}</h1>
+            <h2 class="h3 text-muted">{{ page.summary }}</h2>
+            <hr>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col text-center">
+            {{ page.description | raw }}
+        </div>
+    </div>
+</div>

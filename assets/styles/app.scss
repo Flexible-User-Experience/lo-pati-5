@@ -1,6 +1,7 @@
 // custom variables
 $lp-base-precent: 25%;
 $lp-color-white: #FFFFFF;
+$lp-color-ultra-black: #0E131C;
 $lp-color-black: #151920;
 $lp-color-light-grey: #78838C;
 $lp-color-ultra-light-grey: #CBCFD1;
@@ -16,6 +17,7 @@ $navbar-nav-link-padding-x: .95rem;
 $navbar-light-color: $lp-color-light-grey;
 $navbar-light-hover-color: $lp-color-black;
 $navbar-light-active-color: $lp-color-black;
+$offcanvas-vertical-height: 50vh;
 $font-family-sans-serif:  'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
 
 // custom header navbar
@@ -137,11 +139,23 @@ footer {
 }
 
 // custom color classes
+.lp-c-black {
+  color: $lp-color-black !important;
+}
 .lp-c-light-grey {
   color: $lp-color-light-grey !important;
 }
 .lp-c-ultra-light-grey {
   color: $lp-color-ultra-light-grey !important;
+}
+.lp-c-white {
+  color: $lp-color-white !important;
+}
+.lp-bg-white {
+  background-color: $lp-color-white !important;
+}
+.lp-bg-ultra-black {
+  background-color: $lp-color-ultra-black !important;
 }
 .lp-bg-black {
   background-color: $lp-color-black !important;
@@ -162,7 +176,17 @@ footer {
   background-color: $lp-color-yellow !important;
 }
 
+.round-background {
+  border-radius: 50%;
+  width: 50%;
+  height: 50%;
+  padding: 20%;
+  background: $lp-color-ultra-light-grey;
+  border: none;
+}
+
 @import '~bootstrap/scss/bootstrap.scss';
+@import '~icheck-bootstrap/icheck-bootstrap.css';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';

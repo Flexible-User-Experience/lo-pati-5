@@ -1,0 +1,38 @@
+{{ form_start(newsletter_subscription_form) }}
+    <div class="row">
+        <div class="col">
+            {{ form_row(newsletter_subscription_form.name) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(newsletter_subscription_form.email) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(newsletter_subscription_form.phone) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(newsletter_subscription_form.postalCode) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <div class="icheck-medium">
+                <input type="checkbox" id="newsletter_subscription_form_privacy_policy" name="newsletter_subscription_form[privacy_policy]" required="required" class="ms-3">
+                <label for="newsletter_subscription_form_privacy_policy" class="lp-c-light-grey">{{ 'newsletter.form.accept_legal_terms' | trans }}
+                    <a href="#{# TODO path to legal terms page #}" class="lp-c-ultra-light-grey text-decoration-none text-uppercase">{{ 'front.layout.footer_3.left.legal_terms' | trans }}</a>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col mb-3">
+            <button type="submit" id="newsletter_subscription_form_submit" name="newsletter_subscription_form[submit]" class="btn text-white btn-light border-2 rounded-0 text-uppercase btn">
+                {{ 'newsletter.form.submit' | trans }} <i class="fas fa-chevron-right ms-5"></i>
+            </button>
+        </div>
+    </div>
+    {{ form_rest(newsletter_subscription_form) }}
+{{ form_end(newsletter_subscription_form) }}

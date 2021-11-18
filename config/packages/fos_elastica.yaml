@@ -1,0 +1,19 @@
+fos_elastica:
+    clients:
+        default: { url: '%env(ELASTICSEARCH_URL)%' }
+    indexes:
+        app:
+            index_name: 'lopati_website_index_app_%kernel.environment%'
+            persistence:
+                driver:     orm
+                model:      App\Entity\Page
+                repository: App\Repository\PageElasticaRepository
+                provider:   ~
+                finder:     ~
+            properties:
+                name:                  { boost: 2.0 }
+                summary:               { boost: 1.4 }
+                description:           { boost: 0.9 }
+                realizationDateString: { boost: 0.2 }
+                place:                 { boost: 0.1 }
+                active:                { type: 'boolean' }

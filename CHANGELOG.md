@@ -1,12 +1,23 @@
 Changelog
 =========
 
-##### Version 5.06.00 (WIP)
+##### Version 5.07.00 (WIP)
  * fix bugs
+ * add translations management
+ * add page template types
+
+##### Version 5.06.00 (2021-11-18)
+ * add latest version of Elasticsearch engine
+ * add Stimulus autocomplete frontend layout search bar
+ * improve frontend page templates types render
+ * improve current menu render in frontend detail page render
+ * add newsletter subscription management
+ * add dynamic frontend calendar management
 
 ##### Version 5.05.00 (2021-08-16)
  * fix ArtistAdmin edit error
  * add Admin user securized area
+ * decide better highlighted homepage aspect ratio covers
  * improve PageAdmin
 
 ##### Version 5.04.00 (2021-08-10)
@@ -40,13 +51,11 @@ Changelog
 ##### Version 5.00.00 (2021-07-05)
  * first skeleton app
 
-
 To Do
 =====
 
- * decide better highlighted homepage aspect ratio covers
  * fix responsiveness issues
  * manage Sendgrid unsubscriptions callback hooks
  * enable frontend Newsletter subscribtion
- * add latest version of Elasticsearch engine
  * add entities traslation and Admin management
+ * fix broken detail page render path on menu level 2 unassigned case

@@ -14,7 +14,7 @@ final class ImportCsvFetchNewsletterGroupUserCommand extends AbstractBaseCommand
     protected function configure(): void
     {
         $this->setName('app:import:fetch:newsletter:group:user');
-        $this->setDescription('Read a newsletter group has user CSV file');
+        $this->setDescription('Fetch a newsletter group has user CSV file');
         parent::configure();
     }
 

@@ -2,31 +2,32 @@
   "entrypoints": {
     "frontend": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_da-a5f826.js",
-        "/build/vendors-node_modules_bootstrap_dist_js_bootstrap_esm_js.js",
-        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
-        "/build/frontend.js"
+        "/build/runtime.8fdbd24a.js",
+        "/build/405.582fd3d1.js",
+        "/build/169.5d860bfd.js",
+        "/build/829.bf28b973.js",
+        "/build/frontend.cd53f018.js"
       ],
       "css": [
-        "/build/frontend.css"
+        "/build/frontend.e741da05.css"
       ]
     },
     "backend": {
       "js": [
-        "/build/runtime.js",
-        "/build/vendors-node_modules_symfony_stimulus-bridge_dist_index_js-node_modules_core-js_modules_es_da-a5f826.js",
-        "/build/vendors-node_modules_jquery_dist_jquery_js.js",
-        "/build/node_modules_symfony_stimulus-bridge_dist_webpack_loader_js_assets_controllers_json-assets_bo-c9ceb2.js",
-        "/build/backend.js"
+        "/build/runtime.8fdbd24a.js",
+        "/build/405.582fd3d1.js",
+        "/build/755.43aadddf.js",
+        "/build/829.bf28b973.js",
+        "/build/backend.acbc43f1.js"
       ]
     },
     "mail": {
       "js": [
-        "/build/runtime.js"
+        "/build/runtime.8fdbd24a.js",
+        "/build/mail.f2d5ca21.js"
       ],
       "css": [
-        "/build/mail.css"
+        "/build/mail.db99532a.css"
       ]
     }
   }

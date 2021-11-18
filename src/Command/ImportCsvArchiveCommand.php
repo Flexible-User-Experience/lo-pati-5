@@ -15,7 +15,7 @@ final class ImportCsvArchiveCommand extends AbstractBaseCommand
     protected function configure(): void
     {
         $this->setName('app:import:archive');
-        $this->setDescription('Read an archive CSV file');
+        $this->setDescription('Import an archive CSV file');
         parent::configure();
     }
 

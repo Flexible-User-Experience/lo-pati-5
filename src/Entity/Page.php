@@ -205,6 +205,11 @@ class Page extends AbstractBase
         return $this->getSmallImage1FileName() ? '758x758_fixed' : '758x428';
     }
 
+    public function getHighlitedImageFilterSmallSize(): string
+    {
+        return $this->getSmallImage1FileName() ? '379x379_fixed' : '379x214';
+    }
+
     public function getSummary(): ?string
     {
         return $this->summary;
@@ -491,6 +496,21 @@ class Page extends AbstractBase
     public function getTemplateType(): int
     {
         return $this->templateType;
+    }
+
+    public function getTemplateTypeTransString(): string
+    {
+        $result = self::DEFAULT_EMPTY_STRING;
+        if (array_key_exists($this->getTemplateType(), PageTemplateTypeEnum::getEnumArray())) {
+            $result = PageTemplateTypeEnum::getEnumArray()[$this->getTemplateType()];
+        }
+
+        return $result;
+    }
+
+    public function getTemplateTypeString(): string
+    {
+        return array_key_exists($this->getTemplateType(), PageTemplateTypeEnum::getTemplateTypeArray()) ? PageTemplateTypeEnum::getTemplateTypeArray()[$this->getTemplateType()] : PageTemplateTypeEnum::getTemplateTypeArray()[0];
     }
 
     public function setTemplateType(int $templateType): self

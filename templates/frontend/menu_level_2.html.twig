@@ -13,23 +13,30 @@
 {% endblock %}
 
 {% block main %}
-    <div class="row my-5">
-        <div class="col">
-            <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
-            <pre>#{{ submenu.id }} · #{{ menu.id }}</pre>
-            <hr>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <h4>Pages list</h4>
-            <ul class="nav flex-column">
-                {% for page in submenu.pages %}
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{{ path('front_app_page_detail', {'menu': menu.slug, 'submenu': submenu.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug }) }}">{{ page.name }}</a>
-                    </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
+    <main>
+        {% if show_debug_page_info %}
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col">
+                        <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
+                        <hr>
+                        <pre>P_ID# {{ submenu.page.id }} · PTT# '{{ submenu.page.templateTypeTransString | trans }}'</pre>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% if submenu.page %}
+            {% include 'frontend/partials/page_template_types/'~submenu.page.templateTypeString~'.html.twig' with {page: submenu.page} %}
+        {% else %}
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col">
+                        <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
+                        <hr>
+                        <pre>TO DO... {# TODO render empty menu level 2 template #}</pre>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </main>
 {% endblock %}

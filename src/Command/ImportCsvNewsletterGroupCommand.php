@@ -13,7 +13,7 @@ final class ImportCsvNewsletterGroupCommand extends AbstractBaseCommand
     protected function configure(): void
     {
         $this->setName('app:import:newsletter:group');
-        $this->setDescription('Read a newsletter group CSV file');
+        $this->setDescription('Import a newsletter group CSV file');
         parent::configure();
     }
 

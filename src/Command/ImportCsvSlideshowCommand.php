@@ -15,7 +15,7 @@ final class ImportCsvSlideshowCommand extends AbstractBaseCommand
     protected function configure(): void
     {
         $this->setName('app:import:slideshow');
-        $this->setDescription('Read a slideshow CSV file');
+        $this->setDescription('Import a slideshow CSV file');
         parent::configure();
     }
 

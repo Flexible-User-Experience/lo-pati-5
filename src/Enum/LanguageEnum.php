@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-class LanguageEnum
+final class LanguageEnum
 {
     public const CA = 'ca';
     public const ES = 'es';

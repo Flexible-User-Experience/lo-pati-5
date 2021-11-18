@@ -16,7 +16,7 @@ final class ImportCsvNewsletterPostCommand extends AbstractBaseCommand
     protected function configure(): void
     {
         $this->setName('app:import:newsletter:post');
-        $this->setDescription('Read a newsletter post CSV file');
+        $this->setDescription('Import a newsletter post CSV file');
         parent::configure();
     }
 

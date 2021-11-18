@@ -19,7 +19,7 @@ use Exception;
  * @method Page[]    findAll()
  * @method Page[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class PageRepository extends ServiceEntityRepository
+final class PageRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -93,5 +93,33 @@ class PageRepository extends ServiceEntityRepository
         }
 
         return $amount;
+    }
+
+    public function getActiveItemsFromDayAndMonthAndYear(string $day, string $month, string $year): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = :active')
+            ->andWhere('p.startDate <= :moment AND p.endDate >= :moment')
+            ->setParameter('active', true)
+            ->setParameter('moment', date(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, strtotime($year.'-'.$month.'-'.$day)))
+            ->orderBy('p.endDate', SortOrderTypeEnum::ASC)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function getActiveItemsFromMonthAndYear(int $month, int $year): array
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = :active')
+            ->andWhere('p.startDate >= :begin AND p.startDate <= :end OR p.endDate >= :begin AND p.endDate <= :end OR p.startDate <= :begin AND p.endDate >= :end')
+            ->andWhere('p.menuLevel1 IS NOT NULL')
+            ->setParameter('active', true)
+            ->setParameter('begin', date(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, mktime(0, 0, 0, $month, 1, $year)))
+            ->setParameter('end', date('Y-m-t', mktime(0, 0, 0, $month, 28, $year)))
+            ->orderBy('p.startDate', SortOrderTypeEnum::ASC)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 }

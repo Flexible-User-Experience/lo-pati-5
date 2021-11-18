@@ -106,3 +106,21 @@ LINES TERMINATED BY '\r\n'
 FROM lopati.isolated_newsletter_post NP
 LEFT JOIN lopati.isolated_newsletter N ON N.id = NP.isolated_newsletter_id
 ORDER BY NP.id;
+
+SELECT C.*
+INTO OUTFILE '/tmp/configcalendarworkingday.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.ConfiguracioDiesLaboralsAgenda C
+ORDER BY C.id;
+
+SELECT C.*
+INTO OUTFILE '/tmp/configfooterinformation.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.Configuracio C
+ORDER BY C.id;

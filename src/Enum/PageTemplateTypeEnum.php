@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-class PageTemplateTypeEnum
+final class PageTemplateTypeEnum
 {
     public const DEFAULT = 0;
     public const MENU = 1;
@@ -11,6 +11,19 @@ class PageTemplateTypeEnum
     public const PAGE = 4;
     public const BLOG = 5;
     public const INFO = 6;
+
+    public static function getTemplateTypeArray(): array
+    {
+        return [
+            self::DEFAULT => 'default',
+            self::MENU => 'menu',
+            self::SUBMENU => 'submenu',
+            self::LIST => 'list',
+            self::PAGE => 'page',
+            self::BLOG => 'blog',
+            self::INFO => 'info',
+        ];
+    }
 
     public static function getEnumArray(): array
     {

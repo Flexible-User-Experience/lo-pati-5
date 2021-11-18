@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-class NewsletterTypeEnum
+final class NewsletterTypeEnum
 {
     public const NEWS = 0;
     public const EVENTS = 1;

@@ -1,0 +1,17 @@
+{% extends "mail/base_email.html.twig" %}
+
+{% block content %}
+    <row>
+        <columns small="12" large="12">
+            <h6 class="h6-type">{{ subject }}</h6>
+            <spacer size="25"></spacer>
+            <p class="grey-color">{{ 'newsletter.email.activated.first_line' | trans }}</p>
+            <spacer size="40"></spacer>
+            <p class="grey-color">{{ 'newsletter.email.activated.second_line' | trans | raw }}</p>
+            <button class="secondary small" href="{{ url('front_app_newsletter_unsubscribe', {token: user.token}) }}">{{ 'newsletter.email.activated.button' | trans }}</button>
+            <spacer size="40"></spacer>
+            <p class="grey-color">{{ 'newsletter.email.activated.third_line' | trans }}</p>
+        </columns>
+    </row>
+    {% include "mail/fragment/hr_row_divider.html.twig" %}
+{% endblock %}

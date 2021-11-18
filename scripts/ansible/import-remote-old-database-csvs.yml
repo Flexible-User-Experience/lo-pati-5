@@ -4,27 +4,27 @@
   vars_files:
     - "{{ playbook_dir }}/vars/config.yml"
   tasks:
-    - name: execute slideshow CSV import command
+    - name: execute import slideshow CSV import command
       shell: "/usr/bin/php7.4 bin/console app:import:slideshow var/csv/imports/slideshow.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
-    - name: execute archive CSV import command
+    - name: execute import archive CSV import command
       shell: "/usr/bin/php7.4 bin/console app:import:archive var/csv/imports/archive.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
-    - name: execute artist CSV import command
+    - name: execute import artist CSV import command
       shell: "/usr/bin/php7.4 bin/console app:import:artist var/csv/imports/artist.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
-    - name: execute menu level 1 CSV import command
+    - name: execute import menu level 1 CSV import command
       shell: "/usr/bin/php7.4 bin/console app:import:menu:level1 var/csv/imports/menulevel1.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
-    - name: execute menu level 2 CSV import command
+    - name: execute import menu level 2 CSV import command
       shell: "/usr/bin/php7.4 bin/console app:import:menu:level2 var/csv/imports/menulevel2.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
-    - name: execute page CSV import command
+    - name: execute import page CSV import command
       shell: "/usr/bin/php7.4 bin/console app:import:page var/csv/imports/page.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
@@ -36,11 +36,11 @@
       shell: "/usr/bin/php7.4 bin/console app:import:fetch:page:menu:level2 var/csv/imports/menulevel2.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
-    - name: execute newsletter group CSV command
+    - name: execute import newsletter group CSV command
       shell: "/usr/bin/php7.4 bin/console app:import:newsletter:group var/csv/imports/newslettergroup.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
-    - name: execute newsletter user CSV command
+    - name: execute import newsletter user CSV command
       shell: "/usr/bin/php7.4 bin/console app:import:newsletter:user var/csv/imports/newsletteruser.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
@@ -48,11 +48,23 @@
       shell: "/usr/bin/php7.4 bin/console app:import:fetch:newsletter:group:user var/csv/imports/newslettergroupnewsletteruser.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
-    - name: execute newsletter CSV command
+    - name: execute import newsletter CSV command
       shell: "/usr/bin/php7.4 bin/console app:import:newsletter var/csv/imports/newsletter.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
-    - name: execute newsletter post CSV command
+    - name: execute import newsletter post CSV command
       shell: "/usr/bin/php7.4 bin/console app:import:newsletter:post var/csv/imports/newsletterpost.csv --env=prod"
+      args:
+        chdir: "{{ vhost_path_prod }}/current/"
+    - name: execute import config calendar working day CSV command
+      shell: "/usr/bin/php7.4 bin/console app:import:config:calendar:working:day var/csv/imports/configcalendarworkingday.csv --env=prod"
+      args:
+        chdir: "{{ vhost_path_prod }}/current/"
+    - name: execute import config footer information day CSV command
+      shell: "/usr/bin/php7.4 bin/console app:import:config:footer:information var/csv/imports/configfooterinformation.csv --env=prod"
+      args:
+        chdir: "{{ vhost_path_prod }}/current/"
+    - name: populate Elasticsearch 7 server index command
+      shell: "/usr/bin/php7.4 bin/console fos:elastica:populate --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
