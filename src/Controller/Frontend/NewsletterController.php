@@ -32,10 +32,8 @@ final class NewsletterController extends AbstractController
         }
 
         return $this->render(
-//            'mail/newsletter_subscribe_confirmation.html.twig',
             'mail/newsletter_activated.html.twig',
             [
-//                'subject' => $translator->trans('newsletter.email.confirmation.confirmation'),
                 'subject' => $translator->trans('newsletter.email.activated.subject'),
                 'user' => $newsletterUser,
                 'show_top_bar' => false,

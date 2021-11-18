@@ -20,6 +20,7 @@ sidebarmenu:
     archive: 'Any'
   settings:
     title: 'Configuració'
+    config_footer_information: 'Peu de pàgina'
     user: 'Usuari'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivell'
@@ -40,6 +41,8 @@ breadcrumb:
   link_archive_create: 'Crear'
   link_artist_list: 'Artista'
   link_artist_create: 'Crear'
+  link_config_footer_information_list: 'Configuració Peu de Pàgina'
+  link_config_footer_information_create: 'Crear'
   link_user_list: 'Usuari'
   link_user_create: 'Crear'
 dashboard:
@@ -203,6 +206,10 @@ list:
   label_begin_send: 'Enviat el'
   label_active: 'Actiu'
   label_active_f: 'Activa'
+  label_address: 'Adreça'
+  label_timetable: 'Horari'
+  label_organizer: 'Organitza'
+  label_collaborator: 'Col·labora'
   label__actions: 'Accions'
 form:
   label_id: 'ID'
@@ -284,6 +291,10 @@ form:
   label_password: 'Contrasenya'
   label_plain_password: 'Contrasenya'
   label_login: 'Iniciar sessió'
+  label_address: 'Adreça'
+  label_timetable: 'Horari'
+  label_organizer: 'Organitza'
+  label_collaborator: 'Col·labora'
   group_admin_common_general: 'General'
   group_admin_common_controls: 'Controls'
   group_admin_common_images: 'Imatges'

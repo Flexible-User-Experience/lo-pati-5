@@ -103,7 +103,18 @@ services:
             - '@twig'
         tags:
             - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Archive', label: 'sidebarmenu.archive.archive' }
-    # Users
+    # Settings
+    admin.config_footer_information:
+        class: App\Admin\ConfigFooterInformationAdmin
+        arguments:
+            - ~
+            - App\Entity\ConfigFooterInformation
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Setting', label: 'sidebarmenu.settings.config_footer_information' }
     admin.user:
         class: App\Admin\UserAdmin
         arguments:
@@ -114,4 +125,4 @@ services:
             - '@security.helper'
             - '@twig'
         tags:
-            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'User', label: 'sidebarmenu.settings.user' }
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Setting', label: 'sidebarmenu.settings.user' }

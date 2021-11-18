@@ -84,6 +84,6 @@ class ConfigFooterInformation extends AbstractBase
 
     public function __toString(): string
     {
-        return $this->getId() ? $this->getAddress() : self::DEFAULT_EMPTY_STRING;
+        return $this->getId() ?: self::DEFAULT_EMPTY_STRING;
     }
 }

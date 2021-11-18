@@ -5,6 +5,8 @@ Changelog
  * fix bugs
  * add translations management
  * add page template types
+ * add ConfigCalendarWorkingDay admin
+ * add ConfigFooterInformation admin
 
 ##### Version 5.06.00 (2021-11-18)
  * add latest version of Elasticsearch engine
