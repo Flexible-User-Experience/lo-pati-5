@@ -3,11 +3,13 @@
 namespace App\Entity\Traits;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 trait SummaryTrait
 {
     /**
      * @ORM\Column(type="string", length=300, nullable=true)
+     * @Gedmo\Translatable
      */
     private ?string $summary = null;
 

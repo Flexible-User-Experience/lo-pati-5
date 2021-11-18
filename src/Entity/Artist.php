@@ -7,8 +7,12 @@ use App\Entity\Traits\Document1Trait;
 use App\Entity\Traits\Image1Trait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\SummaryTrait;
+use App\Entity\Traits\TranslationsTrait;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -18,6 +22,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_artist_name_index", columns={"name"})})
  * @ORM\Entity(repositoryClass="App\Repository\ArtistRepository")
  * @UniqueEntity(fields={"name"}, errorPath="name")
+ * @Gedmo\TranslationEntity(class="App\Entity\Translation\ArtistTranslation")
  * @Vich\Uploadable()
  */
 class Artist extends AbstractBase
@@ -27,6 +32,7 @@ class Artist extends AbstractBase
     use Image1Trait;
     use NameTrait;
     use SummaryTrait;
+    use TranslationsTrait;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
@@ -109,6 +115,17 @@ class Artist extends AbstractBase
      * @Vich\UploadableField(mapping="artist_cv", fileNameProperty="document1FileName")
      */
     private ?File $document1File = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Translation\PageTranslation", mappedBy="object", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private ?Collection $translations;
+
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
 
     public function getCity(): ?string
     {
