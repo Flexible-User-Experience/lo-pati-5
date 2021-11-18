@@ -115,6 +115,17 @@ services:
             - '@twig'
         tags:
             - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Setting', label: 'sidebarmenu.settings.config_footer_information' }
+    admin.config_calendar_working_day:
+        class: App\Admin\ConfigCalendarWorkingDayAdmin
+        arguments:
+            - ~
+            - App\Entity\ConfigCalendarWorkingDay
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Setting', label: 'sidebarmenu.settings.config_calendar_working_day' }
     admin.user:
         class: App\Admin\UserAdmin
         arguments:

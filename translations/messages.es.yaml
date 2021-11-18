@@ -21,6 +21,7 @@ sidebarmenu:
   settings:
     title: 'Configuración'
     config_footer_information: 'Pié de página'
+    config_calendar_working_day: 'Días laborables'
     user: 'Usuario'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivel'
@@ -43,6 +44,8 @@ breadcrumb:
   link_artist_create: 'Crear'
   link_config_footer_information_list: 'Configuración Pié de Página'
   link_config_footer_information_create: 'Crear'
+  link_config_calendar_working_day_list: 'Configuración Días Laborales Agenda'
+  link_config_calendar_working_day_create: 'Crear'
   link_user_list: 'Usuario'
   link_user_create: 'Crear'
 dashboard:
