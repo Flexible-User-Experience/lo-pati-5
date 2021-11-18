@@ -63,6 +63,7 @@ class AdminUserControllerTest extends WebTestCase
             ['/admin/app/archive/1/edit'],
             ['/admin/app/configfooterinformation/list'],
             ['/admin/app/configfooterinformation/1/edit'],
+            ['/admin/app/configcalendarworkingday/list'],
         ];
     }
 
@@ -103,6 +104,10 @@ class AdminUserControllerTest extends WebTestCase
             ['/admin/app/configfooterinformation/9/edit'],
             ['/admin/app/configfooterinformation/1/show'],
             ['/admin/app/configfooterinformation/1/delete'],
+            ['/admin/app/configcalendarworkingday/create'],
+            ['/admin/app/configcalendarworkingday/9/edit'],
+            ['/admin/app/configcalendarworkingday/1/show'],
+            ['/admin/app/configcalendarworkingday/1/delete'],
             ['/admin/app/user/9/edit'],
             ['/admin/app/user/1/show'],
             ['/admin/app/user/1/delete'],
