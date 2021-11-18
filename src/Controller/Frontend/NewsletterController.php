@@ -153,11 +153,16 @@ final class NewsletterController extends AbstractController
 
     /**
      * @Route("/newsletter/unsubscribe/{token}", name="front_app_newsletter_unsubscribe", priority=10)
-     * @ParamConverter("token", class="App\Entity\NewsletterUser", options={"mapping": {"token": "token"}})
      */
-    public function unsubscribe(NewsletterUser $user, TranslatorInterface $translator): RedirectResponse
+    public function unsubscribe(string $token, NewsletterUserRepository $nur, TranslatorInterface $translator): RedirectResponse
     {
-        $this->getDoctrine()->getManager()->remove($user);
+        $newsletterUser = $nur->findOneBy([
+            'token' => $token,
+        ]);
+        if (!$newsletterUser) {
+            throw $this->createNotFoundException();
+        }
+        $this->getDoctrine()->getManager()->remove($newsletterUser);
         $this->getDoctrine()->getManager()->flush();
         $this->addFlash('success', $translator->trans('newsletter.flash.unsubscribe_success'));
 
