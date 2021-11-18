@@ -1,12 +1,18 @@
 Changelog
 =========
 
-##### Version 5.06.00 (WIP)
+##### Version 5.07.00 (WIP)
  * fix bugs
+ * add translations management
+ * add page template types
+
+##### Version 5.06.00 (2021-11-18)
  * add latest version of Elasticsearch engine
  * add Stimulus autocomplete frontend layout search bar
  * improve frontend page templates types render
  * improve current menu render in frontend detail page render
+ * add newsletter subscription management
+ * add dynamic frontend calendar management
 
 ##### Version 5.05.00 (2021-08-16)
  * fix ArtistAdmin edit error
