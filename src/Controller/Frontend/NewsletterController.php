@@ -32,9 +32,11 @@ final class NewsletterController extends AbstractController
         }
 
         return $this->render(
-            'mail/newsletter_subscribe_confirmation.html.twig',
+//            'mail/newsletter_subscribe_confirmation.html.twig',
+            'mail/newsletter_activated.html.twig',
             [
-                'subject' => $translator->trans('newsletter.email.confirmation.suject_confirmation'),
+//                'subject' => $translator->trans('newsletter.email.confirmation.confirmation'),
+                'subject' => $translator->trans('newsletter.email.activated.subject'),
                 'user' => $newsletterUser,
                 'show_top_bar' => false,
                 'show_bottom_bar' => false,
@@ -57,35 +59,36 @@ final class NewsletterController extends AbstractController
             $searchedNewsletterUser = $nur->findOneBy(
                 ['email' => $newsletterUser->getEmail()]
             );
-            if ($searchedNewsletterUser) {
-                // update an existent user
-                $searchedNewsletterUser
-                    ->setName($newsletterUser->getName())
-                    ->setPhone($newsletterUser->getPhone())
-                    ->setPostalCode($newsletterUser->getPostalCode())
-                    ->setLanguage($request->getLocale())
-                    ->setActive(false)
-                ;
-            } else {
+            if (!$searchedNewsletterUser) {
                 // create a new user
-                $newsletterUser->setActive(false);
-                $this->getDoctrine()->getManager()->persist($newsletterUser);
+                $searchedNewsletterUser = new NewsletterUser();
+                $newsletterUser->setEmail($newsletterUser->getEmail());
             }
+            // update user data in both cases (create or update)
+            $searchedNewsletterUser
+                ->setName($newsletterUser->getName())
+                ->setPhone($newsletterUser->getPhone())
+                ->setPostalCode($newsletterUser->getPostalCode())
+                ->setLanguage($request->getLocale())
+                ->setToken($newsletterUser->getToken())
+                ->setActive(false)
+            ;
+            $this->getDoctrine()->getManager()->persist($searchedNewsletterUser);
             $this->getDoctrine()->getManager()->flush();
-            $subject = $translator->trans('newsletter.email.confirmation.suject_confirmation');
+            $subject = $translator->trans('newsletter.email.confirmation.confirmation');
             $mm->sendEmail(
                 $subject,
                 $this->renderView(
                     'mail/newsletter_subscribe_confirmation.html.twig',
                     [
                         'subject' => $subject,
-                        'user' => $newsletterUser,
+                        'user' => $searchedNewsletterUser,
                         'show_top_bar' => false,
                         'show_bottom_bar' => false,
                     ]
                 ),
-                $newsletterUser->getEmail(),
-                $newsletterUser->getName(),
+                $searchedNewsletterUser->getEmail(),
+                $searchedNewsletterUser->getName(),
             );
             $this->addFlash('success', $translator->trans('newsletter.flash.register'));
 
@@ -117,13 +120,33 @@ final class NewsletterController extends AbstractController
 
     /**
      * @Route("/newsletter/subscribe/{token}", name="front_app_newsletter_subscribe", priority=10)
-     * @ParamConverter("token", class="App\Entity\NewsletterUser", options={"mapping": {"token": "token"}})
      */
-    public function subscribe(NewsletterUser $user, TranslatorInterface $translator): RedirectResponse
+    public function subscribe(string $token, NewsletterUserRepository $nur, MailManager $mm, TranslatorInterface $translator): RedirectResponse
     {
-        $user->setActive(true);
+        $newsletterUser = $nur->findOneBy([
+            'token' => $token,
+        ]);
+        if (!$newsletterUser) {
+            throw $this->createNotFoundException();
+        }
+        $newsletterUser->setActive(true);
         $this->getDoctrine()->getManager()->flush();
-        $this->addFlash('notice', $translator->trans('newsletter.flash.subscribe_success'));
+        $subject = $translator->trans('newsletter.email.activated.subject');
+        $mm->sendEmail(
+            $subject,
+            $this->renderView(
+                'mail/newsletter_activated.html.twig',
+                [
+                    'subject' => $subject,
+                    'user' => $newsletterUser,
+                    'show_top_bar' => false,
+                    'show_bottom_bar' => false,
+                ]
+            ),
+            $newsletterUser->getEmail(),
+            $newsletterUser->getName(),
+        );
+        $this->addFlash('success', $translator->trans('newsletter.flash.subscribe_success'));
 
         return $this->redirectToRoute('front_app_homepage');
     }

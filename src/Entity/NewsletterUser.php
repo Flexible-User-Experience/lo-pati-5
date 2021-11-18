@@ -70,8 +70,8 @@ class NewsletterUser extends AbstractBase
 
     public function __construct()
     {
-        $this->token = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
         $this->groups = new ArrayCollection();
+        $this->resetToken();
     }
 
     public function getName(): ?string
@@ -166,6 +166,13 @@ class NewsletterUser extends AbstractBase
     public function setToken(string $token): self
     {
         $this->token = $token;
+
+        return $this;
+    }
+
+    public function resetToken(): self
+    {
+        $this->token = base_convert(sha1(uniqid(mt_rand(), true)), 16, 36);
 
         return $this;
     }

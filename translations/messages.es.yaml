@@ -463,11 +463,11 @@ front:
     activities: 'Actividades para el día:'
 newsletter:
   form:
-    name: 'Nombre *'
-    email: 'Email *'
-    zip: 'Código postal'
-    phone: 'Teléfono'
-    accept_legal_terms: 'Acepto los'
+    name: 'NOMBRE *'
+    email: 'EMAIL *'
+    zip: 'CÓDIGO POSTAL'
+    phone: 'TELÉFONO'
+    accept_legal_terms: 'ACEPTO LOS'
     submit: 'Enviar'
   flash:
     register: 'Se ha registrado correctamente. Ahora recibira un email de confirmacion para activar su usuario.'
@@ -478,11 +478,17 @@ newsletter:
     confirmation:
       congratulations: '¡Enhorabuena! Se ha registrado correctamente.'
       subject:  'Activada su dirección de correo electrónico.'
-      suject_confirmation: 'Confirmación para recibir el boletín de LO PATI'
-      first_line_confirmation: 'Hemos recibido una petición de suscripción de la dirección <strong>%email%</strong> en el boletín de Lo Pati. '
-      second_line_confirmation: 'Para confirmar la suscripción, por favor, haz clic en el botón siguiente'
-      third_line_confirmation: 'Si por cualquier motivo el botón de confirmación no funciona correctamente, copie en su navegador la siguiente dirección:'
-      button_confirmation: 'Confirmar suscripción'
+      confirmation: 'Confirmación para recibir el boletín de LO PATI'
+      first_line: 'Hemos recibido una petición de suscripción de la dirección <strong>%email%</strong> en el boletín de Lo Pati. '
+      second_line: 'Para confirmar la suscripción, por favor, haz clic en el botón siguiente'
+      third_line: 'Si por cualquier motivo el botón de confirmación no funciona correctamente, copie en su navegador la siguiente dirección:'
+      button: 'Confirmar suscripción'
+    activated:
+      subject: 'Su dirección de correo electrónico ha sido activada correctamente'
+      first_line: 'Se ha activado su cuenta de correo. A partir de ahora podrá recibir nuestro boletín informativo. Gracias por su interés.'
+      second_line: 'Si por cualquier motivo <strong>no</strong> desea continuar recibiendo nuestros boletines, haz clic en el botón siguiente'
+      third_line: 'Atentamente, Lo Pati.'
+      button: 'Cancelar suscripción'
 mail:
   back_to_cms: 'volver al CMS'
   preview_mode: 'mode previsualización'

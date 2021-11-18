@@ -463,11 +463,11 @@ front:
     activities: 'Activitats per al dia:'
 newsletter:
   form:
-    name: 'Nom *'
-    email: 'Email *'
-    zip: 'Codi postal'
-    phone: 'Telèfon'
-    accept_legal_terms: 'Accepto els'
+    name: 'NOM *'
+    email: 'EMAIL *'
+    zip: 'CODI POSTAL'
+    phone: 'TELÈEFON'
+    accept_legal_terms: 'ACCEPTO ELS'
     submit: 'Enviar'
   flash:
     register: 'S''ha registrat correctament. Ara rebrà un correu electrònic de confirmació per activar el seu usuari.'
@@ -478,11 +478,17 @@ newsletter:
     confirmation:
       congratulations: 'Enhorabona! S''ha registrat correctament.'
       subject:  'Activada la seva adreça de correu electrònic.'
-      suject_confirmation: 'Confirmació per rebre el butlletí de LO PATI'
-      first_line_confirmation: 'Hem rebut una petició de subscripció de l''adreça <strong>%email%</strong> al butlletí de Lo Pati.'
-      second_line_confirmation: 'Per confirmar la subscripció, si us plau, fes clic al botó seguent'
-      third_line_confirmation: 'Si per qualsevol motiu el botó de confirmació no funciona correctament, copiï al seu navegador la seguent adreça:'
-      button_confirmation: 'Confirmar subscripció'
+      confirmation: 'Confirmació per rebre el butlletí de LO PATI'
+      first_line: 'Hem rebut una petició de subscripció de l''adreça <strong>%email%</strong> al butlletí de Lo Pati.'
+      second_line: 'Per confirmar la subscripció, si us plau, fes clic al botó seguent'
+      third_line: 'Si per qualsevol motiu el botó de confirmació no funciona correctament, copiï al seu navegador la seguent adreça:'
+      button: 'Confirmar subscripció'
+    activated:
+      subject: 'La seva adreça de correu electrònic ha estat activada correctament'
+      first_line: 'S''ha activat el seu compte de correu. A partir d''ara ja podrà rebre el nostre butlletí informatiu. Gràcies pel seu interès.'
+      second_line: 'Si per qualsevol motiu <strong>no</strong> voleu continuar rebent els nostres butlletins, fes clic al botó seguent'
+      third_line: 'Atentament, Lo Pati.'
+      button: 'Cancel·lar subscripció'
 mail:
   back_to_cms: 'tornar al CMS'
   preview_mode: 'mode previsualització'

@@ -12,6 +12,7 @@ twig:
         developer_name:    '%developer_name%'
         developer_url:     '%developer_url%'
         customer_name:     '%customer_name%'
+        customer_email:    '%customer_email%'
         customer_url:      '%customer_url%'
         project_title:     '%project_title%'
 

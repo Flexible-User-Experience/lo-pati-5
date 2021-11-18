@@ -27,7 +27,20 @@
             </container>
         </wrapper>
     {% endif %}
-    {% block content %}{% endblock %}
+    <wrapper class="light-grey-background">
+        <container>
+            <row>
+                <columns small="8" large="8" valign="middle" class="normal-padding-top">
+                    <a href="{{ absolute_url(path('front_app_homepage')) }}">
+                        <img class="float-left" src="{{ absolute_url(asset('build/newsletter_logo_header.png')) }}" alt="{{ project_title }} logo">
+                    </a>
+                </columns>
+                <columns small="4" large="4"></columns>
+            </row>
+            {% include "mail/fragment/hr_row_divider.html.twig" %}
+            {% block content %}{% endblock %}
+        </container>
+    </wrapper>
     {% block footer %}
         <wrapper class="light-grey-background">
             <container>
@@ -35,13 +48,13 @@
                     <columns small="12" large="12" class="vertical-padding">
                         <p class="grey-color footer-right">
                             <a href="https://www.amposta.cat" class="footer-pre-bottom-icon">
-                                <img class="float-right" src="{{ absolute_url(asset('build/newsletter_logo_amposta.png')) }}" alt="Ajuntament Amposta">
+                                <img class="float-right" src="{{ absolute_url(asset('build/newsletter_logo_amposta.png')) }}" alt="Ajuntament Amposta logo">
                             </a>
                             <a href="https://www.diputaciodetarragona.cat" class="footer-pre-bottom-icon">
-                                <img class="float-right" src="{{ absolute_url(asset('build/newsletter_logo_tarragona.png')) }}" alt="Diputacio Tarragona">
+                                <img class="float-right" src="{{ absolute_url(asset('build/newsletter_logo_tarragona.png')) }}" alt="Diputació Tarragona logo">
                             </a>
                             <a href="https://cultura.gencat.cat/ca/inici/" class="footer-pre-bottom-icon">
-                                <img class="float-right" src="{{ absolute_url(asset('build/newsletter_logo_gencat.png')) }}" alt="Generalitat Catalunya">
+                                <img class="float-right" src="{{ absolute_url(asset('build/newsletter_logo_gencat.png')) }}" alt="Generalitat Catalunya logo">
                             </a>
                         </p>
                         <spacer size="13"></spacer>
@@ -51,7 +64,7 @@
                 <row>
                     <columns small="8" large="8">
                         <p class="footer-bottom">
-                            LO PATI | C. Gran Capità, 38-40 | 43870 Amposta | <a class="lopati-footer-email" href="mailto:info@lopati.cat">info@lopati.cat</a>
+                            {{ project_title | upper }} | C. Gran Capità, 38-40 | 43870 Amposta | <a class="lopati-footer-email" href="mailto:{{ customer_email }}">{{ customer_email }}</a>
                         </p>
                     </columns>
                     <columns small="4" large="4" class="text-right">

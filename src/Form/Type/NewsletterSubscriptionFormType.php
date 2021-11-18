@@ -22,7 +22,7 @@ final class NewsletterSubscriptionFormType extends AbstractType
                     'required' => true,
                     'attr' => [
                         'placeholder' => 'newsletter.form.name',
-                        'class' => 'bg-transparent border-2 rounded-0 text-uppercase',
+                        'class' => 'lp-c-light-grey bg-transparent border-2 rounded-0',
                     ],
                 ]
             )
@@ -34,7 +34,7 @@ final class NewsletterSubscriptionFormType extends AbstractType
                     'required' => true,
                     'attr' => [
                         'placeholder' => 'newsletter.form.email',
-                        'class' => 'bg-transparent border-2 rounded-0 text-uppercase',
+                        'class' => 'lp-c-light-grey bg-transparent border-2 rounded-0',
                     ],
                 ]
             )
@@ -46,7 +46,7 @@ final class NewsletterSubscriptionFormType extends AbstractType
                     'required' => false,
                     'attr' => [
                         'placeholder' => 'newsletter.form.zip',
-                        'class' => 'bg-transparent border-2 rounded-0 text-uppercase',
+                        'class' => 'lp-c-light-grey bg-transparent border-2 rounded-0',
                     ],
                 ]
             )
@@ -58,7 +58,7 @@ final class NewsletterSubscriptionFormType extends AbstractType
                     'required' => false,
                     'attr' => [
                         'placeholder' => 'newsletter.form.phone',
-                        'class' => 'bg-transparent border-2 rounded-0 text-uppercase',
+                        'class' => 'lp-c-light-grey bg-transparent border-2 rounded-0',
                     ],
                 ]
             )
