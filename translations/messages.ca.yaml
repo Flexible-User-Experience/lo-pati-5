@@ -479,6 +479,10 @@ newsletter:
       congratulations: 'Enhorabona! S''ha registrat correctament.'
       subject:  'Activada la seva adreça de correu electrònic.'
       suject_confirmation: 'Confirmació per rebre el butlletí de LO PATI'
+      first_line_confirmation: 'Hem rebut una petició de subscripció de l''adreça <strong>%email%</strong> al butlletí de Lo Pati.'
+      second_line_confirmation: 'Per confirmar la subscripció, si us plau, fes clic al botó seguent'
+      third_line_confirmation: 'Si per qualsevol motiu el botó de confirmació no funciona correctament, copiï al seu navegador la seguent adreça:'
+      button_confirmation: 'Confirmar subscripció'
 mail:
   back_to_cms: 'tornar al CMS'
   preview_mode: 'mode previsualització'

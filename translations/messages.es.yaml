@@ -479,6 +479,10 @@ newsletter:
       congratulations: '¡Enhorabuena! Se ha registrado correctamente.'
       subject:  'Activada su dirección de correo electrónico.'
       suject_confirmation: 'Confirmación para recibir el boletín de LO PATI'
+      first_line_confirmation: 'Hemos recibido una petición de suscripción de la dirección <strong>%email%</strong> en el boletín de Lo Pati. '
+      second_line_confirmation: 'Para confirmar la suscripción, por favor, haz clic en el botón siguiente'
+      third_line_confirmation: 'Si por cualquier motivo el botón de confirmación no funciona correctamente, copie en su navegador la siguiente dirección:'
+      button_confirmation: 'Confirmar suscripción'
 mail:
   back_to_cms: 'volver al CMS'
   preview_mode: 'mode previsualización'
