@@ -20,11 +20,11 @@
                     <spacer size="40"></spacer>
                     <p class="grey-color">{{ 'newsletter.email.confirmation.second_line_confirmation' | trans }}</p>
                     <center>
-                        <button class="alert large" href="{{ url('front_app_newsletter_subscribe_form', {token: user.token}) }}">{{ 'newsletter.email.confirmation.button_confirmation' | trans }}</button>
+                        <button class="alert large" href="{{ url('front_app_newsletter_subscribe', {token: user.token}) }}">{{ 'newsletter.email.confirmation.button_confirmation' | trans }}</button>
                     </center>
                     <spacer size="40"></spacer>
                     <p class="grey-color">{{ 'newsletter.email.confirmation.third_line_confirmation' | trans }}</p>
-                    <p><a href="{{ url('front_app_newsletter_subscribe_form', {token: user.token}) }}">{{ url('front_app_newsletter_subscribe_form', {token: user.token}) }}</a></p>
+                    <p><a href="{{ url('front_app_newsletter_subscribe', {token: user.token}) }}">{{ url('front_app_newsletter_subscribe', {token: user.token}) }}</a></p>
                 </columns>
             </row>
             {% include "mail/fragment/hr_row_divider.html.twig" %}

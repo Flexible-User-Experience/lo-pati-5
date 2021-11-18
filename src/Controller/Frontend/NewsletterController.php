@@ -116,14 +116,27 @@ final class NewsletterController extends AbstractController
     }
 
     /**
+     * @Route("/newsletter/subscribe/{token}", name="front_app_newsletter_subscribe", priority=10)
+     * @ParamConverter("token", class="App\Entity\NewsletterUser", options={"mapping": {"token": "token"}})
+     */
+    public function subscribe(NewsletterUser $user, TranslatorInterface $translator): RedirectResponse
+    {
+        $user->setActive(true);
+        $this->getDoctrine()->getManager()->flush();
+        $this->addFlash('notice', $translator->trans('newsletter.flash.subscribe_success'));
+
+        return $this->redirectToRoute('front_app_homepage');
+    }
+
+    /**
      * @Route("/newsletter/unsubscribe/{token}", name="front_app_newsletter_unsubscribe", priority=10)
      * @ParamConverter("token", class="App\Entity\NewsletterUser", options={"mapping": {"token": "token"}})
      */
-    public function newsletterUnsubscribe(NewsletterUser $user, TranslatorInterface $translator): RedirectResponse
+    public function unsubscribe(NewsletterUser $user, TranslatorInterface $translator): RedirectResponse
     {
         $this->getDoctrine()->getManager()->remove($user);
         $this->getDoctrine()->getManager()->flush();
-        $this->addFlash('notice', $translator->trans('front.newsletter.unsubscribe_success'));
+        $this->addFlash('success', $translator->trans('newsletter.flash.unsubscribe_success'));
 
         return $this->redirectToRoute('front_app_homepage');
     }

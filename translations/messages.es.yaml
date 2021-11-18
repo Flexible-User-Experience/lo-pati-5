@@ -458,8 +458,6 @@ front:
     highlighted: 'Destacado en Lo Pati'
     read_more: 'Ampliar'
     paginator_label: 'Paginador de destacados'
-  newsletter:
-    unsubscribe_success: 'Tu suscripción al newsletter ha sido eliminada correctamente.'
   agenda:
     title: 'Agenda'
     activities: 'Actividades para el día:'
@@ -474,6 +472,8 @@ newsletter:
   flash:
     register: 'Se ha registrado correctamente. Ahora recibira un email de confirmacion para activar su usuario.'
     error:  'Ya existe un usuario con ese email.'
+    subscribe_success: 'Su suscripción al boletín ha sido registrada correctamente.'
+    unsubscribe_success: 'Su suscripción al boletín ha sido eliminada correctamente.'
   email:
     confirmation:
       congratulations: '¡Enhorabuena! Se ha registrado correctamente.'
