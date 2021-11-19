@@ -117,7 +117,7 @@ class Artist extends AbstractBase
     private ?File $document1File = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Translation\PageTranslation", mappedBy="object", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Translation\ArtistTranslation", mappedBy="object", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
     private ?Collection $translations;

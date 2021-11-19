@@ -388,6 +388,11 @@ final class PageAdmin extends AbstractBaseAdmin
                             'required' => false,
                             'field_type' => TextType::class,
                         ],
+                        'place' => [
+                            'label' => 'form.label_place',
+                            'required' => false,
+                            'field_type' => TextType::class,
+                        ],
                         'imageCaption' => [
                             'label' => 'form.label_image_caption',
                             'required' => false,

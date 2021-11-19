@@ -54,7 +54,7 @@ final class ImportCsvArtistTranslationsCommand extends AbstractBaseCommand
                         ++$newRecords;
                         $this->em->persist($serachedArtistTranslation);
                     }
-                    $serachedArtistTranslation->setContent($this->readColumn(4, $data));
+                    $serachedArtistTranslation->setContent(self::sanitizeNewLineEscapeChar($this->readColumn(4, $data)));
                     if (0 === $rowsRead % self::CSV_BATCH_WINDOW && !$input->getOption('dry-run')) {
                         $this->em->flush();
                     }
@@ -62,7 +62,7 @@ final class ImportCsvArtistTranslationsCommand extends AbstractBaseCommand
                         $output->writeln(implode(self::CSV_DELIMITER, $data));
                     }
                 } else {
-                    $output->writeln('Menu artist #'.$this->readColumn(1, $data).' <error>NOT FOUND ERROR</error>');
+                    $output->writeln('Artist #'.$this->readColumn(1, $data).' <error>NOT FOUND ERROR</error>');
                     ++$errors;
                 }
             } else {
