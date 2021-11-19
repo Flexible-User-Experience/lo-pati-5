@@ -5,28 +5,33 @@ namespace App\Entity;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
 use App\Entity\Traits\SlugTrait;
+use App\Entity\Traits\TranslationsTrait;
 use App\Enum\LabelColorEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_menu_level1_name_index", columns={"name"})})
  * @ORM\Entity(repositoryClass="App\Repository\MenuLevel1Repository")
  * @UniqueEntity(fields={"name"}, errorPath="name")
+ * @Gedmo\TranslationEntity(class="App\Entity\Translation\MenuLevel1Translation")
  */
 class MenuLevel1 extends AbstractBase
 {
     use NameTrait;
     use PositionTrait;
     use SlugTrait;
+    use TranslationsTrait;
 
     public const DEFAULT_COLOR = LabelColorEnum::TEAL;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Gedmo\Translatable
      */
     private string $name;
 
@@ -57,9 +62,16 @@ class MenuLevel1 extends AbstractBase
      */
     private ?Page $page = null;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Translation\MenuLevel1Translation", mappedBy="object", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private ?Collection $translations;
+
     public function __construct()
     {
         $this->menuLevel2items = new ArrayCollection();
+        $this->translations = new ArrayCollection();
     }
 
     public function getColor(): string
