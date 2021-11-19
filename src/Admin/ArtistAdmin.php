@@ -2,7 +2,9 @@
 
 namespace App\Admin;
 
+use App\Entity\Translation\ArtistTranslation;
 use App\Enum\SortOrderTypeEnum;
+use App\Form\Type\GedmoTranslationsType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -199,6 +201,37 @@ final class ArtistAdmin extends AbstractBaseAdmin
                 CheckboxType::class,
                 [
                     'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.translations', $this->getFormMdSuccessBoxArray(8))
+            ->add(
+                'translations',
+                GedmoTranslationsType::class,
+                [
+                    'label' => false,
+                    'required' => false,
+                    'translatable_class' => ArtistTranslation::class,
+                    'fields' => [
+                        'summary' => [
+                            'label' => 'form.label_summary',
+                            'required' => false,
+                            'field_type' => TextareaType::class,
+                            'attr' => [
+                                'rows' => 5,
+                                'style' => 'resize:vertical',
+                            ],
+                        ],
+                        'description' => [
+                            'label' => 'form.label_description',
+                            'required' => false,
+                            'field_type' => CKEditorType::class,
+                            'attr' => [
+                                'rows' => 5,
+                                'style' => 'resize:vertical',
+                            ],
+                        ],
+                    ],
                 ]
             )
             ->end()

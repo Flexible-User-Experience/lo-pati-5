@@ -218,6 +218,7 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                         'name' => [
                             'label' => 'form.label_name',
                             'required' => false,
+                            'field_type' => TextType::class,
                         ],
                     ],
                 ]
