@@ -2,7 +2,9 @@
 
 namespace App\Admin;
 
+use App\Entity\Translation\ArtistTranslation;
 use App\Enum\SortOrderTypeEnum;
+use App\Form\Type\GedmoTranslationsType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -76,7 +78,7 @@ final class ConfigFooterInformationAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(12))
+            ->with('admin.common.general', $this->getFormMdSuccessBoxArray())
             ->add(
                 'address',
                 CKEditorType::class,
@@ -114,6 +116,55 @@ final class ConfigFooterInformationAdmin extends AbstractBaseAdmin
                     'required' => false,
                     'attr' => [
                         'rows' => 5,
+                    ],
+                ]
+            )
+            ->end()
+            ->with('admin.common.translations', $this->getFormMdSuccessBoxArray())
+            ->add(
+                'translations',
+                GedmoTranslationsType::class,
+                [
+                    'label' => false,
+                    'required' => false,
+                    'translatable_class' => ArtistTranslation::class,
+                    'fields' => [
+                        'address' => [
+                            'label' => 'form.label_address',
+                            'required' => false,
+                            'field_type' => CKEditorType::class,
+                            'attr' => [
+                                'rows' => 5,
+                                'style' => 'resize:vertical',
+                            ],
+                        ],
+                        'timetable' => [
+                            'label' => 'form.label_timetable',
+                            'required' => false,
+                            'field_type' => CKEditorType::class,
+                            'attr' => [
+                                'rows' => 5,
+                                'style' => 'resize:vertical',
+                            ],
+                        ],
+                        'organizer' => [
+                            'label' => 'form.label_organizer',
+                            'required' => false,
+                            'field_type' => CKEditorType::class,
+                            'attr' => [
+                                'rows' => 5,
+                                'style' => 'resize:vertical',
+                            ],
+                        ],
+                        'collaborator' => [
+                            'label' => 'form.label_collaborator',
+                            'required' => false,
+                            'field_type' => CKEditorType::class,
+                            'attr' => [
+                                'rows' => 5,
+                                'style' => 'resize:vertical',
+                            ],
+                        ],
                     ],
                 ]
             )
