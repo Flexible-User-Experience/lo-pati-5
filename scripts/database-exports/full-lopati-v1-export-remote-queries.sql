@@ -27,6 +27,15 @@ LINES TERMINATED BY '\r\n'
 FROM lopati.Artista A
 ORDER BY A.id;
 
+SELECT AT.*
+INTO OUTFILE '/var/lib/mysql-files/artist_translations.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.artista_translations AT
+ORDER BY AT.id;
+
 SELECT C.*, P.data_publicacio, P.titol
 INTO OUTFILE '/var/lib/mysql-files/menulevel1.csv'
 FIELDS TERMINATED BY ','
@@ -36,6 +45,15 @@ LINES TERMINATED BY '\r\n'
 FROM lopati.Categoria C
 LEFT JOIN lopati.Pagina P ON P.id = C.link_id
 ORDER BY C.id;
+
+SELECT CT.*
+INTO OUTFILE '/var/lib/mysql-files/menulevel1_translations.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.categoria_translations CT
+ORDER BY CT.id;
 
 SELECT SC.*, C.nom AS categoria, P.data_publicacio, P.titol
 INTO OUTFILE '/var/lib/mysql-files/menulevel2.csv'
@@ -48,6 +66,15 @@ LEFT JOIN lopati.Categoria C ON C.id = SC.categoria_id
 LEFT JOIN lopati.Pagina P ON P.id = SC.link_id
 ORDER BY SC.id;
 
+SELECT SCT.*
+INTO OUTFILE '/var/lib/mysql-files/menulevel2_translations.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.subcategoria_translations SCT
+ORDER BY SCT.id;
+
 SELECT P.*, C.nom AS categoria, SC.nom AS subcategoria
 INTO OUTFILE '/var/lib/mysql-files/page.csv'
 FIELDS TERMINATED BY ','
@@ -58,6 +85,15 @@ FROM lopati.Pagina P
 LEFT JOIN lopati.Categoria C ON C.id = P.categoria_id
 LEFT JOIN lopati.SubCategoria SC ON SC.id = P.subCategoria_id
 ORDER BY P.id;
+
+SELECT PT.*
+INTO OUTFILE '/var/lib/mysql-files/page_translations.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.pagina_translations PT
+ORDER BY PT.id;
 
 SELECT NG.*
 INTO OUTFILE '/var/lib/mysql-files/newslettergroup.csv'
@@ -124,3 +160,12 @@ ESCAPED BY '\\'
 LINES TERMINATED BY '\r\n'
 FROM lopati.Configuracio C
 ORDER BY C.id;
+
+SELECT CT.*
+INTO OUTFILE '/var/lib/mysql-files/configfooterinformation_translations.csv'
+FIELDS TERMINATED BY ','
+OPTIONALLY ENCLOSED BY '"'
+ESCAPED BY '\\'
+LINES TERMINATED BY '\r\n'
+FROM lopati.configuracio_translations CT
+ORDER BY CT.id;
