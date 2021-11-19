@@ -9,6 +9,7 @@ php ./bin/console app:import:slideshow ./var/csv/imports/slideshow.csv
 php ./bin/console app:import:archive ./var/csv/imports/archive.csv
 php ./bin/console app:import:artist ./var/csv/imports/artist.csv
 php ./bin/console app:import:menu:level1 ./var/csv/imports/menulevel1.csv
+php ./bin/console app:import:menu:level1:translations ./var/csv/imports/menulevel1_translations.csv
 php ./bin/console app:import:menu:level2 ./var/csv/imports/menulevel2.csv
 php ./bin/console app:import:page ./var/csv/imports/page.csv
 php ./bin/console app:import:fetch:page:menu:level1 ./var/csv/imports/menulevel1.csv
