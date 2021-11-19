@@ -63,8 +63,7 @@ final class ImportCsvMenuLevel2TranslationsCommand extends AbstractBaseCommand
                         $output->writeln(implode(self::CSV_DELIMITER, $data));
                     }
                 } else {
-                    // error ml1 related entity not found
-                    $output->writeln('Menu level 2 #"'.$this->readColumn(1, $data).'" <error>NOT FOUND ERROR</error>');
+                    $output->writeln('Menu level 2 #'.$this->readColumn(1, $data).' <error>NOT FOUND ERROR</error>');
                     ++$errors;
                 }
             } else {
