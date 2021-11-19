@@ -1,10 +1,13 @@
 Changelog
 =========
 
-##### Version 5.07.00 (WIP)
+##### Version 5.08.00 (WIP)
  * fix bugs
- * add translations management
  * add page template types
+
+##### Version 5.07.00 (2021-11-19)
+ * fix missing assets install command execution during Ansible deploy
+ * add translations management
  * add ConfigCalendarWorkingDay admin
  * add ConfigFooterInformation admin
 
