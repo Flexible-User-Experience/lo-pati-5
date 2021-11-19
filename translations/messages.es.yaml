@@ -20,6 +20,8 @@ sidebarmenu:
     archive: 'Año'
   settings:
     title: 'Configuración'
+    config_footer_information: 'Pié de página'
+    config_calendar_working_day: 'Días laborables'
     user: 'Usuario'
 breadcrumb:
   link_menu_level1_list: 'Menú Primer Nivel'
@@ -40,6 +42,10 @@ breadcrumb:
   link_archive_create: 'Crear'
   link_artist_list: 'Artista'
   link_artist_create: 'Crear'
+  link_config_footer_information_list: 'Configuración Pié de Página'
+  link_config_footer_information_create: 'Crear'
+  link_config_calendar_working_day_list: 'Configuración Días Laborales Agenda'
+  link_config_calendar_working_day_create: 'Crear'
   link_user_list: 'Usuario'
   link_user_create: 'Crear'
 dashboard:
@@ -203,6 +209,10 @@ list:
   label_begin_send: 'Enviado el'
   label_active: 'Activo'
   label_active_f: 'Activa'
+  label_address: 'Dirección'
+  label_timetable: 'Horario'
+  label_organizer: 'Organiza'
+  label_collaborator: 'Colabora'
   label__actions: 'Acciones'
 form:
   label_id: 'ID'
@@ -284,6 +294,10 @@ form:
   label_password: 'Contraseña'
   label_plain_password: 'Contraseña'
   label_login: 'Iniciar sessión'
+  label_address: 'Dirección'
+  label_timetable: 'Horario'
+  label_organizer: 'Organiza'
+  label_collaborator: 'Colabora'
   group_admin_common_general: 'General'
   group_admin_common_controls: 'Controles'
   group_admin_common_images: 'Imagenes'

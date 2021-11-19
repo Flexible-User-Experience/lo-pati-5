@@ -36,10 +36,10 @@ final class ImportCsvConfigFooterInformationCommand extends AbstractBaseCommand
                 if (0 === count($configFooterInformationItems)) {
                     $configFooterInformationItem = new ConfigFooterInformation();
                     $configFooterInformationItem
-                        ->setAddress($this->readColumn(1, $data))
-                        ->setTimetable($this->readColumn(2, $data))
-                        ->setOrganizer($this->readColumn(3, $data))
-                        ->setCollaborator($this->readColumn(4, $data))
+                        ->setAddress(AbstractBaseCommand::sanitizeNewLineEscapeChar($this->readColumn(1, $data)))
+                        ->setTimetable(AbstractBaseCommand::sanitizeNewLineEscapeChar($this->readColumn(2, $data)))
+                        ->setOrganizer(AbstractBaseCommand::sanitizeNewLineEscapeChar($this->readColumn(3, $data)))
+                        ->setCollaborator(AbstractBaseCommand::sanitizeNewLineEscapeChar($this->readColumn(4, $data)))
                     ;
                     ++$newRecords;
                     $this->em->persist($configFooterInformationItem);

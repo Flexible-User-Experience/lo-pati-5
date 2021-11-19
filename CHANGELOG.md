@@ -1,10 +1,16 @@
 Changelog
 =========
 
-##### Version 5.07.00 (WIP)
+##### Version 5.08.00 (WIP)
  * fix bugs
- * add translations management
+ * fix broken testing suite
  * add page template types
+
+##### Version 5.07.00 (2021-11-19)
+ * fix missing assets install command execution during Ansible deploy
+ * add translations management
+ * add ConfigCalendarWorkingDay admin
+ * add ConfigFooterInformation admin
 
 ##### Version 5.06.00 (2021-11-18)
  * add latest version of Elasticsearch engine

@@ -4,7 +4,9 @@ namespace App\Admin;
 
 use App\Entity\MenuLevel1;
 use App\Entity\Page;
+use App\Entity\Translation\MenuLevel2Translation;
 use App\Enum\SortOrderTypeEnum;
+use App\Form\Type\GedmoTranslationsType;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -201,6 +203,24 @@ final class MenuLevel2Admin extends AbstractBaseAdmin
                 CheckboxType::class,
                 [
                     'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.translations', $this->getFormMdSuccessBoxArray(5))
+            ->add(
+                'translations',
+                GedmoTranslationsType::class,
+                [
+                    'label' => false,
+                    'required' => false,
+                    'translatable_class' => MenuLevel2Translation::class,
+                    'fields' => [
+                        'name' => [
+                            'label' => 'form.label_name',
+                            'required' => false,
+                            'field_type' => TextType::class,
+                        ],
+                    ],
                 ]
             )
             ->end()

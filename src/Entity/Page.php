@@ -9,9 +9,12 @@ use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\SmallImage1Trait;
 use App\Entity\Traits\SmallImage2Trait;
+use App\Entity\Traits\TranslationsTrait;
 use App\Enum\PageTemplateTypeEnum;
 use DateTimeImmutable;
 use DateTimeInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -23,6 +26,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_page_published_date_name_index", columns={"name", "publish_date"})})
  * @ORM\Entity(repositoryClass="App\Repository\PageRepository")
  * @UniqueEntity(fields={"name", "publishDate"}, errorPath="name")
+ * @Gedmo\TranslationEntity(class="App\Entity\Translation\PageTranslation")
  * @Vich\Uploadable()
  */
 class Page extends AbstractBase
@@ -34,11 +38,13 @@ class Page extends AbstractBase
     use SlugTrait;
     use SmallImage1Trait;
     use SmallImage2Trait;
+    use TranslationsTrait;
 
     public const DEFAULT_PAGE_TEMPLATE = PageTemplateTypeEnum::DEFAULT;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Translatable
      */
     private string $name;
 
@@ -50,6 +56,7 @@ class Page extends AbstractBase
 
     /**
      * @ORM\Column(type="text", length=300, nullable=true)
+     * @Gedmo\Translatable
      */
     private ?string $summary = null;
 
@@ -80,11 +87,13 @@ class Page extends AbstractBase
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Gedmo\Translatable
      */
     private ?string $realizationDateString = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Gedmo\Translatable
      */
     private ?string $place = null;
 
@@ -128,6 +137,7 @@ class Page extends AbstractBase
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Gedmo\Translatable
      */
     private ?string $imageCaption = null;
 
@@ -178,6 +188,17 @@ class Page extends AbstractBase
      * @ORM\JoinColumn(referencedColumnName="id", nullable=true)
      */
     private ?MenuLevel2 $menuLevel2 = null;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Translation\PageTranslation", mappedBy="object", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private ?Collection $translations;
+
+    public function __construct()
+    {
+        $this->translations = new ArrayCollection();
+    }
 
     public function __clone()
     {
