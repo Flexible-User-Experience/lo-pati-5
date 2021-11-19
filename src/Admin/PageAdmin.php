@@ -5,8 +5,10 @@ namespace App\Admin;
 use App\Entity\AbstractBase;
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
+use App\Entity\Translation\PageTranslation;
 use App\Enum\PageTemplateTypeEnum;
 use App\Enum\SortOrderTypeEnum;
+use App\Form\Type\GedmoTranslationsType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -346,6 +348,52 @@ final class PageAdmin extends AbstractBaseAdmin
                 TextType::class,
                 [
                     'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.translations', $this->getFormMdSuccessBoxArray(8))
+            ->add(
+                'translations',
+                GedmoTranslationsType::class,
+                [
+                    'label' => false,
+                    'required' => false,
+                    'translatable_class' => PageTranslation::class,
+                    'fields' => [
+                        'name' => [
+                            'label' => 'form.label_name',
+                            'required' => false,
+                            'field_type' => TextType::class,
+                        ],
+                        'summary' => [
+                            'label' => 'form.label_summary',
+                            'required' => false,
+                            'field_type' => TextareaType::class,
+                            'attr' => [
+                                'rows' => 5,
+                                'style' => 'resize:vertical',
+                            ],
+                        ],
+                        'description' => [
+                            'label' => 'form.label_description',
+                            'required' => false,
+                            'field_type' => CKEditorType::class,
+                            'attr' => [
+                                'rows' => 5,
+                                'style' => 'resize:vertical',
+                            ],
+                        ],
+                        'realizationDateString' => [
+                            'label' => 'form.label_realization_date_string',
+                            'required' => false,
+                            'field_type' => TextType::class,
+                        ],
+                        'imageCaption' => [
+                            'label' => 'form.label_image_caption',
+                            'required' => false,
+                            'field_type' => TextType::class,
+                        ],
+                    ],
                 ]
             )
             ->end()

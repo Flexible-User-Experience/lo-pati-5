@@ -87,6 +87,7 @@ class Page extends AbstractBase
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Gedmo\Translatable
      */
     private ?string $realizationDateString = null;
 
