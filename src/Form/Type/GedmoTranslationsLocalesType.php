@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Form\Type;
+
+use App\Form\DataMapper\GedmoTranslationMapper;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+
+/**
+ * adapted from A2lix\TranslationFormBundle (v1.3).
+ */
+class GedmoTranslationsLocalesType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options): void
+    {
+        $isDefaultTranslation = ('defaultLocale' === $builder->getName());
+        // Custom mapper for translations
+        if (!$isDefaultTranslation) {
+            $builder->setDataMapper(new GedmoTranslationMapper());
+        }
+        foreach ($options['locales'] as $locale) {
+            if (isset($options['fields_options'][$locale])) {
+                $builder
+                    ->add(
+                        $locale,
+                        TranslationsFieldsType::class,
+                        [
+                            'fields' => $options['fields_options'][$locale],
+                            'translation_class' => $options['translation_class'],
+                            'inherit_data' => $isDefaultTranslation,
+                        ]
+                    )
+                ;
+            }
+        }
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'locales' => [],
+            'fields_options' => [],
+            'translation_class' => null,
+        ]);
+    }
+
+    public function getBlockPrefix(): string
+    {
+        return 'a2lix_translationsLocales_gedmo';
+    }
+}
