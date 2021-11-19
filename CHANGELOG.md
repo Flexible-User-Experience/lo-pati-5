@@ -3,6 +3,7 @@ Changelog
 
 ##### Version 5.08.00 (WIP)
  * fix bugs
+ * fix broken testing suite
  * add page template types
 
 ##### Version 5.07.00 (2021-11-19)
