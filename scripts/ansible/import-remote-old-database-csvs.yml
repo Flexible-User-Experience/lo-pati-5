@@ -76,8 +76,12 @@
       shell: "/usr/bin/php7.4 bin/console app:import:config:calendar:working:day var/csv/imports/configcalendarworkingday.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
-    - name: execute import config footer information day CSV command
+    - name: execute import config footer information CSV command
       shell: "/usr/bin/php7.4 bin/console app:import:config:footer:information var/csv/imports/configfooterinformation.csv --env=prod"
+      args:
+        chdir: "{{ vhost_path_prod }}/current/"
+    - name: execute import config footer information translations CSV command
+      shell: "/usr/bin/php7.4 bin/console app:import:config:footer:information:translations var/csv/imports/configfooterinformation_translations.csv --env=prod"
       args:
         chdir: "{{ vhost_path_prod }}/current/"
     - name: populate Elasticsearch 7 server index command
