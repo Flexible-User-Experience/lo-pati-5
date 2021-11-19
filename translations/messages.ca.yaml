@@ -308,6 +308,7 @@ form:
   group_admin_common_links: 'Enllaços'
   group_admin_common_calendar: 'Agenda'
   group_admin_common_cover: 'Portada'
+  group_admin_common_translations: 'Traduccions'
   help_short_description_length: 'Text màxim 300 caràcters, espais en blanc inclosos.'
   help_expiration_date: 'Data fins quan la pàgina serà visible → automàticament serà Arxiu. Deixar aquest camp en blanc per impedir-ho.'
   help_always_show_on_calendar: 'L''esdeveniment sempre es mostrarà al calendari, encara que sigui fora de l''horari del centre.'

@@ -2,7 +2,7 @@
 
 namespace App\Form\Translation;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Symfony\Component\Form\FormRegistry;
 use Symfony\Component\Form\FormTypeGuesserInterface;
 
@@ -12,15 +12,15 @@ use Symfony\Component\Form\FormTypeGuesserInterface;
 abstract class TranslationForm implements TranslationFormInterface
 {
     private ?FormTypeGuesserInterface $typeGuesser;
-    private ManagerRegistry $managerRegistry;
+    private Registry $managerRegistry;
 
-    public function __construct(FormRegistry $formRegistry, ManagerRegistry $managerRegistry)
+    public function __construct(FormRegistry $formRegistry, Registry $managerRegistry)
     {
         $this->typeGuesser = $formRegistry->getTypeGuesser();
         $this->managerRegistry = $managerRegistry;
     }
 
-    public function getManagerRegistry(): ManagerRegistry
+    public function getManagerRegistry(): Registry
     {
         return $this->managerRegistry;
     }
