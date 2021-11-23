@@ -71,6 +71,15 @@ final class DefaultController extends AbstractController
      */
     public function menuLevel1(MenuLevel1 $menu): Response
     {
+        if (!$menu->getPage() && $menu->getMenuLevel2items() && !$menu->getMenuLevel2items()->isEmpty()) {
+            $firstSubmenu = $menu->getMenuLevel2items()[0];
+
+            return $this->redirectToRoute('front_app_menu_level_2', [
+                'menu' => $menu->getSlug(),
+                'submenu' => $firstSubmenu->getSlug(),
+            ]);
+        }
+
         return $this->render(
             'frontend/menu_level_1.html.twig',
             [
