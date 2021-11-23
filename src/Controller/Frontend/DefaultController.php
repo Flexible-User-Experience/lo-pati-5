@@ -2,6 +2,7 @@
 
 namespace App\Controller\Frontend;
 
+use App\Entity\Archive;
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
 use App\Entity\Page;
@@ -115,6 +116,46 @@ final class DefaultController extends AbstractController
             [
                 'menu' => $menu,
                 'submenu' => $submenu,
+                'show_debug_page_info' => $kernel->isDebug(),
+            ]
+        );
+    }
+
+    /**
+     * @Route({"ca": "/{menu}/any/{year}", "es": "/{menu}/año/{year}"}, name="front_app_archive_detail")
+     * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
+     * @ParamConverter("archive", class="App\Entity\Archive", options={"mapping": {"year": "year"}})
+     */
+    public function archive(MenuLevel1 $menu, Archive $archive, PageRepository $pr, KernelInterface $kernel): Response
+    {
+        $pages = $pr->getActiveItemsFromArchive($archive)->getQuery()->getResult();
+
+        return $this->render(
+            'frontend/archive_detail.html.twig',
+            [
+                'menu' => $menu,
+                'archive' => $archive,
+                'pages' => $pages,
+                'show_debug_page_info' => $kernel->isDebug(),
+            ]
+        );
+    }
+
+    /**
+     * @Route({"ca": "/{menu}/any/{year}/pagina/{slug}/{id}", "es": "/{menu}/año/{year}/pagina/{slug}/{id}"}, name="front_app_archive_page_detail")
+     * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
+     * @ParamConverter("archive", class="App\Entity\Archive", options={"mapping": {"year": "year"}})
+     */
+    public function archivePageDetail(MenuLevel1 $menu, Archive $archive, PageRepository $pr, KernelInterface $kernel): Response
+    {
+        $pages = $pr->getActiveItemsFromArchive($archive)->getQuery()->getResult();
+
+        return $this->render(
+            'frontend/archive_detail.html.twig',
+            [
+                'menu' => $menu,
+                'archive' => $archive,
+                'pages' => $pages,
                 'show_debug_page_info' => $kernel->isDebug(),
             ]
         );

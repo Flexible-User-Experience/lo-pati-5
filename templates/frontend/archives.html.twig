@@ -21,7 +21,7 @@
             <div class="row">
                 {% for archive in archives %}
                     <div class="col-2 my-5">
-                        <a href="#"
+                        <a href="{{ path('front_app_archive_detail', {'menu': menu.slug, 'year': archive.year}) }}"
                            onmouseout="document.getElementById('archive-year-image-{{ archive.year }}').src='{{ vich_uploader_asset(archive, 'smallImage1File') | imagine_filter('600x600') }}'"
                            onmouseover="document.getElementById('archive-year-image-{{ archive.year }}').src='{{ vich_uploader_asset(archive, 'smallImage2File') | imagine_filter('600x600') }}'"
                         >
