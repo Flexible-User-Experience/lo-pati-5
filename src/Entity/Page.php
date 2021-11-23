@@ -2,10 +2,8 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\Document1Trait;
 use App\Entity\Traits\Document2Trait;
-use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\SmallImage1Trait;
 use App\Entity\Traits\SmallImage2Trait;
@@ -31,10 +29,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Page extends AbstractBase
 {
-    use DescriptionTrait;
     use Document1Trait;
     use Document2Trait;
-    use NameTrait;
     use SlugTrait;
     use SmallImage1Trait;
     use SmallImage2Trait;
@@ -46,7 +42,7 @@ class Page extends AbstractBase
      * @ORM\Column(type="string", length=255)
      * @Gedmo\Translatable
      */
-    private string $name;
+    private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -59,6 +55,12 @@ class Page extends AbstractBase
      * @Gedmo\Translatable
      */
     private ?string $summary = null;
+
+    /**
+     * @ORM\Column(type="text", length=4000)
+     * @Gedmo\Translatable
+     */
+    private ?string $description = null;
 
     /**
      * @ORM\Column(type="boolean", options={"default"=0})
@@ -211,6 +213,18 @@ class Page extends AbstractBase
         ;
     }
 
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
     public function isHighlitedImageSquared(): bool
     {
         return (bool) $this->getSmallImage1FileName();
@@ -239,6 +253,18 @@ class Page extends AbstractBase
     public function setSummary(?string $summary): self
     {
         $this->summary = $summary;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }
@@ -572,6 +598,6 @@ class Page extends AbstractBase
 
     public function __toString(): string
     {
-        return $this->getId() ? $this->getName() : self::DEFAULT_EMPTY_STRING;
+        return $this->getId() && $this->getName() ? $this->getName() : self::DEFAULT_EMPTY_STRING;
     }
 }
