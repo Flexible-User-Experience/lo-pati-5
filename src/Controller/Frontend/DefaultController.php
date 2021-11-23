@@ -5,6 +5,7 @@ namespace App\Controller\Frontend;
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
 use App\Entity\Page;
+use App\Repository\ArchiveRepository;
 use App\Repository\PageRepository;
 use App\Repository\SlideshowRepository;
 use FOS\ElasticaBundle\Manager\RepositoryManagerInterface;
@@ -70,7 +71,7 @@ final class DefaultController extends AbstractController
      * @Route("/{menu}", name="front_app_menu_level_1")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
-    public function menuLevel1(MenuLevel1 $menu, KernelInterface $kernel): Response
+    public function menuLevel1(MenuLevel1 $menu, ArchiveRepository $ar, KernelInterface $kernel): Response
     {
         if (!$menu->getPage() && $menu->getMenuLevel2items() && !$menu->getMenuLevel2items()->isEmpty()) {
             $firstSubmenu = $menu->getMenuLevel2items()[0];
@@ -79,6 +80,18 @@ final class DefaultController extends AbstractController
                 'menu' => $menu->getSlug(),
                 'submenu' => $firstSubmenu->getSlug(),
             ]);
+        }
+        if ($menu->isArchive()) {
+            $archives = $ar->getEnabledSortedByYear()->getQuery()->getResult();
+
+            return $this->render(
+                'frontend/archives.html.twig',
+                [
+                    'menu' => $menu,
+                    'archives' => $archives,
+                    'show_debug_page_info' => $kernel->isDebug(),
+                ]
+            );
         }
 
         return $this->render(

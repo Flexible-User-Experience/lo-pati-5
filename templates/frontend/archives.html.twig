@@ -1,0 +1,35 @@
+{% extends "frontend/base.html.twig" %}
+
+{% set item = knp_menu_get_current_item('frontend_main') %}
+
+{% block title %}{{ menu }} · {{ parent() }}{% endblock %}
+
+{% block main %}
+    <main>
+        {% if show_debug_page_info %}
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col">
+                        <h1>{{ menu }}</h1>
+                        <hr>
+                        <pre>MTT# archives</pre>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="container mt-3 pt-3">
+            <div class="row">
+                {% for archive in archives %}
+                    <div class="col-2 my-5">
+                        <a href="#"
+                           onmouseout="document.getElementById('archive-year-image-{{ archive.year }}').src='{{ vich_uploader_asset(archive, 'smallImage1File') | imagine_filter('600x600') }}'"
+                           onmouseover="document.getElementById('archive-year-image-{{ archive.year }}').src='{{ vich_uploader_asset(archive, 'smallImage2File') | imagine_filter('600x600') }}'"
+                        >
+                            <img id="archive-year-image-{{ archive.year }}" class="img-fluid" src="{{ vich_uploader_asset(archive, 'smallImage1File') | imagine_filter('600x600') }}" alt="{{ archive.year }}">
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+{% endblock %}
