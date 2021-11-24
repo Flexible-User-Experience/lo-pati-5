@@ -145,17 +145,16 @@ final class DefaultController extends AbstractController
      * @Route({"ca": "/{menu}/any/{year}/pagina/{slug}/{id}", "es": "/{menu}/año/{year}/pagina/{slug}/{id}"}, name="front_app_archive_page_detail")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      * @ParamConverter("archive", class="App\Entity\Archive", options={"mapping": {"year": "year"}})
+     * @ParamConverter("page", class="App\Entity\Page", options={"mapping": {"id": "id"}})
      */
-    public function archivePageDetail(MenuLevel1 $menu, Archive $archive, PageRepository $pr, KernelInterface $kernel): Response
+    public function archivePageDetail(MenuLevel1 $menu, Archive $archive, Page $page, PageRepository $pr, KernelInterface $kernel): Response
     {
-        $pages = $pr->getActiveItemsFromArchive($archive)->getQuery()->getResult();
-
         return $this->render(
             'frontend/archive_detail.html.twig',
             [
                 'menu' => $menu,
                 'archive' => $archive,
-                'pages' => $pages,
+                'page' => $page,
                 'show_debug_page_info' => $kernel->isDebug(),
             ]
         );

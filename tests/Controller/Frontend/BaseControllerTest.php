@@ -27,19 +27,15 @@ class BaseControllerTest extends WebTestCase
     {
         return [
             ['/'],
-            ['/menu-1'],
             ['/menu-1/submenu-1-1'],
             ['/menu-1/submenu-1-2'],
-            ['/menu-2'],
             ['/menu-2/submenu-2-1'],
             ['/menu-2/submenu-2-2'],
             ['/menu-1/submenu-1-1/01-08-2021/page-1'],
             ['/politica-de-privacitat'],
             ['/es/'],
-            ['/es/menu-1'],
             ['/es/menu-1/submenu-1-1'],
             ['/es/menu-1/submenu-1-2'],
-            ['/es/menu-2'],
             ['/es/menu-2/submenu-2-1'],
             ['/es/menu-2/submenu-2-2'],
             ['/es/menu-1/submenu-1-1/01-08-2021/page-1'],
@@ -63,6 +59,25 @@ class BaseControllerTest extends WebTestCase
             ['/not-found-page/inside'],
             ['/menu-1/submenu-1-3'],
             ['/menu-3'],
+        ];
+    }
+
+    /**
+     * @dataProvider provideReirectUrls
+     */
+    public function testRedirectPages(string $url): void
+    {
+        $this->client->request('GET', $url);
+        self::assertResponseStatusCodeSame(302);
+    }
+
+    public function provideReirectUrls(): array
+    {
+        return [
+            ['/menu-1'],
+            ['/menu-2'],
+            ['/es/menu-1'],
+            ['/es/menu-2'],
         ];
     }
 }
