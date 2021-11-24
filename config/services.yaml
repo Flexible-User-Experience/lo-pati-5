@@ -16,6 +16,7 @@ parameters:
     email_address_test_1:       '%env(string:EMAIL_ADDRESS_TEST_1)%'
     email_address_test_2:       '%env(string:EMAIL_ADDRESS_TEST_2)%'
     email_address_test_3:       '%env(string:EMAIL_ADDRESS_TEST_3)%'
+    id_page_irradiador:         '%env(int:ID_PAGE_IRRADIADOR)%'
     locale_i18n:                [ 'es' ]
     locale_i18n_full:           [ 'ca', 'es' ]
 
@@ -30,8 +31,9 @@ services:
             $emailAddressTest1: '%email_address_test_1%'
             $emailAddressTest2: '%email_address_test_2%'
             $emailAddressTest3: '%email_address_test_3%'
-            $locale:             '%default_locale%'
-            $locales:            '%locale_i18n_full%'
+            $idPageIrradiador:  '%id_page_irradiador%'
+            $locale:            '%default_locale%'
+            $locales:           '%locale_i18n_full%'
     App\:
         resource: '../src/'
         exclude:
