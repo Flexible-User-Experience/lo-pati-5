@@ -15,7 +15,6 @@
                 </div>
             </div>
         {% endif %}
-        hit {{ page.name }}
-{#        {% include 'frontend/partials/page_template_types/'~page.templateTypeString~'.html.twig' with {page: page} %}#}
+        {% include 'frontend/partials/page_template_types/default.html.twig' with {page: page} %}
     </main>
 {% endblock %}
