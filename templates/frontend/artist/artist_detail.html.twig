@@ -10,30 +10,29 @@
             <div class="container">
                 <div class="row my-5">
                     <div class="col">
-                        <h1>{{ page }}</h1>
+                        <h1>{{ artist }}</h1>
                         <hr>
-                        <pre>P_ID# {{ page.id }} · PTT# '{{ page.templateTypeTransString | trans }}'</pre>
-                        <pre>is_irradiador: {% if is_irradiador %}yes{% else %}no{% endif %}</pre>
+                        <pre>A_ID# {{ artist.id }}</pre>
                     </div>
                 </div>
             </div>
         {% endif %}
         <div class="container mt-3 pt-3">
             <div class="row my-5 pt-5">
-                {% if artists | length > 0 %}
+                {% if artists | length > 0 and artist %}
                     <div class="col-3">
                         <ul class="nav flex-column">
-                            {% for artist in artists %}
+                            {% for item in artists %}
                                 <li class="nav-item border-bottom">
-                                    <a class="nav-link lp-c-light-grey" href="#">{{ artist.name }}</a>
+                                    <a class="nav-link{% if artist.name == item.name %} active{% endif %}" href="{{ path('front_app_artist_detail', {'menu': menu.slug, 'submenu': submenu.slug, 'slug': item.slug}) }}">{{ item.name }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
                     </div>
                     <div class="col-9">
-                        <h1>{{ submenu }}</h1>
-                        <img src="{{ vich_uploader_asset(page, 'imageFile') | imagine_filter('1200xY') }}" class="img-fluid rounded-0" alt="{{ page.name }}">
-                        {{ page.description | raw }}
+                        <h1>{{ artist.name }}</h1>
+{#                        <img src="{{ vich_uploader_asset(page, 'imageFile') | imagine_filter('1200xY') }}" class="img-fluid rounded-0" alt="{{ page.name }}">#}
+{#                        {{ page.description | raw }}#}
                     </div>
                 {% else %}
                     <div class="col">

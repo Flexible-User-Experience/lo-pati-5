@@ -88,6 +88,11 @@ nav.submenu {
   }
 }
 
+// custom navlink
+.navlink.active {
+  color: $nav-link-active-color;
+}
+
 // custom paginator
 ul.pagination {
   li.page-item {
