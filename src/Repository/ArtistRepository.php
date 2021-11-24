@@ -3,9 +3,11 @@
 namespace App\Repository;
 
 use App\Entity\Artist;
+use App\Enum\SortOrderTypeEnum;
 use DateInterval;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Exception;
 
@@ -52,5 +54,13 @@ final class ArtistRepository extends ServiceEntityRepository
         }
 
         return $amount;
+    }
+
+    public function getEnabledSortedByName(): QueryBuilder
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.active = :active')
+            ->setParameter('active', true)
+            ->orderBy('a.name', SortOrderTypeEnum::ASC);
     }
 }

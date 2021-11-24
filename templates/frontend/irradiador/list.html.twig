@@ -1,0 +1,46 @@
+{% extends "frontend/base.html.twig" %}
+
+{% set item = knp_menu_get_current_item('frontend_main') %}
+
+{% block title %}{{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
+
+{% block main %}
+    <main>
+        {% if show_debug_page_info %}
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col">
+                        <h1>{{ page }}</h1>
+                        <hr>
+                        <pre>P_ID# {{ page.id }} · PTT# '{{ page.templateTypeTransString | trans }}'</pre>
+                        <pre>is_irradiador: {% if is_irradiador %}yes{% else %}no{% endif %}</pre>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div class="container mt-3 pt-3">
+            <div class="row my-5 pt-5">
+                {% if artists | length > 0 %}
+                    <div class="col-3">
+                        <ul class="nav flex-column">
+                            {% for artist in artists %}
+                                <li class="nav-item border-bottom">
+                                    <a class="nav-link lp-c-light-grey" href="#">{{ artist.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-9">
+                        <h1>{{ submenu }}</h1>
+                        <img src="{{ vich_uploader_asset(page, 'imageFile') | imagine_filter('1200xY') }}" class="img-fluid rounded-0" alt="{{ page.name }}">
+                        {{ page.description | raw }}
+                    </div>
+                {% else %}
+                    <div class="col">
+                        <div class="alert alert-warning"><i class="fas fa-exclamation-triangle"></i> {{ 'front.layout.search.no_results_found' | trans }}</div>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
 use App\Entity\Page;
 use App\Repository\ArchiveRepository;
+use App\Repository\ArtistRepository;
 use App\Repository\PageRepository;
 use App\Repository\SlideshowRepository;
 use FOS\ElasticaBundle\Manager\RepositoryManagerInterface;
@@ -108,14 +109,31 @@ final class DefaultController extends AbstractController
      * @Entity("submenu", class="App\Entity\MenuLevel2", expr="repository.getByMenuAndSubmenuSlugs(menu, submenu)")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
-    public function menuLevel2(MenuLevel1 $menu, MenuLevel2 $submenu, KernelInterface $kernel): Response
+    public function menuLevel2(MenuLevel1 $menu, MenuLevel2 $submenu, ArtistRepository $ar, KernelInterface $kernel, int $idPageIrradiador): Response
     {
+        if ($submenu->getPage() && $idPageIrradiador === $submenu->getPage()->getId()) {
+            $artists = $ar->getEnabledSortedByName()->getQuery()->getResult();
+
+            return $this->render(
+                'frontend/irradiador/list.html.twig',
+                [
+                    'menu' => $menu,
+                    'submenu' => $submenu,
+                    'page' => $submenu->getPage(),
+                    'artists' => $artists,
+                    'show_debug_page_info' => $kernel->isDebug(),
+                    'is_irradiador' => true,
+                ]
+            );
+        }
+
         return $this->render(
             'frontend/menu_level_2.html.twig',
             [
                 'menu' => $menu,
                 'submenu' => $submenu,
                 'show_debug_page_info' => $kernel->isDebug(),
+                'is_irradiador' => false,
             ]
         );
     }
