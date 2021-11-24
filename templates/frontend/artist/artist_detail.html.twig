@@ -31,8 +31,43 @@
                     </div>
                     <div class="col-9">
                         <h1>{{ artist.name }}</h1>
-{#                        <img src="{{ vich_uploader_asset(page, 'imageFile') | imagine_filter('1200xY') }}" class="img-fluid rounded-0" alt="{{ page.name }}">#}
-{#                        {{ page.description | raw }}#}
+                        <h5 class="lp-c-light-grey">{{ artist.city }}, {{ artist.year }}</h5>
+                        <h5 class="lp-c-light-grey mb-3">{{ artist.category }}</h5>
+                        <div id="artist-carousel-slides-only" class="carousel slide mb-3" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="{{ vich_uploader_asset(artist, 'image1File') | imagine_filter('920x600') }}" class="d-block w-100" alt="{{ artist.name }} 1">
+                                </div>
+                                {% if artist.image2FileName %}
+                                    <div class="carousel-item">
+                                        <img src="{{ vich_uploader_asset(artist, 'image2File') | imagine_filter('920x600') }}" class="d-block w-100" alt="{{ artist.name }} 2">
+                                    </div>
+                                {% endif %}
+                                {% if artist.image3FileName %}
+                                    <div class="carousel-item">
+                                        <img src="{{ vich_uploader_asset(artist, 'image3File') | imagine_filter('920x600') }}" class="d-block w-100" alt="{{ artist.name }} 3">
+                                    </div>
+                                {% endif %}
+                                {% if artist.image4FileName %}
+                                    <div class="carousel-item">
+                                        <img src="{{ vich_uploader_asset(artist, 'image4File') | imagine_filter('920x600') }}" class="d-block w-100" alt="{{ artist.name }} 4">
+                                    </div>
+                                {% endif %}
+                                {% if artist.image5FileName %}
+                                    <div class="carousel-item">
+                                        <img src="{{ vich_uploader_asset(artist, 'image5File') | imagine_filter('920x600') }}" class="d-block w-100" alt="{{ artist.name }} 5">
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <p class="lp-c-red"><strong>{{ artist.summary }}</strong></p>
+                        {{ artist.description | raw }}
+                        {% if artist.webpage %}
+                            <p><a target="_blank" href="{{ artist.webpage }}">{{ artist.webpage }}</a></p>
+                        {% endif %}
+                        {% if artist.document1FileName %}
+                            <a class="btn btn-danger" href="{{ vich_uploader_asset(artist, 'document1File') }}" download="{{ artist.document1FileName }}"><i class="fas fa-cloud-download-alt mr-3"></i> {{ 'front.artist.donwload_button' | trans }}</a>
+                        {% endif %}
                     </div>
                 {% else %}
                     <div class="col">
