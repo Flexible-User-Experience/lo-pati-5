@@ -35,7 +35,7 @@ final class ArchiveController extends AbstractController
     }
 
     /**
-     * @Route({"ca": "/{menu}/any/{year}/pagina/{slug}/{id}", "es": "/{menu}/año/{year}/pagina/{slug}/{id}"}, name="front_app_archive_year_page_detail")
+     * @Route({"ca": "/{menu}/any/{year}/pagina/{slug}/{id}", "es": "/{menu}/ano/{year}/pagina/{slug}/{id}"}, name="front_app_archive_year_page_detail")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      * @ParamConverter("archive", class="App\Entity\Archive", options={"mapping": {"year": "year"}})
      * @ParamConverter("page", class="App\Entity\Page", options={"mapping": {"id": "id"}})

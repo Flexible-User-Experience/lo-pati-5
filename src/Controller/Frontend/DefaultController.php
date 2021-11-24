@@ -115,7 +115,7 @@ final class DefaultController extends AbstractController
             $artists = $ar->getEnabledSortedByName()->getQuery()->getResult();
 
             return $this->render(
-                'frontend/irradiador/list.html.twig',
+                'frontend/artist/artists.html.twig',
                 [
                     'menu' => $menu,
                     'submenu' => $submenu,
