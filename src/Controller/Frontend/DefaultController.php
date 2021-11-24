@@ -86,7 +86,7 @@ final class DefaultController extends AbstractController
             $archives = $ar->getEnabledSortedByYear()->getQuery()->getResult();
 
             return $this->render(
-                'frontend/archives.html.twig',
+                'frontend/archive/archives.html.twig',
                 [
                     'menu' => $menu,
                     'archives' => $archives,
@@ -122,16 +122,16 @@ final class DefaultController extends AbstractController
     }
 
     /**
-     * @Route({"ca": "/{menu}/any/{year}", "es": "/{menu}/año/{year}"}, name="front_app_archive_detail")
+     * @Route({"ca": "/{menu}/any/{year}", "es": "/{menu}/ano/{year}"}, name="front_app_archive_year_list")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      * @ParamConverter("archive", class="App\Entity\Archive", options={"mapping": {"year": "year"}})
      */
-    public function archive(MenuLevel1 $menu, Archive $archive, PageRepository $pr, KernelInterface $kernel): Response
+    public function archiveYearList(MenuLevel1 $menu, Archive $archive, PageRepository $pr, KernelInterface $kernel): Response
     {
         $pages = $pr->getActiveItemsFromArchive($archive)->getQuery()->getResult();
 
         return $this->render(
-            'frontend/archive_detail.html.twig',
+            'frontend/archive/archive_year_list.html.twig',
             [
                 'menu' => $menu,
                 'archive' => $archive,
@@ -142,15 +142,15 @@ final class DefaultController extends AbstractController
     }
 
     /**
-     * @Route({"ca": "/{menu}/any/{year}/pagina/{slug}/{id}", "es": "/{menu}/año/{year}/pagina/{slug}/{id}"}, name="front_app_archive_page_detail")
+     * @Route({"ca": "/{menu}/any/{year}/pagina/{slug}/{id}", "es": "/{menu}/año/{year}/pagina/{slug}/{id}"}, name="front_app_archive_year_page_detail")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      * @ParamConverter("archive", class="App\Entity\Archive", options={"mapping": {"year": "year"}})
      * @ParamConverter("page", class="App\Entity\Page", options={"mapping": {"id": "id"}})
      */
-    public function archivePageDetail(MenuLevel1 $menu, Archive $archive, Page $page, PageRepository $pr, KernelInterface $kernel): Response
+    public function archiveYearPageDetail(MenuLevel1 $menu, Archive $archive, Page $page, PageRepository $pr, KernelInterface $kernel): Response
     {
         return $this->render(
-            'frontend/archive_detail.html.twig',
+            'frontend/archive/archive_year_page_detail.html.twig',
             [
                 'menu' => $menu,
                 'archive' => $archive,

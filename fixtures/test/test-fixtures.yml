@@ -2,8 +2,12 @@
 App\Entity\Archive:
   archive1:
     year: 2020
+    smallImage1FileName: '2020'
+    smallImage2FileName: '2020'
   archive2:
     year: 2021
+    smallImage1FileName: '2021'
+    smallImage2FileName: '2021'
 
 # Artist
 App\Entity\Artist:
@@ -21,11 +25,15 @@ App\Entity\MenuLevel1:
   menulevel1:
     name: 'Menu 1'
     position: 1
-    isArchive: '<boolean()>'
+    isArchive: false
   menulevel2:
     name: 'Menu 2'
     position: 2
-    isArchive: '<boolean()>'
+    isArchive: false
+  menulevel3:
+    name: 'Archive'
+    position: 3
+    isArchive: true
 
 # MenuLevel2
 App\Entity\MenuLevel2:

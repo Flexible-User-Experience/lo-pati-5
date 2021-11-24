@@ -6,7 +6,7 @@
                     <div class="card border-0">
                         <div class="position-relative {{ page.menuLevel1.cssBackgroudClassColor }}">
                             {% if is_archive_view %}
-                                <a href="{{ path('front_app_archive_page_detail', {'menu': page.menuLevel1.slug, 'year': archive.year, 'slug': page.slug, 'id': page.id}) }}">
+                                <a href="{{ path('front_app_archive_year_page_detail', {'menu': page.menuLevel1.slug, 'year': archive.year, 'slug': page.slug, 'id': page.id}) }}">
                             {% else %}
                                 <a href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}">
                             {% endif %}
@@ -29,7 +29,7 @@
                     <h5 class="card-title mb-4">{{ page.name }}</h5>
                     <p class="text-muted">{{ page.summary }}</p>
                     {% if is_archive_view %}
-                        <a href="{{ path('front_app_archive_page_detail', {'menu': page.menuLevel1.slug, 'year': archive.year, 'slug': page.slug, 'id': page.id}) }}" class="btn btn-outline-dark btn-sm rounded-0 border-2 text-uppercase">{{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
+                        <a href="{{ path('front_app_archive_year_page_detail', {'menu': page.menuLevel1.slug, 'year': archive.year, 'slug': page.slug, 'id': page.id}) }}" class="btn btn-outline-dark btn-sm rounded-0 border-2 text-uppercase">{{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
                     {% else %}
                         <a href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}" class="btn btn-outline-dark btn-sm rounded-0 border-2 text-uppercase">{{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
                     {% endif %}
