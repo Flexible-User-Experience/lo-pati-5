@@ -9,9 +9,9 @@ Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
     .copyFiles([
-        {from: './assets/fonts'},
-        {from: './assets/images'},
-        {from: './assets/vectors'},
+        {from: './assets/fonts', to: 'build/fonts'},
+        {from: './assets/images', to: 'build/images'},
+        {from: './assets/vectors', to: 'build/vectors'},
         {from: './node_modules/ckeditor4/', to: 'ckeditor/[path][name].[ext]', pattern: /\.(js|css)$/, includeSubdirectories: false},
         {from: './node_modules/ckeditor4/adapters', to: 'ckeditor/adapters/[path][name].[ext]'},
         {from: './node_modules/ckeditor4/lang', to: 'ckeditor/lang/[path][name].[ext]'},
