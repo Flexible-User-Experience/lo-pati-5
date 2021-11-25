@@ -2,19 +2,19 @@
   "entrypoints": {
     "frontend": {
       "js": [
-        "/build/runtime.ac2f54e7.js",
+        "/build/runtime.fa2794f9.js",
         "/build/405.582fd3d1.js",
         "/build/169.5d860bfd.js",
         "/build/829.bf28b973.js",
         "/build/frontend.cd53f018.js"
       ],
       "css": [
-        "/build/frontend.322cebc7.css"
+        "/build/frontend.187aa524.css"
       ]
     },
     "backend": {
       "js": [
-        "/build/runtime.ac2f54e7.js",
+        "/build/runtime.fa2794f9.js",
         "/build/405.582fd3d1.js",
         "/build/755.43aadddf.js",
         "/build/829.bf28b973.js",
@@ -23,7 +23,7 @@
     },
     "mail": {
       "js": [
-        "/build/runtime.ac2f54e7.js",
+        "/build/runtime.fa2794f9.js",
         "/build/mail.f2d5ca21.js"
       ],
       "css": [
