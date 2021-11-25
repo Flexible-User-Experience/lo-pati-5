@@ -109,7 +109,7 @@ final class DefaultController extends AbstractController
      * @Entity("submenu", class="App\Entity\MenuLevel2", expr="repository.getByMenuAndSubmenuSlugs(menu, submenu)")
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
-    public function menuLevel2(MenuLevel1 $menu, MenuLevel2 $submenu, ArtistRepository $ar, KernelInterface $kernel, int $idPageIrradiador): Response
+    public function menuLevel2(MenuLevel1 $menu, MenuLevel2 $submenu, ArtistRepository $ar, PageRepository $pr, KernelInterface $kernel, int $idPageIrradiador): Response
     {
         if ($submenu->getPage() && $idPageIrradiador === $submenu->getPage()->getId()) {
             $artists = $ar->getEnabledSortedByName()->getQuery()->getResult();
@@ -123,6 +123,20 @@ final class DefaultController extends AbstractController
                     'artists' => $artists,
                     'show_debug_page_info' => $kernel->isDebug(),
                     'is_irradiador' => true,
+                ]
+            );
+        }
+        if (!$submenu->getPage()) {
+            $pages = $pr->getActiveItemsFromMenuLevel2SortedByPublishDate($submenu)->getQuery()->getResult();
+
+            return $this->render(
+                'frontend/menu_level_2_pages_list.html.twig',
+                [
+                    'menu' => $menu,
+                    'submenu' => $submenu,
+                    'pages' => $pages,
+                    'show_debug_page_info' => $kernel->isDebug(),
+                    'is_irradiador' => false,
                 ]
             );
         }

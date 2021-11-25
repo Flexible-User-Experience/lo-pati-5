@@ -26,6 +26,10 @@
                 </div>
             </div>
         {% endif %}
-        {% include 'frontend/partials/page_template_types/'~submenu.page.templateTypeString~'.html.twig' with {page: submenu.page} %}
+        <div class="container mt-3 pt-3">
+            <div class="row">
+                {% include 'frontend/partials/pages_list.html.twig' with {'is_archive_view': false} %}
+            </div>
+        </div>
     </main>
 {% endblock %}

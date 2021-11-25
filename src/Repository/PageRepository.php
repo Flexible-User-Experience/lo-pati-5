@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\AbstractBase;
 use App\Entity\Archive;
+use App\Entity\MenuLevel2;
 use App\Entity\Page;
 use App\Enum\SortOrderTypeEnum;
 use DateInterval;
@@ -138,6 +139,17 @@ final class PageRepository extends ServiceEntityRepository
             ->setParameter('end', date(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, mktime(0, 0, 0, 12, 31, $archive->getYear())))
             ->setParameter('active', true)
             ->orderBy('p.startDate', SortOrderTypeEnum::DESC)
+        ;
+    }
+
+    public function getActiveItemsFromMenuLevel2SortedByPublishDate(MenuLevel2 $menuLevel2): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = :active')
+            ->andWhere('p.menuLevel2 = :menu')
+            ->setParameter('menu', $menuLevel2)
+            ->setParameter('active', true)
+            ->orderBy('p.publishDate', SortOrderTypeEnum::DESC)
         ;
     }
 }
