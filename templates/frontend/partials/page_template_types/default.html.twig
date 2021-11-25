@@ -24,6 +24,26 @@
         <div class="col text-center">
             <h1>{{ page.name }}</h1>
             <h2 class="h3 text-muted">{{ page.summary }}</h2>
+            {% if page.realizationDateString or page.place %}
+                <div class="card-group">
+                    {% if page.realizationDateString %}
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0 border-end">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="far fa-calendar"></i></h5>
+                                <p class="card-text">{{ page.realizationDateString }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if page.place %}
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-map-marker-alt"></i></h5>
+                                <p class="card-text">{{ page.place }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
             <hr>
         </div>
     </div>
