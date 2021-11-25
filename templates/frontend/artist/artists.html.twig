@@ -40,8 +40,8 @@
                     </div>
                     <div class="col-9">
                         <h1>{{ submenu }}</h1>
-                        <h5 class="text-primary">{{ page.summary }}</h5>
-                        <img src="{{ vich_uploader_asset(page, 'imageFile') | imagine_filter('1200xY') }}" class="img-fluid rounded-0" alt="{{ page.name }}">
+                        <img src="{{ vich_uploader_asset(page, 'imageFile') | imagine_filter('1200xY') }}" class="img-fluid rounded-0 my-3" alt="{{ page.name }}">
+                        <h5 class="text-primary my-3">{{ page.summary }}</h5>
                         {{ page.description | raw }}
                     </div>
                 {% else %}
