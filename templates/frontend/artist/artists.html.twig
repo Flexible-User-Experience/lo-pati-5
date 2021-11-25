@@ -4,6 +4,14 @@
 
 {% block title %}{{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
 
+{% block submenu_header %}
+    <header class="d-flex border-bottom">
+        <nav class="submenu navbar navbar-light bg-white text-uppercase mx-auto">
+            {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}
+        </nav>
+    </header>
+{% endblock %}
+
 {% block main %}
     <main>
         {% if show_debug_page_info %}
@@ -32,6 +40,7 @@
                     </div>
                     <div class="col-9">
                         <h1>{{ submenu }}</h1>
+                        <h5 class="text-primary">{{ page.summary }}</h5>
                         <img src="{{ vich_uploader_asset(page, 'imageFile') | imagine_filter('1200xY') }}" class="img-fluid rounded-0" alt="{{ page.name }}">
                         {{ page.description | raw }}
                     </div>

@@ -2,7 +2,15 @@
 
 {% set item = knp_menu_get_current_item('frontend_main') %}
 
-{% block title %}{{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
+{% block title %}{{ artist.name }} · {{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
+
+{% block submenu_header %}
+    <header class="d-flex border-bottom">
+        <nav class="submenu navbar navbar-light bg-white text-uppercase mx-auto">
+            {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}
+        </nav>
+    </header>
+{% endblock %}
 
 {% block main %}
     <main>
@@ -63,7 +71,7 @@
                         <p class="lp-c-red"><strong>{{ artist.summary }}</strong></p>
                         {{ artist.description | raw }}
                         {% if artist.webpage %}
-                            <p><a target="_blank" href="{{ artist.webpage }}">{{ artist.webpage }}</a></p>
+                            <p><a target="_blank" href="{{ artist.webpage }}" class="link-danger">{{ artist.webpage }}</a></p>
                         {% endif %}
                         {% if artist.document1FileName %}
                             <a class="btn btn-danger" href="{{ vich_uploader_asset(artist, 'document1File') }}" download="{{ artist.document1FileName }}"><i class="fas fa-cloud-download-alt mr-3"></i> {{ 'front.artist.donwload_button' | trans }}</a>

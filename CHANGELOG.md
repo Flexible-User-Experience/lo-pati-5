@@ -3,6 +3,7 @@ Changelog
 
 ##### Version 5.08.01 (WIP)
  * fix bugs
+ * fix missing summary text in Irradiador list view
 
 ##### Version 5.08.00 (2021-11-25)
  * fix broken testing suite
