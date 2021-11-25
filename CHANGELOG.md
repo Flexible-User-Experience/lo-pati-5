@@ -1,8 +1,10 @@
 Changelog
 =========
 
-##### Version 5.08.00 (WIP)
+##### Version 5.08.01 (WIP)
  * fix bugs
+
+##### Version 5.08.00 (2021-11-25)
  * fix broken testing suite
  * add page template types
  * add archive frontend views
