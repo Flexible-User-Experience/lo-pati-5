@@ -3,9 +3,11 @@ Changelog
 
 ##### Version 5.08.01 (WIP)
  * fix bugs
+ * add legal terms page
  * fix missing summary text in Irradiador list view
  * check newsletter email sendings
  * add agenda side in list
+ * add info page template view
 
 ##### Version 5.08.00 (2021-11-25)
  * fix broken testing suite

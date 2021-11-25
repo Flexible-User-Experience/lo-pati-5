@@ -1,5 +1,5 @@
 {% if page.imageFileName %}
-    <div class="container-fluid" style="background-image:url('{{ asset('build/page_detail_header_backgroung.jpg') }}');background-size:cover;">
+    <div class="container-fluid" style="background-image:url('{{ asset('build/images/page_detail_header_backgroung.jpg') }}');background-size:cover;">
         <div class="row">
             <div class="text-center">
                 <img src="{{ vich_uploader_asset(page, 'imageFile') | imagine_filter('1200xY') }}" class="img-fluid rounded-0" alt="{{ page.name }}" style="margin-bottom:-70px;border-bottom:solid {{ page.menuLevel1.color }} 20px;">

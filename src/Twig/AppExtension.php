@@ -54,9 +54,9 @@ class AppExtension extends AbstractExtension
         $class = 'default';
         if (PageTemplateTypeEnum::DEFAULT === $page->getTemplateType()) {
             $class = 'info';
-        } elseif (PageTemplateTypeEnum::LIST === $page->getTemplateType()) {
+        } elseif (PageTemplateTypeEnum::BLOG === $page->getTemplateType()) {
             $class = 'warning';
-        } elseif (PageTemplateTypeEnum::PAGE === $page->getTemplateType()) {
+        } elseif (PageTemplateTypeEnum::INFO === $page->getTemplateType()) {
             $class = 'success';
         }
 
