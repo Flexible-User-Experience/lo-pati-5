@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\TranslationsTrait;
@@ -21,7 +20,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class MenuLevel2 extends AbstractBase
 {
-    use NameTrait;
     use PositionTrait;
     use SlugTrait;
     use TranslationsTrait;
@@ -30,7 +28,7 @@ class MenuLevel2 extends AbstractBase
      * @ORM\Column(type="string", length=255)
      * @Gedmo\Translatable
      */
-    private string $name;
+    private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -70,6 +68,18 @@ class MenuLevel2 extends AbstractBase
     {
         $this->pages = new ArrayCollection();
         $this->translations = new ArrayCollection();
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     public function isList(): bool
@@ -155,6 +165,6 @@ class MenuLevel2 extends AbstractBase
 
     public function __toString(): string
     {
-        return $this->getId() ? $this->getName() : self::DEFAULT_EMPTY_STRING;
+        return $this->getId() && $this->getName() ? $this->getName() : self::DEFAULT_EMPTY_STRING;
     }
 }

@@ -3,10 +3,13 @@
 namespace App\Repository;
 
 use App\Entity\AbstractBase;
+use App\Entity\Archive;
+use App\Entity\MenuLevel2;
 use App\Entity\Page;
 use App\Enum\SortOrderTypeEnum;
 use DateInterval;
 use DateTime;
+use DateTimeImmutable;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\QueryBuilder;
@@ -120,6 +123,33 @@ final class PageRepository extends ServiceEntityRepository
             ->orderBy('p.startDate', SortOrderTypeEnum::ASC)
             ->getQuery()
             ->getResult()
+        ;
+    }
+
+    public function getActiveItemsFromArchive(Archive $archive): QueryBuilder
+    {
+        $today = new DateTimeImmutable();
+
+        return $this->createQueryBuilder('p')
+            ->where('p.expirationDate <= :today')
+            ->andWhere('p.publishDate BETWEEN :begin and :end')
+            ->andWhere('p.active = :active')
+            ->setParameter('today', $today->format(AbstractBase::DATABASE_IMPORT_DATE_FORMAT))
+            ->setParameter('begin', date(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, mktime(0, 0, 0, 1, 1, $archive->getYear())))
+            ->setParameter('end', date(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, mktime(0, 0, 0, 12, 31, $archive->getYear())))
+            ->setParameter('active', true)
+            ->orderBy('p.startDate', SortOrderTypeEnum::DESC)
+        ;
+    }
+
+    public function getActiveItemsFromMenuLevel2SortedByPublishDate(MenuLevel2 $menuLevel2): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = :active')
+            ->andWhere('p.menuLevel2 = :menu')
+            ->setParameter('menu', $menuLevel2)
+            ->setParameter('active', true)
+            ->orderBy('p.publishDate', SortOrderTypeEnum::DESC)
         ;
     }
 }

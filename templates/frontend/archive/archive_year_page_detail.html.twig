@@ -1,0 +1,20 @@
+{% extends "frontend/base.html.twig" %}
+
+{% block title %}{{ page.name }} · {{ archive.year }} · {{ menu }} · {{ parent() }}{% endblock %}
+
+{% block main %}
+    <main>
+        {% if show_debug_page_info %}
+            <div class="container">
+                <div class="row my-5">
+                    <div class="col">
+                        <h1>{{ page }}</h1>
+                        <hr>
+                        <pre>P_ID# {{ page.id }} · PTT# '{{ page.templateTypeTransString | trans }}'</pre>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% include 'frontend/partials/page_template_types/default.html.twig' with {page: page} %}
+    </main>
+{% endblock %}

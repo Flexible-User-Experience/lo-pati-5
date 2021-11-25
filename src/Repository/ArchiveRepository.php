@@ -3,7 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Archive;
+use App\Enum\SortOrderTypeEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -17,5 +19,16 @@ final class ArchiveRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Archive::class);
+    }
+
+    public function getEnabledSortedByYear(): QueryBuilder
+    {
+        return $this->createQueryBuilder('a')
+            ->where('a.active = :active')
+            ->andWhere('a.smallImage1FileName IS NOT NULL')
+            ->andWhere('a.smallImage2FileName IS NOT NULL')
+            ->setParameter('active', true)
+            ->orderBy('a.year', SortOrderTypeEnum::DESC)
+        ;
     }
 }

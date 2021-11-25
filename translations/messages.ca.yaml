@@ -476,6 +476,8 @@ front:
   agenda:
     title: 'Agenda'
     activities: 'Activitats per al dia:'
+  artist:
+    donwload_button: 'Descarregar CV'
 newsletter:
   form:
     name: 'NOM *'

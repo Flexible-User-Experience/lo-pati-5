@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\PositionTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\TranslationsTrait;
@@ -22,7 +21,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class MenuLevel1 extends AbstractBase
 {
-    use NameTrait;
     use PositionTrait;
     use SlugTrait;
     use TranslationsTrait;
@@ -33,7 +31,7 @@ class MenuLevel1 extends AbstractBase
      * @ORM\Column(type="string", length=255, unique=true)
      * @Gedmo\Translatable
      */
-    private string $name;
+    private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -72,6 +70,18 @@ class MenuLevel1 extends AbstractBase
     {
         $this->menuLevel2items = new ArrayCollection();
         $this->translations = new ArrayCollection();
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     public function getColor(): string
@@ -156,6 +166,6 @@ class MenuLevel1 extends AbstractBase
 
     public function __toString(): string
     {
-        return $this->getId() ? $this->getName() : self::DEFAULT_EMPTY_STRING;
+        return $this->getId() && $this->getName() ? $this->getName() : self::DEFAULT_EMPTY_STRING;
     }
 }

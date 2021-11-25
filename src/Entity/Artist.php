@@ -8,6 +8,7 @@ use App\Entity\Traits\Image1Trait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\SummaryTrait;
 use App\Entity\Traits\TranslationsTrait;
+use Cocur\Slugify\Slugify;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -38,6 +39,8 @@ class Artist extends AbstractBase
      * @ORM\Column(type="string", length=255, unique=true)
      */
     private string $name;
+
+    private string $slug;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -125,6 +128,18 @@ class Artist extends AbstractBase
     public function __construct()
     {
         $this->translations = new ArrayCollection();
+    }
+
+    public function getSlug(): string
+    {
+        return $this->name ? $this->slug = (new Slugify())->slugify($this->getName()) : AbstractBase::DEFAULT_EMPTY_STRING;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     public function getCity(): ?string
