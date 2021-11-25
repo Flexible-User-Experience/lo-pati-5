@@ -1,5 +1,11 @@
 {% extends "@SonataAdmin/standard_layout.html.twig" %}
 
+{# custom favicon #}
+{% block meta_tags %}
+    {{ parent() }}
+    <link rel="shortcut icon" type="image/png" href="{{ asset('build/images/favicon.png') }}"/>
+{% endblock %}
+
 {# removes top search bar #}
 {% block sonata_sidebar_search %}{% endblock %}
 

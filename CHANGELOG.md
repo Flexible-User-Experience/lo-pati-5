@@ -4,6 +4,7 @@ Changelog
 ##### TODO
  * add legal terms page
  * check newsletter email sendings
+ * implement newsletter redesign
 
 ##### Version 5.08.01 (WIP)
  * fix bugs
@@ -11,6 +12,7 @@ Changelog
  * add agenda side in list
  * add info page template view
  * add missing info cards in default page view
+ * add missing brand new favicon black
 
 ##### Version 5.08.00 (2021-11-25)
  * fix broken testing suite
