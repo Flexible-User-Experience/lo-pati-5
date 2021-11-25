@@ -68,10 +68,10 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <p class="lp-c-red"><strong>{{ artist.summary }}</strong></p>
+                        <p class="text-primary"><strong>{{ artist.summary }}</strong></p>
                         {{ artist.description | raw }}
                         {% if artist.webpage %}
-                            <p><a target="_blank" href="{{ artist.webpage }}" class="link-danger">{{ artist.webpage }}</a></p>
+                            <p><a target="_blank" href="{{ artist.webpage }}">{{ artist.webpage }}</a></p>
                         {% endif %}
                         {% if artist.document1FileName %}
                             <a class="btn btn-danger" href="{{ vich_uploader_asset(artist, 'document1File') }}" download="{{ artist.document1FileName }}"><i class="fas fa-cloud-download-alt mr-3"></i> {{ 'front.artist.donwload_button' | trans }}</a>
