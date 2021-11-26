@@ -6,12 +6,13 @@ Changelog
  * check newsletter email sendings
  * add newsletter reCaptcha
  * implement newsletter redesign
+ * show page videos
+ * show related pages in page detail view
 
 ##### Version 5.08.02 (WIP)
  * fix bugs
  * add page images admin
  * show page images slideshow
- * show page videos
 
 ##### Version 5.08.01 (2021-11-26)
  * fix missing summary text in Irradiador list view
