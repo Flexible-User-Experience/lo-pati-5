@@ -204,6 +204,12 @@ class Page extends AbstractBase
     private ?MenuLevel2 $menuLevel2 = null;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PageImage", mappedBy="page", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     */
+    private ?Collection $images;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Translation\PageTranslation", mappedBy="object", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
@@ -211,6 +217,7 @@ class Page extends AbstractBase
 
     public function __construct()
     {
+        $this->images = new ArrayCollection();
         $this->translations = new ArrayCollection();
     }
 
@@ -606,6 +613,37 @@ class Page extends AbstractBase
     public function humanReadableIdentifier(): string
     {
         return $this->getId() ? '#'.$this->getId().AbstractBase::DEFAULT_SEPARATOR.$this->getPublishDateString().AbstractBase::DEFAULT_SEPARATOR.$this->getName() : self::DEFAULT_EMPTY_STRING;
+    }
+
+    public function getImages(): ?Collection
+    {
+        return $this->images;
+    }
+
+    public function setImages(?Collection $images): self
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    public function addImage(PageImage $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(PageImage $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+        }
+
+        return $this;
     }
 
     public function __toString(): string

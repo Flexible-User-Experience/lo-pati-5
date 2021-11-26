@@ -88,6 +88,6 @@ class Slideshow extends AbstractBase
 
     public function __toString(): string
     {
-        return $this->id ? $this->name : AbstractBase::DEFAULT_EMPTY_STRING;
+        return $this->id ? $this->getName() : AbstractBase::DEFAULT_EMPTY_STRING;
     }
 }
