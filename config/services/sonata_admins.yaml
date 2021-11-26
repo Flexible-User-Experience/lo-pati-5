@@ -34,6 +34,17 @@ services:
             - '@twig'
         tags:
             - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Page', label: 'sidebarmenu.page.page' }
+    admin.page_image:
+        class: App\Admin\PageImageAdmin
+        arguments:
+            - ~
+            - App\Entity\PageImage
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Page', label: 'sidebarmenu.page.page_image', show_in_dashboard: true }
     # Newsletters
     admin.newsletter_group:
         class: App\Admin\NewsletterGroupAdmin

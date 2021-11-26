@@ -6,6 +6,7 @@ security:
             - ROLE_ADMIN_MENU_LEVEL1_ALL
             - ROLE_ADMIN_MENU_LEVEL2_ALL
             - ROLE_ADMIN_PAGE_ALL
+            - ROLE_ADMIN_PAGE_IMAGE_ALL
             - ROLE_ADMIN_NEWSLETTER_ALL
             - ROLE_ADMIN_NEWSLETTER_GROUP_ALL
             - ROLE_ADMIN_NEWSLETTER_POST_ALL
