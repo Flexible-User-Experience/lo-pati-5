@@ -8,7 +8,6 @@ use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
@@ -94,18 +93,6 @@ final class PageImageAdmin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
-            ->end()
-            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(4))
-            ->add(
-                'page',
-                EntityType::class,
-                [
-                    'class' => Page::class,
-                    'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByPublishDate(),
-                    'multiple' => false,
-                    'required' => true,
-                ]
-            )
             ->add(
                 'position',
                 NumberType::class,
@@ -114,11 +101,16 @@ final class PageImageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->add(
-                'active',
-                CheckboxType::class,
+                'page',
+                EntityType::class,
                 [
-                    'label' => 'form.label_active_f',
-                    'required' => false,
+                    'class' => Page::class,
+                    'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByPublishDate(),
+                    'multiple' => false,
+                    'required' => true,
+                    'attr' => [
+                        'hidden' => true,
+                    ],
                 ]
             )
             ->end()

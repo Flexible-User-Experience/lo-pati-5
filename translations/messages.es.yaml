@@ -235,6 +235,7 @@ form:
   label_fail: 'Envíos fallados'
   label_subject: 'Título del mensage'
   label_year: 'Año'
+  label_images: 'Sección deslizante de imágenes'
   label_image_file_name: 'Imagen principal'
   label_image_file: 'Imagen principal'
   label_image_caption: 'Pié de foto'

@@ -18,6 +18,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\DoctrineORMAdminBundle\Filter\ChoiceFilter;
 use Sonata\DoctrineORMAdminBundle\Filter\DateFilter;
+use Sonata\Form\Type\CollectionType;
 use Sonata\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -420,7 +421,7 @@ final class PageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->end()
-            ->with('admin.common.images', $this->getFormMdSuccessBoxArray(4))
+            ->with('admin.common.images', $this->getFormMdSuccessBoxArray(8))
             ->add(
                 'imageFile',
                 VichImageType::class,
@@ -436,6 +437,27 @@ final class PageAdmin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
+        ;
+        if (!$this->isFormToCreateNewRecord()) {
+            $form
+                ->add(
+                    'images',
+                    CollectionType::class,
+                    [
+                        'required' => false,
+                        'error_bubbling' => true,
+                        'by_reference' => false,
+                    ],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'sortable' => 'position',
+                        'order' => SortOrderTypeEnum::ASC,
+                    ]
+                )
+            ;
+        }
+        $form
             ->end()
             ->with('admin.common.documents', $this->getFormMdSuccessBoxArray(4))
             ->add(

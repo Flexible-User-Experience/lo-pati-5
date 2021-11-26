@@ -235,6 +235,7 @@ form:
   label_fail: 'Enviaments fallats'
   label_subject: 'Títol del missatge'
   label_year: 'Any'
+  label_images: 'Secció lliscant de imatges'
   label_image_file_name: 'Imatge principal'
   label_image_file: 'Imatge principal'
   label_image_caption: 'Peu de foto'
