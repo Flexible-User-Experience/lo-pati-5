@@ -1,13 +1,17 @@
+To Do
+=====
+
+ * fix responsiveness issues
+ * add legal terms page
+ * manage Sendgrid unsubscriptions callback hooks
+ * check newsletter email sendings
+ * add newsletter reCaptcha form protection
+ * implement newsletter redesign
+ * show page videos in detail page view
+ * show related pages in detail page view
+
 Changelog
 =========
-
-##### TODO
- * add legal terms page
- * check newsletter email sendings
- * add newsletter reCaptcha
- * implement newsletter redesign
- * show page videos
- * show related pages in page detail view
 
 ##### Version 5.08.02 (WIP)
  * fix bugs
@@ -79,12 +83,3 @@ Changelog
 
 ##### Version 5.00.00 (2021-07-05)
  * first skeleton app
-
-To Do
-=====
-
- * fix responsiveness issues
- * manage Sendgrid unsubscriptions callback hooks
- * enable frontend Newsletter subscribtion
- * add entities traslation and Admin management
- * fix broken detail page render path on menu level 2 unassigned case
