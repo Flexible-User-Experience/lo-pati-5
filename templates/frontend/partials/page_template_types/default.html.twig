@@ -55,7 +55,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-cloud-download-alt"></i></h5>
                                 <p class="card-text">
-                                    <a href="{{ vich_uploader_asset(page, 'document1File') }}" download="{{ page.document1FileName }}" class="btn btn-outline-primary">{% if page.titleDocument1 %}{{ page.titleDocument1 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
+                                    <a href="{{ vich_uploader_asset(page, 'document1File') }}" download="{{ page.document1FileName }}" class="btn btn-outline-light">{% if page.titleDocument1 %}{{ page.titleDocument1 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
                                 </p>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-cloud-download-alt"></i></h5>
                                 <p class="card-text">
-                                    <a href="{{ vich_uploader_asset(page, 'document2File') }}" download="{{ page.document2FileName }}" class="btn btn-outline-primary">{% if page.titleDocument2 %}{{ page.titleDocument2 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
+                                    <a href="{{ vich_uploader_asset(page, 'document2File') }}" download="{{ page.document2FileName }}" class="btn btn-outline-light">{% if page.titleDocument2 %}{{ page.titleDocument2 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
                                 </p>
                             </div>
                         </div>
@@ -80,4 +80,41 @@
             {{ page.description | raw }}
         </div>
     </div>
+    {% if page.images | length > 0 %}
+        <div class="row my-5">
+            <div class="col text-center">
+                <p>
+                    <button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-images-section" aria-expanded="false" aria-controls="collapse-images-section">
+                        {{ 'front.page.images' | trans }}
+                    </button>
+                </p>
+                <div class="collapse show" id="collapse-images-section">
+                    <div class="card card-body border-0">
+                        <div id="carousel-images-section" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                {% for image in page.images %}
+                                    <button type="button" data-bs-target="#carousel-images-section" data-bs-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif%} aria-current="true" aria-label="{{ 'front.page.slide' | trans }} {{ loop.index0 }}"></button>
+                                {% endfor %}
+                            </div>
+                            <div class="carousel-inner">
+                                {% for image in page.images %}
+                                    <div class="carousel-item{% if loop.first %} active{% endif %}">
+                                        <img src="{{ vich_uploader_asset(image, 'image1File') | imagine_filter('1200xY') }}" class="d-block w-100" alt="{% if image.imageAltName %}{{ image.imageAltName }}{% else %}{{ 'front.page.slide' | trans }}{% endif %}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-images-section" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">{{ 'front.page.previous' | trans }}</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-images-section" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">{{ 'front.page.next' | trans }}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 </div>

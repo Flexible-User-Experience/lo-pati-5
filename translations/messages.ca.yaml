@@ -484,6 +484,11 @@ front:
     activities: 'Activitats per al dia:'
   artist:
     donwload_button: 'Descarregar CV'
+  page:
+    images: 'Imatges'
+    slide: 'Imatge'
+    previous: 'Anterior'
+    next: 'Següent'
 newsletter:
   form:
     name: 'NOM *'
