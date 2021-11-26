@@ -1,8 +1,24 @@
 Changelog
 =========
 
-##### Version 5.08.01 (WIP)
+##### TODO
+ * add legal terms page
+ * check newsletter email sendings
+ * implement newsletter redesign
+
+##### Version 5.08.02 (WIP)
  * fix bugs
+ * show page images slideshow
+ * show page videos
+
+##### Version 5.08.01 (2021-11-26)
+ * fix missing summary text in Irradiador list view
+ * add agenda side in list
+ * add info page template view
+ * add missing info cards in default page view
+ * add missing brand new favicon black
+ * hide unnecessary ConfigFooterInformation admin
+ * add Archive admin help image to only allow squared aspects
 
 ##### Version 5.08.00 (2021-11-25)
  * fix broken testing suite

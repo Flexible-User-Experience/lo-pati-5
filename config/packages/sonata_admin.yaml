@@ -1,6 +1,6 @@
 sonata_admin:
     title:              '%project_title%'
-    title_logo:         '/build/logo_lopati_fuchsia.jpg'
+    title_logo:         '/build/images/logo_lopati_fuchsia.jpg'
     persist_filters:    true
     show_mosaic_button: false
     options:

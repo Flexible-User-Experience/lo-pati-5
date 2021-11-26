@@ -11,6 +11,7 @@ $lp-color-purple: #3B1493;
 $lp-color-yellow: #FFDF4A;
 
 // override Bootstrap v5 variables before import
+$primary: $lp-color-red;
 $dark: $lp-color-black;
 $light: $lp-color-light-grey;
 $navbar-nav-link-padding-x: .95rem;
@@ -158,6 +159,9 @@ footer {
 }
 .lp-c-white {
   color: $lp-color-white !important;
+}
+.lp-c-red {
+  color: $lp-color-red !important;
 }
 .lp-bg-white {
   background-color: $lp-color-white !important;

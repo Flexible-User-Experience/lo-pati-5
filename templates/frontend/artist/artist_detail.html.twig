@@ -2,7 +2,15 @@
 
 {% set item = knp_menu_get_current_item('frontend_main') %}
 
-{% block title %}{{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
+{% block title %}{{ artist.name }} · {{ submenu }} · {{ menu }} · {{ parent() }}{% endblock %}
+
+{% block submenu_header %}
+    <header class="d-flex border-bottom">
+        <nav class="submenu navbar navbar-light bg-white text-uppercase mx-auto">
+            {{ knp_menu_render(item.parent, {'currentClass': 'active', 'depth': 1}) }}
+        </nav>
+    </header>
+{% endblock %}
 
 {% block main %}
     <main>
@@ -60,7 +68,7 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <p class="lp-c-red"><strong>{{ artist.summary }}</strong></p>
+                        <p class="text-primary my-3">{{ artist.summary }}</p>
                         {{ artist.description | raw }}
                         {% if artist.webpage %}
                             <p><a target="_blank" href="{{ artist.webpage }}">{{ artist.webpage }}</a></p>

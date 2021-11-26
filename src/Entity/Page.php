@@ -128,6 +128,18 @@ class Page extends AbstractBase
 
     /**
      * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
+     * @Vich\UploadableField(mapping="image", fileNameProperty="smallImage1FileName")
+     */
+    private ?File $smallImage1File = null;
+
+    /**
+     * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
+     * @Vich\UploadableField(mapping="image", fileNameProperty="smallImage2FileName")
+     */
+    private ?File $smallImage2File = null;
+
+    /**
+     * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
      * @Vich\UploadableField(mapping="image", fileNameProperty="imageFileName")
      */
     private ?File $imageFile = null;
