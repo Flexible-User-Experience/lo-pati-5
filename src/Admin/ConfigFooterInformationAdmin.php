@@ -12,6 +12,7 @@ use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 
+// NOT enabled, unnecessary admin
 final class ConfigFooterInformationAdmin extends AbstractBaseAdmin
 {
     protected function configureDefaultSortValues(array &$sortValues): void

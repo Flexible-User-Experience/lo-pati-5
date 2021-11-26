@@ -5,17 +5,9 @@ namespace App\Entity\Traits;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 trait SmallImage1Trait
 {
-    /**
-     * @Assert\File(maxSize="10M", mimeTypes={"image/png", "image/jpeg", "image/pjpeg"})
-     * @Vich\UploadableField(mapping="image", fileNameProperty="smallImage1FileName")
-     */
-    private ?File $smallImage1File = null;
-
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */

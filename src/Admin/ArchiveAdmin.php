@@ -103,6 +103,7 @@ final class ArchiveAdmin extends AbstractBaseAdmin
                 VichImageType::class,
                 [
                     'imagine_pattern' => '300x300',
+                    'help' => 'form.help_archive_image_dimensions',
                     'required' => false,
                 ]
             )
@@ -111,6 +112,7 @@ final class ArchiveAdmin extends AbstractBaseAdmin
                 VichImageType::class,
                 [
                     'imagine_pattern' => '300x300',
+                    'help' => 'form.help_archive_image_dimensions',
                     'required' => false,
                 ]
             )
