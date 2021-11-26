@@ -7,9 +7,9 @@ use App\Enum\SortOrderTypeEnum;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\Filter\NumberType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -32,6 +32,13 @@ final class PageImageAdmin extends AbstractBaseAdmin
                     'accessor' => 'idString',
                     'header_class' => 'text-right',
                     'row_align' => 'right',
+                    'editable' => false,
+                ]
+            )
+            ->add(
+                'page',
+                null,
+                [
                     'editable' => false,
                 ]
             )
@@ -84,17 +91,17 @@ final class PageImageAdmin extends AbstractBaseAdmin
                 'imageAltName',
                 TextType::class,
                 [
-                    'required' => true,
+                    'required' => false,
                 ]
             )
+            ->end()
             ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(4))
             ->add(
                 'page',
                 EntityType::class,
                 [
                     'class' => Page::class,
-//                    'query_builder' => $this->em->getRepository(MenuLevel2::class)->getAllSortedByPositionAndName(),
-//                    'choice_label' => 'hierarchyName',
+                    'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByPublishDate(),
                     'multiple' => false,
                     'required' => true,
                 ]

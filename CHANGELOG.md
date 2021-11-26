@@ -4,10 +4,12 @@ Changelog
 ##### TODO
  * add legal terms page
  * check newsletter email sendings
+ * add newsletter reCaptcha
  * implement newsletter redesign
 
 ##### Version 5.08.02 (WIP)
  * fix bugs
+ * add page images admin
  * show page images slideshow
  * show page videos
 

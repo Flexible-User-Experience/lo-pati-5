@@ -6,6 +6,7 @@ sidebarmenu:
   page:
     title: 'Pàgines'
     page: 'Pàgina'
+    page_image: 'Imatge'
   newsletter:
     title: 'Newsletters'
     group: 'Grup'
@@ -30,6 +31,8 @@ breadcrumb:
   link_menu_level2_create: 'Crear'
   link_page_list: 'Pàgina'
   link_page_create: 'Crear'
+  link_page_image_list: 'Imatge'
+  link_page_image_create: 'Crear'
   link_newsletter_group_list: 'Grup'
   link_newsletter_group_create: 'Crear'
   link_newsletter_user_list: 'Usuari'
@@ -235,6 +238,7 @@ form:
   label_image_file_name: 'Imatge principal'
   label_image_file: 'Imatge principal'
   label_image_caption: 'Peu de foto'
+  label_image_alt_name: 'Descripció de foto'
   label_title_document1: 'Títol document PDF'
   label_document2_file: 'Document PDF addicional'
   label_title_document2: 'Títol document PDF addicional'
