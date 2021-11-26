@@ -13,6 +13,7 @@ Changelog
  * add info page template view
  * add missing info cards in default page view
  * add missing brand new favicon black
+ * hide unnecessary ConfigFooterInformation admin
 
 ##### Version 5.08.00 (2021-11-25)
  * fix broken testing suite
