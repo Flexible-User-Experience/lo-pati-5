@@ -206,6 +206,7 @@ class Page extends AbstractBase
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\PageImage", mappedBy="page", cascade={"persist", "remove"})
      * @Assert\Valid()
+     * @ORM\OrderBy({"position": "ASC"})
      */
     private ?Collection $images;
 
