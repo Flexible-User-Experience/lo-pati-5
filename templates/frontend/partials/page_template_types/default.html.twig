@@ -24,10 +24,10 @@
         <div class="col text-center">
             <h1>{{ page.name }}</h1>
             <h2 class="h3 text-muted">{{ page.summary }}</h2>
-            {% if page.realizationDateString or page.place %}
+            {% if page.realizationDateString or page.place or page.links or page.document1FileName or page.document2FileName %}
                 <div class="card-group my-4">
                     {% if page.realizationDateString %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0 border-end">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.place or page.links or page.document1FileName or page.document2FileName %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="far fa-calendar"></i></h5>
                                 <p class="card-text">{{ page.realizationDateString }}</p>
@@ -35,10 +35,38 @@
                         </div>
                     {% endif %}
                     {% if page.place %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.links or page.document1FileName or page.document2FileName %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-map-marker-alt"></i></h5>
                                 <p class="card-text">{{ page.place }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if page.links %}
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.document1FileName or page.document2FileName %} border-end{% endif %}">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-link"></i></h5>
+                                <p class="card-text">{{ page.links | raw }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if page.document1FileName %}
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.document2FileName %} border-end{% endif %}">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-cloud-download-alt"></i></h5>
+                                <p class="card-text">
+                                    <a href="{{ vich_uploader_asset(page, 'document1File') }}" download="{{ page.document1FileName }}" class="btn btn-outline-primary">{% if page.titleDocument1 %}{{ page.titleDocument1 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
+                                </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if page.document2FileName %}
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0">
+                            <div class="card-body">
+                                <h5 class="card-title"><i class="fas fa-cloud-download-alt"></i></h5>
+                                <p class="card-text">
+                                    <a href="{{ vich_uploader_asset(page, 'document2File') }}" download="{{ page.document2FileName }}" class="btn btn-outline-primary">{% if page.titleDocument2 %}{{ page.titleDocument2 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
+                                </p>
                             </div>
                         </div>
                     {% endif %}
