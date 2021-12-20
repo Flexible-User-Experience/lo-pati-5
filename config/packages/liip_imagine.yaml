@@ -4,6 +4,8 @@ liip_imagine:
         default:
             filesystem:
                 locator: filesystem_insecure
+    twig:
+        mode: 'lazy'
     resolvers:
         default:
             web_path: ~
