@@ -150,6 +150,8 @@ list:
   label_menu_level2: 'Menú segon nivell'
   label_page: 'Pàgina'
   label_title: 'Títol'
+  label_text_line1: 'Línia 1'
+  label_text_line2: 'Línia 2'
   label_type: 'Tipo'
   label_related_page: 'Pàgina vinculada'
   label_is_list: 'Mostrar llistat'
