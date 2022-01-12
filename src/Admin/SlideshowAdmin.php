@@ -2,15 +2,16 @@
 
 namespace App\Admin;
 
-use App\Entity\Page;
 use App\Enum\SortOrderTypeEnum;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
 final class SlideshowAdmin extends AbstractBaseAdmin
@@ -95,7 +96,33 @@ final class SlideshowAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(8))
+            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(6))
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'required' => true,
+                ]
+            )
+            ->add(
+                'description',
+                CKEditorType::class,
+                [
+                    'required' => false,
+                    'attr' => [
+                        'rows' => 5,
+                    ],
+                ]
+            )
+            ->add(
+                'link',
+                UrlType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.images', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'image1File',
                 VichImageType::class,
@@ -111,6 +138,8 @@ final class SlideshowAdmin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
+            ->end()
+            ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
             ->add(
                 'position',
                 NumberType::class,
@@ -119,16 +148,10 @@ final class SlideshowAdmin extends AbstractBaseAdmin
                 ]
             )
             ->add(
-                'page',
-                EntityType::class,
+                'active',
+                CheckboxType::class,
                 [
-                    'class' => Page::class,
-                    'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByPublishDate(),
-                    'multiple' => false,
-                    'required' => true,
-                    'attr' => [
-                        'hidden' => true,
-                    ],
+                    'required' => false,
                 ]
             )
             ->end()
