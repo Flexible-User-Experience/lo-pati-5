@@ -2,7 +2,9 @@
 
 namespace App\Admin;
 
+use App\Entity\Translation\VisitingHoursTranslation;
 use App\Enum\SortOrderTypeEnum;
+use App\Form\Type\GedmoTranslationsType;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -85,6 +87,34 @@ final class VisitingHoursAdmin extends AbstractBaseAdmin
                 TextType::class,
                 [
                     'required' => false,
+                ]
+            )
+            ->end()
+            ->with('admin.common.translations', $this->getFormMdSuccessBoxArray())
+            ->add(
+                'translations',
+                GedmoTranslationsType::class,
+                [
+                    'label' => false,
+                    'required' => false,
+                    'translatable_class' => VisitingHoursTranslation::class,
+                    'fields' => [
+                        'name' => [
+                            'label' => 'form.label_name',
+                            'required' => false,
+                            'field_type' => TextType::class,
+                        ],
+                        'textLine1' => [
+                            'label' => 'form.label_text_line1',
+                            'required' => false,
+                            'field_type' => TextType::class,
+                        ],
+                        'textLine2' => [
+                            'label' => 'form.label_text_line2',
+                            'required' => false,
+                            'field_type' => TextType::class,
+                        ],
+                    ],
                 ]
             )
             ->end()
