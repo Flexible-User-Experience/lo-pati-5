@@ -1,0 +1,9 @@
+{% if visiting_hours %}
+    <p class="card-text text-uppercase lp-c-white">
+        {{ visiting_hours.name }}
+    </p>
+    <p class="card-text lp-c-light-grey">
+        {{ visiting_hours.textLine1 }}<br>
+        {{ visiting_hours.textLine2 }}
+    </p>
+{% endif %}

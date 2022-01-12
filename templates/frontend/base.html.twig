@@ -144,13 +144,7 @@
                                 <i class="fas fa-phone-alt"></i> {{ pp_phone }}<br>
                                 {{ pp_zip }} {{ pp_city }}
                             </p>
-                            <p class="card-text text-uppercase lp-c-white">
-                                {{ 'front.layout.footer_2.left.visit_hours' | trans }}
-                            </p>
-                            <p class="card-text lp-c-light-grey">
-                                {{ 'front.layout.footer_2.left.hours_line_1' | trans }}<br>
-                                {{ 'front.layout.footer_2.left.hours_line_2' | trans }}
-                            </p>
+                            {{ render(controller('App\\Controller\\Frontend\\VisitingHoursController::footer')) }}
                             <p class="card-text text-uppercase lp-c-white">
                                 {{ 'front.layout.footer_2.left.follow_us' | trans }}<br>
                             </p>
