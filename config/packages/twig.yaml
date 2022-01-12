@@ -16,6 +16,13 @@ twig:
         customer_email:    '%customer_email%'
         customer_url:      '%customer_url%'
         project_title:     '%project_title%'
+        pp_id:             '%pp_id%'
+        pp_cif:            '%pp_cif%'
+        pp_address:        '%pp_address%'
+        pp_zip:            '%pp_zip%'
+        pp_city:           '%pp_city%'
+        pp_phone:          '%pp_phone%'
+        pp_email:          '%pp_email%'
 
 when@test:
     twig:
