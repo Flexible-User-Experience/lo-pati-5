@@ -96,7 +96,7 @@ final class SlideshowAdmin extends AbstractBaseAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->with('admin.common.general', $this->getFormMdSuccessBoxArray(6))
+            ->with('admin.common.general', $this->getFormMdSuccessBoxArray())
             ->add(
                 'name',
                 TextType::class,
