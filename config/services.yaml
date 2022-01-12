@@ -16,6 +16,7 @@ parameters:
     email_address_test_1:       '%env(string:EMAIL_ADDRESS_TEST_1)%'
     email_address_test_2:       '%env(string:EMAIL_ADDRESS_TEST_2)%'
     email_address_test_3:       '%env(string:EMAIL_ADDRESS_TEST_3)%'
+    id_page_contact:            '%env(int:ID_PAGE_CONTACT)%'
     id_page_irradiador:         '%env(int:ID_PAGE_IRRADIADOR)%'
     pp_id:                      '%env(string:PP_ID)%'
     pp_cif:                     '%env(string:PP_CIF)%'

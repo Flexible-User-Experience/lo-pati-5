@@ -12,4 +12,7 @@
             </p>
         </div>
     </div>
+    <a href="{{ path('front_app_menu_level_2', {menu: contact_page.menuLevel1.slug, submenu: contact_page.menuLevel2.slug}) }}" class="float-end text-white btn btn-outline-light btn-sm rounded-0 border-2 text-uppercase">
+        {{ 'front.layout.footer.timetable_ab' | trans }} <i class="fas fa-chevron-right ms-5"></i>
+    </a>
 {% endif %}
