@@ -5,6 +5,7 @@ sidebarmenu:
     level2: 'Segon nivell'
   page:
     title: 'Pàgines'
+    slideshow: 'Diapositives inici'
     page: 'Pàgina'
     page_image: 'Imatge'
   newsletter:

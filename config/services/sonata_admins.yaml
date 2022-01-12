@@ -23,6 +23,17 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Menu', label: 'sidebarmenu.menu.level2' }
     # Pages
+    admin.slideshow:
+        class: App\Admin\SlideshowAdmin
+        arguments:
+            - ~
+            - App\Entity\Slideshow
+            - ~
+            - '@doctrine.orm.entity_manager'
+            - '@security.helper'
+            - '@twig'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label_translator_strategy: 'sonata.admin.label.strategy.underscore', group: 'Page', label: 'sidebarmenu.page.slideshow' }
     admin.page:
         class: App\Admin\PageAdmin
         arguments:
