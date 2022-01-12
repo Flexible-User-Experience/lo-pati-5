@@ -5,6 +5,7 @@ sidebarmenu:
     level2: 'Segundo nivel'
   page:
     title:  'Páginas'
+    slideshow: 'Diapositiva inicio'
     page:  'Página'
     page_image: 'Imagen'
   newsletter:
@@ -29,6 +30,8 @@ breadcrumb:
   link_menu_level1_create: 'Crear'
   link_menu_level2_list: 'Menú Segundo Nivel'
   link_menu_level2_create: 'Crear'
+  link_slideshow_list: 'Diapositiva inicio'
+  link_slideshow_create: 'Crear'
   link_page_list: 'Página'
   link_page_create: 'Crear'
   link_page_image_list: 'Imagen'
