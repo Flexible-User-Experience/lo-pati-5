@@ -94,21 +94,7 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="card-title mt-4 lp-c-ultra-light-grey">{{ 'front.layout.footer.timetable_t1' | trans }}</h5>
-                                    <div class="row">
-                                        <div class="col">
-                                            <p class="card-text">
-                                                <strong>{{ 'front.layout.footer.timetable_d1' | trans }}</strong><br>
-                                                {{ 'front.layout.footer.timetable_h1' | trans }}
-                                            </p>
-                                        </div>
-                                        <div class="col">
-                                            <p class="card-text">
-                                                <strong>{{ 'front.layout.footer.timetable_d2' | trans }}</strong><br>
-                                                {{ 'front.layout.footer.timetable_h2' | trans }}
-                                            </p>
-                                        </div>
-                                    </div>
+                                    {{ render(controller('App\\Controller\\Frontend\\VisitingHoursController::timetable')) }}
                                     <a href="#" class="float-end text-white btn btn-outline-light btn-sm rounded-0 border-2 text-uppercase">{{ 'front.layout.footer.timetable_ab' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
                                 </div>
                             </div>
