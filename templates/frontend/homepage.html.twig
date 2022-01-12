@@ -14,17 +14,28 @@
                                     {% for slide in slides %}
                                         <div class="carousel-item{% if loop.first %} active{% endif %}">
                                             <div class="row">
-                                                <div class="col-6">
-                                                    <div class="mini-colored-box-detail d-flex me-auto lp-bg-teal"></div>
-                                                    <span class="h6 d-inline-flex py-2 ps-2 pe-5 mb-3 lp-bg-black text-white text-uppercase">Activitat{# TODO make it dynamic #}</span>
-                                                    <h5 class="text-muted mb-2"><i class="far fa-clock"></i> Lo Pati - Del X al Y d'agost{# TODO make it dynamic #}</h5>
-                                                    <h2 class="mb-4">{{ slide.name | nl2br }}{# TODO make it dynamic #}</h2>
-                                                    <a href="{{ path('front_app_homepage') }}{# TODO make it dynamic #}" class="btn btn-outline-dark btn-sm rounded-0 border-2 text-uppercase">{{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
+                                                {# legacy design template #}
+                                                <div class="col-12">
+                                                    {% if slide.link %}
+                                                        <a href="{{ slide.link }}">
+                                                            <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">
+                                                        </a>
+                                                    {% else %}
+                                                        <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">
+                                                    {% endif %}
                                                 </div>
-                                                <div class="col-6">
-                                                    <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">
-                                                    <div class="d-flex ms-auto w-90 p-2 lp-bg-teal{# TODO make it dynamic #}"></div>
-                                                </div>
+                                                {# new design template #}
+{#                                                <div class="col-6">#}
+{#                                                    <div class="mini-colored-box-detail d-flex me-auto lp-bg-teal"></div>#}
+{#                                                    <span class="h6 d-inline-flex py-2 ps-2 pe-5 mb-3 lp-bg-black text-white text-uppercase">Activitat#}{# TODO make it dynamic #}{#</span>#}
+{#                                                    <h5 class="text-muted mb-2"><i class="far fa-clock"></i> Lo Pati - Del X al Y d'agost#}{# TODO make it dynamic #}{#</h5>#}
+{#                                                    <h2 class="mb-4">{{ slide.name | nl2br }}#}{# TODO make it dynamic #}{#</h2>#}
+{#                                                    <a href="{{ path('front_app_homepage') }}#}{# TODO make it dynamic #}{#" class="btn btn-outline-dark btn-sm rounded-0 border-2 text-uppercase">{{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>#}
+{#                                                </div>#}
+{#                                                <div class="col-6">#}
+{#                                                    <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">#}
+{#                                                    <div class="d-flex ms-auto w-90 p-2 lp-bg-teal#}{# TODO make it dynamic #}{#"></div>#}
+{#                                                </div>#}
                                             </div>
                                         </div>
                                     {% endfor %}
