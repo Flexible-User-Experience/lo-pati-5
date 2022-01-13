@@ -126,7 +126,7 @@
                             <p class="card-text lp-c-light-grey">
                                 {{ pp_id }}<br>
                                 {{ pp_address }}<br>
-                                <i class="fas fa-phone-alt"></i> {{ pp_phone }}<br>
+                                <a class="text-decoration-none lp-c-light-grey" href="tel:+{{ pp_phone | replace({' ': ''}) }}"><i class="fas fa-phone-alt"></i> {{ pp_phone }}</a><br>
                                 {{ pp_zip }} {{ pp_city }}
                             </p>
                             {{ render(controller('App\\Controller\\Frontend\\VisitingHoursController::footer')) }}
