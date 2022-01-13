@@ -463,7 +463,7 @@ front:
       timetable_h2: '11:00h - 14:00h'
       timetable_ab: 'Contáctanos'
       agenda:
-        dates: 'Fechas'
+        dates: 'Actividades'
     footer_2:
       left:
         visit_hours: 'Horario de visita'
