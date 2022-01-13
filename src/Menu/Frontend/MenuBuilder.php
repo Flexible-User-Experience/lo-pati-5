@@ -82,25 +82,27 @@ class MenuBuilder
             $item->setAttribute('class', 'nav-item text-uppercase');
             /** @var MenuLevel2 $ml2Item */
             foreach ($ml1Item->getMenuLevel2items() as $ml2Item) {
-                $submenu = $item->addChild(
-                    $ml2Item->getSlug(),
-                    [
-                        'label' => $ml2Item->getName(),
-                        'route' => 'front_app_menu_level_2',
-                        'routeParameters' => [
-                            'menu' => $ml1Item->getSlug(),
-                            'submenu' => $ml2Item->getSlug(),
-                        ],
-                    ]
-                );
-                if ($menuRoute && $submenuRoute && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute->getId() === $ml2Item->getId()) {
-                    $submenu->setCurrent(true);
-                    $submenu->setLinkAttribute('class', 'nav-link active');
-                    $submenu->setLinkAttribute('aria-current', 'page');
-                } else {
-                    $submenu->setLinkAttribute('class', 'nav-link');
+                if ($ml2Item->isActive()) {
+                    $submenu = $item->addChild(
+                        $ml2Item->getSlug(),
+                        [
+                            'label' => $ml2Item->getName(),
+                            'route' => 'front_app_menu_level_2',
+                            'routeParameters' => [
+                                'menu' => $ml1Item->getSlug(),
+                                'submenu' => $ml2Item->getSlug(),
+                            ],
+                        ]
+                    );
+                    if ($menuRoute && $submenuRoute && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute->getId() === $ml2Item->getId()) {
+                        $submenu->setCurrent(true);
+                        $submenu->setLinkAttribute('class', 'nav-link active');
+                        $submenu->setLinkAttribute('aria-current', 'page');
+                    } else {
+                        $submenu->setLinkAttribute('class', 'nav-link');
+                    }
+                    $submenu->setAttribute('class', 'nav-item');
                 }
-                $submenu->setAttribute('class', 'nav-item');
             }
         }
 
