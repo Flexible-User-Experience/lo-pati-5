@@ -500,6 +500,12 @@ front:
   privacy_policy:
     title_1: 'Política de privacitat'
     title_2: 'Responsable del tractament de dades'
+    text_section_2_line_1: 'Identidad'
+    text_section_2_line_2: 'CIF'
+    text_section_2_line_3: 'Dirección postal'
+    text_section_2_line_4: 'Dirección electrònica'
+    text_section_2_line_5: 'Si quieres ejercitar tus derechos contacta a'
+    text_section_2_line_6: 'como responsable del sitio web, de conformidad con lo dispuesto en el Reglamento (UE) 2016/679 de 27 de abril de 2016 (RGPD) relativo a la protección de las personas físicas en cuanto a tratamiento de datos personales, y por la ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (LSSICE), le informa que tiene implementadas las medidas de seguridad necesarias, de índole técnica y organizativas, para garantizar y proteger la confidencialidad, integridad y disponibilidad de los datos introducidos.'
 newsletter:
   form:
     name: 'NOMBRE *'

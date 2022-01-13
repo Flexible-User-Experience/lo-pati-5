@@ -12,8 +12,38 @@
             </div>
             <div class="row my-5">
                 <div class="col-12">
-                    <h3>{{ 'front.privacy_policy.title_2' | trans }}</h3>
+                    <h3 class="mb-4">{{ 'front.privacy_policy.title_2' | trans }}</h3>
+                    <p>{{ 'front.privacy_policy.text_section_2_line_1' | trans }}: {{ pp_id }}</p>
+                    <p>{{ 'front.privacy_policy.text_section_2_line_2' | trans }}: {{ pp_cif }}</p>
+                    <p>{{ 'front.privacy_policy.text_section_2_line_3' | trans }}: {{ pp_address }}</p>
+                    <p>{{ 'front.privacy_policy.text_section_2_line_4' | trans }}: <a href="mailto:{{ pp_email }}">{{ pp_email }}</a></p>
+                    <p>{{ 'front.privacy_policy.text_section_2_line_5' | trans }}: <a href="mailto:{{ pp_email }}">{{ pp_email }}</a></p>
+                    <p>{{ project_title }}, {{ 'front.privacy_policy.text_section_2_line_6' | trans }}</p>
                 </div>
+            </div>
+            <div class="row my-5">
+                <h3 class="mb-4">{{ 'front.privacy_policy.title_3' | trans }}</h3>
+                <p>{{ 'front.privacy_policy.text_section_3_line_1' | trans }}</p>
+                <ul>
+                    <li>{{ 'front.privacy_policy.text_section_3_line_2' | trans }}</li>
+                    <li>{{ 'front.privacy_policy.text_section_3_line_3' | trans }}</li>
+                    <li>{{ 'front.privacy_policy.text_section_3_line_4' | trans }}</li>
+                    <li>{{ 'front.privacy_policy.text_section_3_line_5' | trans }}</li>
+                    <li>{{ 'front.privacy_policy.text_section_3_line_6' | trans }}</li>
+                    <li>{{ 'front.privacy_policy.text_section_3_line_7' | trans }}</li>
+                    <li>{{ 'front.privacy_policy.text_section_3_line_8' | trans }}</li>
+                    <li>{{ 'front.privacy_policy.text_section_3_line_9' | trans }}</li>
+                    <li>{{ 'front.privacy_policy.text_section_3_line_10' | trans }}</li>
+                </ul>
+                <p>{{ 'front.privacy_policy.text_section_3_line_11' | trans }}: <a href="mailto:{{ pp_email }}">{{ pp_email }}</a></p>
+                <p>{{ 'front.privacy_policy.text_section_3_line_12' | trans({'%project_title%': project_title}) }}</p>
+                <p>{{ 'front.privacy_policy.text_section_3_line_13' | trans }}</p>
+                <p>{{ 'front.privacy_policy.text_section_3_line_14' | trans }}</p>
+                <p>{{ 'front.privacy_policy.text_section_3_line_15' | trans }}</p>
+            </div>
+            <div class="row my-5">
+                <h3 class="mb-4">{{ 'front.privacy_policy.title_4' | trans }}</h3>
+                <p>{{ 'front.privacy_policy.text_section_4_line_1' | trans }}</p>
             </div>
         </main>
     </div>
