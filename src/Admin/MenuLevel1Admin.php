@@ -53,6 +53,14 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     {
         $list
             ->add(
+                'color',
+                null,
+                [
+                    'editable' => true,
+                    'template' => 'backend/cells/list__cell_menu_level1_color.html.twig',
+                ]
+            )
+            ->add(
                 'name',
                 null,
                 [
