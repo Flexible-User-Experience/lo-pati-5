@@ -119,6 +119,15 @@ App\Entity\Page:
     menuLevel1: '@menulevel1'
     menuLevel2: '@submenulevel1'
 
+# SlideshowPage
+App\Entity\SlideshowPage:
+  slideshowpage1:
+    name: 'Page 1'
+    description: '<sentence()>'
+    summary: '<sentence()>'
+    menuLevel1: '@menulevel1'
+    position: 1
+
 # Slideshow
 App\Entity\Slideshow:
   slideshow1:

@@ -11,37 +11,41 @@
                         <div class="col">
                             <div id="slideshow" class="carousel carousel-dark slide" data-bs-ride="carousel" data-carousel-indicators-target="carousel">
                                 <div class="carousel-inner">
+                                    {% set index = 0 %}
                                     {% for slide in slides %}
-                                        <div class="carousel-item{% if loop.first %} active{% endif %}">
-                                            <div class="row">
-                                                {# legacy design template #}
-{#                                                <div class="col-12">#}
-{#                                                    {% if slide.link %}#}
-{#                                                        <a href="{{ slide.link }}">#}
-{#                                                            <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">#}
-{#                                                        </a>#}
-{#                                                    {% else %}#}
-{#                                                        <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">#}
-{#                                                    {% endif %}#}
-{#                                                </div>#}
-                                                {# new design template #}
-                                                <div class="col-6">
-                                                    <div style="background-color:{{ slide.menuLevel1.color }}" class="mini-colored-box-detail d-flex me-auto"></div>
-                                                    <span class="h6 d-inline-flex py-2 ps-2 pe-5 mb-3 lp-bg-black text-white text-uppercase">{% if slide.menuLevel2 %}{{ slide.menuLevel2.name }}{% else %}{{ slide.menuLevel1.name }}{% endif %}</span>
-                                                    <h5 class="text-muted mb-2"><i class="far fa-clock"></i> {{ slide.summary }}</h5>
-                                                    <h2 class="mb-4">{{ slide.name | nl2br }}</h2>
-                                                    {% if slide.link %}
-                                                        <a href="{{ slide.link }}" class="btn btn-outline-dark btn-sm rounded-0 border-2 text-uppercase">
-                                                            {{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i>
-                                                        </a>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-6">
-                                                    <img src="{{ vich_uploader_asset(slide, 'imageFile') | imagine_filter('800x600') }}" class="d-block w-100" alt="{{ slide.name }}">
-                                                    <div style="background-color:{{ slide.menuLevel1.color }}" class="d-flex ms-auto w-90 p-2"></div>
+                                        {% if slide.imageFileName is not null %}
+                                            <div class="carousel-item{% if index == 0 %} active{% endif %}">
+                                                <div class="row">
+                                                    {# legacy design template #}
+    {#                                                <div class="col-12">#}
+    {#                                                    {% if slide.link %}#}
+    {#                                                        <a href="{{ slide.link }}">#}
+    {#                                                            <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">#}
+    {#                                                        </a>#}
+    {#                                                    {% else %}#}
+    {#                                                        <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">#}
+    {#                                                    {% endif %}#}
+    {#                                                </div>#}
+                                                    {# new design template #}
+                                                    <div class="col-6">
+                                                        <div style="background-color:{{ slide.menuLevel1.color }}" class="mini-colored-box-detail d-flex me-auto"></div>
+                                                        <span class="h6 d-inline-flex py-2 ps-2 pe-5 mb-3 lp-bg-black text-white text-uppercase">{% if slide.menuLevel2 %}{{ slide.menuLevel2.name }}{% else %}{{ slide.menuLevel1.name }}{% endif %}</span>
+                                                        <h5 class="text-muted mb-2"><i class="far fa-clock"></i> {{ slide.summary }}</h5>
+                                                        <h2 class="mb-4">{{ slide.name | nl2br }}</h2>
+                                                        {% if slide.link %}
+                                                            <a href="{{ slide.link }}" class="btn btn-outline-dark btn-sm rounded-0 border-2 text-uppercase">
+                                                                {{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i>
+                                                            </a>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <img src="{{ vich_uploader_asset(slide, 'imageFile') | imagine_filter('800x600') }}" class="d-block w-100" alt="{{ slide.name }}">
+                                                        <div style="background-color:{{ slide.menuLevel1.color }}" class="d-flex ms-auto w-90 p-2"></div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            {% set index = index + 1 %}
+                                        {% endif %}
                                     {% endfor %}
                                 </div>
                             </div>
@@ -50,8 +54,12 @@
                     <div class="row mt-0 mb-5">
                         <div class="col">
                             <div class="carousel-indicators position-relative" data-carousel-indicators-target="indicators">
+                                {% set index = 0 %}
                                 {% for slide in slides %}
-                                    <button type="button" data-bs-target="#slideshow" data-bs-slide-to="{{ loop.index0 }}"{% if loop.first %} class="bg-dark active" aria-current="true"{% else %} class="bg-dark"{% endif %} aria-label="slide {{ loop.index }}"></button>
+                                    {% if slide.imageFileName is not null %}
+                                        <button type="button" data-bs-target="#slideshow" data-bs-slide-to="{{ index }}"{% if index == 0 %} class="bg-dark active" aria-current="true"{% else %} class="bg-dark"{% endif %} aria-label="slide {{ index + 1 }}"></button>
+                                        {% set index = index + 1 %}
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                         </div>
