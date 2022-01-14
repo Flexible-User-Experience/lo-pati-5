@@ -45,6 +45,12 @@ class SlideshowPage extends AbstractBase
     private ?string $realizationDateString = null;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @Gedmo\Translatable
+     */
+    private ?string $place = null;
+
+    /**
      * @ORM\Column(type="text", length=4000, nullable=true)
      */
     private ?string $link = null;
@@ -114,6 +120,18 @@ class SlideshowPage extends AbstractBase
     public function setRealizationDateString(?string $realizationDateString): self
     {
         $this->realizationDateString = $realizationDateString;
+
+        return $this;
+    }
+
+    public function getPlace(): ?string
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?string $place): self
+    {
+        $this->place = $place;
 
         return $this;
     }

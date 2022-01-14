@@ -73,6 +73,13 @@ final class SlideshowPageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->add(
+                'place',
+                null,
+                [
+                    'editable' => true,
+                ]
+            )
+            ->add(
                 'link',
                 null,
                 [
@@ -153,6 +160,13 @@ final class SlideshowPageAdmin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
+            ->add(
+                'place',
+                TextType::class,
+                [
+                    'required' => false,
+                ]
+            )
             ->end()
             ->with('admin.common.translations', $this->getFormMdSuccessBoxArray(4))
             ->add(
@@ -188,6 +202,11 @@ final class SlideshowPageAdmin extends AbstractBaseAdmin
                         ],
                         'realizationDateString' => [
                             'label' => 'form.label_realization_date_string',
+                            'required' => false,
+                            'field_type' => TextType::class,
+                        ],
+                        'place' => [
+                            'label' => 'form.label_place',
                             'required' => false,
                             'field_type' => TextType::class,
                         ],
