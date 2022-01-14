@@ -41,7 +41,7 @@
                                                             <h5 class="text-muted mt-2">{{ slide.summary }}</h5>
                                                         {% endif %}
                                                         {% if slide.description %}
-                                                            <p class="mt-2">{{ slide.description }}</p>
+                                                            <p class="mt-2">{{ slide.description | raw }}</p>
                                                         {% endif %}
                                                         {% if slide.link %}
                                                             <a href="{{ slide.link }}" class="btn btn-outline-dark btn-sm rounded-0 border-2 text-uppercase mt-4">
