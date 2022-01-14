@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\TranslationsTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,20 +16,19 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class VisitingHours extends AbstractBase
 {
-    use NameTrait;
     use TranslationsTrait;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      * @Gedmo\Translatable
      */
-    private string $name;
+    private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Gedmo\Translatable
      */
-    private string $textLine1;
+    private ?string $textLine1 = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -49,7 +47,19 @@ class VisitingHours extends AbstractBase
         $this->translations = new ArrayCollection();
     }
 
-    public function getTextLine1(): string
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getTextLine1(): ?string
     {
         return $this->textLine1;
     }
