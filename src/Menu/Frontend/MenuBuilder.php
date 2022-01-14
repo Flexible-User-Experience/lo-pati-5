@@ -81,7 +81,7 @@ class MenuBuilder
                 $item->setLinkAttribute('class', 'nav-link');
             }
             $item->setAttribute('class', 'nav-item text-uppercase');
-            $item->setAttribute('onmouseover', 'this.style.borderBottom="5px solid '.$ml1Item->getColor().' !important');
+            $item->setAttribute('onmouseover', 'this.style.borderBottom=\'5px solid '.$ml1Item->getColor().' !important\'');
             /** @var MenuLevel2 $ml2Item */
             foreach ($ml1Item->getMenuLevel2items() as $ml2Item) {
                 if ($ml2Item->isActive()) {
@@ -100,6 +100,7 @@ class MenuBuilder
                         $submenu->setCurrent(true);
                         $submenu->setLinkAttribute('class', 'nav-link active');
                         $submenu->setLinkAttribute('aria-current', 'page');
+                        $submenu->setAttribute('style', 'border-bottom:5px solid '.$ml1Item->getColor().' !important');
                     } else {
                         $submenu->setLinkAttribute('class', 'nav-link');
                     }
