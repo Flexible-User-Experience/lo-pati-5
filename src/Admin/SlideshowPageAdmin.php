@@ -4,7 +4,7 @@ namespace App\Admin;
 
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
-use App\Entity\Translation\PageTranslation;
+use App\Entity\Translation\SlideshowPageTranslation;
 use App\Enum\SortOrderTypeEnum;
 use App\Form\Type\GedmoTranslationsType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
@@ -175,7 +175,7 @@ final class SlideshowPageAdmin extends AbstractBaseAdmin
                 [
                     'label' => false,
                     'required' => false,
-                    'translatable_class' => PageTranslation::class,
+                    'translatable_class' => SlideshowPageTranslation::class,
                     'fields' => [
                         'name' => [
                             'label' => 'form.label_name',
