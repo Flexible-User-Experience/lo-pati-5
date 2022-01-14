@@ -19,7 +19,6 @@ class SuperAdminUserControllerTest extends WebTestCase
      */
     public function testHomepage(string $url): void
     {
-
         $this->client->request('GET', $url);
         self::assertResponseIsSuccessful();
     }
