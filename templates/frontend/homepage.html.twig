@@ -14,7 +14,7 @@
                                     {% set index = 0 %}
                                     {% for slide in slides %}
                                         {% if slide.imageFileName is not null %}
-                                            <div class="carousel-item{% if index == 0 %} active{% endif %}">
+                                            <div class="carousel-item{% if index == 0 %} active{% endif %}" data-bs-interval="7000">
                                                 <div class="row">
                                                     {# legacy design template #}
     {#                                                <div class="col-12">#}
