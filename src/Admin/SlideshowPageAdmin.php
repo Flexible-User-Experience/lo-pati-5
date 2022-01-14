@@ -2,6 +2,8 @@
 
 namespace App\Admin;
 
+use App\Entity\MenuLevel1;
+use App\Entity\MenuLevel2;
 use App\Entity\Translation\PageTranslation;
 use App\Enum\SortOrderTypeEnum;
 use App\Form\Type\GedmoTranslationsType;
@@ -10,6 +12,7 @@ use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -50,6 +53,20 @@ final class SlideshowPageAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'name',
+                null,
+                [
+                    'editable' => true,
+                ]
+            )
+            ->add(
+                'summary',
+                null,
+                [
+                    'editable' => true,
+                ]
+            )
+            ->add(
+                'realizationDateString',
                 null,
                 [
                     'editable' => true,
@@ -189,6 +206,28 @@ final class SlideshowPageAdmin extends AbstractBaseAdmin
             )
             ->end()
             ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(4))
+            ->add(
+                'menuLevel1',
+                EntityType::class,
+                [
+                    'class' => MenuLevel1::class,
+                    'query_builder' => $this->em->getRepository(MenuLevel1::class)->getAllSortedByPositionAndName(),
+                    'choice_label' => 'name',
+                    'multiple' => false,
+                    'required' => true,
+                ]
+            )
+            ->add(
+                'menuLevel2',
+                EntityType::class,
+                [
+                    'class' => MenuLevel2::class,
+                    'query_builder' => $this->em->getRepository(MenuLevel2::class)->getAllSortedByPositionAndName(),
+                    'choice_label' => 'hierarchyName',
+                    'multiple' => false,
+                    'required' => false,
+                ]
+            )
             ->add(
                 'link',
                 UrlType::class,

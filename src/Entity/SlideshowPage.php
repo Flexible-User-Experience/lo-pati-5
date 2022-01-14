@@ -72,7 +72,7 @@ class SlideshowPage extends AbstractBase
     private ?MenuLevel2 $menuLevel2 = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Translation\PageTranslation", mappedBy="object", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Translation\SlideshowPageTranslation", mappedBy="object", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
     private ?Collection $translations;
