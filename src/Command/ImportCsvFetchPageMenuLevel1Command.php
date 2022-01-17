@@ -2,10 +2,8 @@
 
 namespace App\Command;
 
-use App\Entity\AbstractBase;
 use App\Entity\MenuLevel1;
 use App\Entity\Page;
-use DateTime;
 use DateTimeImmutable;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -41,32 +39,12 @@ final class ImportCsvFetchPageMenuLevel1Command extends AbstractBaseCommand
                     'name' => $serachedMenuLevel1Name,
                 ]);
                 if ($menuLevel1) {
-                    $serachedPagePublishDateString = $this->readColumn(6, $data);
-                    if ($serachedPagePublishDateString) {
-                        $serachedPagePublishDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $serachedPagePublishDateString);
-                        if ($serachedPagePublishDate) {
-                            $serachedPageName = self::sanitizeDoubleQuoteEscapeChar($this->readColumn(7, $data));
-                            $page = $pr->findOneBy([
-                                'publishDate' => $serachedPagePublishDate,
-                                'name' => $serachedPageName,
-                            ]);
-                            if ($page) {
-                                $menuLevel1->setPage($page);
-                                ++$newRecords;
-                            } else {
-                                // error page name not found
-                                $output->writeln('Page title "'.$serachedPageName.'" <error>NOT FOUND</error>');
-                                ++$errors;
-                            }
-                        } else {
-                            // error page publish date not found
-                            $output->writeln('Page publish date "'.$serachedPagePublishDate.'" <error>NOT FOUND</error>');
-                            ++$errors;
-                        }
-                    } else {
-                        // error invalid page publish date format
-                        $output->writeln('Invalid page publish date "'.$serachedPagePublishDateString.'" <error>FORMAT</error>');
-                        ++$errors;
+                    $page = $pr->findOneBy([
+                        'legacyId' => (int) $this->readColumn(4, $data),
+                    ]);
+                    if ($page) {
+                        $menuLevel1->setPage($page);
+                        ++$newRecords;
                     }
                 } else {
                     // error menu level 1 not found
