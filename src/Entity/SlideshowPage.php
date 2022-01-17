@@ -27,10 +27,10 @@ class SlideshowPage extends AbstractBase
     use TranslationsTrait;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
      * @Gedmo\Translatable
      */
-    private string $name;
+    private ?string $name = null;
 
     /**
      * @ORM\Column(type="text", length=4000, nullable=true)
@@ -88,7 +88,7 @@ class SlideshowPage extends AbstractBase
         $this->translations = new ArrayCollection();
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
