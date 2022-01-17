@@ -4,10 +4,6 @@
   vars_files:
     - "{{ playbook_dir }}/vars/config.yml"
   tasks:
-    - name: execute import slideshow CSV import command
-      shell: "/usr/bin/php{{ vhost_php_version }} bin/console app:import:slideshow var/csv/imports/slideshow.csv --env=prod"
-      args:
-        chdir: "{{ vhost_path_prod }}/current/"
     - name: execute import archive CSV import command
       shell: "/usr/bin/php{{ vhost_php_version }} bin/console app:import:archive var/csv/imports/archive.csv --env=prod"
       args:
