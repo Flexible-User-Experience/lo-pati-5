@@ -3,7 +3,7 @@ liip_imagine:
     loaders:
         default:
             filesystem:
-                locator: filesystem_insecure
+                locator: 'filesystem_insecure'
     twig:
         mode: 'lazy'
     resolvers:
