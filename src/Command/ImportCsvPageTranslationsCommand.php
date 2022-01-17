@@ -36,7 +36,9 @@ final class ImportCsvPageTranslationsCommand extends AbstractBaseCommand
         while (false !== ($data = $this->readRow($fr))) {
             if (count($data) >= 5) {
                 $serachedPageId = (int) $this->readColumn(1, $data);
-                $searchedPage = $pr->find($serachedPageId);
+                $searchedPage = $pr->findOneBy([
+                    'legacyId' => $serachedPageId,
+                ]);
                 if ($searchedPage) {
                     $serachedPageTranslationLocale = $this->readColumn(2, $data);
                     $serachedPageTranslationField = $this->fieldNameConversion($this->readColumn(3, $data));

@@ -53,19 +53,17 @@ final class ImportCsvPageCommand extends AbstractBaseCommand
                     $publishDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATE_FORMAT, $serachedPagePublishDate);
                     if ($publishDate) {
                         $page = $pr->findOneBy([
-                            'name' => $serachedPageName,
-                            'publishDate' => $publishDate,
+                            'legacyId' => (int) $this->readColumn(0, $data),
                         ]);
                         if (!$page) {
                             $page = new Page();
-                            $page
-                                ->setName($serachedPageName)
-                                ->setPublishDate($publishDate)
-                            ;
+                            $page->setLegacyId((int) $this->readColumn(0, $data));
                             $this->em->persist($page);
                             ++$newRecords;
                         }
                         $page
+                            ->setName($serachedPageName)
+                            ->setPublishDate($publishDate)
                             ->setSummary(AbstractBaseCommand::sanitizeNewLineEscapeChar(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(4, $data))))
                             ->setDescription(AbstractBaseCommand::sanitizeNewLineEscapeChar(AbstractBaseCommand::sanitizeDoubleQuoteEscapeChar($this->readColumn(5, $data))))
                             ->setActive((bool) $this->readColumn(6, $data))

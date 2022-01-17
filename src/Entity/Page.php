@@ -39,6 +39,11 @@ class Page extends AbstractBase
     public const DEFAULT_PAGE_TEMPLATE = PageTemplateTypeEnum::DEFAULT;
 
     /**
+     * @ORM\Column(type="integer", nullable=true, unique=true)
+     */
+    private ?int $legacyId = null;
+
+    /**
      * @ORM\Column(type="string", length=255)
      * @Gedmo\Translatable
      */
@@ -231,6 +236,18 @@ class Page extends AbstractBase
             ->setDocument1FileName(null)
             ->setDocument2FileName(null)
         ;
+    }
+
+    public function getLegacyId(): ?int
+    {
+        return $this->legacyId;
+    }
+
+    public function setLegacyId(?int $legacyId): self
+    {
+        $this->legacyId = $legacyId;
+
+        return $this;
     }
 
     public function getName(): ?string
