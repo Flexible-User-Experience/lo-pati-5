@@ -28,4 +28,5 @@ cp ../lo-pati/web/uploads/slides/* public/uploads/slides/
 cp ../lo-pati/web/uploads/isolated-newsletter/* public/uploads/newsletters/
 cp ../lo-pati/web/uploads/images/* public/uploads/images/
 cp ../lo-pati/web/uploads/documents/* public/uploads/documents/
+php ./bin/console app:initialize:visiting:hours
 echo "Finished at $(date +"%T %d/%m/%Y")"
