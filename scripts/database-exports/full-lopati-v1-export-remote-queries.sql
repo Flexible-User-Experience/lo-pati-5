@@ -1,14 +1,5 @@
 -- Remote exports to CSV
 
-SELECT S.*
-INTO OUTFILE '/var/lib/mysql-files/slideshow.csv'
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-ESCAPED BY '\\'
-LINES TERMINATED BY '\r\n'
-FROM lopati.slider_image S
-ORDER BY S.id;
-
 SELECT A.*
 INTO OUTFILE '/var/lib/mysql-files/archive.csv'
 FIELDS TERMINATED BY ','

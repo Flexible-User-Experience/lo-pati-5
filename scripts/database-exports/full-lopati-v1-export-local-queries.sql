@@ -1,14 +1,5 @@
 -- Local exports to CSV
 
-SELECT S.*
-INTO OUTFILE '/tmp/slideshow.csv'
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-ESCAPED BY '\\'
-LINES TERMINATED BY '\r\n'
-FROM lopati.slider_image S
-ORDER BY S.id;
-
 SELECT A.*
 INTO OUTFILE '/tmp/archive.csv'
 FIELDS TERMINATED BY ','

@@ -128,17 +128,6 @@ App\Entity\SlideshowPage:
     menuLevel1: '@menulevel1'
     position: 1
 
-# Slideshow
-App\Entity\Slideshow:
-  slideshow1:
-    name: 'Slideshow 1'
-    image1FileName: 'imagefile1.png'
-    position: 1
-  slideshow2:
-    name: 'Slideshow 2'
-    image1FileName: 'imagefile2.png'
-    position: 2
-
 # ConfigCalendarWorkingDay
 App\Entity\ConfigCalendarWorkingDay:
   configcalendarworkingday{1..7}:
