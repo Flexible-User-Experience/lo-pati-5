@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\LegacyIdTrait;
 use App\Entity\Traits\NameTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -15,6 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class NewsletterGroup extends AbstractBase
 {
+    use LegacyIdTrait;
     use NameTrait;
 
     /**

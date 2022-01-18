@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\Document1Trait;
 use App\Entity\Traits\Document2Trait;
+use App\Entity\Traits\LegacyIdTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\SmallImage1Trait;
 use App\Entity\Traits\SmallImage2Trait;
@@ -31,17 +32,13 @@ class Page extends AbstractBase
 {
     use Document1Trait;
     use Document2Trait;
+    use LegacyIdTrait;
     use SlugTrait;
     use SmallImage1Trait;
     use SmallImage2Trait;
     use TranslationsTrait;
 
     public const DEFAULT_PAGE_TEMPLATE = PageTemplateTypeEnum::DEFAULT;
-
-    /**
-     * @ORM\Column(type="integer", nullable=true, unique=true)
-     */
-    private ?int $legacyId = null;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -236,18 +233,6 @@ class Page extends AbstractBase
             ->setDocument1FileName(null)
             ->setDocument2FileName(null)
         ;
-    }
-
-    public function getLegacyId(): ?int
-    {
-        return $this->legacyId;
-    }
-
-    public function setLegacyId(?int $legacyId): self
-    {
-        $this->legacyId = $legacyId;
-
-        return $this;
     }
 
     public function getName(): ?string

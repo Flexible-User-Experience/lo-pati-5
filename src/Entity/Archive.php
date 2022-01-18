@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\LegacyIdTrait;
 use App\Entity\Traits\SmallImage1Trait;
 use App\Entity\Traits\SmallImage2Trait;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,6 +19,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Archive extends AbstractBase
 {
+    use LegacyIdTrait;
     use SmallImage1Trait;
     use SmallImage2Trait;
 

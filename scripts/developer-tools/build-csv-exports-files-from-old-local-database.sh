@@ -5,7 +5,6 @@ echo "Started at $(date +"%T %d/%m/%Y")"
 rm /tmp/*.csv
 mysql --user=userflux -p -A lopati < ./scripts/database-exports/full-lopati-v1-export-local-queries.sql
 mv /tmp/*.csv ./var/csv/imports/
-php ./bin/console app:import:slideshow ./var/csv/imports/slideshow.csv
 php ./bin/console app:import:archive ./var/csv/imports/archive.csv
 php ./bin/console app:import:artist ./var/csv/imports/artist.csv
 php ./bin/console app:import:artist:translations ./var/csv/imports/artist_translations.csv
@@ -23,8 +22,6 @@ php ./bin/console app:import:fetch:newsletter:group:user ./var/csv/imports/newsl
 php ./bin/console app:import:newsletter ./var/csv/imports/newsletter.csv
 php ./bin/console app:import:newsletter:post ./var/csv/imports/newsletterpost.csv
 php ./bin/console app:import:config:calendar:working:day ./var/csv/imports/configcalendarworkingday.csv
-php ./bin/console app:import:config:footer:information ./var/csv/imports/configfooterinformation.csv
-php ./bin/console app:import:config:footer:information:translations ./var/csv/imports/configfooterinformation_translations.csv
 php ./bin/console fos:elastica:populate
 cp -r ../lo-pati/web/uploads/artists/* public/uploads/artists/
 cp ../lo-pati/web/uploads/slides/* public/uploads/slides/

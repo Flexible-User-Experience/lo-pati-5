@@ -142,21 +142,3 @@ ESCAPED BY '\\'
 LINES TERMINATED BY '\r\n'
 FROM lopati.ConfiguracioDiesLaboralsAgenda C
 ORDER BY C.id;
-
-SELECT C.*
-INTO OUTFILE '/var/lib/mysql-files/configfooterinformation.csv'
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-ESCAPED BY '\\'
-LINES TERMINATED BY '\r\n'
-FROM lopati.Configuracio C
-ORDER BY C.id;
-
-SELECT CT.*
-INTO OUTFILE '/var/lib/mysql-files/configfooterinformation_translations.csv'
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-ESCAPED BY '\\'
-LINES TERMINATED BY '\r\n'
-FROM lopati.configuracio_translations CT
-ORDER BY CT.id;

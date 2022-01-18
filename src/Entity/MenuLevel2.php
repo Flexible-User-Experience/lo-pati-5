@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\LegacyIdTrait;
 use App\Entity\Traits\PositionTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\TranslationsTrait;
@@ -20,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class MenuLevel2 extends AbstractBase
 {
+    use LegacyIdTrait;
     use PositionTrait;
     use SlugTrait;
     use TranslationsTrait;
