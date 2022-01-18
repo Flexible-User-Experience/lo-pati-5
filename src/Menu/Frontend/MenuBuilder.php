@@ -76,12 +76,13 @@ class MenuBuilder
                 }
                 $item->setLinkAttribute('class', 'nav-link active');
                 $item->setLinkAttribute('aria-current', 'page');
-                $item->setAttribute('style', 'border-bottom:5px solid '.$ml1Item->getColor().' !important');
+                $item->setAttribute('style', 'border-bottom:5px solid '.$ml1Item->getColor());
             } else {
                 $item->setLinkAttribute('class', 'nav-link');
+                $item->setAttribute('onmouseover', 'this.style.borderBottom=\'solid 5px '.$ml1Item->getColor().'\'');
+                $item->setAttribute('onmouseout', 'this.style.borderBottom=\'none\'');
             }
             $item->setAttribute('class', 'nav-item text-uppercase');
-            $item->setAttribute('onmouseover', 'this.style.borderBottom=\'5px solid '.$ml1Item->getColor().' !important\'');
             /** @var MenuLevel2 $ml2Item */
             foreach ($ml1Item->getMenuLevel2items() as $ml2Item) {
                 if ($ml2Item->isActive()) {
@@ -103,6 +104,8 @@ class MenuBuilder
                         $submenu->setAttribute('style', 'border-bottom:5px solid '.$ml1Item->getColor().' !important');
                     } else {
                         $submenu->setLinkAttribute('class', 'nav-link');
+                        $submenu->setAttribute('onmouseover', 'this.style.borderBottom=\'solid 5px '.$ml1Item->getColor().'\'');
+                        $submenu->setAttribute('onmouseout', 'this.style.borderBottom=\'none\'');
                     }
                     $submenu->setAttribute('class', 'nav-item');
                 }
