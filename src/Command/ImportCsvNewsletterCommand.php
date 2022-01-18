@@ -36,11 +36,11 @@ final class ImportCsvNewsletterCommand extends AbstractBaseCommand
             if (count($data) >= 10) {
                 $serachedNewsletterOldDatabaseVersionId = (int) $this->readColumn(0, $data);
                 $newsletter = $nr->findOneBy([
-                    'oldDatabaseVersionId' => $serachedNewsletterOldDatabaseVersionId,
+                    'legacyId' => $serachedNewsletterOldDatabaseVersionId,
                 ]);
                 if (!$newsletter) {
                     $newsletter = new Newsletter();
-                    $newsletter->setOldDatabaseVersionId($serachedNewsletterOldDatabaseVersionId);
+                    $newsletter->setLegacyId($serachedNewsletterOldDatabaseVersionId);
                     $this->em->persist($newsletter);
                     ++$newRecords;
                 }

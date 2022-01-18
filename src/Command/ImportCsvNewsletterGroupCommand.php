@@ -34,11 +34,12 @@ final class ImportCsvNewsletterGroupCommand extends AbstractBaseCommand
             if (count($data) >= 3) {
                 $serachedNewsletterGroupName = $this->readColumn(1, $data);
                 $newsletterGroup = $ngr->findOneBy([
-                    'name' => $serachedNewsletterGroupName,
+                    'legacyId' => (int) $this->readColumn(0, $data),
                 ]);
                 if (!$newsletterGroup) {
                     $newsletterGroup = new NewsletterGroup();
                     $newsletterGroup->setName($serachedNewsletterGroupName);
+                    $newsletterGroup->setLegacyId((int) $this->readColumn(0, $data));
                     $this->em->persist($newsletterGroup);
                     ++$newRecords;
                 } else {

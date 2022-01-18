@@ -35,7 +35,9 @@ final class ImportCsvArtistTranslationsCommand extends AbstractBaseCommand
         while (false !== ($data = $this->readRow($fr))) {
             if (count($data) >= 5) {
                 $serachedArtistId = (int) $this->readColumn(1, $data);
-                $searchedArtist = $ar->find($serachedArtistId);
+                $searchedArtist = $ar->findOneBy([
+                    'legacyId' => $serachedArtistId,
+                ]);
                 if ($searchedArtist) {
                     $serachedArtistTranslationLocale = $this->readColumn(2, $data);
                     $serachedArtistTranslationField = $this->readColumn(3, $data);

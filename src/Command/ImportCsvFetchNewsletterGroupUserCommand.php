@@ -36,12 +36,12 @@ final class ImportCsvFetchNewsletterGroupUserCommand extends AbstractBaseCommand
             if (count($data) >= 4) {
                 $serachedNewsletterGroupName = $this->readColumn(2, $data);
                 $newsletterGroup = $ngr->findOneBy([
-                    'name' => $serachedNewsletterGroupName,
+                    'legacyId' => (int) $this->readColumn(0, $data),
                 ]);
                 if ($newsletterGroup) {
                     $serachedNewsletterUserEmail = $this->readColumn(3, $data);
                     $newsletterUser = $nur->findOneBy([
-                        'email' => $serachedNewsletterUserEmail,
+                        'legacyId' => (int) $this->readColumn(1, $data),
                     ]);
                     if ($newsletterUser) {
                         $newsletterGroup->addUser($newsletterUser);

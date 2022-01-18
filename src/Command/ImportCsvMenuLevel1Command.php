@@ -34,10 +34,11 @@ final class ImportCsvMenuLevel1Command extends AbstractBaseCommand
             if (count($data) >= 6) {
                 $serachedMenuLevel1Name = $this->readColumn(1, $data);
                 $menuLevel1 = $ml1r->findOneBy([
-                    'name' => $serachedMenuLevel1Name,
+                    'legacyId' => (int) $this->readColumn(0, $data),
                 ]);
                 if (!$menuLevel1) {
                     $menuLevel1 = new MenuLevel1();
+                    $menuLevel1->setLegacyId((int) $this->readColumn(0, $data));
                     ++$newRecords;
                 }
                 $menuLevel1

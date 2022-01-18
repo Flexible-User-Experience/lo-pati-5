@@ -46,7 +46,7 @@ LINES TERMINATED BY '\r\n'
 FROM lopati.categoria_translations CT
 ORDER BY CT.id;
 
-SELECT SC.*, C.nom AS categoria, P.data_publicacio, P.titol
+SELECT SC.*, C.nom AS categoria, P.data_publicacio, P.titol, C.id
 INTO OUTFILE '/var/lib/mysql-files/menulevel2.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
@@ -66,7 +66,7 @@ LINES TERMINATED BY '\r\n'
 FROM lopati.subcategoria_translations SCT
 ORDER BY SCT.id;
 
-SELECT P.*, C.nom AS categoria, SC.nom AS subcategoria
+SELECT P.*, C.nom AS categoria, SC.nom AS subcategoria, C.id, SC.id
 INTO OUTFILE '/var/lib/mysql-files/page.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'

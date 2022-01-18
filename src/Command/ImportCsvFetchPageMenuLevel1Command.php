@@ -36,7 +36,7 @@ final class ImportCsvFetchPageMenuLevel1Command extends AbstractBaseCommand
             if (count($data) >= 8) {
                 $serachedMenuLevel1Name = $this->readColumn(1, $data);
                 $menuLevel1 = $ml1r->findOneBy([
-                    'name' => $serachedMenuLevel1Name,
+                    'legacyId' => (int) $this->readColumn(0, $data),
                 ]);
                 if ($menuLevel1) {
                     $page = $pr->findOneBy([

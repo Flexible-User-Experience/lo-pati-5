@@ -36,7 +36,9 @@ final class ImportCsvMenuLevel1TranslationsCommand extends AbstractBaseCommand
         while (false !== ($data = $this->readRow($fr))) {
             if (count($data) >= 5) {
                 $serachedMenuLevel1Id = (int) $this->readColumn(1, $data);
-                $searchedMenuLevel1 = $ml1r->find($serachedMenuLevel1Id);
+                $searchedMenuLevel1 = $ml1r->findOneBy([
+                    'legacyId' => $serachedMenuLevel1Id,
+                ]);
                 if ($searchedMenuLevel1) {
                     $serachedMenuLevel1TranslationLocale = $this->readColumn(2, $data);
                     $serachedMenuLevel1TranslationField = $this->fieldNameConversion($this->readColumn(3, $data));

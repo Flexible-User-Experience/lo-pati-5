@@ -36,7 +36,7 @@ final class ImportCsvNewsletterUserCommand extends AbstractBaseCommand
             if (count($data) >= 13) {
                 $serachedNewsletterUserEmail = $this->readColumn(1, $data);
                 $newsletterUser = $nur->findOneBy([
-                    'email' => $serachedNewsletterUserEmail,
+                    'legacyId' => (int) $this->readColumn(0, $data),
                 ]);
                 $createdDate = DateTime::createFromFormat(AbstractBase::DATABASE_IMPORT_DATETIME_FORMAT, $this->readColumn(4, $data));
                 if ($createdDate) {
@@ -49,6 +49,7 @@ final class ImportCsvNewsletterUserCommand extends AbstractBaseCommand
                                 ->setCreatedAt($createdDate)
                                 ->setUpdatedAt($createdDate)
                                 ->setEmail($serachedNewsletterUserEmail)
+                                ->setLegacyId((int) $this->readColumn(0, $data))
                             ;
                             $this->em->persist($newsletterUser);
                             ++$newRecords;
