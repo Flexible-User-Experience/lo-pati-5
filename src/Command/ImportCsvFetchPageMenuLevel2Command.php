@@ -35,10 +35,10 @@ final class ImportCsvFetchPageMenuLevel2Command extends AbstractBaseCommand
         $newRecords = 0;
         $errors = 0;
         while (false !== ($data = $this->readRow($fr))) {
-            if (count($data) >= 10) {
+            if (count($data) >= 11) {
                 $serachedMenuLevel1Name = $this->readColumn(7, $data);
                 $menuLevel1 = $ml1r->findOneBy([
-                    'legacyId' => (int) $this->readColumn(8, $data),
+                    'legacyId' => (int) $this->readColumn(10, $data),
                 ]);
                 if ($menuLevel1) {
                     $serachedMenuLevel2Name = $this->readColumn(2, $data);
