@@ -74,7 +74,7 @@ final class PageAdmin extends AbstractBaseAdmin
             ->add('summary')
             ->add('description')
             ->add('place')
-            ->add('video')
+//            ->add('video')
             ->add(
                 'menuLevel1',
                 null,
@@ -311,13 +311,13 @@ final class PageAdmin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
-            ->add(
-                'video',
-                TextType::class,
-                [
-                    'required' => false,
-                ]
-            )
+//            ->add(
+//                'video',
+//                TextType::class,
+//                [
+//                    'required' => false,
+//                ]
+//            )
             ->end()
             ->with('admin.common.dates', $this->getFormMdSuccessBoxArray(4))
             ->add(
@@ -609,7 +609,7 @@ final class PageAdmin extends AbstractBaseAdmin
             'summary',
             'description',
             'place',
-            'video',
+//            'video',
             'menuLevel1',
             'menuLevel2',
             'templateType',
