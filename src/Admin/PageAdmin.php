@@ -135,7 +135,7 @@ final class PageAdmin extends AbstractBaseAdmin
             ->add('showSocialNetworksSharingButtons')
             ->add('links')
             ->add('urlVimeo')
-            ->add('urlFlickr')
+//            ->add('urlFlickr')
             ->add(
                 'startDate',
                 DateFilter::class,
@@ -562,13 +562,13 @@ final class PageAdmin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
-            ->add(
-                'urlFlickr',
-                TextType::class,
-                [
-                    'required' => false,
-                ]
-            )
+//            ->add(
+//                'urlFlickr',
+//                TextType::class,
+//                [
+//                    'required' => false,
+//                ]
+//            )
             ->end()
             ->with('admin.common.calendar', $this->getFormMdSuccessBoxArray(4))
             ->add(
@@ -622,7 +622,7 @@ final class PageAdmin extends AbstractBaseAdmin
             'showSocialNetworksSharingButtons',
             'links',
             'urlVimeo',
-            'urlFlickr',
+//            'urlFlickr',
             'startDateString',
             'endDateString',
             'alwaysShowOnCalendarString',
