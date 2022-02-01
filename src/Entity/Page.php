@@ -10,6 +10,7 @@ use App\Entity\Traits\SmallImage1Trait;
 use App\Entity\Traits\SmallImage2Trait;
 use App\Entity\Traits\TranslationsTrait;
 use App\Enum\PageTemplateTypeEnum;
+use App\Validator\UrlVimeoConstraint;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -119,6 +120,7 @@ class Page extends AbstractBase
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Url()
+     * @UrlVimeoConstraint()
      */
     private ?string $urlVimeo = null;
 

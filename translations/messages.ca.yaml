@@ -651,3 +651,6 @@ enum:
     friday: 'DV'
     saturday: 'DS'
     sunday: 'DG'
+validator:
+  vimeo:
+    error: 'Error Vimeo'

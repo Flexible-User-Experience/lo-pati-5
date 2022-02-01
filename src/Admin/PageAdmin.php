@@ -560,6 +560,7 @@ final class PageAdmin extends AbstractBaseAdmin
                 TextType::class,
                 [
                     'required' => false,
+                    'help' => 'https://vimeo.com/XXXXXXXXXX',
                 ]
             )
 //            ->add(
