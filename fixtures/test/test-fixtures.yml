@@ -134,14 +134,6 @@ App\Entity\ConfigCalendarWorkingDay:
     name: 'Name <current()>'
     workingDayNumber: '<current()>'
 
-# ConfigFooterInformation
-App\Entity\ConfigFooterInformation:
-  configfooterinformation:
-    address: 'Address 1'
-    timetable: 'Timetable 1'
-    organizer: 'Organizer 1'
-    collaborator: 'Collaborator 1'
-
 # VisitingHours
 App\Entity\VisitingHours:
   visitinghours:
