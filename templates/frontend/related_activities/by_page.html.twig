@@ -1,6 +1,11 @@
 {% if related_activities | length > 0 %}
     <div class="container-fluid mt-5 py-5" style="background-color:#F0F8FA">
         <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h6 class="text-uppercase text-black mb-3"><img src="{{ asset('build/vectors/head_label_b.svg') }}" alt="{{ 'front.layout.other_activities' | trans }}" width="50" class="d-inline-block me-3"> {{ 'front.layout.other_activities' | trans }}</h6>
+                </div>
+            </div>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for page in related_activities %}
                     {% if page.highlitedImageField is defined and page.highlitedImageField is not null and page.highlitedImageField != '' and vich_uploader_asset(page, page.highlitedImageField) and page.highlitedImageFilter %}
