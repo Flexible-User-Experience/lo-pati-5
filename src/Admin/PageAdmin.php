@@ -25,6 +25,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -74,7 +75,7 @@ final class PageAdmin extends AbstractBaseAdmin
             ->add('summary')
             ->add('description')
             ->add('place')
-//            ->add('video')
+            ->add('video')
             ->add(
                 'menuLevel1',
                 null,
@@ -311,13 +312,14 @@ final class PageAdmin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
-//            ->add(
-//                'video',
-//                TextType::class,
-//                [
-//                    'required' => false,
-//                ]
-//            )
+            ->add(
+                'video',
+                UrlType::class,
+                [
+                    'required' => false,
+                    'help' => 'form.label_video_help',
+                ]
+            )
             ->end()
             ->with('admin.common.dates', $this->getFormMdSuccessBoxArray(4))
             ->add(
@@ -560,7 +562,7 @@ final class PageAdmin extends AbstractBaseAdmin
                 TextType::class,
                 [
                     'required' => false,
-                    'help' => 'https://vimeo.com/XXXXXXXXXX',
+                    'help' => 'form.label_url_vimeo_help',
                 ]
             )
 //            ->add(
@@ -610,7 +612,7 @@ final class PageAdmin extends AbstractBaseAdmin
             'summary',
             'description',
             'place',
-//            'video',
+            'video',
             'menuLevel1',
             'menuLevel2',
             'templateType',
