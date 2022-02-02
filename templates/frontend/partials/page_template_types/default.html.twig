@@ -145,3 +145,4 @@
         </div>
     {% endif %}
 </div>
+{{ render(controller('App\\Controller\\Frontend\\RelatedActivitiesController::byPage', {id: page.id})) }}

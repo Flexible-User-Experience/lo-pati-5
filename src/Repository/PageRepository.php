@@ -157,10 +157,13 @@ final class PageRepository extends ServiceEntityRepository
     {
         $qb = $this->createQueryBuilder('p')
             ->where('p.active = :active')
+            ->andWhere('p.id != :page')
             ->andWhere('p.menuLevel1 = :menu')
+            ->setParameter('page', $page->getId())
             ->setParameter('menu', $page->getMenuLevel1())
             ->setParameter('active', true)
             ->orderBy('p.publishDate', SortOrderTypeEnum::DESC)
+            ->setMaxResults(3)
         ;
         if ($page->getMenuLevel2()) {
             $qb

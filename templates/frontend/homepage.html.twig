@@ -16,17 +16,6 @@
                                         {% if slide.imageFileName is not null %}
                                             <div class="carousel-item{% if index == 0 %} active{% endif %}" data-bs-interval="7000">
                                                 <div class="row">
-                                                    {# legacy design template #}
-    {#                                                <div class="col-12">#}
-    {#                                                    {% if slide.link %}#}
-    {#                                                        <a href="{{ slide.link }}">#}
-    {#                                                            <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">#}
-    {#                                                        </a>#}
-    {#                                                    {% else %}#}
-    {#                                                        <img src="{{ vich_uploader_asset(slide, 'image1File') | imagine_filter('800x600') }}" class="d-block w-100" alt="{% if slide.imageAltName %}{{ slide.imageAltName }}{% else %}{{ slide.name }}{% endif %}">#}
-    {#                                                    {% endif %}#}
-    {#                                                </div>#}
-                                                    {# new design template #}
                                                     <div class="col-6">
                                                         <div style="background-color:{{ slide.menuLevel1.color }}" class="mini-colored-box-detail d-flex me-auto"></div>
                                                         <span class="h6 d-inline-flex py-2 ps-2 pe-5 mb-3 lp-bg-black text-white text-uppercase">{% if slide.menuLevel2 %}{{ slide.menuLevel2.name }}{% else %}{{ slide.menuLevel1.name }}{% endif %}</span>

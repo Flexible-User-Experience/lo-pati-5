@@ -4,6 +4,7 @@ namespace App\Controller\Frontend;
 
 use App\Repository\PageRepository;
 use App\Repository\VisitingHoursRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,6 +14,8 @@ final class VisitingHoursController extends AbstractController
 {
     /**
      * @Route("/visiting-hours/timetable", name="front_app_visiting_hours_timetable", priority=10)
+     *
+     * @throws NonUniqueResultException
      */
     public function timetable(VisitingHoursRepository $vhr, PageRepository $pr, ParameterBagInterface $pb): Response
     {
@@ -27,6 +30,8 @@ final class VisitingHoursController extends AbstractController
 
     /**
      * @Route("/visiting-hours/footer", name="front_app_visiting_hours_footer", priority=10)
+     *
+     * @throws NonUniqueResultException
      */
     public function footer(VisitingHoursRepository $vhr): Response
     {
