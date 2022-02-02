@@ -33,10 +33,10 @@
         <div class="col text-center">
             <h1>{{ page.name }}</h1>
             <h2 class="h3 text-muted">{{ page.summary }}</h2>
-            {% if page.realizationDateString or page.place or page.links or page.document1FileName or page.document2FileName %}
+            {% if page.realizationDateString or page.place or page.links or page.document1FileName or page.document2FileName or page.video %}
                 <div class="card-group my-4">
                     {% if page.realizationDateString %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.place or page.links or page.document1FileName or page.document2FileName %} border-end{% endif %}">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.place or page.links or page.document1FileName or page.document2FileName or page.video %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="far fa-calendar"></i></h5>
                                 <p class="card-text">{{ page.realizationDateString }}</p>
@@ -44,7 +44,7 @@
                         </div>
                     {% endif %}
                     {% if page.place %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.links or page.document1FileName or page.document2FileName %} border-end{% endif %}">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.links or page.document1FileName or page.document2FileName or page.video %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-map-marker-alt"></i></h5>
                                 <p class="card-text">{{ page.place }}</p>
@@ -52,7 +52,7 @@
                         </div>
                     {% endif %}
                     {% if page.links %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.document1FileName or page.document2FileName %} border-end{% endif %}">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.document1FileName or page.document2FileName or page.video %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-link"></i></h5>
                                 <p class="card-text">{{ page.links | raw }}</p>
@@ -60,7 +60,7 @@
                         </div>
                     {% endif %}
                     {% if page.document1FileName %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.document2FileName %} border-end{% endif %}">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.document2FileName or page.video %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-cloud-download-alt"></i></h5>
                                 <p class="card-text">
@@ -70,12 +70,22 @@
                         </div>
                     {% endif %}
                     {% if page.document2FileName %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.video %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-cloud-download-alt"></i></h5>
                                 <p class="card-text">
                                     <a href="{{ vich_uploader_asset(page, 'document2File') }}" download="{{ page.document2FileName }}" class="btn btn-outline-light">{% if page.titleDocument2 %}{{ page.titleDocument2 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
                                 </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if page.video %}
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0">
+                            <div class="card-body">
+                                <a href="{{ page.video }}" target="_blank" class="lp-c-light-grey text-decoration-none">
+                                    <h5 class="card-title"><i class="fas fa-video"></i></h5>
+                                    <p class="card-text">{{ 'list.label_video' | trans }}</p>
+                                </a>
                             </div>
                         </div>
                     {% endif %}
