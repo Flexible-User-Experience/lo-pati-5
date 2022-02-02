@@ -452,6 +452,7 @@ back:
 front:
   layout:
     title: 'Lo Pati'
+    share_buttons: 'Comparteix amb'
     search:
       engine: 'Buscador'
       no_results_found: 'Ho sentim, no s''ha trobat cap resultat.'

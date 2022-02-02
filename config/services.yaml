@@ -4,6 +4,7 @@ imports:
 
 parameters:
     default_locale:             '%env(string:DEFAULT_LOCALE)%'
+    add_this_api_key:           '%env(string:ADD_THIS_API_KEY)%'
     google_maps_api_key:        '%env(string:GOOGLE_MAPS_API_KEY)%'
     project_title:              '%env(string:PROJECT_TITLE)%'
     developer_name:             '%env(string:DEVELOPER_NAME)%'
