@@ -34,6 +34,14 @@
                     {{ page.description | raw }}
                 </div>
             </div>
+            {% if page.showSocialNetworksSharingButtons %}
+                <div class="row my-5">
+                    <div class="col">
+                        <p class="mb-1">{{ 'front.layout.share_buttons' | trans }}</p>
+                        <div class="addthis_inline_share_toolbox"></div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
         <div class="col-3" data-controller="calendar" data-calendar-month-value="{{ 'now' | date('n') }}" data-calendar-year-value="{{ 'now' | date('Y') }}">
             <div class="row">
