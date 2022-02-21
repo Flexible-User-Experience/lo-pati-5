@@ -1,4 +1,4 @@
-import { Controller } from 'stimulus';
+import { Controller } from '@hotwired/stimulus';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/lib/pdf';
 GlobalWorkerOptions.workerSrc = require('pdfjs-dist/build/pdf.worker.entry.js');
 

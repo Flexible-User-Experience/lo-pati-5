@@ -6,7 +6,7 @@ import './styles/app.scss';
 require('bootstrap');
 
 // Stimulus application
-import './bootstrap';
+import './stimulus_bootstrap';
 
 // Search engine autofocus
 let searchOffcanvas = document.getElementById('offcanvasSearch');
