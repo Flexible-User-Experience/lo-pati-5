@@ -1,6 +1,7 @@
 - name: fix symfony logs directory apache ownership
   file:
-    path: "{{ ansistrano_deploy_to }}/shared/var/log"
     recurse: yes
+    force: yes
+    path: "{{ ansistrano_deploy_to }}/shared/var/log"
     owner: "{{ remote_system_user }}"
     group: "{{ remote_system_group }}"

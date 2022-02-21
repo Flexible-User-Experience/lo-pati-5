@@ -1,8 +1,11 @@
+- name: compile yarn assets
+  shell: "chdir={{ ansistrano_release_path.stdout }}
+    SYMFONY_ENV={{ symfony_env }} yarn install && yarn encore production"
 - name: fix symfony web directory apache ownership
   file:
-    path: "{{ ansistrano_release_path.stdout }}/public"
     recurse: yes
     follow: yes
+    path: "{{ ansistrano_release_path.stdout }}/public"
     owner: "{{ remote_system_user }}"
     group: "{{ remote_system_group }}"
 - name: reload PHP FPM service
