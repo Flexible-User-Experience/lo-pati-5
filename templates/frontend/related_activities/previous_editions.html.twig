@@ -1,0 +1,40 @@
+{% if previous_editions | length > 0 %}
+    <div class="container-fluid mt-5 py-5" style="background-color:#F0F8FA">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h6 class="text-uppercase text-black mb-3"><img src="{{ asset('build/vectors/head_label_b.svg') }}" alt="{{ 'front.layout.previous_editions' | trans }}" width="50" class="d-inline-block me-3"> {{ 'front.layout.previous_editions' | trans }}</h6>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for page in previous_editions %}
+                    {% if page.highlitedImageField is defined and page.highlitedImageField is not null and page.highlitedImageField != '' and vich_uploader_asset(page, page.highlitedImageField) and page.highlitedImageFilter %}
+                        <div class="col">
+                            <div class="card border-0" style="background-color:transparent">
+                                <div style="background-color:{{ page.menuLevel1.color }}" class="position-relative">
+                                    <a href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}">
+                                        <img src="{{ vich_uploader_asset(page, page.highlitedImageField) | imagine_filter(page.highlitedImageFilter) }}" class="card-img-top rounded-0{% if page.isHighlitedImageSquared %} w-235-px{% endif %}" alt="{{ page.name }}">
+                                    </a>
+                                    <div class="position-absolute bottom-0 start-0">
+                                        <div style="background-color:{{ page.menuLevel1.color }}" class="mini-colored-box-detail d-flex me-auto"></div>
+                                        <div>
+                                            <span class="h6 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-black text-white text-uppercase">{% if page.menuLevel2 %}{{ page.menuLevel2.name }}{% else %}{{ page.menuLevel1.name }}{% endif %}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="background-color:{{ page.menuLevel1.color }}" class="d-flex ms-auto w-90 p-1"></div>
+                                <div class="card-body py-3 px-0">
+                                    {% if page.realizationDateString %}
+                                        <h6 class="card-subtitle text-muted mb-2"><i class="far fa-clock"></i> {{ page.realizationDateString }}</h6>
+                                    {% endif %}
+                                    <h5 class="card-title mb-4">{{ page.name }}</h5>
+                                    <a href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}" class="btn btn-outline-dark btn-sm rounded-0 border-2 text-uppercase">{{ 'front.homepage.read_more' | trans }} <i class="fas fa-chevron-right ms-5"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endif %}
