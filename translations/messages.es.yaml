@@ -234,6 +234,7 @@ form:
   label_color: 'Color'
   label_menu_level1: 'Menú primer nivel'
   label_menu_level2: 'Menú segundo nivel'
+  label_previous_editions: 'Ediciones anteriores'
   label_page: 'Página'
   label_title: 'Título'
   label_text_line_1: 'Linea 1'

@@ -5,6 +5,7 @@ namespace App\Admin;
 use App\Entity\AbstractBase;
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
+use App\Entity\Page;
 use App\Entity\Translation\PageTranslation;
 use App\Enum\PageTemplateTypeEnum;
 use App\Enum\SortOrderTypeEnum;
@@ -512,6 +513,18 @@ final class PageAdmin extends AbstractBaseAdmin
                     'choice_label' => 'hierarchyName',
                     'multiple' => false,
                     'required' => false,
+                ]
+            )
+            ->add(
+                'previousEditions',
+                EntityType::class,
+                [
+                    'class' => Page::class,
+                    'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByPublishDate(),
+                    'choice_label' => 'humanReadableIdentifier',
+                    'multiple' => true,
+                    'required' => false,
+                    'by_reference' => false,
                 ]
             )
             ->add(
