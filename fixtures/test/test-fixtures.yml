@@ -108,17 +108,25 @@ App\Entity\Page:
     showPublishDate: '<boolean()>'
     expirationDate: '<dateTime()>'
     menuLevel1: '@menulevel1'
+  page2:
+    name: 'Page 2'
+    description: '<sentence()>'
+    summary: '<sentence()>'
+    isFrontCover: '<boolean()>'
+    publishDate: '<(new \DateTime("2021-08-01"))>'
+    showPublishDate: '<boolean()>'
+    expirationDate: '<dateTime()>'
+    menuLevel1: '@menulevel1'
+    menuLevel2: '@submenulevel1'
 
-# Slideshow
-App\Entity\Slideshow:
-  slideshow1:
-    name: 'Slideshow 1'
-    image1FileName: 'imagefile1.png'
+# SlideshowPage
+App\Entity\SlideshowPage:
+  slideshowpage1:
+    name: 'Page 1'
+    description: '<sentence()>'
+    summary: '<sentence()>'
+    menuLevel1: '@menulevel1'
     position: 1
-  slideshow2:
-    name: 'Slideshow 2'
-    image1FileName: 'imagefile2.png'
-    position: 2
 
 # ConfigCalendarWorkingDay
 App\Entity\ConfigCalendarWorkingDay:
@@ -126,13 +134,12 @@ App\Entity\ConfigCalendarWorkingDay:
     name: 'Name <current()>'
     workingDayNumber: '<current()>'
 
-# ConfigFooterInformation
-App\Entity\ConfigFooterInformation:
-  configfooterinformation:
-    address: 'Address 1'
-    timetable: 'Timetable 1'
-    organizer: 'Organizer 1'
-    collaborator: 'Collaborator 1'
+# VisitingHours
+App\Entity\VisitingHours:
+  visitinghours:
+    name: 'Name 1'
+    textLine1: 'Timetable 1'
+    textLine2: 'Timetable 2'
 
 # User
 App\Entity\User:

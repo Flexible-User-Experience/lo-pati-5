@@ -76,31 +76,39 @@ class MenuBuilder
                 }
                 $item->setLinkAttribute('class', 'nav-link active');
                 $item->setLinkAttribute('aria-current', 'page');
+                $item->setAttribute('style', 'border-bottom:5px solid '.$ml1Item->getColor());
             } else {
                 $item->setLinkAttribute('class', 'nav-link');
+                $item->setAttribute('onmouseover', 'this.style.borderBottom=\'solid 5px '.$ml1Item->getColor().'\'');
+                $item->setAttribute('onmouseout', 'this.style.borderBottom=\'solid 5px var(--bs-body-bg)\'');
             }
             $item->setAttribute('class', 'nav-item text-uppercase');
             /** @var MenuLevel2 $ml2Item */
             foreach ($ml1Item->getMenuLevel2items() as $ml2Item) {
-                $submenu = $item->addChild(
-                    $ml2Item->getSlug(),
-                    [
-                        'label' => $ml2Item->getName(),
-                        'route' => 'front_app_menu_level_2',
-                        'routeParameters' => [
-                            'menu' => $ml1Item->getSlug(),
-                            'submenu' => $ml2Item->getSlug(),
-                        ],
-                    ]
-                );
-                if ($menuRoute && $submenuRoute && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute->getId() === $ml2Item->getId()) {
-                    $submenu->setCurrent(true);
-                    $submenu->setLinkAttribute('class', 'nav-link active');
-                    $submenu->setLinkAttribute('aria-current', 'page');
-                } else {
-                    $submenu->setLinkAttribute('class', 'nav-link');
+                if ($ml2Item->isActive()) {
+                    $submenu = $item->addChild(
+                        $ml2Item->getSlug(),
+                        [
+                            'label' => $ml2Item->getName(),
+                            'route' => 'front_app_menu_level_2',
+                            'routeParameters' => [
+                                'menu' => $ml1Item->getSlug(),
+                                'submenu' => $ml2Item->getSlug(),
+                            ],
+                        ]
+                    );
+                    if ($menuRoute && $submenuRoute && $menuRoute->getId() === $ml1Item->getId() && $submenuRoute->getId() === $ml2Item->getId()) {
+                        $submenu->setCurrent(true);
+                        $submenu->setLinkAttribute('class', 'nav-link active');
+                        $submenu->setLinkAttribute('aria-current', 'page');
+                        $submenu->setAttribute('style', 'border-bottom:5px solid '.$ml1Item->getColor().' !important');
+                    } else {
+                        $submenu->setLinkAttribute('class', 'nav-link');
+                        $submenu->setAttribute('onmouseover', 'this.style.borderBottom=\'solid 5px '.$ml1Item->getColor().'\'');
+                        $submenu->setAttribute('onmouseout', 'this.style.borderBottom=\'solid 5px var(--bs-body-bg)\'');
+                    }
+                    $submenu->setAttribute('class', 'nav-item');
                 }
-                $submenu->setAttribute('class', 'nav-item');
             }
         }
 

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\LegacyIdTrait;
 use App\Enum\LanguageEnum;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,6 +16,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class NewsletterUser extends AbstractBase
 {
+    use LegacyIdTrait;
+
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()

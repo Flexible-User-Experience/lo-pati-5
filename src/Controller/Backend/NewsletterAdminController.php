@@ -7,6 +7,7 @@ use App\Entity\NewsletterUser;
 use App\Enum\NewsletterStatusEnum;
 use App\Manager\MailManager;
 use App\Model\SendGridEmailToken;
+use Doctrine\Persistence\ManagerRegistry;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,7 +33,7 @@ class NewsletterAdminController extends CRUDController
         );
     }
 
-    public function testAction($id, MailManager $mm, string $emailAddressTest1, string $emailAddressTest2, string $emailAddressTest3): RedirectResponse
+    public function testAction($id, ManagerRegistry $mr, MailManager $mm, string $emailAddressTest1, string $emailAddressTest2, string $emailAddressTest3): RedirectResponse
     {
         /** @var Newsletter $newsletter */
         $newsletter = $this->admin->getObject($id);
@@ -57,14 +58,14 @@ class NewsletterAdminController extends CRUDController
             $this->addFlash('sonata_flash_error', $this->trans('back.flash.newsletter_email_test_failure'));
         } else {
             $newsletter->setTested(true);
-            $this->getDoctrine()->getManager()->flush();
+            $mr->getManager()->flush();
             $this->addFlash('sonata_flash_success', $this->trans('back.flash.newsletter_email_test_success', ['%emails%' => $emailAddressTest1.', '.$emailAddressTest2.' '.$this->trans('mail.and').' '.$emailAddressTest3]));
         }
 
         return new RedirectResponse($this->admin->generateUrl('list'));
     }
 
-    public function sendAction($id, MailManager $mm): RedirectResponse
+    public function sendAction($id, ManagerRegistry $mr, MailManager $mm): RedirectResponse
     {
         /** @var Newsletter $newsletter */
         $newsletter = $this->admin->getObject($id);
@@ -80,9 +81,9 @@ class NewsletterAdminController extends CRUDController
             ]
         );
         if ($newsletter->getGroup()) {
-            $users = $this->getDoctrine()->getRepository(NewsletterUser::class)->getEnabledByGroup($newsletter->getGroup())->getQuery()->getResult();
+            $users = $mr->getRepository(NewsletterUser::class)->getEnabledByGroup($newsletter->getGroup())->getQuery()->getResult();
         } else {
-            $users = $this->getDoctrine()->getRepository(NewsletterUser::class)->getAllEnabled()->getQuery()->getResult();
+            $users = $mr->getRepository(NewsletterUser::class)->getAllEnabled()->getQuery()->getResult();
         }
         $emailsDestinationList = [];
         /** @var NewsletterUser $user */
@@ -94,7 +95,7 @@ class NewsletterAdminController extends CRUDController
             $this->addFlash('sonata_flash_error', $this->trans('back.flash.newsletter_email_failure'));
         } else {
             $newsletter->setStatus(NewsletterStatusEnum::SENDED);
-            $this->getDoctrine()->getManager()->flush();
+            $mr->getManager()->flush();
             $this->addFlash('sonata_flash_success', $this->trans('back.flash.newsletter_email_success'));
         }
 

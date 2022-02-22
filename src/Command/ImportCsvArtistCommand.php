@@ -36,10 +36,11 @@ final class ImportCsvArtistCommand extends AbstractBaseCommand
             if (count($data) >= 17) {
                 $serachedName = $this->readColumn(1, $data);
                 $artist = $ar->findOneBy([
-                    'name' => $serachedName,
+                    'legacyId' => (int) $this->readColumn(0, $data),
                 ]);
                 if (!$artist) {
                     $artist = new Artist();
+                    $artist->setLegacyId((int) $this->readColumn(0, $data));
                     ++$newRecords;
                 }
                 $artist

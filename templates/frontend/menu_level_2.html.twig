@@ -20,7 +20,7 @@
                     <div class="col">
                         <h1>{{ submenu }} <span class="text-black-50">· {{ menu }}</span></h1>
                         <hr>
-                        <pre>P_ID# {% if submenu.page %}{{ submenu.page.id }} · PTT# '{{ submenu.page.templateTypeTransString | trans }}'{% else%}{{ constant('App\\Entity\\AbstractBase::DEFAULT_EMPTY_STRING') }}{% endif%}</pre>
+                        <pre>P_ID# {% if submenu.page %}{{ submenu.page.id }} · PTT# '{{ submenu.page.templateTypeTransString | trans }}'{% else %}{{ constant('App\\Entity\\AbstractBase::DEFAULT_EMPTY_STRING') }}{% endif %}</pre>
                         <pre>is_irradiador: {% if is_irradiador %}yes{% else %}no{% endif %}</pre>
                     </div>
                 </div>

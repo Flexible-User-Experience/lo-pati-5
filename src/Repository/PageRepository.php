@@ -152,4 +152,26 @@ final class PageRepository extends ServiceEntityRepository
             ->orderBy('p.publishDate', SortOrderTypeEnum::DESC)
         ;
     }
+
+    public function getActiveItemsRelatedByMenuLevel2OrMenuLeve1SortedByPublishDate(Page $page): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->where('p.active = :active')
+            ->andWhere('p.id != :page')
+            ->andWhere('p.menuLevel1 = :menu')
+            ->setParameter('page', $page->getId())
+            ->setParameter('menu', $page->getMenuLevel1())
+            ->setParameter('active', true)
+            ->orderBy('p.publishDate', SortOrderTypeEnum::DESC)
+            ->setMaxResults(3)
+        ;
+        if ($page->getMenuLevel2()) {
+            $qb
+                ->andWhere('p.menuLevel2 = :submenu')
+                ->setParameter('submenu', $page->getMenuLevel2())
+            ;
+        }
+
+        return $qb;
+    }
 }

@@ -11,12 +11,17 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/var/test_database.db
 /var/csv/imports/*
 !/var/csv/imports/.gitkeep
+!.gitkeep
+!var/log/keepit.txt
+!var/log/.gitkeep
+!var/log/.gitignore
+/var/log/test.log
+/var/log/dev.log
+/var/log/prod.log
 /var/cache/*
-/var/log/*
-!/var/log/.gitkeep
+/var/test_database.db
 /vendor/
 ###< symfony/framework-bundle ###
 
@@ -26,8 +31,7 @@
 ###< symfony/phpunit-bridge ###
 
 ###> liip/imagine-bundle ###
-/public/media/cache/*
-!/public/media/cache/.gitkeep
+/public/media/cache/
 ###< liip/imagine-bundle ###
 
 ###> vich/uploader-bundle ###
@@ -41,6 +45,8 @@
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
+/public/build/
 npm-debug.log
 yarn-error.log
+.yarnclean
 ###< symfony/webpack-encore-bundle ###

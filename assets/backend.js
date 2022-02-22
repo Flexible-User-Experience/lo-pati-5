@@ -1,5 +1,5 @@
 // Stimulus application
-import './bootstrap';
+import './stimulus_bootstrap';
 
 // start PDF JS library
 import jQuery from 'jquery';

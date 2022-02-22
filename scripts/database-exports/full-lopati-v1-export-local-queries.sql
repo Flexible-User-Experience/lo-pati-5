@@ -1,14 +1,5 @@
 -- Local exports to CSV
 
-SELECT S.*
-INTO OUTFILE '/tmp/slideshow.csv'
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-ESCAPED BY '\\'
-LINES TERMINATED BY '\r\n'
-FROM lopati.slider_image S
-ORDER BY S.id;
-
 SELECT A.*
 INTO OUTFILE '/tmp/archive.csv'
 FIELDS TERMINATED BY ','
@@ -55,7 +46,7 @@ LINES TERMINATED BY '\r\n'
 FROM lopati.categoria_translations CT
 ORDER BY CT.id;
 
-SELECT SC.*, C.nom AS categoria, P.data_publicacio, P.titol
+SELECT SC.*, C.nom AS categoria, P.data_publicacio, P.titol, C.id
 INTO OUTFILE '/tmp/menulevel2.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
@@ -75,7 +66,7 @@ LINES TERMINATED BY '\r\n'
 FROM lopati.subcategoria_translations SCT
 ORDER BY SCT.id;
 
-SELECT P.*, C.nom AS categoria, SC.nom AS subcategoria
+SELECT P.*, C.nom AS categoria, SC.nom AS subcategoria, C.id, SC.id
 INTO OUTFILE '/tmp/page.csv'
 FIELDS TERMINATED BY ','
 OPTIONALLY ENCLOSED BY '"'
@@ -151,21 +142,3 @@ ESCAPED BY '\\'
 LINES TERMINATED BY '\r\n'
 FROM lopati.ConfiguracioDiesLaboralsAgenda C
 ORDER BY C.id;
-
-SELECT C.*
-INTO OUTFILE '/tmp/configfooterinformation.csv'
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-ESCAPED BY '\\'
-LINES TERMINATED BY '\r\n'
-FROM lopati.Configuracio C
-ORDER BY C.id;
-
-SELECT CT.*
-INTO OUTFILE '/tmp/configfooterinformation_translations.csv'
-FIELDS TERMINATED BY ','
-OPTIONALLY ENCLOSED BY '"'
-ESCAPED BY '\\'
-LINES TERMINATED BY '\r\n'
-FROM lopati.configuracio_translations CT
-ORDER BY CT.id;

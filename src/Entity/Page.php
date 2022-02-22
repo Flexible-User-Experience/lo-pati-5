@@ -4,11 +4,13 @@ namespace App\Entity;
 
 use App\Entity\Traits\Document1Trait;
 use App\Entity\Traits\Document2Trait;
+use App\Entity\Traits\LegacyIdTrait;
 use App\Entity\Traits\SlugTrait;
 use App\Entity\Traits\SmallImage1Trait;
 use App\Entity\Traits\SmallImage2Trait;
 use App\Entity\Traits\TranslationsTrait;
 use App\Enum\PageTemplateTypeEnum;
+use App\Validator\UrlVimeoConstraint;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -31,6 +33,7 @@ class Page extends AbstractBase
 {
     use Document1Trait;
     use Document2Trait;
+    use LegacyIdTrait;
     use SlugTrait;
     use SmallImage1Trait;
     use SmallImage2Trait;
@@ -117,6 +120,7 @@ class Page extends AbstractBase
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Url()
+     * @UrlVimeoConstraint()
      */
     private ?string $urlVimeo = null;
 
@@ -204,6 +208,24 @@ class Page extends AbstractBase
     private ?MenuLevel2 $menuLevel2 = null;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="previousEditionParent")
+     * @ORM\OrderBy({"publishDate": "ASC"})
+     */
+    private ?Collection $previousEditions;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Page", inversedBy="previousEditions")
+     */
+    private ?Page $previousEditionParent;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\PageImage", mappedBy="page", cascade={"persist", "remove"})
+     * @Assert\Valid()
+     * @ORM\OrderBy({"position": "ASC"})
+     */
+    private ?Collection $images;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Translation\PageTranslation", mappedBy="object", cascade={"persist", "remove"})
      * @Assert\Valid()
      */
@@ -211,6 +233,8 @@ class Page extends AbstractBase
 
     public function __construct()
     {
+        $this->previousEditions = new ArrayCollection();
+        $this->images = new ArrayCollection();
         $this->translations = new ArrayCollection();
     }
 
@@ -436,6 +460,21 @@ class Page extends AbstractBase
         return $this->urlVimeo;
     }
 
+    public function getUrlVimeoCode(): string
+    {
+        $result = '';
+        if ($this->getUrlVimeo() && strlen($this->getUrlVimeo()) > 18) {
+            $result = substr($this->getUrlVimeo(), 18);
+        }
+
+        return $result;
+    }
+
+    public function getUrlVimeoIframeString(): string
+    {
+        return '<iframe src="https://player.vimeo.com/video/'.$this->getUrlVimeoCode().'" width="800" height="450" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    }
+
     public function setUrlVimeo(?string $urlVimeo): self
     {
         $this->urlVimeo = $urlVimeo;
@@ -603,9 +642,84 @@ class Page extends AbstractBase
         return $this;
     }
 
+    public function getPreviousEditions(): ArrayCollection | Collection | null
+    {
+        return $this->previousEditions;
+    }
+
+    public function setPreviousEditions(ArrayCollection | Collection | null $previousEditions): self
+    {
+        $this->previousEditions = $previousEditions;
+
+        return $this;
+    }
+
+    public function addPreviousEdition(Page $previousEdition): self
+    {
+        if (!$this->previousEditions->contains($previousEdition)) {
+            $this->previousEditions->add($previousEdition);
+            $previousEdition->setPreviousEditionParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removePreviousEdition(Page $previousEdition): self
+    {
+        if ($this->previousEditions->contains($previousEdition)) {
+            $this->previousEditions->removeElement($previousEdition);
+            $previousEdition->setPreviousEditionParent(null);
+        }
+
+        return $this;
+    }
+
+    public function getPreviousEditionParent(): ?Page
+    {
+        return $this->previousEditionParent;
+    }
+
+    public function setPreviousEditionParent(?Page $previousEditionParent): self
+    {
+        $this->previousEditionParent = $previousEditionParent;
+
+        return $this;
+    }
+
     public function humanReadableIdentifier(): string
     {
         return $this->getId() ? '#'.$this->getId().AbstractBase::DEFAULT_SEPARATOR.$this->getPublishDateString().AbstractBase::DEFAULT_SEPARATOR.$this->getName() : self::DEFAULT_EMPTY_STRING;
+    }
+
+    public function getImages(): ?Collection
+    {
+        return $this->images;
+    }
+
+    public function setImages(?Collection $images): self
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    public function addImage(PageImage $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setPage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(PageImage $image): self
+    {
+        if ($this->images->contains($image)) {
+            $this->images->removeElement($image);
+        }
+
+        return $this;
     }
 
     public function __toString(): string

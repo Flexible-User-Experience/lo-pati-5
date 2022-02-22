@@ -1,4 +1,13 @@
-{% if page.imageFileName %}
+{% if page.urlVimeo %}
+    <div class="container-fluid" style="background-image:url('{{ asset('build/images/page_detail_header_backgroung.jpg') }}');background-size:cover;">
+        <div class="row">
+            <div class="text-center">
+                {{ page.urlVimeoIframeString | raw }}
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% if page.imageFileName and not page.urlVimeo %}
     <div class="container-fluid" style="background-image:url('{{ asset('build/images/page_detail_header_backgroung.jpg') }}');background-size:cover;">
         <div class="row">
             <div class="text-center">
@@ -12,9 +21,9 @@
         <div class="col">
             <div class="position-relative">
                 <div class="position-absolute top-50 start-50 translate-middle">
-                    <div class="mini-colored-box-detail d-flex me-auto {{ page.menuLevel1.cssBackgroudClassColor }}"></div>
+                    <div style="background-color:{{ page.menuLevel1.color }}" class="mini-colored-box-detail d-flex me-auto"></div>
                     <div>
-                        <span class="h6 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-black text-white text-uppercase">{{ page.menuLevel1.name }}</span>
+                        <span class="h6 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-black text-white text-uppercase">{% if page.menuLevel2 %}{{ page.menuLevel2.name }}{% else %}{{ page.menuLevel1.name }}{% endif %}</span>
                     </div>
                 </div>
             </div>
@@ -24,10 +33,10 @@
         <div class="col text-center">
             <h1>{{ page.name }}</h1>
             <h2 class="h3 text-muted">{{ page.summary }}</h2>
-            {% if page.realizationDateString or page.place or page.links or page.document1FileName or page.document2FileName %}
+            {% if page.realizationDateString or page.place or page.links or page.document1FileName or page.document2FileName or page.video %}
                 <div class="card-group my-4">
                     {% if page.realizationDateString %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.place or page.links or page.document1FileName or page.document2FileName %} border-end{% endif %}">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.place or page.links or page.document1FileName or page.document2FileName or page.video %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="far fa-calendar"></i></h5>
                                 <p class="card-text">{{ page.realizationDateString }}</p>
@@ -35,7 +44,7 @@
                         </div>
                     {% endif %}
                     {% if page.place %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.links or page.document1FileName or page.document2FileName %} border-end{% endif %}">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.links or page.document1FileName or page.document2FileName or page.video %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-map-marker-alt"></i></h5>
                                 <p class="card-text">{{ page.place }}</p>
@@ -43,7 +52,7 @@
                         </div>
                     {% endif %}
                     {% if page.links %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.document1FileName or page.document2FileName %} border-end{% endif %}">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.document1FileName or page.document2FileName or page.video %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-link"></i></h5>
                                 <p class="card-text">{{ page.links | raw }}</p>
@@ -51,22 +60,32 @@
                         </div>
                     {% endif %}
                     {% if page.document1FileName %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.document2FileName %} border-end{% endif %}">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.document2FileName or page.video %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-cloud-download-alt"></i></h5>
                                 <p class="card-text">
-                                    <a href="{{ vich_uploader_asset(page, 'document1File') }}" download="{{ page.document1FileName }}" class="btn btn-outline-primary">{% if page.titleDocument1 %}{{ page.titleDocument1 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
+                                    <a href="{{ vich_uploader_asset(page, 'document1File') }}" download="{{ page.document1FileName }}" class="btn btn-outline-light">{% if page.titleDocument1 %}{{ page.titleDocument1 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
                                 </p>
                             </div>
                         </div>
                     {% endif %}
                     {% if page.document2FileName %}
-                        <div class="card text-center lp-c-light-grey rounded-0 border-0">
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0{% if page.video %} border-end{% endif %}">
                             <div class="card-body">
                                 <h5 class="card-title"><i class="fas fa-cloud-download-alt"></i></h5>
                                 <p class="card-text">
-                                    <a href="{{ vich_uploader_asset(page, 'document2File') }}" download="{{ page.document2FileName }}" class="btn btn-outline-primary">{% if page.titleDocument2 %}{{ page.titleDocument2 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
+                                    <a href="{{ vich_uploader_asset(page, 'document2File') }}" download="{{ page.document2FileName }}" class="btn btn-outline-light">{% if page.titleDocument2 %}{{ page.titleDocument2 }}{% else %}{{ 'vich_uploader.link.download' | trans }}{% endif %}</a>
                                 </p>
+                            </div>
+                        </div>
+                    {% endif %}
+                    {% if page.video %}
+                        <div class="card text-center lp-c-light-grey rounded-0 border-0">
+                            <div class="card-body">
+                                <a href="{{ page.video }}" target="_blank" class="lp-c-light-grey text-decoration-none">
+                                    <h5 class="card-title"><i class="fas fa-video"></i></h5>
+                                    <p class="card-text">{{ 'list.label_video' | trans }}</p>
+                                </a>
                             </div>
                         </div>
                     {% endif %}
@@ -80,4 +99,51 @@
             {{ page.description | raw }}
         </div>
     </div>
+    {% if page.showSocialNetworksSharingButtons %}
+        <div class="row my-5">
+            <div class="col">
+                <p class="mb-1">{{ 'front.layout.share_buttons' | trans }}</p>
+                <div class="addthis_inline_share_toolbox"></div>
+            </div>
+        </div>
+    {% endif %}
+    {% if page.images | length > 0 %}
+        <div class="row my-5 justify-content-center">
+            <div class="col-10">
+                <p class="text-center">
+                    <button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-images-section" aria-expanded="false" aria-controls="collapse-images-section">
+                        {{ 'front.page.images' | trans }}
+                    </button>
+                </p>
+                <div class="collapse show" id="collapse-images-section">
+                    <div class="card card-body border-0">
+                        <div id="carousel-images-section" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                {% for image in page.images %}
+                                    <button type="button" data-bs-target="#carousel-images-section" data-bs-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %} aria-current="true" aria-label="{{ 'front.page.slide' | trans }} {{ loop.index0 }}"></button>
+                                {% endfor %}
+                            </div>
+                            <div class="carousel-inner">
+                                {% for image in page.images %}
+                                    <div class="carousel-item{% if loop.first %} active{% endif %}">
+                                        <img src="{{ vich_uploader_asset(image, 'image1File') | imagine_filter('800x450') }}" class="d-block w-100" alt="{% if image.imageAltName %}{{ image.imageAltName }}{% else %}{{ 'front.page.slide' | trans }}{% endif %}">
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-images-section" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">{{ 'front.page.previous' | trans }}</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-images-section" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">{{ 'front.page.next' | trans }}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
 </div>
+{{ render(controller('App\\Controller\\Frontend\\RelatedActivitiesController::previousEditionsByPage', {id: page.id})) }}
+{{ render(controller('App\\Controller\\Frontend\\RelatedActivitiesController::relatedActivitiesByPage', {id: page.id})) }}

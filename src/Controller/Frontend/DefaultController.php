@@ -8,7 +8,7 @@ use App\Entity\Page;
 use App\Repository\ArchiveRepository;
 use App\Repository\ArtistRepository;
 use App\Repository\PageRepository;
-use App\Repository\SlideshowRepository;
+use App\Repository\SlideshowPageRepository;
 use FOS\ElasticaBundle\Manager\RepositoryManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
@@ -24,9 +24,9 @@ final class DefaultController extends AbstractController
     /**
      * @Route("/", name="front_app_homepage")
      */
-    public function index(Request $request, SlideshowRepository $sr, PageRepository $pr, PaginatorInterface $pi): Response
+    public function index(Request $request, SlideshowPageRepository $spr, PageRepository $pr, PaginatorInterface $pi): Response
     {
-        $slides = $sr->getEnabledSortedByPositionAndName()->getQuery()->getResult();
+        $slides = $spr->getEnabledSortedByPositionAndName()->getQuery()->getResult();
         $highlightedPages = $pi->paginate(
             $pr->getHomepageHighlighted()->getQuery(),
             $request->query->getInt('page', 1),

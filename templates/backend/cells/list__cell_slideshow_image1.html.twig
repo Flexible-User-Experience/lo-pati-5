@@ -1,0 +1,9 @@
+{% extends "@SonataAdmin/CRUD/base_list_field.html.twig" %}
+
+{% block field %}
+    {% if object.imageFileName %}
+        <img src="{{ vich_uploader_asset(object, 'imageFile') | imagine_filter('60x60') }}" alt="{{ object.name }}">
+    {% else %}
+        {{ constant('App\\Entity\\AbstractBase::DEFAULT_EMPTY_STRING') }}
+    {% endif %}
+{% endblock %}

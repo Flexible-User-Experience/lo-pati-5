@@ -19,7 +19,6 @@ class SuperAdminUserControllerTest extends WebTestCase
      */
     public function testHomepage(string $url): void
     {
-
         $this->client->request('GET', $url);
         self::assertResponseIsSuccessful();
     }
@@ -34,6 +33,10 @@ class SuperAdminUserControllerTest extends WebTestCase
             ['/admin/app/menulevel2/list'],
             ['/admin/app/menulevel2/create'],
             ['/admin/app/menulevel2/1/edit'],
+            ['/admin/app/slideshowpage/list'],
+            ['/admin/app/slideshowpage/create'],
+            ['/admin/app/slideshowpage/1/edit'],
+            ['/admin/app/slideshowpage/1/delete'],
             ['/admin/app/page/list'],
             ['/admin/app/page/create'],
             ['/admin/app/page/1/edit'],
@@ -61,6 +64,8 @@ class SuperAdminUserControllerTest extends WebTestCase
             ['/admin/app/archive/list'],
             ['/admin/app/archive/create'],
             ['/admin/app/archive/1/edit'],
+            ['/admin/app/visitinghours/list'],
+            ['/admin/app/visitinghours/1/edit'],
             ['/admin/app/configcalendarworkingday/list'],
             ['/admin/app/user/list'],
             ['/admin/app/user/create'],
@@ -86,6 +91,8 @@ class SuperAdminUserControllerTest extends WebTestCase
             ['/admin/app/menulevel2/9/edit'],
             ['/admin/app/menulevel2/1/show'],
             ['/admin/app/menulevel2/1/delete'],
+            ['/admin/app/slideshowpage/9/edit'],
+            ['/admin/app/slideshowpage/1/show'],
             ['/admin/app/page/9/edit'],
             ['/admin/app/page/1/show'],
             ['/admin/app/newslettergroup/9/edit'],
@@ -101,6 +108,10 @@ class SuperAdminUserControllerTest extends WebTestCase
             ['/admin/app/archive/9/edit'],
             ['/admin/app/archive/1/show'],
             ['/admin/app/archive/1/delete'],
+            ['/admin/app/visitinghours/create'],
+            ['/admin/app/visitinghours/9/edit'],
+            ['/admin/app/visitinghours/1/show'],
+            ['/admin/app/visitinghours/1/delete'],
             ['/admin/app/configcalendarworkingday/create'],
             ['/admin/app/configcalendarworkingday/9/edit'],
             ['/admin/app/configcalendarworkingday/1/show'],

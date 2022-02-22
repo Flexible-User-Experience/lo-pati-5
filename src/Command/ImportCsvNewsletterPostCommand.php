@@ -41,15 +41,17 @@ final class ImportCsvNewsletterPostCommand extends AbstractBaseCommand
                 }
                 $serachedNewsletterOldDatabaseVersionId = (int) $this->readColumn(15, $data);
                 $newsletter = $nr->findOneBy([
-                    'oldDatabaseVersionId' => $serachedNewsletterOldDatabaseVersionId,
+                    'legacyId' => $serachedNewsletterOldDatabaseVersionId,
                 ]);
                 if ($newsletter) {
                     $serachedNewsletterPostOldDatabaseVersionId = (int) $this->readColumn(0, $data);
-                    $newsletterPost = $npr->find($serachedNewsletterPostOldDatabaseVersionId);
+                    $newsletterPost = $npr->findOneBy([
+                        'legacyId' => $serachedNewsletterPostOldDatabaseVersionId,
+                    ]);
                     if (!$newsletterPost) {
                         $newsletterPost = new NewsletterPost();
                         $newsletterPost
-                            ->setOldDatabaseVersionId($serachedNewsletterPostOldDatabaseVersionId)
+                            ->setLegacyId($serachedNewsletterPostOldDatabaseVersionId)
                             ->setNewsletter($newsletter)
                         ;
                         $this->em->persist($newsletterPost);
@@ -86,7 +88,7 @@ final class ImportCsvNewsletterPostCommand extends AbstractBaseCommand
                     }
                 } else {
                     // error no related newsletter found
-                    $output->writeln('No Newsletter with subject "'.$serachedNewsletterSubject.'" <error>ERROR FOUND</error>');
+                    $output->writeln('No Newsletter <error>ERROR FOUND</error>');
                     ++$errors;
                 }
             } else {

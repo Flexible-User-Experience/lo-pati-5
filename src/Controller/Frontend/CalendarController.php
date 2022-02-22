@@ -42,6 +42,7 @@ final class CalendarController extends AbstractController
             'year' => $year,
             'days_matrix' => $daysMatrix,
             'hits_matrix' => $cm->getHitDaysMatrix($month, $year),
+            'today' => (new DateTimeImmutable())->format(AbstractBase::DATABASE_IMPORT_DATE_FORMAT),
         ]);
     }
 

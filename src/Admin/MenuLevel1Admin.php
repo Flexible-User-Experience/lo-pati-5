@@ -12,6 +12,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -52,6 +53,14 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
     protected function configureListFields(ListMapper $list): void
     {
         $list
+            ->add(
+                'color',
+                null,
+                [
+                    'editable' => true,
+                    'template' => 'backend/cells/list__cell_menu_level1_color.html.twig',
+                ]
+            )
             ->add(
                 'name',
                 null,
@@ -137,6 +146,13 @@ final class MenuLevel1Admin extends AbstractBaseAdmin
             )
             ->end()
             ->with('admin.common.controls', $this->getFormMdSuccessBoxArray(3))
+            ->add(
+                'color',
+                ColorType::class,
+                [
+                    'required' => true,
+                ]
+            )
             ->add(
                 'position',
                 NumberType::class,

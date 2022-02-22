@@ -1,5 +1,7 @@
 stof_doctrine_extensions:
-    default_locale: '%default_locale%'
+    persist_default_translation: false
+    translation_fallback:        true
+    default_locale:              '%default_locale%'
     orm:
         default:
             timestampable:  true

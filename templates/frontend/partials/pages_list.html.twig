@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-4">
                     <div class="card border-0">
-                        <div class="position-relative {{ page.menuLevel1.cssBackgroudClassColor }}">
+                        <div style="background-color:{{ page.menuLevel1.color }}" class="position-relative">
                             {% if is_archive_view %}
                                 <a href="{{ path('front_app_archive_year_page_detail', {'menu': page.menuLevel1.slug, 'year': archive.year, 'slug': page.slug, 'id': page.id}) }}">
                                     <img src="{{ vich_uploader_asset(page, page.highlitedImageField) | imagine_filter(page.highlitedImageFilter) }}" class="card-img-top rounded-0{% if page.isHighlitedImageSquared %} w-235-px{% endif %}" alt="{{ page.name }}">
@@ -15,13 +15,13 @@
                                 </a>
                             {% endif %}
                             <div class="position-absolute bottom-0 start-0">
-                                <div class="mini-colored-box-detail d-flex me-auto {{ page.menuLevel1.cssBackgroudClassColor }}"></div>
+                                <div style="background-color:{{ page.menuLevel1.color }}" class="mini-colored-box-detail d-flex me-auto"></div>
                                 <div>
-                                    <span class="h6 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-black text-white text-uppercase">{{ page.menuLevel1.name }}</span>
+                                    <span class="h6 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-black text-white text-uppercase">{% if page.menuLevel2 %}{{ page.menuLevel2.name }}{% else %}{{ page.menuLevel1.name }}{% endif %}</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-flex ms-auto w-90 p-1 {{ page.menuLevel1.cssBackgroudClassColor }}"></div>
+                        <div style="background-color:{{ page.menuLevel1.color }}" class="d-flex ms-auto w-90 p-1"></div>
                     </div>
                 </div>
                 <div class="col-8">

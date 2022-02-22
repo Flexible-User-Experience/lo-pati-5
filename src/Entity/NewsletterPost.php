@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use App\Entity\Traits\Image1Trait;
-use App\Entity\Traits\OldDatabaseVersionIdTrait;
+use App\Entity\Traits\LegacyIdTrait;
 use App\Entity\Traits\PositionTrait;
 use App\Enum\NewsletterTypeEnum;
 use DateTimeInterface;
@@ -20,7 +20,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class NewsletterPost extends AbstractBase
 {
     use Image1Trait;
-    use OldDatabaseVersionIdTrait;
+    use LegacyIdTrait;
     use PositionTrait;
 
     /**

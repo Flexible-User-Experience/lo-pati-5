@@ -7,6 +7,7 @@ use App\Entity\NewsletterUser;
 use App\Form\Type\NewsletterSubscriptionFormType;
 use App\Manager\MailManager;
 use App\Repository\NewsletterUserRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -45,7 +46,7 @@ final class NewsletterController extends AbstractController
     /**
      * @Route("/newsletter/subscribe", name="front_app_newsletter_subscribe_form", priority=10)
      */
-    public function form(Request $request, NewsletterUserRepository $nur, MailManager $mm, TranslatorInterface $translator): Response
+    public function form(Request $request, ManagerRegistry $mr, NewsletterUserRepository $nur, MailManager $mm, TranslatorInterface $translator): Response
     {
         $newsletterUser = new NewsletterUser();
         $newsletterSubscriptionForm = $this->createForm(NewsletterSubscriptionFormType::class, $newsletterUser, [
@@ -71,8 +72,8 @@ final class NewsletterController extends AbstractController
                 ->setToken($newsletterUser->getToken())
                 ->setActive(false)
             ;
-            $this->getDoctrine()->getManager()->persist($searchedNewsletterUser);
-            $this->getDoctrine()->getManager()->flush();
+            $mr->getManager()->persist($searchedNewsletterUser);
+            $mr->getManager()->flush();
             $subject = $translator->trans('newsletter.email.confirmation.confirmation');
             $mm->sendEmail(
                 $subject,
@@ -119,7 +120,7 @@ final class NewsletterController extends AbstractController
     /**
      * @Route("/newsletter/subscribe/{token}", name="front_app_newsletter_subscribe", priority=10)
      */
-    public function subscribe(string $token, NewsletterUserRepository $nur, MailManager $mm, TranslatorInterface $translator): RedirectResponse
+    public function subscribe(string $token, ManagerRegistry $mr, NewsletterUserRepository $nur, MailManager $mm, TranslatorInterface $translator): RedirectResponse
     {
         $newsletterUser = $nur->findOneBy([
             'token' => $token,
@@ -128,7 +129,7 @@ final class NewsletterController extends AbstractController
             throw $this->createNotFoundException();
         }
         $newsletterUser->setActive(true);
-        $this->getDoctrine()->getManager()->flush();
+        $mr->getManager()->flush();
         $subject = $translator->trans('newsletter.email.activated.subject');
         $mm->sendEmail(
             $subject,
@@ -152,7 +153,7 @@ final class NewsletterController extends AbstractController
     /**
      * @Route("/newsletter/unsubscribe/{token}", name="front_app_newsletter_unsubscribe", priority=10)
      */
-    public function unsubscribe(string $token, NewsletterUserRepository $nur, TranslatorInterface $translator): RedirectResponse
+    public function unsubscribe(string $token, ManagerRegistry $mr, NewsletterUserRepository $nur, TranslatorInterface $translator): RedirectResponse
     {
         $newsletterUser = $nur->findOneBy([
             'token' => $token,
@@ -160,8 +161,8 @@ final class NewsletterController extends AbstractController
         if (!$newsletterUser) {
             throw $this->createNotFoundException();
         }
-        $this->getDoctrine()->getManager()->remove($newsletterUser);
-        $this->getDoctrine()->getManager()->flush();
+        $mr->getManager()->remove($newsletterUser);
+        $mr->getManager()->flush();
         $this->addFlash('success', $translator->trans('newsletter.flash.unsubscribe_success'));
 
         return $this->redirectToRoute('front_app_homepage');

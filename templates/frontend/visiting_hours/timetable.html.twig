@@ -1,0 +1,18 @@
+{% if visiting_hours %}
+    <h5 class="card-title mt-4 lp-c-ultra-light-grey">{{ visiting_hours.name }}</h5>
+    <div class="row">
+        <div class="col">
+            <p class="card-text">
+                <strong>{{ visiting_hours.textLine1 }}</strong>
+            </p>
+        </div>
+        <div class="col">
+            <p class="card-text">
+                <strong>{{ visiting_hours.textLine2 }}</strong>
+            </p>
+        </div>
+    </div>
+    <a href="{{ path('front_app_menu_level_2', {menu: contact_page.menuLevel1.slug, submenu: contact_page.menuLevel2.slug}) }}" class="float-end text-white btn btn-outline-light btn-sm rounded-0 border-2 text-uppercase">
+        {{ 'front.layout.footer.timetable_ab' | trans }} <i class="fas fa-chevron-right ms-5"></i>
+    </a>
+{% endif %}

@@ -3,7 +3,9 @@ liip_imagine:
     loaders:
         default:
             filesystem:
-                locator: filesystem_insecure
+                locator: 'filesystem_insecure'
+    twig:
+        mode: 'lazy'
     resolvers:
         default:
             web_path: ~
@@ -62,6 +64,10 @@ liip_imagine:
             filters:
                 thumbnail: { size: [ 758, null ], mode: outbound }
                 fixed: { width: 758, height: 428 }
+        800x450:
+            quality: 90
+            filters:
+                thumbnail: { size: [ 800, 450 ], mode: outbound }
         800x600:
             quality: 90
             filters:

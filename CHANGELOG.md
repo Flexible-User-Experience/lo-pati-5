@@ -1,15 +1,35 @@
+To Do
+=====
+
+ * fix responsiveness issues
+ * add legal terms page
+ * manage Sendgrid unsubscriptions callback hooks
+ * check newsletter email sendings
+ * add newsletter reCaptcha form protection
+ * implement newsletter redesign
+
 Changelog
 =========
 
-##### TODO
- * add legal terms page
- * check newsletter email sendings
- * implement newsletter redesign
-
-##### Version 5.08.02 (WIP)
+##### Version 5.09.01 (WIP)
  * fix bugs
+
+##### Version 5.09.00 (2022-02-22)
+ * fix role security issue
+ * fix legacyId bad imports issues
+ * add previous editions pages
+ * add Terms of Service frontend page view
+ * add page images admin
+ * add frontend share buttons in page detail view
  * show page images slideshow
- * show page videos
+ * Symfony 5.4 upgrade
+ * add SlideshowPage management
+ * add VisitingHours management
+ * make menu color labels dynamic
+ * add frontend phone calls action
+ * add frontend today mark into calendars
+ * show page videos in detail page view
+ * show related pages in detail page view
 
 ##### Version 5.08.01 (2021-11-26)
  * fix missing summary text in Irradiador list view
@@ -76,12 +96,3 @@ Changelog
 
 ##### Version 5.00.00 (2021-07-05)
  * first skeleton app
-
-To Do
-=====
-
- * fix responsiveness issues
- * manage Sendgrid unsubscriptions callback hooks
- * enable frontend Newsletter subscribtion
- * add entities traslation and Admin management
- * fix broken detail page render path on menu level 2 unassigned case

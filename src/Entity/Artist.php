@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Entity\Traits\DescriptionTrait;
 use App\Entity\Traits\Document1Trait;
 use App\Entity\Traits\Image1Trait;
+use App\Entity\Traits\LegacyIdTrait;
 use App\Entity\Traits\NameTrait;
 use App\Entity\Traits\SummaryTrait;
 use App\Entity\Traits\TranslationsTrait;
@@ -31,6 +32,7 @@ class Artist extends AbstractBase
     use DescriptionTrait;
     use Document1Trait;
     use Image1Trait;
+    use LegacyIdTrait;
     use NameTrait;
     use SummaryTrait;
     use TranslationsTrait;

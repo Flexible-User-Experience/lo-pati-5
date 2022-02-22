@@ -1,12 +1,10 @@
 fos_ck_editor:
-    base_path:      'build/ckeditor'
-    js_path:        'build/ckeditor/ckeditor.js'
     default_config: 'app_custom_config'
     configs:
         app_custom_config:
             height: '450px'
             toolbar:
-                - [ 'Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Subscript', 'Superscript', '-', 'Alignment', '-', 'BulletedList', 'NumberedList', 'Indent', 'Outdent', '-', 'Blockquote', '-', 'Link', 'Unlink' ]
+                - [ 'Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Subscript', 'Superscript', '-', 'Alignment', '-', 'BulletedList', 'NumberedList', 'Indent', 'Outdent', '-', 'Blockquote', '-', 'Link', 'Unlink', '-', 'Source' ]
             autoParagraph: false
             extraPlugins:
                 - 'justify'

@@ -36,10 +36,11 @@ final class ImportCsvArchiveCommand extends AbstractBaseCommand
             if (count($data) >= 6) {
                 $serachedYear = (int) $this->readColumn(1, $data);
                 $archive = $ar->findOneBy([
-                    'year' => $serachedYear,
+                    'legacyId' => (int) $this->readColumn(0, $data),
                 ]);
                 if (!$archive) {
                     $archive = new Archive();
+                    $archive->setLegacyId((int) $this->readColumn(0, $data));
                     ++$newRecords;
                 }
                 $archive

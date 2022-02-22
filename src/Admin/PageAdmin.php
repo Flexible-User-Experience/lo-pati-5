@@ -5,6 +5,7 @@ namespace App\Admin;
 use App\Entity\AbstractBase;
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
+use App\Entity\Page;
 use App\Entity\Translation\PageTranslation;
 use App\Enum\PageTemplateTypeEnum;
 use App\Enum\SortOrderTypeEnum;
@@ -18,12 +19,14 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollectionInterface;
 use Sonata\DoctrineORMAdminBundle\Filter\ChoiceFilter;
 use Sonata\DoctrineORMAdminBundle\Filter\DateFilter;
+use Sonata\Form\Type\CollectionType;
 use Sonata\Form\Type\DatePickerType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Vich\UploaderBundle\Form\Type\VichFileType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 
@@ -134,7 +137,7 @@ final class PageAdmin extends AbstractBaseAdmin
             ->add('showSocialNetworksSharingButtons')
             ->add('links')
             ->add('urlVimeo')
-            ->add('urlFlickr')
+//            ->add('urlFlickr')
             ->add(
                 'startDate',
                 DateFilter::class,
@@ -312,9 +315,10 @@ final class PageAdmin extends AbstractBaseAdmin
             )
             ->add(
                 'video',
-                TextType::class,
+                UrlType::class,
                 [
                     'required' => false,
+                    'help' => 'form.label_video_help',
                 ]
             )
             ->end()
@@ -420,7 +424,7 @@ final class PageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->end()
-            ->with('admin.common.images', $this->getFormMdSuccessBoxArray(4))
+            ->with('admin.common.images', $this->getFormMdSuccessBoxArray(8))
             ->add(
                 'imageFile',
                 VichImageType::class,
@@ -436,6 +440,27 @@ final class PageAdmin extends AbstractBaseAdmin
                     'required' => false,
                 ]
             )
+        ;
+        if (!$this->isFormToCreateNewRecord()) {
+            $form
+                ->add(
+                    'images',
+                    CollectionType::class,
+                    [
+                        'required' => false,
+                        'error_bubbling' => true,
+                        'by_reference' => false,
+                    ],
+                    [
+                        'edit' => 'inline',
+                        'inline' => 'table',
+                        'sortable' => 'position',
+                        'order' => SortOrderTypeEnum::ASC,
+                    ]
+                )
+            ;
+        }
+        $form
             ->end()
             ->with('admin.common.documents', $this->getFormMdSuccessBoxArray(4))
             ->add(
@@ -491,6 +516,18 @@ final class PageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->add(
+                'previousEditions',
+                EntityType::class,
+                [
+                    'class' => Page::class,
+                    'query_builder' => $this->em->getRepository(Page::class)->getAllSortedByPublishDate(),
+                    'choice_label' => 'humanReadableIdentifier',
+                    'multiple' => true,
+                    'required' => false,
+                    'by_reference' => false,
+                ]
+            )
+            ->add(
                 'templateType',
                 ChoiceType::class,
                 [
@@ -538,15 +575,16 @@ final class PageAdmin extends AbstractBaseAdmin
                 TextType::class,
                 [
                     'required' => false,
+                    'help' => 'form.label_url_vimeo_help',
                 ]
             )
-            ->add(
-                'urlFlickr',
-                TextType::class,
-                [
-                    'required' => false,
-                ]
-            )
+//            ->add(
+//                'urlFlickr',
+//                TextType::class,
+//                [
+//                    'required' => false,
+//                ]
+//            )
             ->end()
             ->with('admin.common.calendar', $this->getFormMdSuccessBoxArray(4))
             ->add(
@@ -600,7 +638,7 @@ final class PageAdmin extends AbstractBaseAdmin
             'showSocialNetworksSharingButtons',
             'links',
             'urlVimeo',
-            'urlFlickr',
+//            'urlFlickr',
             'startDateString',
             'endDateString',
             'alwaysShowOnCalendarString',

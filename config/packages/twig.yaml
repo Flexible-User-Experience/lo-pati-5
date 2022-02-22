@@ -9,13 +9,21 @@ twig:
         - 'form/type/edit_newsletter_post_action_button.html.twig'
         - 'form/type/custom_a2lix_translations_field.html.twig'
     globals:
-        admin_tag_version: 'v5.08.01'
+        admin_tag_version: 'v5.08.02'
+        add_this_api_key:  '%add_this_api_key%'
         developer_name:    '%developer_name%'
         developer_url:     '%developer_url%'
         customer_name:     '%customer_name%'
         customer_email:    '%customer_email%'
         customer_url:      '%customer_url%'
         project_title:     '%project_title%'
+        pp_id:             '%pp_id%'
+        pp_cif:            '%pp_cif%'
+        pp_address:        '%pp_address%'
+        pp_zip:            '%pp_zip%'
+        pp_city:           '%pp_city%'
+        pp_phone:          '%pp_phone%'
+        pp_email:          '%pp_email%'
 
 when@test:
     twig:
