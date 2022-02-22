@@ -108,9 +108,9 @@
         </div>
     {% endif %}
     {% if page.images | length > 0 %}
-        <div class="row my-5">
-            <div class="col text-center">
-                <p>
+        <div class="row my-5 justify-content-center">
+            <div class="col-10">
+                <p class="text-center">
                     <button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-images-section" aria-expanded="false" aria-controls="collapse-images-section">
                         {{ 'front.page.images' | trans }}
                     </button>
@@ -120,13 +120,13 @@
                         <div id="carousel-images-section" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
                                 {% for image in page.images %}
-                                    <button type="button" data-bs-target="#carousel-images-section" data-bs-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif%} aria-current="true" aria-label="{{ 'front.page.slide' | trans }} {{ loop.index0 }}"></button>
+                                    <button type="button" data-bs-target="#carousel-images-section" data-bs-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %} aria-current="true" aria-label="{{ 'front.page.slide' | trans }} {{ loop.index0 }}"></button>
                                 {% endfor %}
                             </div>
                             <div class="carousel-inner">
                                 {% for image in page.images %}
                                     <div class="carousel-item{% if loop.first %} active{% endif %}">
-                                        <img src="{{ vich_uploader_asset(image, 'image1File') | imagine_filter('1200xY') }}" class="d-block w-100" alt="{% if image.imageAltName %}{{ image.imageAltName }}{% else %}{{ 'front.page.slide' | trans }}{% endif %}">
+                                        <img src="{{ vich_uploader_asset(image, 'image1File') | imagine_filter('800x450') }}" class="d-block w-100" alt="{% if image.imageAltName %}{{ image.imageAltName }}{% else %}{{ 'front.page.slide' | trans }}{% endif %}">
                                     </div>
                                 {% endfor %}
                             </div>
