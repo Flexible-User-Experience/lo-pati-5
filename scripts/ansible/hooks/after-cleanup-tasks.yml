@@ -1,3 +1,9 @@
+- name: execute assets install
+  shell: "chdir={{ ansistrano_release_path.stdout }}
+    SYMFONY_ENV={{ symfony_env }} {{ symfony_php_path }} {{ symfony_console_path }} assets:install public --no-interaction {{ symfony_cache_options }}"
+- name: execute CKEditor installation
+  shell: "chdir={{ ansistrano_release_path.stdout }}
+    SYMFONY_ENV={{ symfony_env }} {{ symfony_php_path }} {{ symfony_console_path }} ckeditor:install --clear=drop {{ symfony_cache_options }}"
 - name: compile yarn assets
   shell: "chdir={{ ansistrano_release_path.stdout }}
     SYMFONY_ENV={{ symfony_env }} yarn install && yarn encore production"
