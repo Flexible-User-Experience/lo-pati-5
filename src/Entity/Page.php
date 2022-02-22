@@ -208,6 +208,17 @@ class Page extends AbstractBase
     private ?MenuLevel2 $menuLevel2 = null;
 
     /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="previousEditionParent")
+     * @ORM\OrderBy({"position": "publishDate"})
+     */
+    private ?Collection $previousEditions;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Page", inversedBy="previousEditions")
+     */
+    private ?Page $previousEditionParent;
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\PageImage", mappedBy="page", cascade={"persist", "remove"})
      * @Assert\Valid()
      * @ORM\OrderBy({"position": "ASC"})
@@ -222,6 +233,7 @@ class Page extends AbstractBase
 
     public function __construct()
     {
+        $this->previousEditions = new ArrayCollection();
         $this->images = new ArrayCollection();
         $this->translations = new ArrayCollection();
     }
@@ -626,6 +638,50 @@ class Page extends AbstractBase
     public function setMenuLevel2(?MenuLevel2 $menuLevel2): self
     {
         $this->menuLevel2 = $menuLevel2;
+
+        return $this;
+    }
+
+    public function getPreviousEditions(): ArrayCollection | Collection | null
+    {
+        return $this->previousEditions;
+    }
+
+    public function setPreviousEditions(ArrayCollection | Collection | null $previousEditions): self
+    {
+        $this->previousEditions = $previousEditions;
+
+        return $this;
+    }
+
+    public function addPreviousEdition(Page $previousEdition): self
+    {
+        if (!$this->previousEditions->contains($previousEdition)) {
+            $this->previousEditions->add($previousEdition);
+            $previousEdition->setPreviousEditionParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removePreviousEdition(Page $previousEdition): self
+    {
+        if ($this->previousEditions->contains($previousEdition)) {
+            $this->previousEditions->removeElement($previousEdition);
+            $previousEdition->setPreviousEditionParent(null);
+        }
+
+        return $this;
+    }
+
+    public function getPreviousEditionParent(): ?Page
+    {
+        return $this->previousEditionParent;
+    }
+
+    public function setPreviousEditionParent(?Page $previousEditionParent): self
+    {
+        $this->previousEditionParent = $previousEditionParent;
 
         return $this;
     }

@@ -29,5 +29,5 @@
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
-    "version": "1.0.0"
+    "version": "5.08.02"
 }
