@@ -9,7 +9,7 @@ twig:
         - 'form/type/edit_newsletter_post_action_button.html.twig'
         - 'form/type/custom_a2lix_translations_field.html.twig'
     globals:
-        admin_tag_version: 'v5.08.02'
+        admin_tag_version: 'v5.09.00'
         add_this_api_key:  '%add_this_api_key%'
         developer_name:    '%developer_name%'
         developer_url:     '%developer_url%'
