@@ -7,16 +7,29 @@ To Do
  * check newsletter email sendings
  * add newsletter reCaptcha form protection
  * implement newsletter redesign
- * show page videos in detail page view
- * show related pages in detail page view
 
 Changelog
 =========
 
-##### Version 5.08.02 (WIP)
+##### Version 5.09.01 (WIP)
  * fix bugs
+
+##### Version 5.09.00 (2022-02-22)
+ * fix role security issue
+ * fix legacyId bad imports issues
+ * add previous editions pages
+ * add Terms of Service frontend page view
  * add page images admin
+ * add frontend share buttons in page detail view
  * show page images slideshow
+ * Symfony 5.4 upgrade
+ * add SlideshowPage management
+ * add VisitingHours management
+ * make menu color labels dynamic
+ * add frontend phone calls action
+ * add frontend today mark into calendars
+ * show page videos in detail page view
+ * show related pages in detail page view
 
 ##### Version 5.08.01 (2021-11-26)
  * fix missing summary text in Irradiador list view
