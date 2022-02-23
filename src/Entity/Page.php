@@ -209,7 +209,7 @@ class Page extends AbstractBase
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="previousEditionParent")
-     * @ORM\OrderBy({"publishDate": "ASC"})
+     * @ORM\OrderBy({"publishDate": "DESC"})
      */
     private ?Collection $previousEditions;
 
