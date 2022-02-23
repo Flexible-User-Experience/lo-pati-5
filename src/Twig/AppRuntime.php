@@ -10,6 +10,7 @@ use App\Enum\NewsletterStatusEnum;
 use App\Enum\PageTemplateTypeEnum;
 use App\Enum\UserRolesEnum;
 use App\Kernel;
+use Exception;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use ReflectionClass;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -41,7 +42,7 @@ class AppRuntime implements RuntimeExtensionInterface
     // Functions
     public function hasHighlitedImage(Page $page): bool
     {
-        return ('' !== $page->getSmallImage1FileName()) || ('' !== $page->getImageFileName());
+        return ($page->getSmallImage1FileName() && '' !== $page->getSmallImage1FileName()) || ($page->getImageFileName() && '' !== $page->getImageFileName());
     }
 
     public function isHighlitedImageSquared(Page $page): bool
@@ -68,7 +69,12 @@ class AppRuntime implements RuntimeExtensionInterface
             $fieldName = 'smallImage1File';
         }
         $imagefile = $this->vuh->asset($page, $fieldName, Page::class);
-        [$width, $height] = getimagesize($this->getPublicProjectDir().$imagefile);
+        try {
+            [$width, $height] = getimagesize($this->getPublicProjectDir().$imagefile);
+        } catch (Exception $e) {
+            dd($page->getId());
+        }
+
         if ($width > 0 && $height > 0 && $width === $height) {
             $filter = '758x758_fixed';
         }
