@@ -266,26 +266,6 @@ class Page extends AbstractBase
         return $this;
     }
 
-    public function isHighligtedImageSquared(): bool
-    {
-        return (bool) $this->getSmallImage1FileName();
-    }
-
-    public function getHighlitedImageField(): string
-    {
-        return $this->getSmallImage1FileName() ? 'smallImage1File' : 'imageFile';
-    }
-
-    public function getHighligtedImageFilter(): string
-    {
-        return $this->getSmallImage1FileName() ? '758x758_fixed' : '758x428';
-    }
-
-    public function getHighlitedImageFilterSmallSize(): string
-    {
-        return $this->getSmallImage1FileName() ? '379x379_fixed' : '379x214';
-    }
-
     public function getSummary(): ?string
     {
         return $this->summary;

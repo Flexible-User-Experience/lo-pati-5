@@ -19,6 +19,7 @@ class AppExtension extends AbstractExtension
     public function getFunctions(): array
     {
         return [
+            new TwigFunction('has_highlited_image', [AppRuntime::class, 'hasHighlitedImage']),
             new TwigFunction('is_highlited_image_squared', [AppRuntime::class, 'isHighlitedImageSquared']),
             new TwigFunction('get_highlited_image_filter', [AppRuntime::class, 'getHighlitedImageFilter']),
         ];

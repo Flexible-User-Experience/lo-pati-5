@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Enum\NewsletterStatusEnum;
 use App\Enum\PageTemplateTypeEnum;
 use App\Enum\UserRolesEnum;
+use App\Kernel;
 use Liip\ImagineBundle\Imagine\Cache\CacheManager;
 use ReflectionClass;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -38,11 +39,16 @@ class AppRuntime implements RuntimeExtensionInterface
     }
 
     // Functions
+    public function hasHighlitedImage(Page $page): bool
+    {
+        return ('' !== $page->getSmallImage1FileName()) || ('' !== $page->getImageFileName());
+    }
+
     public function isHighlitedImageSquared(Page $page): bool
     {
         $fieldName = 'imageFile';
         $isSquared = false;
-        if ($page->getImageFileName()) {
+        if ($page->getSmallImage1FileName()) {
             $fieldName = 'smallImage1File';
         }
         $imagefile = $this->vuh->asset($page, $fieldName, Page::class);
@@ -58,7 +64,7 @@ class AppRuntime implements RuntimeExtensionInterface
     {
         $fieldName = 'imageFile';
         $filter = '758x428';
-        if ($page->getImageFileName()) {
+        if ($page->getSmallImage1FileName()) {
             $fieldName = 'smallImage1File';
         }
         $imagefile = $this->vuh->asset($page, $fieldName, Page::class);
@@ -135,6 +141,6 @@ class AppRuntime implements RuntimeExtensionInterface
 
     private function getPublicProjectDir(): string
     {
-        return $this->pb->get('kernel.project_dir').DIRECTORY_SEPARATOR.'public';
+        return $this->pb->get('kernel.project_dir').DIRECTORY_SEPARATOR.Kernel::PUBLIC_DIR;
     }
 }
