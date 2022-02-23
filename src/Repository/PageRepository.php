@@ -174,4 +174,15 @@ final class PageRepository extends ServiceEntityRepository
 
         return $qb;
     }
+
+    public function getPreviousEditionsSortedByPublishDate(Page $page): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = :active')
+            ->andWhere('p.previousEditionParent = :page')
+            ->setParameter('active', true)
+            ->setParameter('page', $page->getId())
+            ->orderBy('p.publishDate', SortOrderTypeEnum::DESC)
+        ;
+    }
 }

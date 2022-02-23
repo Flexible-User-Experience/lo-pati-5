@@ -40,7 +40,7 @@ final class RelatedActivitiesController extends AbstractController
         return $this->render(
             'frontend/related_activities/previous_editions.html.twig',
             [
-                'previous_editions' => $page->getPreviousEditions(),
+                'previous_editions' => $pr->getPreviousEditionsSortedByPublishDate($page)->getQuery()->getResult(),
             ]
         );
     }
