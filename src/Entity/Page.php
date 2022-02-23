@@ -472,7 +472,7 @@ class Page extends AbstractBase
 
     public function getUrlVimeoIframeString(): string
     {
-        return '<iframe src="https://player.vimeo.com/video/'.$this->getUrlVimeoCode().'" width="800" height="450" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+        return '<iframe src="https://player.vimeo.com/video/'.$this->getUrlVimeoCode().'" width="100%" height="450" style="border:0;margin-bottom:-30px" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
     }
 
     public function setUrlVimeo(?string $urlVimeo): self
