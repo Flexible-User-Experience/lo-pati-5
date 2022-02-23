@@ -72,6 +72,7 @@ final class PageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->add('showPublishDate')
+            ->add('keepAsPageEvenIfItsArchive')
             ->add('name')
             ->add('summary')
             ->add('description')
@@ -550,6 +551,13 @@ final class PageAdmin extends AbstractBaseAdmin
                 ]
             )
             ->add(
+                'keepAsPageEvenIfItsArchive',
+                CheckboxType::class,
+                [
+                    'required' => false,
+                ]
+            )
+            ->add(
                 'active',
                 CheckboxType::class,
                 [
@@ -621,6 +629,7 @@ final class PageAdmin extends AbstractBaseAdmin
             'id',
             'publishDateString',
             'showPublishDateString',
+            'keepAsPageEvenIfItsArchiveString',
             'name',
             'summary',
             'description',

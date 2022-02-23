@@ -83,6 +83,11 @@ class Page extends AbstractBase
     /**
      * @ORM\Column(type="boolean", options={"default"=0})
      */
+    private bool $keepAsPageEvenIfItsArchive = false;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default"=0})
+     */
     private bool $alwaysShowOnCalendar = false;
 
     /**
@@ -352,6 +357,23 @@ class Page extends AbstractBase
     public function setShowPublishDate(bool $showPublishDate): self
     {
         $this->showPublishDate = $showPublishDate;
+
+        return $this;
+    }
+
+    public function isKeepAsPageEvenIfItsArchive(): bool
+    {
+        return $this->keepAsPageEvenIfItsArchive;
+    }
+
+    public function keepAsPageEvenIfItsArchiveString(): string
+    {
+        return self::transformBooleanAsString($this->isKeepAsPageEvenIfItsArchive());
+    }
+
+    public function setKeepAsPageEvenIfItsArchive(bool $keepAsPageEvenIfItsArchive): self
+    {
+        $this->keepAsPageEvenIfItsArchive = $keepAsPageEvenIfItsArchive;
 
         return $this;
     }
