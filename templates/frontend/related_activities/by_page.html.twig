@@ -8,7 +8,7 @@
             </div>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 {% for page in related_activities %}
-                    {% if page.highlitedImageField is defined and page.highlitedImageField is not null and page.highlitedImageField != '' and vich_uploader_asset(page, page.highlitedImageField) and page.highlitedImageFilter %}
+                    {% if page.highlitedImageField is defined and page.highlitedImageField is not null and page.highlitedImageField != '' and vich_uploader_asset(page, page.highlitedImageField) and page.highlitedImageFilter and page.menuLevel1 and page.menulevel2 %}
                         <div class="col">
                             <div class="card border-0" style="background-color:transparent">
                                 <div style="background-color:{{ page.menuLevel1.color }}" class="position-relative">
