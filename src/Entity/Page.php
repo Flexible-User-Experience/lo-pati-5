@@ -266,7 +266,7 @@ class Page extends AbstractBase
         return $this;
     }
 
-    public function isHighlitedImageSquared(): bool
+    public function isHighligtedImageSquared(): bool
     {
         return (bool) $this->getSmallImage1FileName();
     }
@@ -276,7 +276,7 @@ class Page extends AbstractBase
         return $this->getSmallImage1FileName() ? 'smallImage1File' : 'imageFile';
     }
 
-    public function getHighlitedImageFilter(): string
+    public function getHighligtedImageFilter(): string
     {
         return $this->getSmallImage1FileName() ? '758x758_fixed' : '758x428';
     }
