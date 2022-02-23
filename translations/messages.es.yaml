@@ -333,7 +333,7 @@ form:
   group_admin_common_cover: 'Portada'
   group_admin_common_translations: 'Traducciones'
   help_short_description_length: 'Texto máximo 300 caracteres (espacios en blanco incluidos)'
-  help_expiration_date: 'Fecha hasta cuando la página será visible → automáticamente será Archivo. Dejar este campo en blanco para impedirlo.'
+  help_expiration_date: 'Fecha hasta cuando la página será visible → automáticamente será Archivo. Dejar este campo en blanco para impedirlo. En caso de que la casilla "Mostrar siempre la página aunque sea archivo" esté seleccionada, la página se mantendrá visible y aparecerá en el archivo a la vez.'
   help_always_show_on_calendar: 'El evento siempre se mostrará en el calendario, aunque sea fuera del horario del centro.'
   help_archive_image_dimensions: 'Requiere una imagen de aspecto cuadrado con un tamaño mínimo de 400x400 píxeles.'
 export:

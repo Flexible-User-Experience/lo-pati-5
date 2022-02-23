@@ -333,7 +333,7 @@ form:
   group_admin_common_cover: 'Portada'
   group_admin_common_translations: 'Traduccions'
   help_short_description_length: 'Text màxim 300 caràcters, espais en blanc inclosos.'
-  help_expiration_date: 'Data fins quan la pàgina serà visible → automàticament serà Arxiu. Deixar aquest camp en blanc per impedir-ho.'
+  help_expiration_date: 'Data fins quan la pàgina serà visible → automàticament serà Arxiu. Deixar aquest camp en blanc per impedir-ho. En cas que la casella "Mostrar sempre la pàgina encara que sigui arxiu" estigui seleccionada, la pàgina es mantindrà visible i apareixerà a l''arxiu a la vegada.'
   help_always_show_on_calendar: 'L''esdeveniment sempre es mostrarà al calendari, encara que sigui fora de l''horari del centre.'
   help_archive_image_dimensions: 'Requereix una imatge d''aspecte quadrat amb una mida mínima de 400x400 píxels.'
 export:
