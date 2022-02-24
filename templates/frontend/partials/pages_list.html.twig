@@ -10,9 +10,11 @@
                                     <img src="{{ get_highlited_image_filter(page) }}" class="card-img-top rounded-0{% if is_highlited_image_squared(page) %} w-235-px{% endif %}" alt="{{ page.name }}">
                                 </a>
                             {% else %}
-                                <a href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}">
-                                    <img src="{{ get_highlited_image_filter(page) }}" class="card-img-top rounded-0{% if is_highlited_image_squared(page) %} w-235-px{% endif %}" alt="{{ page.name }}">
-                                </a>
+                                {% if has_highlited_image(page) and page.menuLevel1 and page.menulevel2 %}
+                                    <a href="{{ path('front_app_page_detail', {'menu': page.menuLevel1.slug, 'submenu': page.menuLevel2.slug, 'date': page.publishDate | date(constant('App\\Entity\\AbstractBase::DATAGRID_TYPE_DATE_FORMAT')), 'page': page.slug}) }}">
+                                        <img src="{{ get_highlited_image_filter(page) }}" class="card-img-top rounded-0{% if is_highlited_image_squared(page) %} w-235-px{% endif %}" alt="{{ page.name }}">
+                                    </a>
+                                {% endif %}
                             {% endif %}
                             <div class="position-absolute bottom-0 start-0">
                                 <div style="background-color:{{ page.menuLevel1.color }}" class="mini-colored-box-detail d-flex me-auto"></div>
