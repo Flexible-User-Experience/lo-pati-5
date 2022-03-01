@@ -11,8 +11,11 @@ To Do
 Changelog
 =========
 
-##### Version 5.09.01 (WIP)
+##### Version 5.09.02 (WIP)
  * fix bugs
+
+##### Version 5.09.01 (2022-03-01)
+ * Symfony 5.4.5 update
 
 ##### Version 5.09.00 (2022-02-22)
  * fix role security issue
