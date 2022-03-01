@@ -75,16 +75,13 @@
             <footer>
                 <div class="d-flex ms-auto w-90 p-2 lp-bg-purple"></div>
                 <div class="lp-bg-timetable-section p-5">
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col-8">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-9">
                             <h6 class="text-uppercase text-white mb-5"><img src="{{ asset('build/vectors/head_label_w.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="50" class="d-inline-block me-3"> {{ 'front.layout.footer.visit' | trans }}</h6>
                         </div>
-                        <div class="col"></div>
                     </div>
-                    <div class="row">
-                        <div class="col"></div>
-                        <div class="col-6">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-sm-6">
                             <div class="card rounded-0 lp-bg-black lp-c-light-grey">
                                 <div class="position-relative">
                                     <img src="{{ asset('build/images/timetable_section.png') | imagine_filter('728x214') }}" class="card-img-top" alt="{{ 'front.layout.footer.information' | trans }}">
@@ -99,7 +96,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-2" data-controller="calendar" data-calendar-month-value="{{ 'now' | date('n') }}" data-calendar-year-value="{{ 'now' | date('Y') }}">
+                        <div class="col-12 col-sm-3" data-controller="calendar" data-calendar-month-value="{{ 'now' | date('n') }}" data-calendar-year-value="{{ 'now' | date('Y') }}">
                             <div class="row">
                                 <div class="col-6">
                                     <h6 class="lp-bg-light-grey text-white text-uppercase p-2 mb-3">{{ 'front.layout.footer.agenda.dates' | trans }}</h6>
@@ -113,7 +110,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col"></div>
                     </div>
                 </div>
             </footer>
