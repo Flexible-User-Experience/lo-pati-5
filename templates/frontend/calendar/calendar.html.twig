@@ -43,7 +43,7 @@
                             {% set day_complete = year ~ '-' ~ month_value_string ~ '-' ~ day_string %}
                             {% if hits_matrix[day2] is defined %}
                                 <td class="{{ hits_matrix[day2] }}">
-                                    <a href="{{ path('front_app_agenda_list', {'year': year, 'month': month_value_string, 'day': day_string}) }}" class="text-decoration-none{% if today == day_complete %} round-background lp-c-black{% else %} lp-c-ultra-light-grey{% endif %}">
+                                    <a href="{{ path('front_app_agenda_list', {'year': year, 'month': month_value_string, 'day': day_string}) }}" class="text-decoration-none{% if today == day_complete %} round-background lp-c-black{% else %} lp-c-ultra-light-grey{% endif %}">X
                                         {{ days_matrix[(week * 7) + day]['nday'] }}
                                     </a>
                                 </td>
@@ -51,6 +51,9 @@
                                 <td>
                                     {% if today == day_complete %}
                                         <a class="text-decoration-none round-background lp-c-black">{{ days_matrix[(week * 7) + day]['nday'] }}</a>
+{#                                        <a class="text-decoration-none lp-c-black">#}
+{#                                            <span class="filled-circle">&nbsp;{{ days_matrix[(week * 7) + day]['nday'] }}&nbsp;</span>#}
+{#                                        </a>#}
                                     {% else %}
                                         {{ days_matrix[(week * 7) + day]['nday'] }}
                                     {% endif %}

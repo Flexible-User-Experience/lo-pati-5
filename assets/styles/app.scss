@@ -189,12 +189,18 @@ footer {
 }
 
 .round-background {
-  border-radius: 50%;
-  width: 50%;
-  height: 50%;
+  border-radius: 100%;
+  //width: 50%;
+  //height: 50%;
   padding: 20%;
   background: $lp-color-ultra-light-grey;
   border: none;
+}
+
+.filled-circle {
+  padding: 20%;
+  border-radius: 100%;
+  background: $lp-color-ultra-light-grey;
 }
 
 @import '~bootstrap/scss/bootstrap.scss';

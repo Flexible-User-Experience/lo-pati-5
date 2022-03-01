@@ -144,11 +144,16 @@ final class PageRepository extends ServiceEntityRepository
 
     public function getActiveItemsFromMenuLevel2SortedByPublishDate(MenuLevel2 $menuLevel2): QueryBuilder
     {
+        $today = new DateTimeImmutable();
+
         return $this->createQueryBuilder('p')
             ->where('p.active = :active')
             ->andWhere('p.menuLevel2 = :menu')
+            ->andWhere('p.keepAsPageEvenIfItsArchive = :keep OR p.expirationDate > :today OR p.expirationDate IS NULL')
             ->setParameter('menu', $menuLevel2)
             ->setParameter('active', true)
+            ->setParameter('keep', true)
+            ->setParameter('today', $today->format(AbstractBase::DATABASE_IMPORT_DATE_FORMAT))
             ->orderBy('p.publishDate', SortOrderTypeEnum::DESC)
         ;
     }
@@ -173,5 +178,16 @@ final class PageRepository extends ServiceEntityRepository
         }
 
         return $qb;
+    }
+
+    public function getPreviousEditionsSortedByPublishDate(Page $page): QueryBuilder
+    {
+        return $this->createQueryBuilder('p')
+            ->where('p.active = :active')
+            ->andWhere('p.previousEditionParent = :page')
+            ->setParameter('active', true)
+            ->setParameter('page', $page->getId())
+            ->orderBy('p.publishDate', SortOrderTypeEnum::DESC)
+        ;
     }
 }

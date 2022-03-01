@@ -83,6 +83,11 @@ class Page extends AbstractBase
     /**
      * @ORM\Column(type="boolean", options={"default"=0})
      */
+    private bool $keepAsPageEvenIfItsArchive = false;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default"=0})
+     */
     private bool $alwaysShowOnCalendar = false;
 
     /**
@@ -209,7 +214,7 @@ class Page extends AbstractBase
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="previousEditionParent")
-     * @ORM\OrderBy({"publishDate": "ASC"})
+     * @ORM\OrderBy({"publishDate": "DESC"})
      */
     private ?Collection $previousEditions;
 
@@ -259,26 +264,6 @@ class Page extends AbstractBase
         $this->name = $name;
 
         return $this;
-    }
-
-    public function isHighlitedImageSquared(): bool
-    {
-        return (bool) $this->getSmallImage1FileName();
-    }
-
-    public function getHighlitedImageField(): string
-    {
-        return $this->getSmallImage1FileName() ? 'smallImage1File' : 'imageFile';
-    }
-
-    public function getHighlitedImageFilter(): string
-    {
-        return $this->getSmallImage1FileName() ? '758x758_fixed' : '758x428';
-    }
-
-    public function getHighlitedImageFilterSmallSize(): string
-    {
-        return $this->getSmallImage1FileName() ? '379x379_fixed' : '379x214';
     }
 
     public function getSummary(): ?string
@@ -352,6 +337,23 @@ class Page extends AbstractBase
     public function setShowPublishDate(bool $showPublishDate): self
     {
         $this->showPublishDate = $showPublishDate;
+
+        return $this;
+    }
+
+    public function isKeepAsPageEvenIfItsArchive(): bool
+    {
+        return $this->keepAsPageEvenIfItsArchive;
+    }
+
+    public function keepAsPageEvenIfItsArchiveString(): string
+    {
+        return self::transformBooleanAsString($this->isKeepAsPageEvenIfItsArchive());
+    }
+
+    public function setKeepAsPageEvenIfItsArchive(bool $keepAsPageEvenIfItsArchive): self
+    {
+        $this->keepAsPageEvenIfItsArchive = $keepAsPageEvenIfItsArchive;
 
         return $this;
     }
@@ -472,7 +474,7 @@ class Page extends AbstractBase
 
     public function getUrlVimeoIframeString(): string
     {
-        return '<iframe src="https://player.vimeo.com/video/'.$this->getUrlVimeoCode().'" width="800" height="450" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+        return '<iframe src="https://player.vimeo.com/video/'.$this->getUrlVimeoCode().'" width="100%" height="450" style="border:0;margin-bottom:-30px" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
     }
 
     public function setUrlVimeo(?string $urlVimeo): self
