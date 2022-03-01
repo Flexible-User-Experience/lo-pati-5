@@ -236,7 +236,7 @@ form:
   label_color: 'Color'
   label_menu_level1: 'Menú primer nivell'
   label_menu_level2: 'Menú segon nivell'
-  label_previous_editions: 'Edicions anteriors'
+  label_previous_editions: 'Altres edicions'
   label_page: 'Pàgina'
   label_title: 'Títol'
   label_text_line1: 'Línia 1'
@@ -460,7 +460,7 @@ front:
     title: 'Lo Pati'
     share_buttons: 'Comparteix a'
     other_activities: 'Altres activitats'
-    previous_editions: 'Edicions anteriors'
+    previous_editions: 'Altres edicions'
     search:
       engine: 'Buscador'
       no_results_found: 'Ho sentim, no s''ha trobat cap resultat.'
