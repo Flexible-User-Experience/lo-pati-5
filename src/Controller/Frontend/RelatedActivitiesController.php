@@ -41,6 +41,7 @@ final class RelatedActivitiesController extends AbstractController
             'frontend/related_activities/previous_editions.html.twig',
             [
                 'previous_editions' => $pr->getPreviousEditionsSortedByPublishDate($page)->getQuery()->getResult(),
+                'show_previous_editions_if_there_are_no_related_activities' => 0 === count($pr->getActiveItemsRelatedByMenuLevel2OrMenuLeve1SortedByPublishDate($page)->getQuery()->getResult()),
             ]
         );
     }
