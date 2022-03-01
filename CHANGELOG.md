@@ -22,6 +22,7 @@ Changelog
  * make page menu level 1 & 2 mandatory rendering related activities & previous editions
  * fix frontend page highlited_image render problems
  * add show_previous_editions_if_there_are_no_related_activities condition in frontend page detail view
+ * improve background table cell circle in frontend agenda view
 
 ##### Version 5.09.00 (2022-02-22)
  * fix role security issue
