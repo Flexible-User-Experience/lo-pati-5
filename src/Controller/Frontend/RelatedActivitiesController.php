@@ -23,6 +23,7 @@ final class RelatedActivitiesController extends AbstractController
             'frontend/related_activities/by_page.html.twig',
             [
                 'related_activities' => $pr->getActiveItemsRelatedByMenuLevel2OrMenuLeve1SortedByPublishDate($page)->getQuery()->getResult(),
+                'show_related_activities_if_there_are_no_related_previous_editions' => 0 === count($pr->getPreviousEditionsSortedByPublishDate($page)->getQuery()->getResult()),
             ]
         );
     }
@@ -41,7 +42,6 @@ final class RelatedActivitiesController extends AbstractController
             'frontend/related_activities/previous_editions.html.twig',
             [
                 'previous_editions' => $pr->getPreviousEditionsSortedByPublishDate($page)->getQuery()->getResult(),
-                'show_previous_editions_if_there_are_no_related_activities' => 0 === count($pr->getActiveItemsRelatedByMenuLevel2OrMenuLeve1SortedByPublishDate($page)->getQuery()->getResult()),
             ]
         );
     }
