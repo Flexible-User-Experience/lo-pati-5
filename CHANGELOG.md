@@ -21,6 +21,7 @@ Changelog
  * improve frontend calendar view
  * disable show previous editions if there are no related activities condition
  * enable show related activities if there are no previous editions condition
+ * refactor Page previous editions to allow many-to-many self-referencing relationships
 
 ##### Version 5.09.01 (2022-03-01)
  * Symfony 5.4.5 update
