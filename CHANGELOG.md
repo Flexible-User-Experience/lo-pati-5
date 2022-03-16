@@ -11,8 +11,14 @@ To Do
 Changelog
 =========
 
-##### Version 5.09.02 (WIP)
+##### Version 5.09.03 (WIP)
  * fix bugs
+
+##### Version 5.09.02 (2022-03-16)
+ * composer dependencies update
+ * yarn dependencies update
+ * remove some ansible playbook filenames
+ * improve frontend calendar view
 
 ##### Version 5.09.01 (2022-03-01)
  * Symfony 5.4.5 update
