@@ -19,6 +19,7 @@ Changelog
  * yarn dependencies update
  * remove some ansible playbook filenames
  * improve frontend calendar view
+ * disable show previous editions if there are no related activities condition
 
 ##### Version 5.09.01 (2022-03-01)
  * Symfony 5.4.5 update
