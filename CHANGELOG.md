@@ -14,7 +14,7 @@ Changelog
 ##### Version 5.09.03 (WIP)
  * fix bugs
 
-##### Version 5.09.02 (2022-03-16)
+##### Version 5.09.02 (2022-03-23)
  * composer dependencies update
  * yarn dependencies update
  * remove some ansible playbook filenames
