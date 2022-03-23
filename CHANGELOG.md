@@ -22,6 +22,8 @@ Changelog
  * disable show previous editions if there are no related activities condition
  * enable show related activities if there are no previous editions condition
  * refactor Page previous editions to allow many-to-many self-referencing relationships
+ * increase up to 9 highlighted items in homepage view
+ * change archive year views & structure
 
 ##### Version 5.09.01 (2022-03-01)
  * Symfony 5.4.5 update
