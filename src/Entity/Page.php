@@ -213,15 +213,14 @@ class Page extends AbstractBase
     private ?MenuLevel2 $menuLevel2 = null;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Page", mappedBy="previousEditionParent")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Page")
+     * @ORM\JoinTable(name="page_previous_editions",
+     *      joinColumns={@ORM\JoinColumn(name="page_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="page_previous_edition_id", referencedColumnName="id")}
+     *      )
      * @ORM\OrderBy({"publishDate": "DESC"})
      */
     private ?Collection $previousEditions;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Page", inversedBy="previousEditions")
-     */
-    private ?Page $previousEditionParent;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\PageImage", mappedBy="page", cascade={"persist", "remove"})
@@ -660,7 +659,6 @@ class Page extends AbstractBase
     {
         if (!$this->previousEditions->contains($previousEdition)) {
             $this->previousEditions->add($previousEdition);
-            $previousEdition->setPreviousEditionParent($this);
         }
 
         return $this;
@@ -670,20 +668,7 @@ class Page extends AbstractBase
     {
         if ($this->previousEditions->contains($previousEdition)) {
             $this->previousEditions->removeElement($previousEdition);
-            $previousEdition->setPreviousEditionParent(null);
         }
-
-        return $this;
-    }
-
-    public function getPreviousEditionParent(): ?Page
-    {
-        return $this->previousEditionParent;
-    }
-
-    public function setPreviousEditionParent(?Page $previousEditionParent): self
-    {
-        $this->previousEditionParent = $previousEditionParent;
 
         return $this;
     }

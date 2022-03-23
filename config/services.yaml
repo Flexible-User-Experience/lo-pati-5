@@ -19,6 +19,7 @@ parameters:
     email_address_test_3:       '%env(string:EMAIL_ADDRESS_TEST_3)%'
     id_page_contact:            '%env(int:ID_PAGE_CONTACT)%'
     id_page_irradiador:         '%env(int:ID_PAGE_IRRADIADOR)%'
+    id_menu_archive:            '%env(int:ID_MENU_ARCHIVE)%'
     pp_id:                      '%env(string:PP_ID)%'
     pp_cif:                     '%env(string:PP_CIF)%'
     pp_address:                 '%env(string:PP_ADDRESS)%'
@@ -41,6 +42,7 @@ services:
             $emailAddressTest2: '%email_address_test_2%'
             $emailAddressTest3: '%email_address_test_3%'
             $idPageIrradiador:  '%id_page_irradiador%'
+            $idMenuArchive:     '%id_menu_archive%'
             $locale:            '%default_locale%'
             $locales:           '%locale_i18n_full%'
     App\:

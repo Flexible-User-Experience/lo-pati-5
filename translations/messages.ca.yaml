@@ -19,7 +19,9 @@ sidebarmenu:
     artist: 'Artista'
   archive:
     title: 'Arxius'
+    title_single: 'Arxiu'
     archive: 'Any'
+    change_year: 'Canviar a'
   settings:
     title: 'Configuració'
     visiting_hours: 'Horari visita'

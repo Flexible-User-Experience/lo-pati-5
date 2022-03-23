@@ -1,16 +1,16 @@
 <div class="row justify-content-between lp-c-ultra-light-grey">
-    <div class="col-9">
+    <div class="col-8">
         <p class="text-uppercase">
             {{ month_string }} {{ year }}
         </p>
     </div>
-    <div class="col-3 text-end">
+    <div class="col-4 text-end">
         <i data-action="click->calendar#previous" class="fas fa-chevron-left me-2"></i> <i data-action="click->calendar#next" class="fas fa-chevron-right"></i>
     </div>
 </div>
 <div class="row">
     <div class="col">
-        <table class="table table-transparent table-borderless text-end lp-c-light-grey">
+        <table class="table table-transparent table-borderless lp-c-light-grey table-calendar">
             {% if show_week_days_name_in_calendar %}
                 <thead>
                 <tr>
@@ -25,46 +25,45 @@
                 </thead>
             {% endif %}
             <tbody>
-            {% for week in 0..max_weeks %}
-                <tr>
-                    {% for day in 0..6 %}
-                        {% if days_matrix[(week * 7) + day] is defined %}
-                            {% if days_matrix[(week * 7) + day]['nday'] < '10' %}
-                                {% set day_string = '0' ~ days_matrix[(week * 7) + day]['nday'] %}
+            {% apply spaceless %}
+                {% for week in 0..max_weeks %}
+                    <tr>
+                        {% for day in 0..6 %}
+                            {% if days_matrix[(week * 7) + day] is defined %}
+                                {% if days_matrix[(week * 7) + day]['nday'] < '10' %}
+                                    {% set day_string = '0' ~ days_matrix[(week * 7) + day]['nday'] %}
+                                {% else %}
+                                    {% set day_string = days_matrix[(week * 7) + day]['nday'] %}
+                                {% endif %}
+                                {% set day2 = days_matrix[(week * 7) + day]['nday'] %}
+                                {% if month < 10 %}
+                                    {% set month_value_string = '0' ~ month %}
+                                {% else %}
+                                    {% set month_value_string = month %}
+                                {% endif %}
+                                {% set day_complete = year ~ '-' ~ month_value_string ~ '-' ~ day_string %}
+                                {% if hits_matrix[day2] is defined %}
+                                    <td class="{{ hits_matrix[day2] }}{% if today == day_complete %} round-background{% endif %}">
+                                        <a href="{{ path('front_app_agenda_list', {'year': year, 'month': month_value_string, 'day': day_string}) }}" class="text-decoration-none{% if today == day_complete %} lp-c-black{% else %} lp-c-ultra-light-grey{% endif %}">
+                                            {{ days_matrix[(week * 7) + day]['nday'] }}
+                                        </a>
+                                    </td>
+                                {% else %}
+                                    <td{% if today == day_complete %} class="round-background"{% endif %}>
+                                        {% if today == day_complete %}
+                                            <a class="text-decoration-none lp-c-black">{{ days_matrix[(week * 7) + day]['nday'] }}</a>
+                                        {% else %}
+                                            {{ days_matrix[(week * 7) + day]['nday'] }}
+                                        {% endif %}
+                                    </td>
+                                {% endif %}
                             {% else %}
-                                {% set day_string = days_matrix[(week * 7) + day]['nday'] %}
+                                <td></td>
                             {% endif %}
-                            {% set day2 = days_matrix[(week * 7) + day]['nday'] %}
-                            {% if month < 10 %}
-                                {% set month_value_string = '0' ~ month %}
-                            {% else %}
-                                {% set month_value_string = month %}
-                            {% endif %}
-                            {% set day_complete = year ~ '-' ~ month_value_string ~ '-' ~ day_string %}
-                            {% if hits_matrix[day2] is defined %}
-                                <td class="{{ hits_matrix[day2] }}">
-                                    <a href="{{ path('front_app_agenda_list', {'year': year, 'month': month_value_string, 'day': day_string}) }}" class="text-decoration-none{% if today == day_complete %} round-background lp-c-black{% else %} lp-c-ultra-light-grey{% endif %}">X
-                                        {{ days_matrix[(week * 7) + day]['nday'] }}
-                                    </a>
-                                </td>
-                            {% else %}
-                                <td>
-                                    {% if today == day_complete %}
-                                        <a class="text-decoration-none round-background lp-c-black">{{ days_matrix[(week * 7) + day]['nday'] }}</a>
-{#                                        <a class="text-decoration-none lp-c-black">#}
-{#                                            <span class="filled-circle">&nbsp;{{ days_matrix[(week * 7) + day]['nday'] }}&nbsp;</span>#}
-{#                                        </a>#}
-                                    {% else %}
-                                        {{ days_matrix[(week * 7) + day]['nday'] }}
-                                    {% endif %}
-                                </td>
-                            {% endif %}
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
-            {% endfor %}
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            {% endapply %}
             </tbody>
         </table>
     </div>
