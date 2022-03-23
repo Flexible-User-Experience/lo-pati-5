@@ -20,9 +20,24 @@
         <div class="container mt-3 pt-3">
             <div class="row">
                 <div class="col-12 my-5">
-                    <img class="img-fluid" src="{{ vich_uploader_asset(archive, 'smallImage2File') | imagine_filter('600x600') }}" alt="{{ archive.year }}">
+                    <h1 class="m-0">{{ menu }} {{ archive.year }}</h1>
                 </div>
-                {% include "frontend/partials/pages_list.html.twig" with {'is_archive_view': true} %}
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <ul class="nav flex-column">
+                        {% for year in archives %}
+                            <li class="nav-item border-bottom">
+                                <a href="{{ path('front_app_archive_year_list', {'menu': menu.slug, 'year': year.year}) }}" class="nav-link{% if year.year == archive.year %} active{% endif %}">{{ year.year }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        {% include "frontend/partials/pages_list.html.twig" with {'is_archive_view': true} %}
+                    </div>
+                </div>
             </div>
         </div>
     </main>

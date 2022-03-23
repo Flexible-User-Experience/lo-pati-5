@@ -5,6 +5,7 @@ namespace App\Controller\Frontend;
 use App\Entity\Archive;
 use App\Entity\MenuLevel1;
 use App\Entity\Page;
+use App\Repository\ArchiveRepository;
 use App\Repository\PageRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,16 +20,15 @@ final class ArchiveController extends AbstractController
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      * @ParamConverter("archive", class="App\Entity\Archive", options={"mapping": {"year": "year"}})
      */
-    public function archiveYearList(MenuLevel1 $menu, Archive $archive, PageRepository $pr, KernelInterface $kernel): Response
+    public function archiveYearList(MenuLevel1 $menu, Archive $archive, ArchiveRepository $ar, PageRepository $pr, KernelInterface $kernel): Response
     {
-        $pages = $pr->getActiveItemsFromArchive($archive)->getQuery()->getResult();
-
         return $this->render(
             'frontend/archive/archive_year_list.html.twig',
             [
                 'menu' => $menu,
+                'archives' => $ar->getEnabledSortedByYear()->getQuery()->getResult(),
                 'archive' => $archive,
-                'pages' => $pages,
+                'pages' => $pr->getActiveItemsFromArchive($archive)->getQuery()->getResult(),
                 'show_debug_page_info' => $kernel->isDebug(),
             ]
         );
