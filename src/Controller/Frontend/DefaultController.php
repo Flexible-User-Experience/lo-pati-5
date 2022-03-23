@@ -21,6 +21,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 final class DefaultController extends AbstractController
 {
+    private const HIGHLIGHTED_HOMEPAGE_ITEMS = 9;
+
     /**
      * @Route("/", name="front_app_homepage")
      */
@@ -30,7 +32,7 @@ final class DefaultController extends AbstractController
         $highlightedPages = $pi->paginate(
             $pr->getHomepageHighlighted()->getQuery(),
             $request->query->getInt('page', 1),
-            6,
+            self::HIGHLIGHTED_HOMEPAGE_ITEMS,
             [
                 'align' => 'center',
             ]
