@@ -15,6 +15,34 @@
                 </div>
             </div>
         {% endif %}
+        <div class="container mt-3 pt-3">
+            <div class="row">
+                <div class="col-12 my-5 d-inline-flex">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="{{ path('front_app_menu_level_1', {'menu': menu_archive.slug}) }}" class="text-decoration-none">{{ 'sidebarmenu.archive.title_single' | trans }}</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <a href="{{ path('front_app_archive_year_list', {'menu': menu.slug, 'year': archive.year}) }}" class="text-decoration-none">{{ archive.year }}</a>
+                            </li>
+                        </ol>
+                    </nav>
+                    <div class="dropdown ms-auto">
+                        <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuYear" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ 'sidebarmenu.archive.change_year' | trans }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuYear">
+                            {% for year in archives %}
+                                <li>
+                                    <a class="dropdown-item{% if year.year == archive.year %} active{% endif %}" href="{{ path('front_app_archive_year_list', {'menu': menu_archive.slug, 'year': year.year}) }}">{{ year.year }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% include 'frontend/partials/page_template_types/default.html.twig' with {page: page} %}
     </main>
 {% endblock %}

@@ -19,7 +19,9 @@ sidebarmenu:
     artist: 'Artista'
   archive:
     title: 'Archivos'
+    title_single: 'Archivo'
     archive: 'Año'
+    change_year: 'Cambiar a'
   settings:
     title: 'Configuración'
     visiting_hours: 'Horario visita'
