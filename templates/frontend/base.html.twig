@@ -18,7 +18,7 @@
     <body>
         <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasSearch" aria-labelledby="offcanvasSearchLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasSearchLabel">{{ 'front.layout.search.engine' | trans }}</h5>
+                <h5 class="offcanvas-title" id="offcanvasSearchLabel"><i class="far fa-search"></i> {{ 'front.layout.search.engine' | trans }}</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="{{ 'back.action.close' | trans }}"></button>
             </div>
             <div class="offcanvas-body">
@@ -28,12 +28,12 @@
                 </div>
             </div>
         </div>
-        <div class="container-fluid bg-dark p-0">
+        <div class="container-fluid bg-dark">
             <header class="d-flex">
-                <a class="py-4 px-5" href="{{ path('front_app_homepage') }}">
-                    <img src="{{ asset('build/vectors/lo_pati_centre_art_logo.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="246" height="51" class="d-inline-block">
+                <a class="p-4" href="{{ path('front_app_homepage') }}">
+                    <img src="{{ asset('build/vectors/lo_pati_centre_art_logo.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="200" height="42" class="d-inline-block">
                 </a>
-                <nav class="navbar navbar-expand-lg navbar-light bg-white text-uppercase py-0 align-items-stretch flex-grow-1 border-bottom">
+                <nav class="navbar navbar-expand-lg navbar-dark text-uppercase py-0 align-items-stretch flex-grow-1">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
@@ -46,7 +46,7 @@
                 </nav>
                 <div class="d-flex py-4 ms-auto">
                     <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasSearch" role="button" aria-controls="offcanvasSearch">
-                        <i class="fas fa-search fa-2x text-light"></i>
+                        <i class="far fa-search fa-2x text-light"></i>
                     </a>
                 </div>
             </header>
@@ -75,37 +75,39 @@
             <footer>
                 <div class="d-flex ms-auto w-90 p-2 lp-bg-purple"></div>
                 <div class="lp-bg-timetable-section p-5">
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-sm-9">
-                            <h6 class="text-uppercase text-white mb-5"><img src="{{ asset('build/vectors/head_label_w.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="50" class="d-inline-block me-3"> {{ 'front.layout.footer.visit' | trans }}</h6>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-sm-9">
+                                <h6 class="text-uppercase text-white mb-5"><img src="{{ asset('build/vectors/head_label_w.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="50" class="d-inline-block me-3"> {{ 'front.layout.footer.visit' | trans }}</h6>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-sm-6">
-                            <div class="card rounded-0 lp-bg-black lp-c-light-grey">
-                                <div class="position-relative">
-                                    <img src="{{ asset('build/images/timetable_section.png') | imagine_filter('728x214') }}" class="card-img-top" alt="{{ 'front.layout.footer.information' | trans }}">
-                                    <div class="position-absolute top-100 start-0 translate-middle-y">
-                                        <div>
-                                            <span class="h6 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-purple text-white text-uppercase">{{ 'front.layout.footer.information' | trans }}</span>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-sm-6">
+                                <div class="card rounded-0 lp-bg-black lp-c-light-grey">
+                                    <div class="position-relative">
+                                        <img src="{{ asset('build/images/timetable_section.png') | imagine_filter('728x214') }}" class="card-img-top" alt="{{ 'front.layout.footer.information' | trans }}">
+                                        <div class="position-absolute top-100 start-0 translate-middle-y">
+                                            <div>
+                                                <span class="h6 card-title mb-0 d-inline-flex py-2 ps-2 pe-5 lp-bg-purple text-white text-uppercase">{{ 'front.layout.footer.information' | trans }}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    {{ render(controller('App\\Controller\\Frontend\\VisitingHoursController::timetable')) }}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-3" data-controller="calendar" data-calendar-month-value="{{ 'now' | date('n') }}" data-calendar-year-value="{{ 'now' | date('Y') }}">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h6 class="lp-bg-light-grey text-white text-uppercase p-2 mb-3">{{ 'front.layout.footer.agenda.dates' | trans }}</h6>
+                                    <div class="card-body">
+                                        {{ render(controller('App\\Controller\\Frontend\\VisitingHoursController::timetable')) }}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div data-calendar-target="agenda">
-                                        <i class="fas fa-spin fa-circle-notch fa-5x"></i>
+                            <div class="col-12 col-sm-3" data-controller="calendar" data-calendar-month-value="{{ 'now' | date('n') }}" data-calendar-year-value="{{ 'now' | date('Y') }}">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <h6 class="lp-bg-light-grey text-white text-uppercase p-2 mb-3">{{ 'front.layout.footer.agenda.dates' | trans }}</h6>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <div data-calendar-target="agenda">
+                                            <i class="fas fa-spin fa-circle-notch fa-5x"></i>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +118,7 @@
         </div>
         <div class="container-fluid lp-bg-ultra-black py-5">
             <div class="row justify-content-center">
-                <div class="col-3">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="card rounded-0 lp-bg-ultra-black">
                         <div class="card-body">
                             <img src="{{ asset('build/vectors/lo_pati_centre_art_logo.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="246" height="51" class="d-block mb-4">
@@ -150,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="card rounded-0 lp-bg-ultra-black">
                         <div class="card-body">
                             <p class="card-text text-uppercase lp-c-white">
@@ -177,7 +179,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-3">
+                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="card rounded-0 lp-bg-ultra-black">
                         <div class="card-body">
                             <p class="card-text text-uppercase lp-c-white">

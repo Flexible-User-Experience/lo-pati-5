@@ -16,8 +16,8 @@ $dark: $lp-color-black;
 $light: $lp-color-light-grey;
 $navbar-nav-link-padding-x: .95rem;
 $navbar-light-color: $lp-color-light-grey;
-$navbar-light-hover-color: $lp-color-black;
-$navbar-light-active-color: $lp-color-black;
+$navbar-light-hover-color: --bs-body-color;
+$navbar-light-active-color: --bs-body-color;
 $nav-link-color: $lp-color-light-grey;
 $nav-link-hover-color: lighten($lp-color-red, $lp-base-precent);
 $nav-link-active-color: $lp-color-red;
@@ -38,7 +38,9 @@ ul.navbar-nav {
         border-bottom: solid 5px lighten($lp-color-red, $lp-base-precent);
       }
       a.nav-link {
-        font-weight: 600 !important;
+        font-weight: 500 !important;
+        font-size: .80rem;
+        letter-spacing: .020rem;
         padding-top: 36px;
         height: 100%;
       }
@@ -48,6 +50,7 @@ ul.navbar-nav {
     li.nav-item {
       padding: 0;
       margin: 0;
+      font-size: .85rem;
       a.nav-link {
         padding-top: 36px;
         height: 100%;
@@ -77,7 +80,9 @@ nav.submenu {
         padding: 20px;
         height: 100%;
         color: $lp-color-light-grey;
-        font-weight: 600 !important;
+        font-weight: 500!important;
+        font-size: .80rem;
+        letter-spacing: .020rem;
         &.active {
           color: $lp-color-black;
           background-color: $lp-color-white;
@@ -123,10 +128,30 @@ ul.pagination {
 a.btn.btn-outline-dark.btn-sm.rounded-0.border-2.text-uppercase {
   font-weight: 500;
 }
+
+// carousels
 .carousel-indicators [data-bs-target] {
   height: 7px !important;
   margin-left: 8px !important;
   margin-right: 8px !important;
+}
+
+// forms
+.form-control {
+  font-size: .80rem !important;
+}
+
+// cards
+.card-subtitle {
+  margin-top: .1rem;
+  text-transform: uppercase;
+  font-size: .80rem;
+  letter-spacing: .050rem;
+}
+
+.card-subtitle, .card-text:last-child {
+  text-transform: uppercase;
+  font-size: .70rem;
 }
 
 // custom footer
@@ -189,6 +214,7 @@ footer {
   background-color: $lp-color-yellow !important;
 }
 
+// calendar
 .table-calendar {
   td {
     background-clip: padding-box;
