@@ -21,6 +21,8 @@ Changelog
  * change frontend main menu font & spacing dimensions
  * improve frontend footer columns responsiveness
  * improve frontend footer calendar section container
+ * improve forms font size
+ * improve card-subtitle font size
 
 ##### Version 5.09.02 (2022-03-23)
  * composer dependencies update
