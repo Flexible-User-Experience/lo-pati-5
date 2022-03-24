@@ -80,7 +80,7 @@ class MenuBuilder
             } else {
                 $item->setLinkAttribute('class', 'nav-link');
                 $item->setAttribute('onmouseover', 'this.style.borderBottom=\'solid 5px '.$ml1Item->getColor().'\'');
-                $item->setAttribute('onmouseout', 'this.style.borderBottom=\'solid 5px var(--bs-body-bg)\'');
+                $item->setAttribute('onmouseout', 'this.style.borderBottom=\'solid 5px var(--bs-body-color)\'');
             }
             $item->setAttribute('class', 'nav-item text-uppercase');
             /** @var MenuLevel2 $ml2Item */
