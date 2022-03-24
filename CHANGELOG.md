@@ -11,8 +11,16 @@ To Do
 Changelog
 =========
 
-##### Version 5.09.03 (WIP)
+##### Version 5.09.04 (WIP)
  * fix bugs
+
+##### Version 5.09.03 (2022-03-24)
+ * change to 5 (info) - 7 (image) columns in homepage sliders panel
+ * change frontend layout header logo dimensions
+ * swap to dark main menu background
+ * change frontend main menu font & spacing dimensions
+ * improve frontend footer columns responsiveness
+ * improve frontend footer calendar section container
 
 ##### Version 5.09.02 (2022-03-23)
  * composer dependencies update
