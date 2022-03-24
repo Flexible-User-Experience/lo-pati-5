@@ -29,8 +29,8 @@
             </div>
         </div>
     </div>
-    <div class="row my-5">
-        <div class="col text-center">
+    <div class="row my-5 justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 text-center">
             <h1>{{ page.name }}</h1>
             <h2 class="h3 text-muted">{{ page.summary }}</h2>
             {% if page.realizationDateString or page.place or page.links or page.document1FileName or page.document2FileName or page.video %}
@@ -94,14 +94,14 @@
             <hr>
         </div>
     </div>
-    <div class="row my-5">
-        <div class="col text-center">
+    <div class="row my-5 justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 text-center">
             {{ page.description | raw }}
         </div>
     </div>
     {% if page.showSocialNetworksSharingButtons %}
-        <div class="row my-5">
-            <div class="col">
+        <div class="row my-5 justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8">
                 <p class="mb-1">{{ 'front.layout.share_buttons' | trans }}</p>
                 <div class="addthis_inline_share_toolbox"></div>
             </div>
