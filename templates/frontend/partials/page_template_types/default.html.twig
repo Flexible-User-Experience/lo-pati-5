@@ -120,14 +120,18 @@
                         <div id="carousel-images-section" class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-indicators">
                                 {% for image in page.images %}
-                                    <button type="button" data-bs-target="#carousel-images-section" data-bs-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %} aria-current="true" aria-label="{{ 'front.page.slide' | trans }} {{ loop.index0 }}"></button>
+                                    {% if image.image1FileName %}
+                                        <button type="button" data-bs-target="#carousel-images-section" data-bs-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %} aria-current="true" aria-label="{{ 'front.page.slide' | trans }} {{ loop.index0 }}"></button>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                             <div class="carousel-inner">
                                 {% for image in page.images %}
-                                    <div class="carousel-item{% if loop.first %} active{% endif %}">
-                                        <img src="{{ vich_uploader_asset(image, 'image1File') | imagine_filter('800x450') }}" class="d-block w-100" alt="{% if image.imageAltName %}{{ image.imageAltName }}{% else %}{{ 'front.page.slide' | trans }}{% endif %}">
-                                    </div>
+                                    {% if image.image1FileName %}
+                                        <div class="carousel-item{% if loop.first %} active{% endif %}">
+                                            <img src="{{ vich_uploader_asset(image, 'image1File') | imagine_filter('800x450') }}" class="d-block w-100" alt="{% if image.imageAltName %}{{ image.imageAltName }}{% else %}{{ 'front.page.slide' | trans }}{% endif %}">
+                                        </div>
+                                    {% endif %}
                                 {% endfor %}
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carousel-images-section" data-bs-slide="prev">
