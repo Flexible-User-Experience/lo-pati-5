@@ -11,8 +11,11 @@ To Do
 Changelog
 =========
 
-##### Version 5.09.04 (WIP)
+##### Version 5.09.05 (WIP)
  * fix bugs
+
+##### Version 5.09.04 (2022-03-31)
+ * fix problem rendering not assigned page images
 
 ##### Version 5.09.03 (2022-03-24)
  * change to 5 (info) - 7 (image) columns in homepage sliders panel

@@ -83,7 +83,7 @@ final class PageImageAdmin extends AbstractBaseAdmin
                 VichImageType::class,
                 [
                     'imagine_pattern' => '300x300',
-                    'required' => false,
+                    'required' => true,
                 ]
             )
             ->add(

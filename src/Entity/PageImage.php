@@ -32,6 +32,7 @@ class PageImage extends AbstractBase
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Page", inversedBy="images")
+     * @ORM\JoinColumn(nullable=false)
      */
     private Page $page;
 
