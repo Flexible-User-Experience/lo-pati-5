@@ -36,4 +36,9 @@ final class Version20220316173401 extends AbstractMigration
         $this->addSql('ALTER TABLE page ADD CONSTRAINT FK_140AB62068A04136 FOREIGN KEY (previous_edition_parent_id) REFERENCES page (id)');
         $this->addSql('CREATE INDEX IDX_140AB62068A04136 ON page (previous_edition_parent_id)');
     }
+
+    public function isTransactional(): bool
+    {
+        return false;
+    }
 }

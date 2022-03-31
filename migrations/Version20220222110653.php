@@ -32,4 +32,9 @@ final class Version20220222110653 extends AbstractMigration
         $this->addSql('DROP INDEX IDX_140AB62068A04136 ON page');
         $this->addSql('ALTER TABLE page DROP previous_edition_parent_id');
     }
+
+    public function isTransactional(): bool
+    {
+        return false;
+    }
 }
