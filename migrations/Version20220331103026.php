@@ -28,4 +28,9 @@ final class Version20220331103026 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE page_image CHANGE page_id page_id INT DEFAULT NULL');
     }
+
+    public function isTransactional(): bool
+    {
+        return false;
+    }
 }

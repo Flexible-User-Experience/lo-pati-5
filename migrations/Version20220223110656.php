@@ -28,4 +28,9 @@ final class Version20220223110656 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE page DROP keep_as_page_even_if_its_archive');
     }
+
+    public function isTransactional(): bool
+    {
+        return false;
+    }
 }

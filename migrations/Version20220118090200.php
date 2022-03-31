@@ -104,4 +104,9 @@ final class Version20220118090200 extends AbstractMigration
         $this->addSql('DROP TABLE visiting_hours');
         $this->addSql('DROP TABLE visiting_hours_translation');
     }
+
+    public function isTransactional(): bool
+    {
+        return false;
+    }
 }
