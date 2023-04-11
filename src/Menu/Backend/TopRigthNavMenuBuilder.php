@@ -31,7 +31,7 @@ class TopRigthNavMenuBuilder
             ->addChild(
                 'homepage',
                 [
-                    'label' => '<i class="fas fa-globe"></i>',
+                    'label' => '<i class="fas fa-link"></i>',
                     'route' => 'front_app_homepage',
                 ]
             )
