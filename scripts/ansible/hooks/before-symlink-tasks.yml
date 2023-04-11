@@ -10,6 +10,9 @@
 - name: assets install
   shell: "chdir={{ ansistrano_release_path.stdout }}
     SYMFONY_ENV={{ symfony_env }} {{ symfony_php_path }} {{ symfony_console_path }} assets:install {{ symfony_cache_options }}"
+- name: expose FOS JS routes
+  shell: "chdir={{ ansistrano_release_path.stdout }}
+    SYMFONY_ENV={{ symfony_env }} {{ symfony_php_path }} {{ symfony_console_path }} fos:js-routing:dump {{ symfony_cache_options }} --format=json --target=public/js/fos_js_routes.json"
 - name: compile yarn assets
   shell: "chdir={{ ansistrano_release_path.stdout }}
     yarn install && yarn encore production"

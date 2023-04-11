@@ -46,7 +46,8 @@
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
-/public/build/
+/public/build/*
+!/public/build/.gitkeep
 npm-debug.log
 yarn-error.log
 .yarnclean
