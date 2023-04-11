@@ -1,7 +1,0 @@
-- name: make public/build directory
-  file:
-    path: "{{ ansistrano_release_path.stdout }}/public/build"
-    state: directory
-    owner: "{{ remote_system_user }}"
-    group: "{{ remote_system_group }}"
-    mode: 0775

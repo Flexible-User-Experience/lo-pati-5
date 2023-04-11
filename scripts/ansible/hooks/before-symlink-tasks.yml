@@ -4,16 +4,22 @@
 - name: warm-up cache again
   shell: "chdir={{ ansistrano_release_path.stdout }}
     SYMFONY_ENV={{ symfony_env }} {{ symfony_php_path }} {{ symfony_console_path }} cache:warmup {{ symfony_cache_options }}"
+- name: assets install
+  shell: "chdir={{ ansistrano_release_path.stdout }}
+    SYMFONY_ENV={{ symfony_env }} {{ symfony_php_path }} {{ symfony_console_path }} assets:install {{ symfony_cache_options }}"
+- name: compile yarn assets
+  shell: "chdir={{ ansistrano_release_path.stdout }}
+    yarn install && yarn encore production"
 - name: fix symfony cache directory apache ownership
   file:
-    recurse: yes
     path: "{{ ansistrano_release_path.stdout }}/var/cache"
+    recurse: yes
     owner: "{{ remote_system_user }}"
     group: "{{ remote_system_group }}"
 - name: fix symfony public directory apache ownership
   file:
+    path: "{{ ansistrano_release_path.stdout }}/public"
     recurse: yes
     follow: yes
-    path: "{{ ansistrano_release_path.stdout }}/public"
     owner: "{{ remote_system_user }}"
     group: "{{ remote_system_group }}"
