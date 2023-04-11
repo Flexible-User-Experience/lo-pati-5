@@ -9,8 +9,10 @@ twig:
         - 'form/type/edit_newsletter_post_action_button.html.twig'
         - 'form/type/custom_a2lix_translations_field.html.twig'
     globals:
+        google_tag_v4_enabled: false
         admin_tag_version: 'v5.09.05'
         add_this_api_key:  '%add_this_api_key%'
+        google_tag_v4:     '%google_tag_v4%'
         developer_name:    '%developer_name%'
         developer_url:     '%developer_url%'
         customer_name:     '%customer_name%'
@@ -28,3 +30,8 @@ twig:
 when@test:
     twig:
         strict_variables: true
+
+when@prod:
+    twig:
+        globals:
+            google_tag_v4_enabled: true
