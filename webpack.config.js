@@ -18,12 +18,9 @@ Encore
     .addEntry('backend', './assets/backend.js')
     .addEntry('mail', './assets/mail.js')
     // config
-    .configureBabel((config) => {
-        config.plugins.push('@babel/plugin-proposal-class-properties');
-    })
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
-        config.corejs = 3;
+        config.corejs = '3.23';
     })
     // features
     .cleanupOutputBeforeBuild()

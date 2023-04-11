@@ -3,6 +3,7 @@
 /src/.preload.php
 !/bin/console
 .php_cs.cache
+.php-cs-fixer.cache
 ###< app/bundle ###
 
 ###> symfony/framework-bundle ###

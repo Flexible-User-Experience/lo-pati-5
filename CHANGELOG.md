@@ -13,6 +13,7 @@ Changelog
 
 ##### Version 5.09.05 (WIP)
  * fix bugs
+ * add not transactional description to migrations
 
 ##### Version 5.09.04 (2022-03-31)
  * fix problem rendering not assigned page images

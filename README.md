@@ -7,7 +7,7 @@ A fresh new Symfony 5.4 CMS webapp project to manage a Lo Pati content resources
 
 #### Installation requirements
 
-* PHP 7.4
+* PHP 8.1
 * MySQL 8.0
 * Git 2.0
 * Composer 2.0

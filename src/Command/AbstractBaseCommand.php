@@ -2,10 +2,7 @@
 
 namespace App\Command;
 
-use DateTimeImmutable;
-use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Input\InputArgument;
@@ -55,12 +52,12 @@ abstract class AbstractBaseCommand extends Command
     /**
      * Load column data (index) from searched array (row) if exists, else throws an exception.
      *
-     * @throws Exception
+     * @throws \Exception
      */
     protected function readColumn(int $index, array $row): ?string
     {
         if (!array_key_exists($index, $row)) {
-            throw new Exception('Column index '.$index.' doesn\'t exists');
+            throw new \Exception('Column index '.$index.' doesn\'t exists');
         }
 
         return '\\N' !== $row[$index] ? $row[$index] : null;
@@ -69,7 +66,7 @@ abstract class AbstractBaseCommand extends Command
     /**
      * Read line (row) from CSV file.
      */
-    protected function readRow($fr)
+    protected function readRow($fr): bool|array
     {
         return fgetcsv($fr, 0, self::CSV_DELIMITER, self::CSV_ENCLOSURE, self::CSV_ESCAPE);
     }
@@ -79,7 +76,7 @@ abstract class AbstractBaseCommand extends Command
      */
     protected function getTimestampString(): string
     {
-        return (new DateTimeImmutable())->format('Y/m/d H:i:s');
+        return (new \DateTimeImmutable())->format('Y/m/d H:i:s');
     }
 
     public function printCommandHeaderWelcomeAndGetConsoleStyle(InputInterface $input, OutputInterface $output): ConsoleCustomStyle
@@ -112,7 +109,7 @@ abstract class AbstractBaseCommand extends Command
         return $fr;
     }
 
-    protected function printTotals(OutputInterface $output, int $rowsRead, int $newRecords, DateTimeInterface $beginTimestamp, DateTimeInterface $endTimestamp, int $errors = 0, bool $isDryRunModeEnabled = false): void
+    protected function printTotals(OutputInterface $output, int $rowsRead, int $newRecords, \DateTimeInterface $beginTimestamp, \DateTimeInterface $endTimestamp, int $errors = 0, bool $isDryRunModeEnabled = false): void
     {
         // Print totals
         if ($isDryRunModeEnabled) {
@@ -139,7 +136,7 @@ abstract class AbstractBaseCommand extends Command
 
     protected static function sanitizeLinksWithoutProtocol($text): string
     {
-        if (0 !== strpos($text, 'https://')) {
+        if (!str_starts_with($text, 'https://')) {
             $text = 'https://'.$text;
         }
 
