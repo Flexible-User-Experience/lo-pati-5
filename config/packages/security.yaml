@@ -28,10 +28,10 @@ security:
             - ROLE_ALLOWED_TO_SWITCH
     password_hashers:
         App\Entity\User:
-            algorithm: auto
+            algorithm: 'auto'
     providers:
         users:
-            id: App\Security\UserProvider
+            id: 'App\Security\UserProvider'
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
@@ -39,12 +39,12 @@ security:
         admin:
             pattern:     /admin(.*)
             lazy:        true
-            entry_point: App\Security\AdminLoginAuthenticator
+            entry_point: 'App\Security\AdminLoginAuthenticator'
             logout:
-                path:   admin_app_logout
-                target: admin_app_login
+                path:   'admin_app_logout'
+                target: 'admin_app_login'
             custom_authenticators:
-                - App\Security\AdminLoginAuthenticator
+                - 'App\Security\AdminLoginAuthenticator'
         main:
             lazy: true
     access_control:
