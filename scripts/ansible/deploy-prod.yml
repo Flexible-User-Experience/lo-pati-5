@@ -21,7 +21,7 @@
     # ansistrano repository config
     ansistrano_deploy_via: "git"
     ansistrano_git_repo: "{{ vhost_git_clone_repo }}"
-    ansistrano_git_branch: "devel"
+    ansistrano_git_branch: "master"
     # ansistrano hooks
     ansistrano_before_symlink_tasks_file: "{{ playbook_dir }}/hooks/before-symlink-tasks.yml"
     ansistrano_after_symlink_tasks_file: "{{ playbook_dir }}/hooks/after-symlink-tasks.yml"
