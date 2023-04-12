@@ -54,6 +54,7 @@ final class VisitingHoursAdmin extends AbstractBaseAdmin
                 ListMapper::NAME_ACTIONS,
                 null,
                 [
+                    'header_style' => 'width:63px',
                     'header_class' => 'text-right',
                     'row_align' => 'right',
                     'actions' => [

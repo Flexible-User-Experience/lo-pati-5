@@ -31,13 +31,13 @@ sonata_admin:
                 roles:           [ 'ROLE_ADMIN' ]
                 keep_open:       false
             Newsletter:
-                icon:            '<i class="fas fa-rss"></i>'
+                icon:            '<i class="fas fa-newspaper"></i>'
                 label:           'sidebarmenu.newsletter.title'
                 label_catalogue: 'messages'
                 roles:           [ 'ROLE_ADMIN' ]
                 keep_open:       false
             Artist:
-                icon:            '<i class="fas fa-street-view"></i>'
+                icon:            '<i class="fas fa-paint-roller"></i>'
                 label:           'sidebarmenu.artist.title'
                 label_catalogue: 'messages'
                 roles:           [ 'ROLE_ADMIN' ]
