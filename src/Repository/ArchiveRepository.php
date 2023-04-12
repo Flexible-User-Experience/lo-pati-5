@@ -25,8 +25,6 @@ final class ArchiveRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->where('a.active = :active')
-            ->andWhere('a.smallImage1FileName IS NOT NULL')
-            ->andWhere('a.smallImage2FileName IS NOT NULL')
             ->setParameter('active', true)
             ->orderBy('a.year', SortOrderTypeEnum::DESC)
         ;

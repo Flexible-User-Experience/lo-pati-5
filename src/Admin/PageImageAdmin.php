@@ -17,13 +17,24 @@ final class PageImageAdmin extends AbstractBaseAdmin
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues[DatagridInterface::PAGE] = 1;
-        $sortValues[DatagridInterface::SORT_ORDER] = SortOrderTypeEnum::ASC;
+        $sortValues[DatagridInterface::SORT_ORDER] = SortOrderTypeEnum::DESC;
         $sortValues[DatagridInterface::SORT_BY] = 'id';
     }
 
     protected function configureListFields(ListMapper $list): void
     {
         $list
+            ->add(
+                'image1FileName',
+                null,
+                [
+                    'header_class' => 'text-center',
+                    'row_align' => 'center',
+                    'template' => 'backend/cells/list__cell_page_image1.html.twig',
+                    'sortable' => false,
+                    'editable' => false,
+                ]
+            )
             ->add(
                 'id',
                 null,
@@ -64,6 +75,7 @@ final class PageImageAdmin extends AbstractBaseAdmin
                 ListMapper::NAME_ACTIONS,
                 null,
                 [
+                    'header_style' => 'width:63px',
                     'header_class' => 'text-right',
                     'row_align' => 'right',
                     'actions' => [

@@ -260,6 +260,7 @@ final class PageAdmin extends AbstractBaseAdmin
                 ListMapper::NAME_ACTIONS,
                 null,
                 [
+                    'header_style' => 'width:112px',
                     'header_class' => 'text-right',
                     'row_align' => 'right',
                     'actions' => [

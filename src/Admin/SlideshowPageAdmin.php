@@ -109,6 +109,7 @@ final class SlideshowPageAdmin extends AbstractBaseAdmin
                 ListMapper::NAME_ACTIONS,
                 null,
                 [
+                    'header_style' => 'width:81px',
                     'header_class' => 'text-right',
                     'row_align' => 'right',
                     'actions' => [
