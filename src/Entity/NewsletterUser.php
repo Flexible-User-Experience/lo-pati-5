@@ -7,7 +7,6 @@ use App\Enum\LanguageEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -74,11 +73,6 @@ class NewsletterUser extends AbstractBase
      * @ORM\ManyToMany(targetEntity="App\Entity\NewsletterGroup", mappedBy="users")
      */
     protected ?Collection $groups;
-
-    /**
-     * @Recaptcha\IsTrueV3
-     */
-    public $recaptcha;
 
     public function __construct()
     {

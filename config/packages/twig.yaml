@@ -4,6 +4,7 @@ twig:
         '%kernel.project_dir%/public/build': 'styles'
     form_themes:
         - 'bootstrap_5_layout.html.twig'
+        - '@EWZRecaptcha/Form/v3/ewz_recaptcha_widget.html.twig'
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
         - '@SonataForm/Form/datepicker.html.twig'
         - 'form/type/edit_newsletter_post_action_button.html.twig'

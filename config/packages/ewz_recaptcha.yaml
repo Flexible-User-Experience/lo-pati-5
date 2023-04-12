@@ -1,7 +1,8 @@
 ewz_recaptcha:
     version: 3
-    locale_from_request: true
-    hide_badge: false
+    enabled: true
+    hide_badge: true
+    score_threshold: 0.6
     public_key:  '%env(EWZ_RECAPTCHA_SITE_KEY)%'
     private_key: '%env(EWZ_RECAPTCHA_SECRET)%'
 
