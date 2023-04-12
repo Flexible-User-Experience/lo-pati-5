@@ -5,14 +5,16 @@ To Do
  * add legal terms page
  * manage Sendgrid unsubscriptions callback hooks
  * check newsletter email sendings
- * add newsletter reCaptcha form protection
  * implement newsletter redesign
 
 Changelog
 =========
 
-##### Version 5.09.06 (WIP)
+##### Version 5.09.07 (WIP)
  * fix bugs
+
+##### Version 5.09.06 (2023-04-12)
+ * add newsletter reCaptcha form protection
 
 ##### Version 5.09.05 (2023-04-11)
  * set PHP 8.2 minimum required version
