@@ -12,6 +12,8 @@ Changelog
 
 ##### Version 5.09.07 (WIP)
  * fix bugs
+ * change address
+ * remove Museum logo from footer
 
 ##### Version 5.09.06 (2023-04-12)
  * add newsletter reCaptcha form protection
