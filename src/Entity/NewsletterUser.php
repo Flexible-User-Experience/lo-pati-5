@@ -4,14 +4,15 @@ namespace App\Entity;
 
 use App\Entity\Traits\LegacyIdTrait;
 use App\Enum\LanguageEnum;
-use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use EWZ\Bundle\RecaptchaBundle\Validator\Constraints as Recaptcha;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_newsletter_user_email_index", columns={"email"}), @ORM\UniqueConstraint(name="unique_newsletter_user_token_index", columns={"token"})})
+ *
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterUserRepository")
  */
 class NewsletterUser extends AbstractBase
@@ -20,13 +21,16 @@ class NewsletterUser extends AbstractBase
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
      * @Assert\NotBlank()
      */
     private ?string $name = null;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     *
      * @Assert\NotBlank()
+     *
      * @Assert\Email()
      */
     private string $email;
@@ -49,7 +53,7 @@ class NewsletterUser extends AbstractBase
     /**
      * @ORM\Column(type="date", nullable=true)
      */
-    private ?DateTimeInterface $birthdate = null;
+    private ?\DateTimeInterface $birthdate = null;
 
     /**
      * @ORM\Column(type="string", length=2, options={"default": "ca"})
@@ -70,6 +74,11 @@ class NewsletterUser extends AbstractBase
      * @ORM\ManyToMany(targetEntity="App\Entity\NewsletterGroup", mappedBy="users")
      */
     protected ?Collection $groups;
+
+    /**
+     * @Recaptcha\IsTrueV3
+     */
+    public $recaptcha;
 
     public function __construct()
     {
@@ -137,12 +146,12 @@ class NewsletterUser extends AbstractBase
         return $this;
     }
 
-    public function getBirthdate(): ?DateTimeInterface
+    public function getBirthdate(): ?\DateTimeInterface
     {
         return $this->birthdate;
     }
 
-    public function setBirthdate(?DateTimeInterface $birthdate): self
+    public function setBirthdate(?\DateTimeInterface $birthdate): self
     {
         $this->birthdate = $birthdate;
 

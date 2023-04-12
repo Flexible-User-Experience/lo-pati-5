@@ -34,14 +34,14 @@ security:
             id: 'App\Security\UserProvider'
     firewalls:
         dev:
-            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            pattern: '^/(_(profiler|wdt)|css|images|js)/'
             security: false
         admin:
-            pattern:     /admin(.*)
-            lazy:        true
+            pattern: '/admin(.*)'
+            lazy: true
             entry_point: 'App\Security\AdminLoginAuthenticator'
             logout:
-                path:   'admin_app_logout'
+                path: 'admin_app_logout'
                 target: 'admin_app_login'
             custom_authenticators:
                 - 'App\Security\AdminLoginAuthenticator'

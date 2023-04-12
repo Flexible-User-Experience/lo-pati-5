@@ -1,12 +1,12 @@
 admin_security:
     resource: '../../src/Controller/Backend/AdminLoginController.php'
-    type:     annotation
+    type: 'annotation'
 
 admin_area:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix:   /admin
+    prefix: '/admin'
 
 _sonata_admin:
     resource: .
-    type:     sonata_admin
-    prefix:   /admin
+    type: 'sonata_admin'
+    prefix: '/admin'

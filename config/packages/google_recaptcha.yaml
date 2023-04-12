@@ -1,0 +1,8 @@
+services:
+    ReCaptcha\ReCaptcha:
+        arguments:
+            $secret: '%env(EWZ_RECAPTCHA_SECRET)%'
+            $requestMethod: '@ReCaptcha\RequestMethod'
+    ReCaptcha\RequestMethod: '@ReCaptcha\RequestMethod\CurlPost'
+    ReCaptcha\RequestMethod\CurlPost: null
+    ReCaptcha\RequestMethod\Curl: null

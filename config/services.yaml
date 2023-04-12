@@ -30,6 +30,7 @@ parameters:
     pp_email:                   '%env(string:PP_EMAIL)%'
     locale_i18n:                [ 'es' ]
     locale_i18n_full:           [ 'ca', 'es' ]
+    google_recaptcha_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
 
 services:
     _defaults:

@@ -1,0 +1,10 @@
+ewz_recaptcha:
+    version: 3
+    locale_from_request: true
+    hide_badge: false
+    public_key:  '%env(EWZ_RECAPTCHA_SITE_KEY)%'
+    private_key: '%env(EWZ_RECAPTCHA_SECRET)%'
+
+when@dev:
+    ewz_recaptcha:
+        enabled: false
