@@ -5,14 +5,9 @@
         <meta name="viewport" content="width=device-width">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>{{ project_title }}</title>
-        {% block style %}
-            <style>
-                {{ source('@styles/mail.css') }}
-            </style>
-        {% endblock %}
     </head>
     <body>
-    {% apply inky_to_html %}
+    {% apply inky_to_html | inline_css(source('@styles/foundation-emails.css')) %}
     {% if show_top_bar %}
         <wrapper class="header black-background">
             <container>

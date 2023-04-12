@@ -16,7 +16,6 @@ Encore
     // entries
     .addEntry('frontend', './assets/frontend.js')
     .addEntry('backend', './assets/backend.js')
-    .addEntry('mail', './assets/mail.js')
     // config
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
