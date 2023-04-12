@@ -2,6 +2,7 @@
 
 namespace App\Controller\Frontend;
 
+use App\Entity\Archive;
 use App\Entity\MenuLevel1;
 use App\Entity\MenuLevel2;
 use App\Entity\Page;
@@ -72,6 +73,7 @@ final class DefaultController extends AbstractController
 
     /**
      * @Route("/{menu}", name="front_app_menu_level_1")
+     *
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
     public function menuLevel1(MenuLevel1 $menu, ArchiveRepository $ar, KernelInterface $kernel): Response
@@ -86,6 +88,15 @@ final class DefaultController extends AbstractController
         }
         if ($menu->isArchive()) {
             $archives = $ar->getEnabledSortedByYear()->getQuery()->getResult();
+            if (count($archives) > 0) {
+                /** @var Archive $last */
+                $last = $archives[0];
+
+                return $this->redirectToRoute('front_app_archive_year_list', [
+                    'menu' => $menu->getSlug(),
+                    'year' => $last->getYear(),
+                ]);
+            }
 
             return $this->render(
                 'frontend/archive/archives.html.twig',
@@ -108,7 +119,9 @@ final class DefaultController extends AbstractController
 
     /**
      * @Route("/{menu}/{submenu}", name="front_app_menu_level_2")
+     *
      * @Entity("submenu", class="App\Entity\MenuLevel2", expr="repository.getByMenuAndSubmenuSlugs(menu, submenu)")
+     *
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
     public function menuLevel2(MenuLevel1 $menu, MenuLevel2 $submenu, ArtistRepository $ar, PageRepository $pr, KernelInterface $kernel, int $idPageIrradiador): Response
@@ -156,8 +169,10 @@ final class DefaultController extends AbstractController
 
     /**
      * @Route("/{menu}/{submenu}/{date}/{page}", name="front_app_page_detail")
+     *
      * @Entity("submenu", class="App\Entity\MenuLevel2", expr="repository.getByMenuAndSubmenuSlugs(menu, submenu)")
      * @Entity("page", class="App\Entity\Page", expr="repository.getByDateAndSlug(date, page)")
+     *
      * @ParamConverter("menu", class="App\Entity\MenuLevel1", options={"mapping": {"menu": "slug"}})
      */
     public function pageDetail(MenuLevel1 $menu, MenuLevel2 $submenu, Page $page, KernelInterface $kernel): Response
