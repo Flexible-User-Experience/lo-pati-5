@@ -586,6 +586,15 @@ front:
     text_section_14_line_1: '%project_title% se reserva el derecho a modificar la presente política para adaptarla a novedades legislativas o jurisprudenciales.'
     title_15: 'Legislación'
     text_section_15_line_1: 'A todos los efectos, las relaciones entre %project_title% con los Usuarios de sus servicios telemáticos, presentes en esta web, están sometidos a la legislación y jurisdicción española a la que se someten expresamente las partes, siendo competentes para la resolución de todos los conflictos derivados o relacionados con su uso los juzgados y tribunales de Amposta (TARRAGONA).'
+  accessibility_statement:
+    title_1: 'Declaración de accesibilidad'
+    title_2: 'Accesibilidad'
+    text_section_2_line_1: 'Este portal utiliza el marco de trabajo <a href="https://getbootstrap.com/docs/5.3/getting-started/accessibility/" target="_blank">Bootstrap v5.3</a> que es software libre. Cumple las Directrices para la accesibilidad del contenido web (<a href="https://www.w3.org/Translations/WCAG21-ca/" target="_blank">WCAG v2.1</a>) nivel "AAA" para personas con discapacidad, incluidas las personas ciegas y con baja visión, sordas y con pérdida auditiva, con trastornos del aprendizaje, con limitaciones cognitivas, con movimiento limitado, con dificultades en el habla, fotosensibles y cualquier combinación de las discapacidades anteriores.'
+    title_3: 'Declaración'
+    text_section_3_line_1: 'Este portal está diseñado para atender la diversidad de modos en los que se accede y utiliza Internet.'
+    title_4: 'Validación'
+    text_section_4_line_1: 'Este portal utiliza tecnologías de accesibilidad siguiendo las buenas prácticas actuales recomendadas por WAI-ARIA; sin embargo, los estándares del portal y los contenidos varían a lo largo del tiempo. Si encuentra que este portal no valida correctamente, contacte a <a href="mailto:%email%">%email%</a>.'
+    text_section_4_line_2: 'Hay varias directrices de WCAG 2.0 y ATAG 2.0 que son subjetivas; quizás haya instancias en las que las interpretaciones varían.'
 newsletter:
   form:
     name: 'NOMBRE *'

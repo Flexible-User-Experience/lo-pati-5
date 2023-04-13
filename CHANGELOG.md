@@ -4,6 +4,7 @@ Changelog
 ##### Version 5.09.08 (WIP)
  * fix bugs
  * improve pricavy policy
+ * create accessibility statement footer page
 
 ##### Version 5.09.07 (2023-04-13)
  * change address

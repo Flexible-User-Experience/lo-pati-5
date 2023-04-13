@@ -1,0 +1,36 @@
+{% extends "frontend/base.html.twig" %}
+
+{% block title %}{{ 'front.layout.footer_3.left.accessibility_statement' | trans }} · {{ parent() }}{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <main>
+            <div class="row my-5">
+                <div class="col-12">
+                    <h2>{{ 'front.accessibility_statement.title_1' | trans }}</h2>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col-12">
+                    <h4 class="mb-4">{{ 'front.accessibility_statement.title_2' | trans }}</h4>
+                    <p>{{ 'front.accessibility_statement.text_section_2_line_1' | trans | raw }}</p>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col-12">
+                    <h4 class="mb-4">{{ 'front.accessibility_statement.title_3' | trans }}</h4>
+                    <p>{{ 'front.accessibility_statement.text_section_3_line_1' | trans }}</p>
+                </div>
+            </div>
+            <div class="row my-5">
+                <div class="col-12">
+                    <h4 class="mb-4">{{ 'front.accessibility_statement.title_4' | trans }}</h4>
+                    <p>{{ 'front.accessibility_statement.text_section_4_line_1' | trans({'%email%': pp_communication_email}) | raw }}</p>
+                    <p>{{ 'front.accessibility_statement.text_section_4_line_2' | trans }}</p>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock %}
+
+{% block footer_background_color_style_attribute %}{% endblock %}
