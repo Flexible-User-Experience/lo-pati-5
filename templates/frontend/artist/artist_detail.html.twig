@@ -28,7 +28,7 @@
         <div class="container mt-3 pt-3">
             <div class="row my-5 pt-5">
                 {% if artists | length > 0 and artist %}
-                    <div class="col-3">
+                    <div class="col-sm-3">
                         <ul class="nav flex-column">
                             {% for item in artists %}
                                 <li class="nav-item border-bottom">
@@ -37,7 +37,7 @@
                             {% endfor %}
                         </ul>
                     </div>
-                    <div class="col-9">
+                    <div class="col-sm-9">
                         <h1>{{ artist.name }}</h1>
                         <h5 class="lp-c-light-grey">{{ artist.city }}, {{ artist.year }}</h5>
                         <h5 class="lp-c-light-grey mb-3">{{ artist.category }}</h5>
