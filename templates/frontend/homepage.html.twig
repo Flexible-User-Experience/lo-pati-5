@@ -1,7 +1,5 @@
 {% extends "frontend/base.html.twig" %}
 
-{% block title %}{{ parent() }}{% endblock %}
-
 {% block main %}
     <div class="container">
         <main>
@@ -16,7 +14,7 @@
                                         {% if slide.imageFileName is not null %}
                                             <div class="carousel-item{% if index == 0 %} active{% endif %}" data-bs-interval="7000">
                                                 <div class="row">
-                                                    <div class="col-5">
+                                                    <div class="col-sm-5">
                                                         <div style="background-color:{{ slide.menuLevel1.color }}" class="mini-colored-box-detail d-flex me-auto"></div>
                                                         <span class="h6 d-inline-flex py-2 ps-2 pe-5 mb-3 lp-bg-black text-white text-uppercase">{% if slide.menuLevel2 %}{{ slide.menuLevel2.name }}{% else %}{{ slide.menuLevel1.name }}{% endif %}</span>
                                                         {% if slide.realizationDateString %}
@@ -38,7 +36,7 @@
                                                             </a>
                                                         {% endif %}
                                                     </div>
-                                                    <div class="col-7">
+                                                    <div class="col-sm-7 mt-3 mt-sm-0">
                                                         <img src="{{ vich_uploader_asset(slide, 'imageFile') | imagine_filter('800x600') }}" class="d-block w-100" alt="{{ slide.name }}">
                                                         <div style="background-color:{{ slide.menuLevel1.color }}" class="d-flex ms-auto w-90 p-2"></div>
                                                     </div>

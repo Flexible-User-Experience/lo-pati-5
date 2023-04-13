@@ -1,12 +1,3 @@
-To Do
-=====
-
- * fix responsiveness issues
- * add legal terms page
- * manage Sendgrid unsubscriptions callback hooks
- * check newsletter email sendings
- * implement newsletter redesign
-
 Changelog
 =========
 
@@ -15,6 +6,7 @@ Changelog
  * change address
  * remove Museum logo from footer
  * remove frontend archives grid view
+ * fix responsiveness issues
 
 ##### Version 5.09.06 (2023-04-12)
  * add newsletter reCaptcha form protection

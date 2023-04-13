@@ -38,10 +38,11 @@
                 </div>
             </div>
         </div>
+        {# top menu section #}
         <div class="container-fluid bg-dark">
             <header class="d-flex">
                 <a class="p-4" href="{{ path('front_app_homepage') }}">
-                    <img src="{{ asset('build/vectors/lo_pati_centre_art_logo.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="200" height="42" class="d-inline-block">
+                    <img src="{{ asset('build/vectors/lo_pati_centre_art_logo.svg') }}" alt="{{ 'front.layout.title' | trans }}" width="200" height="42" class="d-inline-block img-fluid">
                 </a>
                 <nav class="navbar navbar-expand-lg navbar-dark text-uppercase py-0 align-items-stretch flex-grow-1">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,6 +63,7 @@
             </header>
         </div>
         {% block submenu_header %}{% endblock %}
+        {# session flashes section #}
         {% block flash_sections %}
             {% if app.session.flashbag.peekAll | length > 0 %}
                 <div class="container my-5">
@@ -80,7 +82,9 @@
                 </div>
             {% endif %}
         {% endblock %}
+        {# main content section #}
         {% block main %}{% endblock %}
+        {# footer section #}
         <div class="container-fluid p-0"{% block footer_background_color_style_attribute %} style="background-color:#F0F8FA"{% endblock %}>
             <footer>
                 <div class="d-flex ms-auto w-90 p-2 lp-bg-purple"></div>
