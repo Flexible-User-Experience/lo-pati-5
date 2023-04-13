@@ -1,8 +1,10 @@
 Changelog
 =========
 
-##### Version 5.09.07 (WIP)
+##### Version 5.09.08 (WIP)
  * fix bugs
+
+##### Version 5.09.07 (2023-04-13)
  * change address
  * remove Museum logo from footer
  * remove frontend archives grid view
