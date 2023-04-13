@@ -494,6 +494,7 @@ front:
         legal_terms: 'Termes legals'
         privacy_policy: 'Política de privacitat'
         cookies_policy: 'Política de cookies'
+        accessibility_statement: 'Accessibilitat'
   menu:
     start: 'Inici'
   homepage:
