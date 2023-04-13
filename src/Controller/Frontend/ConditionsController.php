@@ -15,4 +15,12 @@ final class ConditionsController extends AbstractController
     {
         return $this->render('frontend/terms/privacy_policy.html.twig');
     }
+
+    /**
+     * @Route({"ca": "/accessibilitat", "es": "/accesibilidad"}, name="front_app_accessibility_statement")
+     */
+    public function accessibilityStatement(): Response
+    {
+        return $this->render('frontend/terms/accessibility_statement.html.twig');
+    }
 }

@@ -494,6 +494,7 @@ front:
         legal_terms: 'Termes legals'
         privacy_policy: 'Política de privacitat'
         cookies_policy: 'Política de cookies'
+        accessibility_statement: 'Accessibilitat'
   menu:
     start: 'Inici'
   homepage:
@@ -585,6 +586,15 @@ front:
     text_section_14_line_1: '%project_title% es reserva el dret a modificar la present política per adaptar-la a novetats legislatives o jurisprudencials.'
     title_15: 'Legislació'
     text_section_15_line_1: 'A tots els efectes les relacions entre %project_title% amb els Usuaris dels seus serveis telemàtics, presents en aquest web, estan sotmesos a la legislació i jurisdicció espanyola a la qual se sotmeten expressament les parts, sent competents per la resolució de tots els conflictes derivats o relacionats amb el seu ús els jutjats i tribunals d''Amposta (TARRAGONA).'
+  accessibility_statement:
+    title_1: 'Declaració d''accessibilitat'
+    title_2: 'Accessibilitat'
+    text_section_2_line_1: 'Aquest portal utilitza el marc de treball <a href="https://getbootstrap.com/docs/5.3/getting-started/accessibility/" target="_blank">Bootstrap v5.3</a> que és programari lliure. Compleix les Directrius per a l''accessibilitat del contingut web (<a href="https://www.w3.org/Translations/WCAG21-ca/" target="_blank">WCAG v2.1</a>) nivell "AAA" per a persones amb discapacitat, incloses les persones cegues i amb baixa visió, sordes i amb pèrdua auditiva, amb trastorns de l''aprenentatge, amb limitacions cognitives, amb moviment limitat, amb dificultats en la parla, fotosensibles i amb qualsevol combinació de les discapacitats anteriors.'
+    title_3: 'Declaració'
+    text_section_3_line_1: 'Aquest portal està dissenyat per a atendre la diversitat de maneres en què hom accedeix i utilitza Internet.'
+    title_4: 'Validació'
+    text_section_4_line_1: 'Aquest portal utilitza tecnologies d''accessibilitat seguint les bones pràctiques actuals recomanades per WAI-ARIA; no obstant això, els estàndards del portal i els continguts varien al llarg del temps. Si trobeu que aquest portal no valida correctament, contacteu a <a href="mailto:%email%">%email%</a>.'
+    text_section_4_line_2: 'Hi ha unes quantes directrius de WCAG 2.0 i ATAG 2.0 que són subjectives; potser hi ha instàncies en què les interpretacions varien.'
 newsletter:
   form:
     name: 'NOM *'
