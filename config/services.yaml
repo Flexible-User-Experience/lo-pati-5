@@ -28,6 +28,7 @@ parameters:
     pp_city:                    '%env(string:PP_CITY)%'
     pp_phone:                   '%env(string:PP_PHONE)%'
     pp_email:                   '%env(string:PP_EMAIL)%'
+    pp_communication_email:     '%env(string:PP_COMMUNICATION_EMAIL)%'
     locale_i18n:                [ 'es' ]
     locale_i18n_full:           [ 'ca', 'es' ]
 

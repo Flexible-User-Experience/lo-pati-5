@@ -27,6 +27,7 @@ twig:
         pp_city: '%pp_city%'
         pp_phone: '%pp_phone%'
         pp_email: '%pp_email%'
+        pp_communication_email: '%pp_communication_email%'
 
 when@test:
     twig:
