@@ -37,7 +37,7 @@ sonata_admin:
                 roles:           [ 'ROLE_ADMIN' ]
                 keep_open:       false
             Artist:
-                icon:            '<i class="fas fa-paint-roller"></i>'
+                icon:            '<i class="fas fa-paint-brush"></i>'
                 label:           'sidebarmenu.artist.title'
                 label_catalogue: 'messages'
                 roles:           [ 'ROLE_ADMIN' ]
