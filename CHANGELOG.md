@@ -6,6 +6,7 @@ Changelog
  * improve pricavy policy
  * create accessibility statement footer page
  * fix agenda detailed list page responsiveness problem
+ * replace paint-roller by paint-brush icons
 
 ##### Version 5.09.07 (2023-04-13)
  * change address
