@@ -8,12 +8,12 @@
     <main>
         <div class="container">
             <div class="row my-5">
-                <div class="col-9">
+                <div class="col-sm-9">
                     <h1>{{ 'front.agenda.title' | trans }}</h1>
                     <h4 class="text-muted mb-5">{{ 'front.agenda.activities' | trans }} {{ moment | date(constant('App\\Entity\\AbstractBase::DATE_FORMAT')) }}</h4>
                     {% include "frontend/partials/pages_list.html.twig" with {'is_archive_view': false} %}
                 </div>
-                <div class="col-3" data-controller="calendar" data-calendar-month-value="{{ moment | date('n') }}" data-calendar-year-value="{{ moment | date('Y') }}">
+                <div class="col-sm-3" data-controller="calendar" data-calendar-month-value="{{ moment | date('n') }}" data-calendar-year-value="{{ moment | date('Y') }}">
                     <div class="row">
                         <div class="col-6">
                             <h6 class="lp-bg-light-grey text-white text-uppercase p-2 mb-3">{{ 'front.layout.footer.agenda.dates' | trans }}</h6>
