@@ -1,12 +1,15 @@
 Changelog
 =========
 
-##### Version 5.09.08 (WIP)
+##### Version 5.09.09 (WIP)
  * fix bugs
+
+##### Version 5.09.08 (2023-04-21)
  * improve pricavy policy
  * create accessibility statement footer page
  * fix agenda detailed list page responsiveness problem
  * replace paint-roller by paint-brush icons
+ * add UniqueEntity assert validation in NewsletterUser entity
 
 ##### Version 5.09.07 (2023-04-13)
  * change address

@@ -7,12 +7,15 @@ use App\Enum\LanguageEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="unique_newsletter_user_email_index", columns={"email"}), @ORM\UniqueConstraint(name="unique_newsletter_user_token_index", columns={"token"})})
  *
  * @ORM\Entity(repositoryClass="App\Repository\NewsletterUserRepository")
+ *
+ * @UniqueEntity("email")
  */
 class NewsletterUser extends AbstractBase
 {
@@ -76,6 +79,7 @@ class NewsletterUser extends AbstractBase
 
     public function __construct()
     {
+        $this->id = 0;
         $this->groups = new ArrayCollection();
         $this->resetToken();
     }
@@ -229,6 +233,6 @@ class NewsletterUser extends AbstractBase
 
     public function __toString(): string
     {
-        return $this->id ? $this->getEmail() : AbstractBase::DEFAULT_EMPTY_STRING;
+        return $this->getId() ? $this->getEmail() : AbstractBase::DEFAULT_EMPTY_STRING;
     }
 }
