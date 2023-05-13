@@ -61,11 +61,11 @@ final class NewsletterController extends AbstractController
             if (!$searchedNewsletterUser) {
                 // create a new user
                 $searchedNewsletterUser = new NewsletterUser();
-                $newsletterUser->setEmail($newsletterUser->getEmail());
             }
             // update user data in both cases (create or update)
             $searchedNewsletterUser
                 ->setName($newsletterUser->getName())
+                ->setEmail($newsletterUser->getEmail())
                 ->setPhone($newsletterUser->getPhone())
                 ->setPostalCode($newsletterUser->getPostalCode())
                 ->setLanguage($request->getLocale())
@@ -103,6 +103,7 @@ final class NewsletterController extends AbstractController
 
     /**
      * @Route("/newsletter/{id}", name="front_app_newsletter_web_version", priority=10)
+     *
      * @ParamConverter("id", class="App\Entity\Newsletter", options={"mapping": {"id": "id"}})
      */
     public function showNewsletterWebVersion(Newsletter $newsletter): Response
