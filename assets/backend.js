@@ -3,8 +3,8 @@ import './stimulus_bootstrap';
 
 // start PDF JS library
 import jQuery from 'jquery';
-import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/lib/pdf';
-GlobalWorkerOptions.workerSrc = require('pdfjs-dist/build/pdf.worker.entry.js');
+import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist/build/pdf';
+GlobalWorkerOptions.workerSrc = require('pdfjs-dist/build/pdf.worker');
 
 jQuery(document).ready(function() {
     let pdfHolderNodes = jQuery('[data-holder]');
