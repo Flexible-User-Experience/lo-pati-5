@@ -79,7 +79,6 @@ class NewsletterUser extends AbstractBase
 
     public function __construct()
     {
-        $this->id = 0;
         $this->groups = new ArrayCollection();
         $this->resetToken();
     }
