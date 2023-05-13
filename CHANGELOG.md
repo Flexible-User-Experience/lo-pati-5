@@ -1,8 +1,13 @@
 Changelog
 =========
 
-##### Version 5.09.09 (WIP)
+##### Version 5.09.19 (WIP)
  * fix bugs
+
+##### Version 5.09.09 (2023-05-13)
+ * fix newsletter subscription problem
+ * composer dependencies update
+ * yarn dependencies update
 
 ##### Version 5.09.08 (2023-04-21)
  * improve pricavy policy
