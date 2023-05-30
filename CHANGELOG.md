@@ -4,6 +4,10 @@ Changelog
 ##### Version 5.09.19 (WIP)
  * fix bugs
 
+##### Version 5.09.19 (2023-05-30)
+ * Symfony v5.4.24 update
+ * Symfony v5.4.24 update
+
 ##### Version 5.09.09 (2023-05-13)
  * fix newsletter subscription problem
  * composer dependencies update
