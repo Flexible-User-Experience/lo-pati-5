@@ -1,10 +1,12 @@
 Changelog
 =========
 
-##### Version 5.09.19 (WIP)
+##### Version 5.09.11 (WIP)
  * fix bugs
+ * remove deprecation channel from PROD logs
+ * add presta/sitemap-bundle dependency
 
-##### Version 5.09.19 (2023-05-30)
+##### Version 5.09.10 (2023-05-30)
  * Symfony v5.4.24 update
  * yarn dependencies update
 
