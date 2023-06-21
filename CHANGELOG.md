@@ -5,6 +5,7 @@ Changelog
  * fix bugs
  * remove deprecation channel from PROD logs
  * add presta/sitemap-bundle dependency
+ * remove AddThis shares script
 
 ##### Version 5.09.10 (2023-05-30)
  * Symfony v5.4.24 update
