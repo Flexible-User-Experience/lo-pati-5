@@ -2,9 +2,7 @@
 
 namespace App\Enum;
 
-final class LanguageEnum
+final class LanguageEnum extends LocalesEnum
 {
-    public const CA = 'ca';
-    public const ES = 'es';
     public const EN = 'en';
 }

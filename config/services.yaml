@@ -76,6 +76,11 @@ services:
             - '@knp_menu.factory'
             - '@security.helper'
     # event listeners
+    App\Event\Listener\SitemapListener:
+        arguments:
+            - '@router'
+        tags:
+            - { name: 'kernel.event_subscriber', priority: 100 }
     app.user_success_login_event_listener:
         class: App\Event\Listener\UserSuccessLoginEventListener
         arguments:
