@@ -11,6 +11,7 @@ Changelog
  * remove AddThis shares script
  * composer dependencies update
  * update Composer installed version during Ansible deployment
+ * fix problem with default language during NewsletterContact user creation
 
 ##### Version 5.09.10 (2023-05-30)
  * Symfony v5.4.24 update

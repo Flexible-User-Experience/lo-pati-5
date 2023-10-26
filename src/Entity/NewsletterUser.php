@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Entity\Traits\LegacyIdTrait;
-use App\Enum\LanguageEnum;
 use App\Enum\LocalesEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
