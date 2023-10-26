@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Entity\Traits\LegacyIdTrait;
 use App\Enum\LanguageEnum;
+use App\Enum\LocalesEnum;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -60,7 +61,7 @@ class NewsletterUser extends AbstractBase
     /**
      * @ORM\Column(type="string", length=2, options={"default": "ca"})
      */
-    private string $language = LanguageEnum::CA;
+    private string $language = LocalesEnum::CA;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
