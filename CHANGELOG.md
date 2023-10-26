@@ -1,10 +1,19 @@
 Changelog
 =========
 
-##### Version 5.09.19 (WIP)
+##### Version 5.09.12 (WIP)
  * fix bugs
 
-##### Version 5.09.19 (2023-05-30)
+##### Version 5.09.11 (2023-10-26)
+ * fix bugs
+ * remove deprecation channel from PROD logs
+ * add presta/sitemap-bundle dependency
+ * remove AddThis shares script
+ * composer dependencies update
+ * update Composer installed version during Ansible deployment
+ * fix problem with default language during NewsletterContact user creation
+
+##### Version 5.09.10 (2023-05-30)
  * Symfony v5.4.24 update
  * yarn dependencies update
 

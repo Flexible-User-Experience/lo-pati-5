@@ -26,6 +26,7 @@ class BaseControllerTest extends WebTestCase
     public function provideUrls(): array
     {
         return [
+            ['/sitemap/sitemap.default.xml'],
             ['/'],
             ['/menu-1/submenu-1-1'],
             ['/menu-1/submenu-1-2'],
