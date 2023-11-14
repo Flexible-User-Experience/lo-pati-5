@@ -1,8 +1,13 @@
 Changelog
 =========
 
-##### Version 5.09.12 (WIP)
+##### Version 5.09.13 (WIP)
  * fix bugs
+
+##### Version 5.09.12 (2023-11-14)
+ * Symfony v5.4.31 update
+ * Yarn dependencies update
+ * fix problem with Ckeditor invalid license key
 
 ##### Version 5.09.11 (2023-10-26)
  * fix bugs
