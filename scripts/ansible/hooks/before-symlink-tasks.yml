@@ -6,7 +6,7 @@
     SYMFONY_ENV={{ symfony_env }} {{ symfony_php_path }} {{ symfony_console_path }} cache:warmup {{ symfony_cache_options }}"
 - name: install ckeditor
   shell: "chdir={{ ansistrano_release_path.stdout }}
-    SYMFONY_ENV={{ symfony_env }} {{ symfony_php_path }} {{ symfony_console_path }} ckeditor:install {{ symfony_cache_options }}"
+    SYMFONY_ENV={{ symfony_env }} {{ symfony_php_path }} {{ symfony_console_path }} ckeditor:install --tag=4.22.1 {{ symfony_cache_options }}"
 - name: assets install
   shell: "chdir={{ ansistrano_release_path.stdout }}
     SYMFONY_ENV={{ symfony_env }} {{ symfony_php_path }} {{ symfony_console_path }} assets:install {{ symfony_cache_options }}"
