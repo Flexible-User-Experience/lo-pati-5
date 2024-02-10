@@ -5,6 +5,7 @@ fos_ck_editor:
             height: '450px'
             toolbar:
                 - [ 'Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Subscript', 'Superscript', '-', 'Alignment', '-', 'BulletedList', 'NumberedList', 'Indent', 'Outdent', '-', 'Blockquote', '-', 'Link', 'Unlink', '-', 'Source' ]
+            versionCheck: false
             autoParagraph: false
             extraPlugins:
                 - 'justify'
@@ -12,6 +13,7 @@ fos_ck_editor:
             height: '200px'
             toolbar:
                 - [ 'Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste', '-', 'Bold', 'Italic', 'Underline', 'Strike', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'Subscript', 'Superscript', '-', 'Alignment', '-', 'BulletedList', 'NumberedList', 'Indent', 'Outdent', '-', 'Blockquote', '-', 'Link', 'Unlink' ]
+            versionCheck: false
             autoParagraph: false
             extraPlugins:
                 - 'justify'
@@ -19,6 +21,7 @@ fos_ck_editor:
             height: '100px'
             toolbar:
                 - [ 'Bold', 'Italic', 'Underline', 'Strikethrough', 'Subscript', 'Superscript', '-', 'BulletedList', 'NumberedList', '-',  'Indent', 'Outdent', '-', 'Link', 'Unlink' ]
+            versionCheck: false
             autoParagraph: false
     plugins:
         justify:

@@ -1,8 +1,13 @@
 Changelog
 =========
 
-##### Version 5.09.13 (WIP)
+##### Version 5.09.14 (WIP)
  * fix bugs
+
+##### Version 5.09.13 (2024-02-10)
+ * composer dependencies update
+ * yarn dependencies update
+ * disable form type CKEditor version check to hide red error message
 
 ##### Version 5.09.12 (2023-11-14)
  * Symfony v5.4.31 update
